@@ -27,7 +27,7 @@
 }
 #loginFormContainer{
     position: relative;
-    min-width: 60vw;
+    min-width: 850px;
     background-color: white;
     display: flex;
     flex-direction: row;

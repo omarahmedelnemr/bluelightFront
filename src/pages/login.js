@@ -1,9 +1,9 @@
 import './styles/login.css'
-import './styles/inputs.css'
 import Button from '../components/button';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Input from '../components/input';
 function Login() {
 
 
@@ -57,8 +57,9 @@ function Login() {
                 <p className='WrongMessage'>{messege}</p>           
                      </div>
                 <div>
-
-                  <div class="col-3 input-effect">
+                  <Input type={"text"} label={"username"} ID = {"loginUsername"} />
+                  <Input type={"password"} label={"Password"} ID = {"loginPassword"} />
+                  {/* <div class="col-3 input-effect">
                       <input class="effect-22" type="text" id = "loginUsername" name ="email" placeholder=" "/>
                       <label>username</label>
                       <span class="focus-bg"></span>
@@ -67,7 +68,7 @@ function Login() {
                       <input class="effect-22" type="password" id = "loginPassword" name ="password" placeholder=" "/>
                       <label>Password</label>
                       <span class="focus-bg"></span>
-                  </div>
+                  </div> */}
                 </div>
 
                 <Button text={"Login"} onClickFunc={SubmitLogin}/>
