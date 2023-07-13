@@ -1,0 +1,60 @@
+#loginContainer{
+    /* background-color: rgb(188, 188, 188); */
+    background-image: url('../../content/44.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#loginPageOpacity{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(137, 137, 137, 0.514);
+    z-index: 0;
+}
+#formOpacity{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(62, 62, 62, 0.166);
+    z-index: 1;
+}
+#loginFormContainer{
+    position: relative;
+    min-width: 60vw;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 60vh;
+    background-image: url('../../content/44.jpg');
+    background-size: cover;
+    justify-content: end;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: -5px 5px 10px gray;
+
+}
+
+#formWavyEffect{
+    transform: rotateY(180deg);
+    position: relative;
+    z-index: 2;
+}
+#loginSideImage{
+    width: 50%;
+}
+#mainLoginForm{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 2;
+}

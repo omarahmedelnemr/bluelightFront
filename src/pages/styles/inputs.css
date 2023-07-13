@@ -1,0 +1,26 @@
+input[type="text"],input[type="password"],input[type="number"],input[type="email"]{font: 15px/24px "Lato", Arial, sans-serif;z-index: 99; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+.col-3{
+    position: relative;
+    margin:0px;
+    margin-top:  40px;
+    margin-bottom: 10px;
+    width: 400px;
+    text-align: left;
+}
+
+
+.effect-22, 
+.effect-23, 
+.effect-24{border: 0; padding: 7px 15px; border: 1px solid #ccc; position: relative; background: transparent;}
+
+.effect-22 ~ .focus-bg{position: absolute; left: 0; top: 0; width: 0; height: 100%; background-color: transparent; transition: 0.4s; z-index: 98;}
+.effect-22:focus ~ .focus-bg, 
+.has-content.effect-22 ~ .focus-bg{transition: 0.4s; width: 100%; background-color: #ededed;}
+.effect-22 ~ label{position: absolute; left: 14px;z-index: 98; width: 100%; top: 10px; color: #000000e0; transition: 0.3s; letter-spacing: 0.5px;}
+.effect-22:focus ~ label, .has-content.effect-22 ~ label{top: -18px; left: 0; font-size: 12px; color: #000000e0; transition: 0.3s;}
+.effect-22:not(:placeholder-shown) ~ label{
+    top: -18px; left: 0; font-size: 12px; color: #000000e0; transition: 0.3s;
+}
+.effect-22:not(:placeholder-shown) ~ .focus-bg{
+    transition: 0.4s; width: 100%; background-color: #ededed;
+}
