@@ -19,16 +19,19 @@ function Login() {
     }
     else{
       console.log("Request Sent")
+      // axios.post("http://localhost:8000/login",{username:username,password:password},{ withCredentials: true})
       axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
       .then((res)=>{
         setMessege('')
         setLogingmessege("Logging")
+        console.log("logging")
         // navigate('/')
       }).catch((err)=>{
         try{
           setMessege(err.response.data)
         }catch{
           setMessege("Error!")
+          console.log(err)
         }
       })
     }
@@ -40,41 +43,26 @@ function Login() {
 
 
   return (
-    <div id = "loginContainer" className="login">\
-        <div id='loginPageOpacity'></div>
-
-        <div id='loginFormContainer'>
-            <div id='formOpacity'></div>
-            {/* <div id='formWithWave'> */}
-
-              <svg viewBox="0 0 200 500" id='formWavyEffect'>
-                  <path d="M -2,0 50,0 C 100,150 -100,359 100,500 L 00,500 L 0,1" fill='white' stroke="white"></path>
-              </svg>
-              <div id='mainLoginForm'>
-                <div>
-                    <h1>Welcome To Ejust School</h1>
-                    <p className='rightMessage'>{logingmessege}</p>
+    <div id = "loginContainer" className="login">
+      <div id='loginPageOpacity'></div>
+      <div id='loginFormContainer'>
+          <div id='formOpacity'></div>
+          <svg viewBox="0 0 200 500" id='formWavyEffect'>
+              <path d="M -2,0 50,0 C 100,150 -100,359 100,500 L 00,500 L 0,1" fill='white' stroke="white"></path>
+          </svg>
+          <div id='mainLoginForm'>
+            <div>
+                <h1>Welcome To Ejust School</h1>
+                <p className='rightMessage'>{logingmessege}</p>
                 <p className='WrongMessage'>{messege}</p>           
-                     </div>
-                <div>
-                  <Input type={"text"} label={"username"} ID = {"loginUsername"} />
-                  <Input type={"password"} label={"Password"} ID = {"loginPassword"} />
-                  {/* <div class="col-3 input-effect">
-                      <input class="effect-22" type="text" id = "loginUsername" name ="email" placeholder=" "/>
-                      <label>username</label>
-                      <span class="focus-bg"></span>
-                  </div>
-                  <div class="col-3 input-effect">
-                      <input class="effect-22" type="password" id = "loginPassword" name ="password" placeholder=" "/>
-                      <label>Password</label>
-                      <span class="focus-bg"></span>
-                  </div> */}
-                </div>
-
-                <Button text={"Login"} onClickFunc={SubmitLogin}/>
-              </div>
-            {/* </div> */}
+            </div>
+            <div>
+              <Input type={"text"} label={"username"} ID = {"loginUsername"} />
+              <Input type={"password"} label={"Password"} ID = {"loginPassword"} />
+            </div>
+            <Button text={"Login"} onClickFunc={SubmitLogin}/>
         </div>
+      </div>
     </div>
   );
 }
