@@ -23,8 +23,8 @@ function Login() {
     }
     else{
       console.log("Request Sent")
-      axios.post("http://localhost:8000/login",{username:username,password:password},{ withCredentials: true})
-      // axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
+      // axios.post("http://localhost:8000/login",{username:username,password:password},{ withCredentials: true})
+      axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
       .then((res)=>{
         setMessege('')
         const cookies = new Cookies();
