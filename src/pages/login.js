@@ -4,6 +4,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
+
+import Cookies from 'universal-cookie';
+
+
 function Login() {
 
 
@@ -19,10 +23,15 @@ function Login() {
     }
     else{
       console.log("Request Sent")
-      // axios.post("http://localhost:8000/login",{username:username,password:password},{ withCredentials: true})
-      axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
+      axios.post("http://localhost:8000/login",{username:username,password:password},{ withCredentials: true})
+      // axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
       .then((res)=>{
         setMessege('')
+        const cookies = new Cookies();
+        cookies.set("jwt",res.data['jwt'])
+        cookies.set("role",res.data['role'])
+        cookies.set("id",res.data['id'])
+        cookies.set("CookiesState","By React")
         setLogingmessege("Logging")
         console.log("logging")
         // navigate('/')
