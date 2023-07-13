@@ -23,7 +23,7 @@ function Login() {
       .then((res)=>{
         setMessege('')
         setLogingmessege("Logging")
-        navigate('/')
+        // navigate('/')
       }).catch((err)=>{
         try{
           setMessege(err.response.data)
