@@ -1,7 +1,44 @@
 import './styles/login.css'
 import './styles/inputs.css'
-import image from '../content/44.jpg'
+import Button from '../components/button';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 function Login() {
+
+
+  function SubmitLogin(){
+    const username = document.getElementById("loginUsername").value
+    const password = document.getElementById("loginPassword").value
+    console.log(password.length)
+    if (username.length < 3){
+      setMessege("Please Fill the Username and Password Fields")
+    }
+    else if(password.length < 8){
+      setMessege("Password is Short")
+    }
+    else{
+      console.log("Request Sent")
+      axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
+      .then((res)=>{
+        setMessege('')
+        setLogingmessege("Logging")
+        navigate('/')
+      }).catch((err)=>{
+        try{
+          setMessege(err.response.data)
+        }catch{
+          setMessege("Error!")
+        }
+      })
+    }
+
+  }
+  const [messege,setMessege] = useState([""])
+  const [logingmessege,setLogingmessege] = useState([""])
+  const navigate = useNavigate();
+
+
   return (
     <div id = "loginContainer" className="login">\
         <div id='loginPageOpacity'></div>
@@ -16,13 +53,14 @@ function Login() {
               <div id='mainLoginForm'>
                 <div>
                     <h1>Welcome To Ejust School</h1>
-                    <p>Login To Your Account</p>
-                </div>
+                    <p className='rightMessage'>{logingmessege}</p>
+                <p className='WrongMessage'>{messege}</p>           
+                     </div>
                 <div>
 
                   <div class="col-3 input-effect">
-                      <input class="effect-22" type="text" id = "loginEmail" name ="email" placeholder=" "/>
-                      <label>Email</label>
+                      <input class="effect-22" type="text" id = "loginUsername" name ="email" placeholder=" "/>
+                      <label>username</label>
                       <span class="focus-bg"></span>
                   </div>
                   <div class="col-3 input-effect">
@@ -32,7 +70,7 @@ function Login() {
                   </div>
                 </div>
 
-                <button>Login</button>
+                <Button text={"Login"} onClickFunc={SubmitLogin}/>
               </div>
             {/* </div> */}
         </div>

@@ -58,3 +58,12 @@
     background-color: white;
     z-index: 2;
 }
+#mainLoginForm .Button{
+    margin-top: 35px;
+}
+#mainLoginForm .WrongMessage{
+    color: red;
+}
+#mainLoginForm .rightMessage{
+    color: lightgreen;
+}
