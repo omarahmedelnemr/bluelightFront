@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
 
 import Cookies from 'universal-cookie';
+import Watermark from '../components/watermark';
 
 
 function Login() {
@@ -23,18 +24,26 @@ function Login() {
     }
     else{
       console.log("Request Sent")
-      // axios.post("http://localhost:8000/login",{username:username,password:password},{ withCredentials: true})
       axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
       .then((res)=>{
-        setMessege('')
+        
+        //Set The Cookies Manual 
         const cookies = new Cookies();
         cookies.set("jwt",res.data['jwt'])
         cookies.set("role",res.data['role'])
         cookies.set("id",res.data['id'])
         cookies.set("CookiesState","By React")
+
+
+        //Set Local Storage Variables
+        localStorage.setItem("name", res.data['name'])
+        localStorage.setItem("img_dir", res.data['img_dir'])
+        localStorage.setItem("classroom",res.data["classroom"])
+
+
+        setMessege('')
         setLogingmessege("Logging")
-        console.log("logging")
-        // navigate('/')
+        navigate('/')
       }).catch((err)=>{
         try{
           setMessege(err.response.data)
@@ -72,6 +81,7 @@ function Login() {
             <Button text={"Login"} onClickFunc={SubmitLogin}/>
         </div>
       </div>
+      <Watermark />
     </div>
   );
 }

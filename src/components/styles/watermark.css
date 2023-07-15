@@ -1,0 +1,15 @@
+.Watermark{
+    font-weight: 400;
+    color: #ffffffc4;
+    font-size: 15px;
+    position: absolute;
+    width: 50%;
+    text-align: center;
+    left: 25%;
+    top: 92%;
+    font-style: italic;
+    font-family: sans-serif;
+}
+.Watermark p span{
+    font-weight: bolder;
+}

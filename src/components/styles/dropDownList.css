@@ -1,0 +1,38 @@
+.dropDownList .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 60px;
+
+}
+.dropDownList .withImage{
+    max-width: 200px;
+    padding: 5px;
+}
+.dropDownList .withoutImage{
+    padding: 10px 30px;
+    width: fit-content;
+}
+
+.dropDownList .header p{
+    margin: 0px;
+    font-size: 15px;
+    text-align: left;
+}
+.dropDownList .withoutImage p{
+    margin-right: 10px;
+}
+
+.dropDownList .header .subText{
+    margin-top: 5px;
+    color:gray
+}
+.dropDownList .header img{
+    height: 50px;
+    border-radius: 100%;
+}
+.dropDownList .header svg{
+    font-size: 13px;
+}

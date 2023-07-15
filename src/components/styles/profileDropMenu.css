@@ -1,0 +1,67 @@
+.profileDropDown{
+    position: relative;
+}
+.profileDropDown .header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 60px;
+    width: 200px;
+    height: min-content;
+    padding: 5px;
+}
+
+.profileDropDown .header p{
+    margin: 0px;
+    font-size: 15px;
+    text-align: left;
+}
+
+
+.profileDropDown .header .subText{
+    margin-top: 5px;
+    color:gray
+}
+.profileDropDown .header img{
+    height: 50px;
+    border-radius: 100%;
+}
+.profileDropDown .header svg{
+    font-size: 13px;
+    transition: 0.5s;
+}
+
+.lookUp{
+    transform: rotate(180deg);
+}
+.lookDown{
+    transform: rotate(0deg);
+}
+.profileDropDown .dropList{
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 5px;
+    padding: 0px 0px;
+    overflow: hidden;
+    height: 0px;
+    transition: 1s;
+}
+.profileDropDown .dropList div{
+    padding: 5px;
+    margin: 5px 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.profileDropDown .dropList div:hover{
+    background-color: #c9ddfe;
+    cursor: pointer;
+
+}
+.profileDropDown .dropList p{
+    margin: 0px;
+}
