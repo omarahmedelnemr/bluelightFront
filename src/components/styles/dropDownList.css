@@ -5,6 +5,8 @@
     justify-content: space-around;
     background-color: white;
     border-radius: 60px;
+    padding: 10px;
+    min-width: 120px;
 
 }
 .dropDownList .withImage{

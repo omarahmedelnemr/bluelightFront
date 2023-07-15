@@ -3,3 +3,30 @@
     display: flex;
     flex-direction: row;
 }
+.Homepage .statusBoxes{
+    /* justify-content: space-around; */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.Homepage .overviewTitle{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+.Homepage .dataColumns{
+    padding: 20px;
+    justify-content: center;
+}
+.Homepage .dataColumns .workToSubmit{
+    flex-basis: 50%;
+}
+.Homepage .dataColumns .analytics{
+    flex-basis: 40%;
+}
+.test{
+    background-color: #dbeaff;
+    height: 350px;
+    padding: 20px;
+    margin: 5px 0px;
+    border-radius: 10px;
+}

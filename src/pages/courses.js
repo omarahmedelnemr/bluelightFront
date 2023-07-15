@@ -12,14 +12,11 @@ import TopBar from '../components/topBar';
 
 
 function CoursesPage() {
-    console.log("hello")
-    // console.log(document.getElementsByClassName("active"))
-//   document.getElementsByClassName("active")[0].classList.remove("active")
-//   document.getElementById("coursesNavButton").classList.add("active")
-//   document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById("coursesNavButton").getBoundingClientRect().y+"px")
 
   return (
     <div className="Homepage column">
+      <TopBar title={"Courses"}/>
+
       <div className='row'>
 
       </div>        

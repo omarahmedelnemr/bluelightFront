@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DropDownList from "./dropDownList";
 import ProfileDropMenu from "./profileDropMenu";
 
-function TopBar() {
+function TopBar({title}) {
     return (
         <div className="topBar">
-            <h1>Nile Egyption International Schools</h1>
+            <h1>{title}</h1>
             <ProfileDropMenu/>
         </div>
     );

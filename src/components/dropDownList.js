@@ -8,7 +8,7 @@ function DropDownList({mainText}) {
                 <div>
                     <p className="mainText">{mainText}</p>
                 </div>
-                <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
+                {/* <FontAwesomeIcon icon="fa-solid fa-chevron-down" /> */}
             </div>
             <div>
 

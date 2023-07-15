@@ -7,7 +7,6 @@ import { useEffect } from "react";
 function SideNavigation() {
     useEffect(()=>{
         const path = window.location.pathname.split("/")[1]
-        console.log(":",path,": "," = ",path == "")
         try{
         document.getElementsByClassName("active")[0].classList.remove("active")
         if (path ==''){
@@ -21,7 +20,7 @@ function SideNavigation() {
         }}catch(err){
             console.log("loading")
         }
-    },1000)
+    },[1000])
     function navButtonClick(event) {
         document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",event.currentTarget.getBoundingClientRect().y+"px")
         

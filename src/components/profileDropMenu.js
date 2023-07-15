@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
 
 function ProfileDropMenu() {
-    console.log(window.location.pathname)
     function routeToAccount(){
         document.querySelector("#root > div > div > div.sideNav > div.center > div:nth-child(5)").click()
         

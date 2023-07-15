@@ -9,16 +9,15 @@ import CoursesPage from './pages/courses';
 // require('dotenv').config()
 function App() {
   return (
-    <div className="App row">
+    <div className="App">
       <Router>
         <Routes>
           <Route path='/Login' element={<Login />} />
           <Route path='/*' element={
 
-            <div className='row fullWidth'>
+            <div className='row fullWidth pageLang'>
                 <SideNavigation />
-                <div className='column fullWidth'>
-                    <TopBar />
+                <div className='column mainContent fullWidth'>
                     <Routes>
                         <Route exact path='/' element={<Homepage />} />
                         <Route path='/courses' element={<CoursesPage />} />

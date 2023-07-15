@@ -1,0 +1,39 @@
+.workExamPanel{
+    background-color: #dbeaff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 5px;
+}
+.workExamPanel table{
+    position: relative;
+    width: 100%;
+}
+.workExamPanel .titleSeemore{
+    justify-content: space-between;
+}
+.workExamPanel .panelTitle{
+    text-align: left;
+    margin-top: 0px;
+    font-weight: bolder;
+}
+.workExamPanel tr{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    height: 50px;
+
+}
+.workExamPanel tr td{
+    margin: 0px 10px;
+}
+.workExamPanel .tableHeaders{
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+.workExamPanel hr{
+    border: 1px solid #c9ddfe;
+    position: absolute;
+    width: 100%;
+    margin: 0px;
+}

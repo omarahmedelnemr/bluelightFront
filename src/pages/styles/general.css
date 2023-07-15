@@ -1,12 +1,17 @@
 .row{
     display: flex;
     flex-direction: row;
+    /* flex-wrap: wrap; */
 }
 .column{
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
+
 }
 
-.fullWidth{
-    width: 100%;
-}
+@media (max-width: 1700px) {
+    .hideInSmall {
+      display: none !important;
+    }
+  }
