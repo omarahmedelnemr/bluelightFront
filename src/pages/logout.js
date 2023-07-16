@@ -25,7 +25,7 @@ function Logout() {
     cookies.remove("CookiesState")
 
 //   navigate('/login')
-    window.location.href = "/login"
+    window.location.href = "./login"
   return (
     <div>
       <h1>Logging out</h1>
