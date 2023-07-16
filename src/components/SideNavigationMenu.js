@@ -6,10 +6,11 @@ import { useEffect } from "react";
 
 function SideNavigation() {
     useEffect(()=>{
-        const path = window.location.pathname.split("/")[1]
+        const endpoints = window.location.pathname.split("/")
+        const path = endpoints[endpoints.length-1]
         try{
         document.getElementsByClassName("active")[0].classList.remove("active")
-        if (path ==''){
+        if (path ==='' || path ==='student' || path ==='parent' || path ==="teacher" || path==="admin"){
                document.getElementById("homeNavButton").classList.add("active")
               document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById("homeNavButton").getBoundingClientRect().y+"px")
 
@@ -35,7 +36,7 @@ function SideNavigation() {
         }
         // Add the "active" class to the clicked button
         event.currentTarget.classList.add("active");
-        navigate(event.currentTarget.getElementsByClassName('route')[0].innerHTML)
+        navigate(event.currentTarget.getElementsByClassName('route')[0].innerHTML+'/'+localStorage.getItem('role'))
         
 
     }

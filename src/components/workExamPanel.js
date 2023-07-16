@@ -1,6 +1,5 @@
 import "./styles/workExamPanel.css"
 function WorkExamsPanel({type}) {
-    var title;
     
     return (
         <div className="workExamPanel">

@@ -4,7 +4,6 @@ import Login from './pages/login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './components/FontawesomeIcons'
 import SideNavigation from './components/SideNavigationMenu';
-import TopBar from './components/topBar';
 import CoursesPage from './pages/courses';
 // require('dotenv').config()
 function App() {
@@ -13,7 +12,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/Login' element={<Login />} />
-          <Route path='/*' element={
+          <Route path='/' element={<Login />} />
+          <Route path='/student/*' element={
 
             <div className='row fullWidth pageLang'>
                 <SideNavigation />
@@ -27,6 +27,7 @@ function App() {
             
             </div>
           }/>
+          <Route path='/*' element={<h2 style={{backgroundColor:"white"}}>Please Login First<br/><a href="/login">Login</a></h2>}/>
         </Routes>
         
       </Router>

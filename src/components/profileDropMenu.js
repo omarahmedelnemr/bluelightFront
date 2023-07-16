@@ -1,13 +1,8 @@
-import { useState } from "react";
 import "./styles/profileDropMenu.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
 
 function ProfileDropMenu() {
-    function routeToAccount(){
-        document.querySelector("#root > div > div > div.sideNav > div.center > div:nth-child(5)").click()
-        
-    }
     function routeTologout(){
         navigate('/logout')
     }
@@ -35,7 +30,7 @@ function ProfileDropMenu() {
     return (
         <div className="profileDropDown" onClick={DropTheProfileMenue}>
             <div className="header ">
-                <img src={image} />
+                <img src={image} alt={"Profile Image"}/>
                 <div>
                     <p className="mainText">{mainText}</p>
                     <p className="subText">{subText}</p>  

@@ -4,14 +4,18 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
-
 import Cookies from 'universal-cookie';
 import Watermark from '../components/watermark';
+import Global from '../globalVar'
+import checkAutherization from '../checkAuth';
 
 
 function Login() {
-
-
+  if (checkAutherization() === 'Auth'){
+    const reader = new Cookies()
+    window.location.href ='/'+reader.get('role')
+  }
+  console.log("A")
   function SubmitLogin(){
     const username = document.getElementById("loginUsername").value
     const password = document.getElementById("loginPassword").value
@@ -24,7 +28,7 @@ function Login() {
     }
     else{
       console.log("Request Sent")
-      axios.post("http://api.bluelightlms.com/login",{username:username,password:password},{ withCredentials: true})
+      axios.post(Global.BackendURL+"/login",{username:username,password:password},{ withCredentials: true})
       .then((res)=>{
         
         //Set The Cookies Manual 
@@ -39,11 +43,12 @@ function Login() {
         localStorage.setItem("name", res.data['name'])
         localStorage.setItem("img_dir", res.data['img_dir'])
         localStorage.setItem("classroom",res.data["classroom"])
+        localStorage.setItem("role",res.data['role'])
 
 
         setMessege('')
         setLogingmessege("Logging")
-        navigate('/')
+        navigate('/'+res.data['role'])
       }).catch((err)=>{
         try{
           setMessege(err.response.data)

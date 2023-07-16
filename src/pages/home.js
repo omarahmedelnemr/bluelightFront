@@ -1,21 +1,15 @@
 import './styles/Homepage.css'
 import './styles/general.css'
-import Button from '../components/button';
-import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Input from '../components/input';
-
-import Cookies from 'universal-cookie';
-import SideNavigation from '../components/SideNavigationMenu';
 import TopBar from '../components/topBar';
 import DropDownList from '../components/dropDownList';
 import ContentBox1 from '../components/ContentBox1';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import WorkExamsPanel from '../components/workExamPanel';
-
+import checkAutherization from '../checkAuth';
 function Homepage() {
-
+    if (checkAutherization() !== 'Auth'){
+        window.location.href ='/login'
+    }
     return (
         <div className="Homepage column fullWidth">
             <TopBar title={"Nile Egyption International Schools"}/>
@@ -36,7 +30,7 @@ function Homepage() {
                 <ContentBox1 icon = {<FontAwesomeIcon icon="fas fa-envelope" />} iconColor = {"#a675f4"} title = {"Events"} commentNum={1} comment={"Event You Didn't See"} spanColor={"red"} actualNum = {2} totalNum={3} className={"hideInSmall"} />
             
                 </div>
-           </div>     
+        </div>     
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
                     <WorkExamsPanel type={"Assignments"}/>

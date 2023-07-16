@@ -1,5 +1,4 @@
 import "./styles/dropDownList.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function DropDownList({mainText}) {
     return (

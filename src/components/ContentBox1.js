@@ -1,6 +1,4 @@
-// import './styles/Homepage.css'
 import './styles/contentBox1.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ContentBox1({icon,iconColor,title,commentNum,comment,spanColor,actualNum,totalNum,className=''}) {
     return (
