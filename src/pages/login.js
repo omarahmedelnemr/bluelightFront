@@ -40,10 +40,12 @@ function Login() {
 
 
         //Set Local Storage Variables
+        if (localStorage.getItem("name") ===null){
         localStorage.setItem("name", res.data['name'])
         localStorage.setItem("img_dir", res.data['img_dir'])
         localStorage.setItem("classroom",res.data["classroom"])
         localStorage.setItem("role",res.data['role'])
+        }
 
         if(localStorage.getItem("lang") ===undefined || localStorage.getItem("lang") ===null){
           localStorage.setItem("lang","en")
