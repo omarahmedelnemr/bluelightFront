@@ -45,7 +45,7 @@ function Login() {
         localStorage.setItem("classroom",res.data["classroom"])
         localStorage.setItem("role",res.data['role'])
 
-        if(localStorage.getItem("lang") ===undefined){
+        if(localStorage.getItem("lang") ===undefined || localStorage.getItem("lang") ===null){
           localStorage.setItem("lang","en")
         }
 
