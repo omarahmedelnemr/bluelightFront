@@ -3,13 +3,74 @@
     border-radius: 10px;
     padding: 20px;
     margin: 5px;
+    height: 350px;
+    position: relative;
+}
+.workExamPanel .emptyMessage{
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    color:#9ac0ff;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.workExamPanel .emptyMessage .loading{
+    width: 40px;
+    height: 40px;
+    border: 5px dashed #373e486b;
+    border-radius: 100%;
+
+}
+@media (prefers-reduced-motion: no-preference) {
+    .workExamPanel .emptyMessage .loading{
+      animation: infinitRotate infinite 10s linear;
+    }
+  }
+.workExamPanel svg{
+    font-size: 20px;
+
 }
 .workExamPanel table{
     position: relative;
     width: 100%;
 }
+.workExamPanel table .still{
+    background-color: lightgreen;
+    color:green;
+    padding: 10px;
+    border-radius: 10px;
+}
+.workExamPanel table .today{
+    background-color: #EFEE8F;
+    color:#959535;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.workExamPanel table .late{
+    background-color: #EEAE9C;
+    color:red;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+
 .workExamPanel .titleSeemore{
     justify-content: space-between;
+}
+.workExamPanel .titleSeemore a{
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+.workExamPanel .titleSeemore a svg{
+    font-size: 15px;
+
 }
 .workExamPanel .panelTitle{
     text-align: left;

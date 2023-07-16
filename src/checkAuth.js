@@ -8,7 +8,8 @@ function checkAutherization(reverse=true){
     const classroom = localStorage.getItem('classroom')
     const roleCookie = cookieReader.get('role')
     const roleLocal = localStorage.getItem('role')
-    if(classroom === null || name === null || img_dir ===null || cookieReader.get('jwt') === undefined || roleCookie !==roleLocal || roleCookie!== undefined){
+    // console.log("img_dir: ",img_dir," ,name: ",name," ,classroom: ",classroom," roleCookie: ",roleCookie," ,roleLocal: ",roleLocal," ,Role Check: ",roleCookie !==roleLocal)
+    if(classroom === null || name === null || img_dir ===null || cookieReader.get('jwt') === undefined || roleCookie !==roleLocal || roleCookie === undefined){
         return "notAuth"
     }else{
         return "Auth"

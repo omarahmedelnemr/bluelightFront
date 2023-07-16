@@ -12,6 +12,14 @@ body{
   height: 100vh;
   overflow: auto;
 }
+
+.arLang{
+  direction: rtl;
+}
+
+.enLang{
+  direction: ltr;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -19,7 +27,7 @@ body{
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: infinitRotate infinite 20s linear;
   }
 }
 
@@ -37,12 +45,12 @@ body{
 .App-link {
   color: #61dafb;
 }
-
-@keyframes App-logo-spin {
+*/
+@keyframes infinitRotate {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-} */
+} 

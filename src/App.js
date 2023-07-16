@@ -5,16 +5,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './components/FontawesomeIcons'
 import SideNavigation from './components/SideNavigationMenu';
 import CoursesPage from './pages/courses';
+import Logout from './pages/logout';
 // require('dotenv').config()
 function App() {
+  const lang = localStorage.getItem('lang')
+  
   return (
-    <div className="App">
+    <div className={"App " +lang+"Lang"}>
       <Router>
         <Routes>
           <Route path='/Login' element={<Login />} />
           <Route path='/' element={<Login />} />
+          <Route path="/logout" element={<Logout/>}/>
           <Route path='/student/*' element={
-
+          
             <div className='row fullWidth pageLang'>
                 <SideNavigation />
                 <div className='column mainContent fullWidth'>

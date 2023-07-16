@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
 import Cookies from 'universal-cookie';
 import Watermark from '../components/watermark';
-import Global from '../globalVar'
+import Global from '../general/globalVar'
 import checkAutherization from '../checkAuth';
 
 
@@ -45,6 +45,9 @@ function Login() {
         localStorage.setItem("classroom",res.data["classroom"])
         localStorage.setItem("role",res.data['role'])
 
+        if(localStorage.getItem("lang") ===undefined){
+          localStorage.setItem("lang","en")
+        }
 
         setMessege('')
         setLogingmessege("Logging")

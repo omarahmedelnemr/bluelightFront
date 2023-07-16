@@ -61,7 +61,7 @@
     display: none;
 }
 .sideNav .center .navButton svg{
-    margin-right: 15px;
+    margin: 0px 15px;
     font-size: 20px;
 }
 
@@ -78,4 +78,24 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
+}
+
+.sideNav .bottom .chooseLang{
+    justify-content: center;
+    width: 170px;
+    background-color: white;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 0px 50px;}
+.sideNav .bottom .chooseLang p{
+    margin: 0px;
+    width: 100%;
+    color:black;
+    background-color: #c9ddfe;
+    cursor: pointer;
+}
+.sideNav .bottom .chooseLang .activeLang{
+    background-color: #3d5ef0;
+    color:white;
+    cursor:default    ;
 }

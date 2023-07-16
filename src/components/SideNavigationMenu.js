@@ -5,6 +5,34 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function SideNavigation() {
+    const lang = localStorage.getItem('lang') 
+    const compText = {
+        welcome:{
+            "en":"welcome Back",
+            "ar":"اهلا"
+        },
+        home:{
+            "en":"Home",
+            "ar":"الرئيسية"
+        },
+        courses:{
+            "en":"Courses",
+            "ar":"المقررات"
+        },
+        messages:{
+            "en":"Masseges",
+            "ar":"الرسائل"
+        },
+        bus:{
+            "en":"Bus",
+            "ar":"الباص"
+        },
+        account:{
+            "en":"Account",
+            "ar":"حسابي"
+        }
+        
+    }
     useEffect(()=>{
         const endpoints = window.location.pathname.split("/")
         const path = endpoints[endpoints.length-1]
@@ -36,57 +64,72 @@ function SideNavigation() {
         }
         // Add the "active" class to the clicked button
         event.currentTarget.classList.add("active");
-        navigate(event.currentTarget.getElementsByClassName('route')[0].innerHTML+'/'+localStorage.getItem('role'))
+        navigate("."+event.currentTarget.getElementsByClassName('route')[0].innerHTML)
         
+
+    }
+    function changeLang(event){
+        console.log(event.currentTarget.id)
+        if(event.currentTarget.id !== localStorage.getItem("lang")){
+            localStorage.removeItem('lang')
+            localStorage.setItem('lang',event.currentTarget.id)
+            document.getElementById("ar").classList.remove("activeLang")
+            document.getElementById("en").classList.remove("activeLang")
+            document.getElementById(event.currentTarget.id).classList.add('activeLang')
+            window.location.reload(false);
+        }
 
     }
     const firstName = localStorage.getItem("name").split(" ")[0]
     const navigate = useNavigate();
-      
+    useEffect(()=>{
+        document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
+    })
     return (
         <div className="sideNav">
             <div className="top">
                 <div className="welcome">
                     <img className="logoimage" src={logoImage}/>
-                    <p>Welcome Back {firstName}</p>
+                    <p>{compText["welcome"][lang]} {firstName}</p>
                 </div>
             </div>
             <div className="backgroundActive"></div>
             <div className="center">
                     <div id="homeNavButton" className="navButton active" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-house" />
-                        <p>Home</p>
+                        <p>{compText["home"][lang]}</p>
                         <span className="route">/</span>
                     </div>
                     <div id="coursesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book" />
-                        <p>Courses</p>
+                        <p>{compText["courses"][lang]}</p>
                         <span className="route">/courses</span>
 
                     </div>
                     <div id="messegesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-message" />
-                        <p>Masseges</p>
+                        <p>{compText["messages"][lang]}</p>
                         <span className="route">/messeges</span>
 
                     </div>
                     <div id="busNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-bus" />
-                        <p>Bus</p>
+                        <p>{compText["bus"][lang]}</p>
                         <span className="route">/bus</span>
 
                     </div>
                     <div id="accountNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-user" />
-                        <p>Account</p>
+                        <p>{compText["account"][lang]}</p>
                         <span className="route">/account</span>
                         
                     </div>
                     
             </div>
             <div className="bottom">
-                <div>
-                    <p>Log Out</p>
+                <div className="row chooseLang">
+                    <p id="ar" onClick={changeLang}>ar</p>
+                    <p id="en" onClick={changeLang}>en</p>
                 </div>
             </div>
         </div>
