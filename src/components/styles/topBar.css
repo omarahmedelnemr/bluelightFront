@@ -4,4 +4,14 @@
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1px solid #c1c1c1;
+    align-items: center;
+    font-size: 1vw;
 }
+
+@media (max-width:1440px) {
+    .topBar{
+        font-size: 1.5vw;
+
+    }
+}
+

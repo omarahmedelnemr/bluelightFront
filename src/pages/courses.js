@@ -9,9 +9,13 @@ function CoursesPage() {
   if (checkAutherization() !== 'Auth'){
     window.location.href ='/login'
   }
+  const lang = localStorage.getItem('lang')
+  const pageLang = {
+    courses: lang === 'en' ? "Courses" : "المقررات"
+  }
   return (
     <div className="Homepage column">
-      <TopBar title={"Courses"}/>
+      <TopBar title={pageLang["courses"]}/>
 
       <div className='row coursesBoxList'>
           <CourseBox img={image} name={"Arabic"} teacher={"Ahmed Elsyed"}/>

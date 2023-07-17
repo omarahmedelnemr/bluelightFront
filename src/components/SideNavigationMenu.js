@@ -92,6 +92,7 @@ function SideNavigation() {
 
     }
     const firstName = localStorage.getItem("name").split(" ")[0]
+    const firstArName = localStorage.getItem("arname").split(" ")[0]
     const navigate = useNavigate();
     useEffect(()=>{
         document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
@@ -101,7 +102,7 @@ function SideNavigation() {
             <div className="top">
                 <div className="welcome">
                     <img className="logoimage" src={logoImage}/>
-                    <p>{compText["welcome"][lang]} {firstName}</p>
+                    <p>{compText["welcome"][lang]} {lang === 'en' ? firstName: firstArName}</p>
                 </div>
             </div>
             <div className="backgroundActive"></div>

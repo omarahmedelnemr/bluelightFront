@@ -19,12 +19,19 @@
     flex-wrap: wrap;
 
 }
-.Homepage .dataColumns .workToSubmit{
-    flex-basis: 45%;
-}
+.Homepage .dataColumns .workToSubmit,
 .Homepage .dataColumns .analytics{
+
     flex-basis: 45%;
 }
+@media (max-width: 1440px) {
+    .Homepage .dataColumns .workToSubmit,
+    .Homepage .dataColumns .analytics{
+    
+        flex-basis: 90%;
+    }
+}
+
 .test{
     background-color: #dbeaff;
     height: 350px;

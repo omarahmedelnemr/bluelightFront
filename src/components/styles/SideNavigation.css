@@ -9,7 +9,15 @@
     font-weight: bolder;
     padding: 2vh 0px;
     position: relative;
+    transition: 0.2s;
 }
+@media (max-width: 910px) {
+    .sideNav{
+        width: 0px;
+        overflow: hidden;
+    }
+}
+
 .sideNav .top{
     flex-grow: 1;
 }

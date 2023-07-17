@@ -52,9 +52,9 @@ function WorkExamsPanel({type,limit}) {
                 var tableElements = []
                 // data.length =10
                 var bound = limit?(data.length>5?5:data.length):(data.length)
-                // for(var i=0;i<data.length;i++){
-                for (var x=0;x<bound;x++){
-                    const i=0
+                for(var i=0;i<bound;i++){
+                // for (var x=0;x<bound;x++){
+                    // const i=0
                     var homeworkType;
                     if(data[i]['homework']['due_date'] == null){
                         homeworkType = 'still'
@@ -69,7 +69,7 @@ function WorkExamsPanel({type,limit}) {
                                             <td>{data[i]['homework']['name']}</td>
                                             <td>{data[i]['homework']['grade']}</td>
                                             <td>{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</td>
-                                            <td><span className={homeworkType}>{homeworkType}</span></td>
+                                            <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
                                             <td>{subjectName}</td>
                                         </tr>)
                 }
@@ -92,7 +92,10 @@ function WorkExamsPanel({type,limit}) {
         due:    lang === 'en' ? "Due Date":"اخر موعد تسليم",
         status: lang === 'en' ? "Status":"الحالة",
         course: lang === "en" ? "Course":"المادة",
-        nothing:lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا"
+        nothing:lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
+        still  :lang === 'en' ? "Still":"هناك وقت",
+        today  :lang === 'en' ? "Today":"اليوم",
+        late  :lang === 'en' ? "Late":"متأخر"
 
     }
     return (

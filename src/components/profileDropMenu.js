@@ -24,7 +24,8 @@ function ProfileDropMenu() {
           }
     }
     const navigate = useNavigate()
-    const mainText = localStorage.getItem("name")
+    const lang = localStorage.getItem('lang')
+    const mainText = lang ==='en' ? localStorage.getItem("name") :localStorage.getItem("arname")
     const subText = localStorage.getItem("classroom")
     const image = localStorage.getItem("img_dir")
     return (
