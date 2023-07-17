@@ -80,12 +80,19 @@ function StatusBoxes() {
         
     const lang = localStorage.getItem('lang')
     const compLang = {
-        assignments: lang === "en" ? "Assignments" : "الواجبات",
-        exams: lang === "en" ? "Exams" : "الاختبارات",
-        attendance: lang === "en" ? "Attendance" : "الحضور",
-        messages: lang === "en" ? "Messages" : "الرسائل",
-        events: lang === "en" ? "Events" : "المناسبات"
-        
+        assignments:         lang === "en" ? "Assignments" : "الواجبات",
+        exams:               lang === "en" ? "Exams" : "الاختبارات",
+        attendance:          lang === "en" ? "Attendance" : "الحضور",
+        messages:            lang === "en" ? "Messages" : "الرسائل",
+        events:              lang === "en" ? "Events" : "المناسبات",
+        assignmentsMessage1: lang === "en" ? "Great, Just a Little More" : "رائع, تبقي القليل",
+        assignmentsMessage2: lang === 'en' ? "lot of work, But You Got it":"عمل كثير, ولكنك قادر علي انجازه",
+        examsMessage1:       lang === "en" ? "Take a Rest" : "خذ القليل من الراحة",
+        examsMessage2:       lang === "en" ? "Great, Just a Little More" : "رائع, تبقي القليل",
+        examsMessage3:       lang === "en" ? "Study Well" : "ادرس بجهد",
+        attendanceMessage1:  lang === "en" ? "Great, Keep Going" : "عمل رائع, واصل",
+        attendanceMessage2:  lang === "en" ? "You Should Take Care More of Your Classes" : "عليك ان تهتم بحصصك اكثر",
+        eventsMessage:       lang === "en" ? "un-seen Events" : "مناسبات لم تشاهدها"
     }
     return (
         <div class="row statusBoxes">
@@ -102,7 +109,7 @@ function StatusBoxes() {
                         <h2>{(totalAssignmentsCount === '-' || assignmentsCount === "-") ? '-' :(totalAssignmentsCount - assignmentsCount)}/{totalAssignmentsCount}</h2>
                     </div>
                     <div className='boxComment'>
-                        <p>{assignmentsCount === '-' ? '-' : (assignmentsCount  < 5?"Great, Just a Little More":"lot of work, But You Got it")}</p>
+                        <p>{assignmentsCount === '-' ? '-' : (assignmentsCount  < 5?compLang['assignmentsMessage1']:compLang['assignmentsMessage1'])}</p>
                     </div>
                 </div>
 
@@ -117,7 +124,7 @@ function StatusBoxes() {
                         <h2>{(totalExamsCount === '-' || examsCount === "-") ? '-' :(totalExamsCount - examsCount)}/{totalExamsCount}</h2>
                     </div>
                     <div className='boxComment'>
-                        <p>{examsCount === '-' ? '-' : (examsCount  < 2? (examsCount ==0 ? "Take a Rest":"Great, Just a Little More"):"Study Well")}</p>
+                        <p>{examsCount === '-' ? '-' : (examsCount  < 2? (examsCount ==0 ? compLang["examsMessage1"]:compLang["examsMessage2"]):compLang["examsMessage3"])}</p>
                     </div>
                 </div>
             </div>
@@ -135,7 +142,7 @@ function StatusBoxes() {
 
                     </div>
                     <div className='boxComment'>
-                        <p>{attendedCount === '-' ? '-' : (attendedCount  < 10? "Great, Keep Going":"Your Classes are Important")}</p>
+                        <p>{attendedCount === '-' ? '-' : (attendedCount  < 10? compLang["attendanceMessage1"]:compLang["attendanceMessage2"])}</p>
 
                     </div>
                 </div>
@@ -150,7 +157,7 @@ function StatusBoxes() {
                         <h2>{eventsCount}</h2>
                     </div>
                     <div className='boxComment'>
-                        <p><span style={{color:"red"}}>{eventsCount}</span> un-seen Events</p>
+                        <p><span style={{color:"red"}}>{eventsCount}</span> {compLang['eventsMessage']}</p>
 
                     </div>
                 </div>
