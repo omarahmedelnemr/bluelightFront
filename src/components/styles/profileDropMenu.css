@@ -1,5 +1,6 @@
 .profileDropDown{
     position: relative;
+    z-index: 9999;
 }
 .profileDropDown .header{
     display: flex;
