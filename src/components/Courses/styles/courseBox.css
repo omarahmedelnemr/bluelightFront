@@ -1,0 +1,49 @@
+.coursesBoxList{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.CourseBox{
+    /* height: 200px; */
+    /* background-image: linear-gradient(135deg, #6d88ff, #9fb1ff); */
+    background-color: #4d62cd;
+    width: 200px;
+    border-radius: 15px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    color: white;
+    transition: 0.5s;
+}
+.CourseBox:hover{
+    box-shadow: -2px 2px 5px #8b8b8b;
+
+}
+.CourseBox img{
+    border-radius: 10px;
+}
+.CourseBox .courseInfo{
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 20px;
+}
+.CourseBox .courseInfo div{
+    text-align: left;
+}
+.CourseBox .courseInfo h2,
+    .CourseBox .courseInfo p{
+        margin: 5px;
+}
+.CourseBox .courseInfo p{
+    color: #ffffff80;
+}
+.CourseBox .courseInfo svg{
+    font-size: 20px;
+}

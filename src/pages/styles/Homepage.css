@@ -16,17 +16,20 @@
 .Homepage .dataColumns{
     padding: 20px;
     justify-content: center;
+    flex-wrap: wrap;
+
 }
 .Homepage .dataColumns .workToSubmit{
-    flex-basis: 50%;
+    flex-basis: 45%;
 }
 .Homepage .dataColumns .analytics{
-    flex-basis: 40%;
+    flex-basis: 45%;
 }
 .test{
     background-color: #dbeaff;
     height: 350px;
     padding: 20px;
-    margin: 5px 0px;
+    margin: 5px;
     border-radius: 10px;
+    display: none;
 }

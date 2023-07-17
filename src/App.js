@@ -6,6 +6,7 @@ import './components/FontawesomeIcons'
 import SideNavigation from './components/SideNavigationMenu';
 import CoursesPage from './pages/courses';
 import Logout from './pages/logout';
+import StudentWorkPage from './pages/studentWork';
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')
@@ -25,7 +26,10 @@ function App() {
                     <Routes>
                         <Route exact path='/' element={<Homepage />} />
                         <Route path='/courses' element={<CoursesPage />} />
-                        <Route path='/*' element={<div><h1>Hello</h1><h3>We Are Still Developing This Page</h3></div>} />
+                        <Route path='/assignments' element={<StudentWorkPage type={"Assignments"}/>} />
+                        <Route path='/exams' element={<StudentWorkPage type= {"Exams"}/>} />
+                        {/* <Route path= "courses/" element={}/> */}
+                        {/* <Route path='/*' element={<div><h1>Hello</h1><h3>We Are Still Developing This Page</h3></div>} /> */}
                     </Routes>
                 </div>
             

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function SideNavigation() {
+    const navList = ['Home',"courses","messages","bus","account"]
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:{
@@ -34,24 +35,34 @@ function SideNavigation() {
         
     }
     useEffect(()=>{
-        const endpoints = window.location.pathname.split("/")
-        const path = endpoints[endpoints.length-1]
+            const endpoints = window.location.pathname.split("/")
+            const path = endpoints[endpoints.length-1]
         try{
-        document.getElementsByClassName("active")[0].classList.remove("active")
-        if (path ==='' || path ==='student' || path ==='parent' || path ==="teacher" || path==="admin"){
-               document.getElementById("homeNavButton").classList.add("active")
-              document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById("homeNavButton").getBoundingClientRect().y+"px")
+            // console.log("TTT: ",path in nav)
+            document.getElementsByClassName("active")[0].classList.remove("active")
+            document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","block")
 
-        }else{
-            document.getElementById(path+"NavButton").classList.add("active")
-            document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById(path+"NavButton").getBoundingClientRect().y+"px")
+            if (path ==='' || path ==='student' || path ==='parent' || path ==="teacher" || path==="admin"){
+                document.getElementById("homeNavButton").classList.add("active")
+                document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById("homeNavButton").getBoundingClientRect().y+"px")
 
-        }}catch(err){
+            }else if(path in navList){
+
+            
+                document.getElementById(path+"NavButton").classList.add("active")
+                document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById(path+"NavButton").getBoundingClientRect().y+"px")
+
+            }else{
+                document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","none")
+            }
+
+        }catch(err){
             console.log("loading")
         }
     },[1000])
     function navButtonClick(event) {
         document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",event.currentTarget.getBoundingClientRect().y+"px")
+        document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","block")
         
         var navButtons = document.getElementsByClassName("navButton");
         

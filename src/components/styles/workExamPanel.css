@@ -3,8 +3,9 @@
     border-radius: 10px;
     padding: 20px;
     margin: 5px;
-    height: 350px;
+    min-height: 350px;
     position: relative;
+    min-width: 500px;
 }
 .workExamPanel .emptyMessage{
     position: absolute;
@@ -31,7 +32,7 @@
     }
   }
 .workExamPanel svg{
-    font-size: 20px;
+    font-size: 40px;
 
 }
 .workExamPanel table{
@@ -63,6 +64,9 @@
 .workExamPanel .titleSeemore{
     justify-content: space-between;
 }
+.workExamPanel .hide{
+    display: none;
+}
 .workExamPanel .titleSeemore a{
     font-size: 15px;
     text-decoration: none;
@@ -85,6 +89,15 @@
     height: 50px;
 
 }
+.workExamPanel .tableRow{
+    transition: 0.5s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.workExamPanel .tableRow:hover{
+    box-shadow: -2px 2px 5px gray;
+}
+
 .workExamPanel tr td{
     margin: 0px 10px;
 }

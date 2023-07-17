@@ -45,13 +45,15 @@ function Homepage() {
         </div>     
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
-                    <WorkExamsPanel type={"Assignments"}/>
-                    <WorkExamsPanel type={"Exams"}/>
-                </div>
-                <div className='column analytics'>
+                    <WorkExamsPanel type={"Assignments"} limit={true}/>
                     <div className='test'>
 
-                    </div>
+                    </div>  
+                </div>
+                <div className='column analytics'>
+                    
+                    <WorkExamsPanel type={"Exams"} limit={true}/>
+
                     <div className='test'>
 
                     </div>
