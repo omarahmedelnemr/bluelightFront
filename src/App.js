@@ -7,6 +7,7 @@ import SideNavigation from './components/SideNavigationMenu';
 import CoursesPage from './pages/courses';
 import Logout from './pages/logout';
 import StudentWorkPage from './pages/studentWork';
+import CourseDataPage from './pages/CourseData';
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')
@@ -26,6 +27,8 @@ function App() {
                     <Routes>
                         <Route exact path='/' element={<Homepage />} />
                         <Route path='/courses' element={<CoursesPage />} />
+                        <Route path='/courses/:courseName' element={<CourseDataPage />} />
+
                         <Route path='/assignments' element={<StudentWorkPage type={"Assignments"}/>} />
                         <Route path='/exams' element={<StudentWorkPage type= {"Exams"}/>} />
                         {/* <Route path= "courses/" element={}/> */}

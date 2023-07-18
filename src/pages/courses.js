@@ -17,6 +17,7 @@ function CoursesPage() {
     window.location.href ='/login'
   }
   const navigate = useNavigate()
+  const cookieReader = new Cookies()
   const lang = localStorage.getItem('lang')
   const pageLang = {
     courses: lang === 'en' ? "Courses" : "المقررات"
@@ -29,11 +30,11 @@ function CoursesPage() {
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   useEffect(()=>{
-    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')).then((res)=>{
+    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+cookieReader.get("id")).then((res)=>{
       console.log("courses: ",res.data)
       const data = res.data
       const coursesPreList = []
-      var teacherName,currentImage,subjectNamex,link;
+      var teacherName,currentImage,subjectNamex,link,favIcon;
       for(var i =0;i < data.length;i++){
 
         //Take the First Two Names
@@ -49,6 +50,8 @@ function CoursesPage() {
             name={lang ==='en' ? data[i]["name"]:data[i]["arName"]} 
             teacher={teacherName} 
             route={link}
+            fav={data[i]['favorite']}
+            id={data[i]['id']}
             />)
       }
       setCoursesBoxs(coursesPreList)
@@ -60,7 +63,8 @@ function CoursesPage() {
   return (
     <div className="column">
       <TopBar title={pageLang["courses"]}/>
-
+      <button>Favorite</button>
+      <button>all</button>
       <div className='row coursesBoxList'>
           {coursesBoxs}
 
