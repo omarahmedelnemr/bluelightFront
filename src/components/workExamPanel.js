@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import compareDates from "../general/compareDates";
 import { useNavigate } from "react-router-dom";
+import routeTo from "../general/reroute";
 function WorkExamsPanel({type,limit}) {
     const navigate =useNavigate()
     const [assinmentList,setAssignmentList] = useState('')
@@ -50,27 +51,26 @@ function WorkExamsPanel({type,limit}) {
             else{
                 setEmptyMessage(null)
                 var tableElements = []
-                // data.length =10
+
                 var bound = limit?(data.length>5?5:data.length):(data.length)
                 for(var i=0;i<bound;i++){
-                // for (var x=0;x<bound;x++){
-                    // const i=0
                     var homeworkType;
                     if(data[i]['homework']['due_date'] == null){
                         homeworkType = 'still'
                     }else{
                         homeworkType = compareDates(data[i]['homework']['due_date'])
                     }
-                    var date = new Date(data[i]['homework']['due_date'])
-                    var subjectName = data[i]['homework']['course']["name"].split(' ')[0]
-                    console.log("Date:"+new Date(data[i]['homework']['due_date'])+":.")
-                    console.log(data[i]['homework']['name'].split(' ')[0])
-                    tableElements.push(<tr className="tableRow" onClick={()=>{navigate("./courses/"+subjectName+"/"+type+"/"+data[i]['homework']['id'])}}>
+                    console.log(data[i]["homework"])
+                    var subjectName = data[i]['homework']['course']["name"].split(' ').join('')
+                    
+                    tableElements.push(<tr className="tableRow" onClick={routeTo}>
                                             <td>{data[i]['homework']['name']}</td>
                                             <td>{data[i]['homework']['grade']}</td>
                                             <td>{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
-                                            <td>{subjectName}</td>
+                                            <td>{lang === 'en' ? data[i]['homework']['course']["name"] :data[i]['homework']['course']["arName"]}</td>
+                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
+
                                         </tr>)
                 }
 

@@ -9,7 +9,9 @@
     /* flex-wrap: wrap; */
 
 }
-
+a.hiddenRoute{
+  display: none;
+}
 @media (max-width: 1700px) {
     .hideInSmall {
       display: none !important;
