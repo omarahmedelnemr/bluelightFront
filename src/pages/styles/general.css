@@ -17,3 +17,28 @@ a.hiddenRoute{
       display: none !important;
     }
   }
+
+.subNavButtons{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: 20px;
+}
+.subNavButtons button{
+  border: 1px solid #2795ec;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 15px;
+  margin: 10px;
+  color: black;
+  min-width: 90px;
+  cursor: pointer;
+}
+.subNavButtons button.activeSide{
+  background-color: #2795ec;
+  color: white;
+
+
+}

@@ -5,31 +5,36 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import Global from "../../general/globalVar";
 function CourseBox({img,name,teacher,route,fav,id}) {
-  console.log("fav:",fav)
   function addToFav(event){
       // Get the parent div element (courseInfo)
       const parentDiv = event.currentTarget.parentElement;
 
       // Find the sibling span element with class "hiddenMetadata"
-      const siblingSpan = parentDiv.querySelector('.hiddenMetadata');
+      const siblingSpan = parentDiv.querySelector('h2');
 
       // Get the value of the sibling span and log it to the console
-      const courseID = siblingSpan.textContent;    
+      const courseName = siblingSpan.textContent;    
       
       //get Student's id
       const cookieReader = new Cookies()
       const studentID = cookieReader.get('id')
-      axios.post(Global.BackendURL+"/student/favoriteCourse",{studentID:studentID,courseID:courseID}).then((res)=>{
-        console.log(res)
-        try{
-          // if(re)
-        }catch(err){
-          console.log("Request Sent But Somthing Went Wrong")
-          console.log(err)
-        }
-      }).catch((err)=>{
-        console.log(err)
-      })
+      // if(localStorage.getItem('favorite')==null){
+      //   localStorage.setItem('favorite',courseName)
+      // }else{
+      //   const item = localStorage.getItem('favorite')
+      //   const favList = item.split(',')
+      //   if (favList.includes(courseName)){
+      //     event.currentTarget.style.color = 'white'
+      //     console.log(favList.indexOf(courseName))
+      //     favList.splice(favList.indexOf(courseName),1)
+      //   }else{
+      //     favList.push(courseName)
+      //     event.currentTarget.style.color = 'red'
+      //     console.log(event.currentTarget)
+      //   }
+      //   localStorage.setItem('favorite',favList.join(','))
+        
+      // }
   }
   return (
     <div className="CourseBox">
@@ -40,7 +45,7 @@ function CourseBox({img,name,teacher,route,fav,id}) {
                 <p>{teacher}</p>
             </div>
             <a href={route} className="hiddenRoute"></a>
-            <span className="hiddenMetadata">{id}</span>
+            {/* <span className="hiddenMetadata">{id}</span> */}
             <FontAwesomeIcon icon="fa-solid fa-heart" style={{color:fav?"red":"white"}} onClick={addToFav}/>
         </div>
     </div>

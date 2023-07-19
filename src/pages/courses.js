@@ -20,7 +20,9 @@ function CoursesPage() {
   const cookieReader = new Cookies()
   const lang = localStorage.getItem('lang')
   const pageLang = {
-    courses: lang === 'en' ? "Courses" : "المقررات"
+    courses: lang === 'en' ? "Courses" : "المقررات",
+    all:     lang === 'en' ? "All":"الكل",
+    fav:     lang === 'en' ? "Favorite":"المفضل"
   }
   const ImagesList ={
     "arabic":ArabicImage,
@@ -31,7 +33,6 @@ function CoursesPage() {
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   useEffect(()=>{
     axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+cookieReader.get("id")).then((res)=>{
-      console.log("courses: ",res.data)
       const data = res.data
       const coursesPreList = []
       var teacherName,currentImage,subjectNamex,link,favIcon;
@@ -42,7 +43,6 @@ function CoursesPage() {
         currentImage = data[i]["name"].toLowerCase() in ImagesList ? ImagesList[data[i]["name"].toLowerCase()] :ImagesList["arabic"]
         subjectNamex = data[i]['name'].toLowerCase()
         link  = '/student/courses/'+subjectNamex
-        console.log(link)
         teacherName = teacherName[0]+" "+teacherName[1]
         coursesPreList.push(
           <CourseBox 
@@ -60,11 +60,20 @@ function CoursesPage() {
     })    
   },[])
 
+
+  function switchAllFav(event){
+    const parent = event.currentTarget.parentElement
+    parent.querySelector('.activeSide').classList.remove('activeSide')
+    event.currentTarget.classList.add('activeSide')
+  }
   return (
     <div className="column">
       <TopBar title={pageLang["courses"]}/>
-      <button>Favorite</button>
-      <button>all</button>
+      <div className='subNavButtons'>
+        <button className='activeSide' onClick={switchAllFav}>{pageLang['all']}</button>
+        <button onClick={switchAllFav}>{pageLang['fav']}</button>
+      </div>
+
       <div className='row coursesBoxList'>
           {coursesBoxs}
 

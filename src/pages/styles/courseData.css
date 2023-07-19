@@ -1,0 +1,130 @@
+#courseDataPage .courseData{
+    display: none;
+}
+#courseDataPage .courseAssignment{
+    display: block;
+}
+.courseData{
+    background-color: #dbeaff;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 5px;
+    min-height: 350px;
+    position: relative;
+    min-width: 500px;
+}
+.courseData .emptyAssingmentsMessage,.courseData .emptyExamsMessage{
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    color:#9ac0ff;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.courseData .emptyMessage .loading{
+    width: 40px;
+    height: 40px;
+    border: 5px dashed #373e486b;
+    border-radius: 100%;
+
+}
+@media (prefers-reduced-motion: no-preference) {
+    .courseData .emptyMessage .loading{
+      animation: infinitRotate infinite 10s linear;
+    }
+  }
+.courseData svg{
+    font-size: 40px;
+
+}
+.courseData table{
+    position: relative;
+    width: 100%;
+}
+.courseData table .still{
+    background-color: lightgreen;
+    color:green;
+    padding: 10px;
+    border-radius: 10px;
+}
+.courseData table .completed{
+    background-color: lightgreen;
+    color:green;
+    padding: 10px;
+    border-radius: 10px;
+}
+.courseData table .today{
+    background-color: #EFEE8F;
+    color:#959535;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.courseData table .late{
+    background-color: #EEAE9C;
+    color:red;
+    padding: 10px;
+    border-radius: 10px;
+}
+.courseData .notGraded{
+    /* background-color: #EEAE9C; */
+    /* color:red; */
+    padding: 10px;
+    border-radius: 10px;}
+
+
+.courseData .titleSeemore{
+    justify-content: space-between;
+}
+.courseData .hide{
+    display: none;
+}
+.courseData .titleSeemore a{
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+.courseData .titleSeemore a svg{
+    font-size: 15px;
+
+}
+.courseData .panelTitle{
+    text-align: left;
+    margin-top: 0px;
+    font-weight: bolder;
+}
+.courseData tr{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    height: 50px;
+
+}
+.courseData .tableRow{
+    transition: 0.5s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.courseData .tableRow:hover{
+    box-shadow: -2px 2px 5px gray;
+}
+
+.courseData tr td{
+    margin: 0px 10px;
+}
+.courseData .tableHeaders{
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+.courseData hr{
+    border: 1px solid #c9ddfe;
+    position: absolute;
+    width: 100%;
+    margin: 0px;
+}
+

@@ -19,10 +19,20 @@
     color: white;
     transition: 0.5s;
     cursor: pointer;
+    position: relative;
 }
 .CourseBox:hover{
     box-shadow: -2px 2px 5px #8b8b8b;
 
+}
+.CourseBox .hiddenRoute{
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+    position: absolute;
+    display: block;
 }
 .CourseBox img{
     border-radius: 10px;
@@ -49,4 +59,5 @@
 }
 .CourseBox .courseInfo svg{
     font-size: 20px;
+    z-index: 10;
 }

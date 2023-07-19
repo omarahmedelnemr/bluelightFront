@@ -12,7 +12,6 @@ function StatusBoxes() {
     const [assignmentsCount,setAssignmentsCount] = useState('-')
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/totalhomeworkcount?studentID="+cookieReader.get('id')).then((res)=>{
-            console.log("res: ",res.data.count)
             setTotalAssignmentsCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
@@ -20,7 +19,6 @@ function StatusBoxes() {
     })
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/homeworkcount?studentID="+cookieReader.get('id')).then((res)=>{
-            console.log("res: ",res.data.count)
             setAssignmentsCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
@@ -32,7 +30,6 @@ function StatusBoxes() {
     const [examsCount,setExamsCount] = useState('-')
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/totalexamscount?studentID="+cookieReader.get('id')).then((res)=>{
-            console.log("res: ",res.data.count)
             setTotalExamsCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
@@ -40,7 +37,6 @@ function StatusBoxes() {
     })
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/examscount?studentID="+cookieReader.get('id')).then((res)=>{
-            console.log("res: ",res.data.count)
             setExamsCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
@@ -52,7 +48,6 @@ function StatusBoxes() {
     const [attendedCount,setAttendedCount] = useState('-')
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/totalAttendance?studentID="+cookieReader.get('id')).then((res)=>{
-            console.log("res: ",res.data.count)
             setTotalAttendanceCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
@@ -60,23 +55,21 @@ function StatusBoxes() {
     })
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/AttendanceCount?studentID="+cookieReader.get('id')).then((res)=>{
-            console.log("res: ",res.data.count)
             setAttendedCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
         })
     })
 
-        // get Events Numbers
-        const [eventsCount,setEventCount] = useState('-')
-        useEffect(()=>{
-            axios.get(Global.BackendURL+"/student/eventsCount?classroomID="+localStorage.getItem("classroom")).then((res)=>{
-                console.log("res: ",res.data.count)
-                setEventCount(res.data.count)
-            }).catch((err)=>{
-                console.log(err)
-            })
+    // get Events Numbers
+    const [eventsCount,setEventCount] = useState('-')
+    useEffect(()=>{
+        axios.get(Global.BackendURL+"/student/eventsCount?classroomID="+localStorage.getItem("classroom")).then((res)=>{
+            setEventCount(res.data.count)
+        }).catch((err)=>{
+            console.log(err)
         })
+    })
         
     const lang = localStorage.getItem('lang')
     const compLang = {
@@ -148,7 +141,8 @@ function StatusBoxes() {
                 </div>
                 <div className={'contentBoxSize1'}>
                     <div className='boxIcon' style={{backgroundColor:'#a675f4'}}>
-                        <FontAwesomeIcon icon="fas fa-envelope" />
+                        {/* <FontAwesomeIcon icon="fas fa-envelope" /> */}
+                        <FontAwesomeIcon icon="fa-solid fa-users" />
                     </div>
                     <div className='boxTitle'>
                         <p>{compLang["events"]}</p>

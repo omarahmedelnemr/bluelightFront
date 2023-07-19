@@ -35,7 +35,6 @@ function WorkExamsPanel({type,limit}) {
         }
         axios.get(Global.BackendURL+"/student/"+workEndpoint+"?studentID="+id).then((res)=>{
             const data = res.data
-            console.log(data)
             
             if (data == undefined){
                 setEmptyMessage(<div className="emptyMessage" >
@@ -60,7 +59,6 @@ function WorkExamsPanel({type,limit}) {
                     }else{
                         homeworkType = compareDates(data[i]['homework']['due_date'])
                     }
-                    console.log(data[i]["homework"])
                     var subjectName = data[i]['homework']['course']["name"].split(' ').join('')
                     
                     tableElements.push(<tr className="tableRow" onClick={routeTo}>
@@ -69,7 +67,7 @@ function WorkExamsPanel({type,limit}) {
                                             <td>{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
                                             <td>{lang === 'en' ? data[i]['homework']['course']["name"] :data[i]['homework']['course']["arName"]}</td>
-                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
+                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
 
                                         </tr>)
                 }

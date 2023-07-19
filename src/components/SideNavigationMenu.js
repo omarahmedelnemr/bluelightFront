@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function SideNavigation() {
-    const navList = ['Home',"courses","messages","bus","account"]
+    const navList = ['Home',"courses","events","bus","account"]
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:{
@@ -20,9 +20,9 @@ function SideNavigation() {
             "en":"Courses",
             "ar":"المقررات"
         },
-        messages:{
-            "en":"Masseges",
-            "ar":"الرسائل"
+        Events:{
+            "en":"Events",
+            "ar":"المناسبات"
         },
         bus:{
             "en":"Bus",
@@ -35,19 +35,21 @@ function SideNavigation() {
         
     }
     useEffect(()=>{
-            const endpoints = window.location.pathname.split("/")
-            const path = endpoints[endpoints.length-1]
+        const endpoints = window.location.pathname.split("/")
+        const path = endpoints[endpoints.length-1]
         try{
-            // console.log("TTT: ",path in nav)
-            document.getElementsByClassName("active")[0].classList.remove("active")
+            try{
+                document.getElementsByClassName("active")[0].classList.remove("active")
+            }catch{
+                console.log("No Active Found")
+            }
             document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","block")
 
             if (path ==='' || path ==='student' || path ==='parent' || path ==="teacher" || path==="admin"){
                 document.getElementById("homeNavButton").classList.add("active")
                 document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById("homeNavButton").getBoundingClientRect().y+"px")
 
-            }else if(path in navList){
-
+            }else if(navList.includes(path)){
             
                 document.getElementById(path+"NavButton").classList.add("active")
                 document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",document.getElementById(path+"NavButton").getBoundingClientRect().y+"px")
@@ -55,11 +57,11 @@ function SideNavigation() {
             }else{
                 document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","none")
             }
-
         }catch(err){
             console.log("loading")
+            console.log(err)
         }
-    },[1000])
+    },[])
     function navButtonClick(event) {
         document.getElementsByClassName("backgroundActive")[0].style.setProperty("top",event.currentTarget.getBoundingClientRect().y+"px")
         document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","block")
@@ -80,7 +82,6 @@ function SideNavigation() {
 
     }
     function changeLang(event){
-        console.log(event.currentTarget.id)
         if(event.currentTarget.id !== localStorage.getItem("lang")){
             localStorage.removeItem('lang')
             localStorage.setItem('lang',event.currentTarget.id)
@@ -118,10 +119,11 @@ function SideNavigation() {
                         <span className="route">/courses</span>
 
                     </div>
-                    <div id="messegesNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-message" />
-                        <p>{compText["messages"][lang]}</p>
-                        <span className="route">/messeges</span>
+                    <div id="eventsNavButton" className="navButton" onClick={navButtonClick}>
+                        {/* <FontAwesomeIcon icon="fa-solid fa-message" /> */}
+                        <FontAwesomeIcon icon="fa-solid fa-users" />
+                        <p>{compText["Events"][lang]}</p>
+                        <span className="route">/events</span>
 
                     </div>
                     <div id="busNavButton" className="navButton" onClick={navButtonClick}>
