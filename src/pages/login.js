@@ -87,7 +87,7 @@ function Login() {
             </div>
             <div>
               <Input type={"text"} label={"username"} ID = {"loginUsername"} />
-              <Input type={"password"} label={"Password"} ID = {"loginPassword"} />
+              <Input type={"password"} label={"Password"} ID = {"loginPassword"} showPassword={true} />
             </div>
             <Button text={"Login"} onClickFunc={SubmitLogin}/>
         </div>

@@ -1,10 +1,27 @@
+import { useState } from "react";
 import "./styles/inputs.css"
-function Input({type,label,ID}) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+function Input({type,label,ID,showPassword = false}) {
+  var [icon,setIcon] = useState(showPassword ?  <FontAwesomeIcon icon="fa-solid fa-eye" onClick={showPass}/>:null);  
+  function showPass(event){
+    console.log(event.currentTarget.parentElement.querySelector('input').type)
+    const element = event.currentTarget.parentElement.querySelector('input')
+    if(element.type === "text"){
+      element.type = "password"
+      setIcon(<FontAwesomeIcon icon="fa-solid fa-eye" onClick={showPass}/>)
+    }else{
+      element.type = "text"
+      setIcon(<FontAwesomeIcon icon="fa-solid fa-eye-slash" onClick={showPass}/>)
+
+    }
+  }
   return (
     <div className="col-3 input-effect">
         <input className="effect-22" type={type} id = {ID} name ={label} placeholder=" "/>
         <label>{label}</label>
         <span className="focus-bg"></span>
+        {icon}
+        {/* <FontAwesomeIcon icon="fa-solid fa-eye" /> */}
     </div>
   );
 }

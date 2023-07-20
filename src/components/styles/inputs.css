@@ -8,6 +8,16 @@ input[type="text"],input[type="password"],input[type="number"],input[type="email
     text-align: left;
 }
 
+.input-effect svg{
+    position: absolute;
+    height: 50%;
+    top: 25%;
+    right: 2%;
+    width: 38px;
+    color: gray;
+    z-index: 99;
+    cursor: pointer;
+}
 
 .effect-22, 
 .effect-23, 
