@@ -30,7 +30,7 @@ function Homepage() {
 
             <div className='row overviewTitle'>
                 <h2>{pageText['overview'][lang]}</h2>
-                <DropDownList mainText={pageText["last30"][lang]}/>
+                {/* <DropDownList mainText={pageText["last30"][lang]}/> */}
             </div>  
             {/* <div className='row statusBoxes'> */}
                  {/* <div className='row'>
