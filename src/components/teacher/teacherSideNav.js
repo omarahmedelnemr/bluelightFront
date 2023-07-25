@@ -127,12 +127,6 @@ function TeacherSideNavigation() {
                         <span className="route">/messages</span>
 
                     </div>
-                    {/* <div id="busNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-bus" />
-                        <p>{compText["bus"]}</p>
-                        <span className="route">/bus</span>
-
-                    </div> */}
                     <div id="accountNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-user" />
                         <p>{compText["account"]}</p>
