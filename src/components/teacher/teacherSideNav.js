@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function TeacherSideNavigation() {
-    const navList = ['Home',"classrooms","Classwork","Submission","exams","account"] //,"bus"
+    const navList = ['Home',"classrooms","Classwork","exams","account"] //,"bus","Submission"
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:     lang === 'en' ? "welcome Back":"اهلا",
@@ -114,12 +114,12 @@ function TeacherSideNavigation() {
                         <span className="route">/classwork</span>
 
                     </div>
-                    <div id="examsNavButton" className="navButton" onClick={navButtonClick}>
+                    {/* <div id="examsNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-file-lines" />
                         <p>{compText["Submission"]}</p>
                         <span className="route">/submission</span>
 
-                    </div>
+                    </div> */}
                     <div id="messagesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-message" />
                         {/* <FontAwesomeIcon icon="fa-solid fa-users" /> */}
