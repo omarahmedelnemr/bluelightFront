@@ -28,12 +28,11 @@ function Login() {
   function SubmitLogin(){
     const username = document.getElementById("loginUsername").value
     const password = document.getElementById("loginPassword").value
-    console.log(password.length)
     if (username.length < 3){
       setMessege("Please Fill the Username and Password Fields")
     }
-    else if(password.length < 8){
-      setMessege("Password is Short")
+    else if(password.length < 5){
+      setMessege("Password is Short, must Be More Than 5 Characters")
     }
     else{
       console.log("Request Sent")
