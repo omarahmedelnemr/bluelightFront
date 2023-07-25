@@ -1,7 +1,7 @@
 import "./styles/profileDropMenu.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
-import Global from "../../general/globalVar";
+import Global from "../general/globalVar";
 
 function ProfileDropMenu() {
     function routeTologout(){
@@ -26,9 +26,17 @@ function ProfileDropMenu() {
     }
     const navigate = useNavigate()
     const lang = localStorage.getItem('lang')
-    const mainText = lang ==='en' ? localStorage.getItem("name") :localStorage.getItem("arname")
-    const subText = localStorage.getItem("classroom")
+    var mainText = (lang ==='en' ? localStorage.getItem("name") :localStorage.getItem("arname")).split(' ')
+    //get the First Two Names
+    mainText = mainText[0]+" "+mainText[1]
     const image = localStorage.getItem("img_dir")
+    var subText;
+    if(localStorage.getItem('role') === 'student'){
+        subText = localStorage.getItem("classroom")
+    }else{
+        subText = localStorage.getItem("role")
+
+    }
     return (
         <div className="profileDropDown" onClick={DropTheProfileMenue}>
             <div className="header ">

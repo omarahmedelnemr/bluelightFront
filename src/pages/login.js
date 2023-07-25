@@ -67,7 +67,7 @@ function Login() {
         try{
           setMessege(err.response.data)
         }catch{
-          setMessege("Error!")
+          setMessege("Error, You May Check Your Network!")
           console.log(err)
         }
       })

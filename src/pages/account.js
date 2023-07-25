@@ -2,7 +2,7 @@ import './styles/account.css'
 import './styles/general.css'
 import checkAutherization from '../general/checkAuth';
 import Global from '../general/globalVar';
-import TopBar from '../components/student/topBar';
+import TopBar from '../components/topBar';
 function Account() {
     if (checkAutherization() !== 'Auth'){
         window.location.href ='/login'

@@ -11,6 +11,8 @@ import CourseDataPage from './pages/student/CourseData';
 import HomeworkPage from './pages/student/homework';
 import Account from './pages/account';
 import StudentExamPage from './pages/student/studentExamPage';
+import TeacherSideNavigation from './components/teacher/teacherSideNav';
+import TeacherHomepage from './pages/teacher/teacherHomePage';
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')
@@ -44,6 +46,17 @@ function App() {
             
             </div>
           }/>
+          <Route path='/teacher/*' element={
+          
+            <div className='row fullWidth pageLang'>
+                <TeacherSideNavigation />
+                <div className='column mainContent fullWidth'>
+                    <Routes>
+                        <Route exact path='/' element={<TeacherHomepage />} />
+                    </Routes>
+                </div>
+            </div>
+        }/>
           {/* <Route path='/*' element={<h2 style={{backgroundColor:"white"}}>Please Login First<br/><a href="/login">Login</a></h2>}/> */}
         </Routes>
         

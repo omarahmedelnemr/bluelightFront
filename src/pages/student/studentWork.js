@@ -1,7 +1,7 @@
 import './styles/studentWork.css'
 
 import WorkExamsPanel from '../../components/student/workExamPanel';
-import TopBar from '../../components/student/topBar';
+import TopBar from '../../components/topBar';
 
 
 function StudentHomeworkPage() {

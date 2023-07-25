@@ -1,6 +1,6 @@
 import './styles/Homepage.css'
 import '../styles/general.css'
-import TopBar from '../../components/student/topBar';
+import TopBar from '../../components/topBar';
 import checkAutherization from '../../general/checkAuth';
 import CourseBox from '../../components/student/courseBox';
 import ArabicImage from '../../content/arabic.jpg'

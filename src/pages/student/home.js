@@ -1,6 +1,6 @@
 import './styles/Homepage.css'
 import '../styles/general.css'
-import TopBar from '../../components/student/topBar';
+import TopBar from '../../components/topBar';
 import WorkExamsPanel from '../../components/student/workExamPanel';
 import checkAutherization from '../../general/checkAuth';
 import StatusBoxes from '../../components/student/statusBoxes';
@@ -10,7 +10,7 @@ function Homepage() {
     }
     const lang = localStorage.getItem('lang') 
     const pageText = {
-        nileSchools: lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",
+        SchoolName: lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",
         overview:{
             "en":"overview",
             "ar":"نظرة عامة"
@@ -23,7 +23,7 @@ function Homepage() {
     }
     return (
         <div className="Homepage column fullWidth">
-            <TopBar title={pageText["nileSchools"]}/>
+            <TopBar title={pageText["SchoolName"]}/>
 
             <div className='row overviewTitle'>
                 <h2>{pageText['overview'][lang]}</h2>

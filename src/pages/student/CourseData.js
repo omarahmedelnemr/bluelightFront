@@ -8,7 +8,7 @@ import Global from '../../general/globalVar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import compareDates from '../../general/compareDates';
 import routeTo from '../../general/reroute';
-import TopBar from '../../components/student/topBar';
+import TopBar from '../../components/topBar';
 function CourseDataPage() {
     const lang = localStorage.getItem("lang")
     const compLang ={
