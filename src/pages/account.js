@@ -1,8 +1,8 @@
 import './styles/account.css'
 import './styles/general.css'
-import checkAutherization from '../checkAuth';
+import checkAutherization from '../general/checkAuth';
 import Global from '../general/globalVar';
-import TopBar from '../components/topBar';
+import TopBar from '../components/student/topBar';
 function Account() {
     if (checkAutherization() !== 'Auth'){
         window.location.href ='/login'
@@ -10,6 +10,7 @@ function Account() {
     const lang = localStorage.getItem('lang') 
     const profileImage = Global.BackendURL+localStorage.getItem("img_dir") 
     const pageText = {
+        account:       lang === "en" ? "Account" : "حسابي",
         changeMessage: lang === 'en' ? "If any Data Needs To Be Changed, Please Contact your Teacher":"لو احتجت لتغيير اي بيانات, بالرجاء التواصل مع الاستاذ المشرف الاجتماعي",
         name:          lang === "en" ? "English Name": "الاسم بالانجليزية",
         arabicName:    lang === "en" ? "Arabic Name" : "الاسم بالعربية",
@@ -18,7 +19,7 @@ function Account() {
     }
     return (
         <div className="Account column fullWidth">
-            <TopBar title={"Account"}/>
+            <TopBar title={pageText["account"]}/>
             <div className='content column'>
 
                 <div className='ProfileImage'>

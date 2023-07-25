@@ -7,7 +7,7 @@ import Input from '../components/input';
 import Cookies from 'universal-cookie';
 import Watermark from '../components/watermark';
 import Global from '../general/globalVar'
-import checkAutherization from '../checkAuth';
+import checkAutherization from '../general/checkAuth';
 
 
 function Login() {

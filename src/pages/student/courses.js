@@ -1,15 +1,15 @@
 import './styles/Homepage.css'
-import './styles/general.css'
-import TopBar from '../components/topBar';
-import checkAutherization from '../checkAuth';
-import CourseBox from '../components/courseBox';
-import ArabicImage from '../content/arabic.jpg'
-import mathImage from '../content/math.jpg'
-import ScienceImage from '../content/science.jpg'
-import EnglishImage from '../content/english.jpg'
+import '../styles/general.css'
+import TopBar from '../../components/student/topBar';
+import checkAutherization from '../../general/checkAuth';
+import CourseBox from '../../components/student/courseBox';
+import ArabicImage from '../../content/arabic.jpg'
+import mathImage from '../../content/math.jpg'
+import ScienceImage from '../../content/science.jpg'
+import EnglishImage from '../../content/english.jpg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Global from '../general/globalVar'
+import Global from '../../general/globalVar'
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 function CoursesPage() {

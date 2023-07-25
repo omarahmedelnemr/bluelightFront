@@ -1,7 +1,7 @@
 .Homepage{
     background-color: #c9ddfe;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
 }
 .Homepage .statusBoxes{
     /* justify-content: space-around; */

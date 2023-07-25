@@ -1,12 +1,12 @@
 import Cookies from "universal-cookie";
 import "./styles/workExamPanel.css"
 import axios from "axios";
-import Global from "../general/globalVar";
+import Global from "../../general/globalVar";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import compareDates from "../general/compareDates";
+import compareDates from "../../general/compareDates";
 import { useNavigate } from "react-router-dom";
-import routeTo from "../general/reroute";
+import routeTo from "../../general/reroute";
 function WorkExamsPanel({type,limit}) {
     const [assinmentList,setAssignmentList] = useState('')
     const [emptyMessage,setEmptyMessage] = useState(<div className="emptyMessage" >

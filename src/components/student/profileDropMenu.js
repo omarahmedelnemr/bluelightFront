@@ -1,7 +1,7 @@
 import "./styles/profileDropMenu.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
-import Global from "../general/globalVar";
+import Global from "../../general/globalVar";
 
 function ProfileDropMenu() {
     function routeTologout(){

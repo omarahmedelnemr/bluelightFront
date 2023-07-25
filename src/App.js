@@ -1,16 +1,16 @@
 import './App.css';
-import Homepage from './pages/home';
+import Homepage from './pages/student/home';
 import Login from './pages/login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './components/FontawesomeIcons'
-import SideNavigation from './components/SideNavigationMenu';
-import CoursesPage from './pages/courses';
+import SideNavigation from './components/student/SideNavigationMenu';
+import CoursesPage from './pages/student/courses';
 import Logout from './pages/logout';
-import StudentHomeworkPage from './pages/studentWork';
-import CourseDataPage from './pages/CourseData';
-import HomeworkPage from './pages/homework';
+import StudentHomeworkPage from './pages/student/studentWork';
+import CourseDataPage from './pages/student/CourseData';
+import HomeworkPage from './pages/student/homework';
 import Account from './pages/account';
-import StudentExamPage from './pages/studentExamPage';
+import StudentExamPage from './pages/student/studentExamPage';
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')

@@ -1,5 +1,5 @@
 import "./styles/SideNavigation.css"
-import logoImage from '../content/logo.jpeg'
+import logoImage from '../../content/logo.jpeg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";

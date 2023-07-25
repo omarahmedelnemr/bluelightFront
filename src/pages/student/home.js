@@ -1,9 +1,9 @@
 import './styles/Homepage.css'
-import './styles/general.css'
-import TopBar from '../components/topBar';
-import WorkExamsPanel from '../components/workExamPanel';
-import checkAutherization from '../checkAuth';
-import StatusBoxes from '../components/statusBoxes';
+import '../styles/general.css'
+import TopBar from '../../components/student/topBar';
+import WorkExamsPanel from '../../components/student/workExamPanel';
+import checkAutherization from '../../general/checkAuth';
+import StatusBoxes from '../../components/student/statusBoxes';
 function Homepage() {
     if (checkAutherization() !== 'Auth'){
         window.location.href ='/login'

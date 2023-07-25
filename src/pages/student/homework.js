@@ -1,9 +1,9 @@
 import Cookies from 'universal-cookie';
-import './styles/general.css'
+import '../styles/general.css'
 import './styles/courseData.css'
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import TopBar from '../components/topBar';
+import TopBar from '../../components/student/topBar';
 
 function HomeworkPage() {
     const {courseName,homeworkID} = useParams() 

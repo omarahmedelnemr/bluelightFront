@@ -1,9 +1,9 @@
 import "./styles/courseBox.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import routeTo from "../general/reroute";
+import routeTo from "../../general/reroute";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import Global from "../general/globalVar";
+import Global from "../../general/globalVar";
 function CourseBox({img,name,teacher,route,fav,id}) {
   function addToFav(event){
       // Get the parent div element (courseInfo)
