@@ -57,6 +57,8 @@ function App() {
                 </div>
             </div>
         }/>
+          <Route path="/teacher/grading" element={<p>Test Done <a href='./'>Go Back</a></p>}/>
+
           {/* <Route path='/*' element={<h2 style={{backgroundColor:"white"}}>Please Login First<br/><a href="/login">Login</a></h2>}/> */}
         </Routes>
         
