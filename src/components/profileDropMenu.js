@@ -26,7 +26,7 @@ function ProfileDropMenu() {
     }
     const navigate = useNavigate()
     const lang = localStorage.getItem('lang')
-    var mainText = (lang ==='en' ? localStorage.getItem("name") :localStorage.getItem("arname")).split(' ')
+    var mainText = (lang ==='en' ? localStorage.getItem("name") :localStorage.getItem("arName")).split(' ')
     //get the First Two Names
     mainText = mainText[0]+" "+mainText[1]
     const image = localStorage.getItem("img_dir")

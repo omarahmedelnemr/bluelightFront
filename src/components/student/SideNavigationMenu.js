@@ -79,7 +79,7 @@ function SideNavigation() {
 
     }
     const firstName = localStorage.getItem("name").split(" ")[0]
-    const firstArName = localStorage.getItem("arname").split(" ")[0]
+    const firstArName = localStorage.getItem("arName").split(" ")[0]
     const navigate = useNavigate();
     useEffect(()=>{
         document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
