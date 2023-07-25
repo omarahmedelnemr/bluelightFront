@@ -53,6 +53,7 @@ function App() {
                 <div className='column mainContent fullWidth'>
                     <Routes>
                         <Route exact path='/' element={<TeacherHomepage />} />
+                        <Route path='/account' element={<Account />} />
                     </Routes>
                 </div>
             </div>
