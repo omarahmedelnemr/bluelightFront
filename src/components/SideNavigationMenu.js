@@ -106,13 +106,13 @@ function SideNavigation() {
 
                     </div>
                     <div id="assignmentsNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-book" />
+                        <FontAwesomeIcon icon="fa-solid fa-book-open" />
                         <p>{compText["assingments"]}</p>
                         <span className="route">/assignments</span>
 
                     </div>
                     <div id="examsNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-book" />
+                        <FontAwesomeIcon icon="fa-solid fa-file-lines" />
                         <p>{compText["exams"]}</p>
                         <span className="route">/exams</span>
 
