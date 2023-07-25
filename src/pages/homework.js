@@ -2,12 +2,7 @@ import Cookies from 'universal-cookie';
 import './styles/general.css'
 import './styles/courseData.css'
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Global from '../general/globalVar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import compareDates from '../general/compareDates';
-import routeTo from '../general/reroute';
+import { useState } from 'react';
 import TopBar from '../components/topBar';
 
 function HomeworkPage() {

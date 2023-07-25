@@ -1,6 +1,5 @@
 import './styles/account.css'
 import './styles/general.css'
-import StatusBoxes from '../components/homePage/statusBoxes';
 import checkAutherization from '../checkAuth';
 import Global from '../general/globalVar';
 import TopBar from '../components/topBar';

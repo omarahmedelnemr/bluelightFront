@@ -2,7 +2,7 @@ import './styles/Homepage.css'
 import './styles/general.css'
 import TopBar from '../components/topBar';
 import checkAutherization from '../checkAuth';
-import CourseBox from '../components/Courses/courseBox';
+import CourseBox from '../components/courseBox';
 import ArabicImage from '../content/arabic.jpg'
 import mathImage from '../content/math.jpg'
 import ScienceImage from '../content/science.jpg'

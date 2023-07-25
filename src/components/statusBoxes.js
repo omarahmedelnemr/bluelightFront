@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './styles/statusBoxes.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import Global from '../../general/globalVar';
+import Global from '../general/globalVar';
 import Cookies from 'universal-cookie';
 function StatusBoxes() {
     const cookieReader =new Cookies()

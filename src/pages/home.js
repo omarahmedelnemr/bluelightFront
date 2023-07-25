@@ -1,12 +1,9 @@
 import './styles/Homepage.css'
 import './styles/general.css'
 import TopBar from '../components/topBar';
-import DropDownList from '../components/dropDownList';
-// import ContentBox1 from '../components/ContentBox1';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import WorkExamsPanel from '../components/workExamPanel';
 import checkAutherization from '../checkAuth';
-import StatusBoxes from '../components/homePage/statusBoxes';
+import StatusBoxes from '../components/statusBoxes';
 function Homepage() {
     if (checkAutherization() !== 'Auth'){
         window.location.href ='/login'
