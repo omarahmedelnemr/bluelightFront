@@ -1,7 +1,7 @@
 import './styles/login.css'
 import Button from '../components/button';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
 import Cookies from 'universal-cookie';
@@ -15,7 +15,16 @@ function Login() {
     const reader = new Cookies()
     window.location.href ='/'+reader.get('role')
   }
-  console.log("A")
+  function handleKeyPress(event) {
+    // Check if the key pressed is the Enter key (keyCode 13)
+    if (event.keyCode === 13) {
+        // Find the sibling button and programmatically click it
+        const button = event.currentTarget.parentElement.nextElementSibling;
+        if (button.tagName === 'BUTTON') {
+            button.click();
+        }
+    }
+}
   function SubmitLogin(){
     const username = document.getElementById("loginUsername").value
     const password = document.getElementById("loginPassword").value
@@ -70,6 +79,18 @@ function Login() {
   const [logingmessege,setLogingmessege] = useState([""])
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    document.getElementById("loginUsername").addEventListener('keypress', function(event) {
+      if (event.key == 'Enter') {
+          event.currentTarget.parentElement.parentElement.parentElement.querySelector("button").click()
+      }
+    });
+    document.getElementById("loginPassword").addEventListener('keypress', function(event) {
+      if (event.key == 'Enter') {
+          event.currentTarget.parentElement.parentElement.parentElement.querySelector("button").click()
+      }
+    });
+  },[1000])
 
   return (
     <div id = "loginContainer" className="login">
