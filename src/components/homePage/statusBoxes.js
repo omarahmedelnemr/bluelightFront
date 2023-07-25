@@ -131,11 +131,11 @@ function StatusBoxes() {
                     </div>
                     <div className='boxValue'>
                         {/* <h2>1/3</h2> */}
-                        <h2>{(totalAttendanceCount === '-' || attendedCount === "-") ? '-' :(totalAttendanceCount - attendedCount)}/{totalAttendanceCount}</h2>
+                        <h2>{(totalAttendanceCount === '-' || attendedCount === "-") ? '-' :(totalAttendanceCount ==0 ? 100 :   attendedCount * 100/totalAttendanceCount )} %</h2>
 
                     </div>
                     <div className='boxComment'>
-                        <p>{attendedCount === '-' ? '-' : (attendedCount  < 10? compLang["attendanceMessage1"]:compLang["attendanceMessage2"])}</p>
+                        <p>{attendedCount === '-' ? '-' : ((totalAttendanceCount ==0 ? 100 :   Math.round(attendedCount * 100/totalAttendanceCount) )  > 90? compLang["attendanceMessage1"]:compLang["attendanceMessage2"])}</p>
 
                     </div>
                 </div>
