@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function TeacherSideNavigation() {
-    const navList = ['Home',"courses","messages","assignments","exams","account"] //,"bus"
+    const navList = ['Home',"classrooms","Classwork","Submission","exams","account"] //,"bus"
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:     lang === 'en' ? "welcome Back":"اهلا",
@@ -16,8 +16,11 @@ function TeacherSideNavigation() {
         Events:      lang === 'en' ? "Events":"المناسبات",
         messages:    lang === 'en' ? "Messages":"الرسائل",
         bus:         lang === 'en' ? "Bus":"الباص",
-        account:     lang === 'en' ? "Account":"حسابي"
-        
+        account:     lang === 'en' ? "Account":"حسابي",
+        classrooms:  lang === 'en' ? "Classrooms":"الفصول",
+        classwork:   lang === 'en' ? "Classwork":"الاعمال",
+        Submission:  lang === 'en' ? "Submissions":"التسليمات"
+         
     }
     useEffect(()=>{
         const endpoints = window.location.pathname.split("/")
@@ -79,7 +82,7 @@ function TeacherSideNavigation() {
 
     }
     const firstName = localStorage.getItem("name").split(" ")[0]
-    const firstArName = localStorage.getItem("arname").split(" ")[0]
+    const firstArName = localStorage.getItem("arName").split(" ")[0]
     const navigate = useNavigate();
     useEffect(()=>{
         document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
@@ -101,20 +104,20 @@ function TeacherSideNavigation() {
                     </div>
                     <div id="coursesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book" />
-                        <p>{compText["courses"]}</p>
-                        <span className="route">/courses</span>
+                        <p>{compText["classrooms"]}</p>
+                        <span className="route">/classrooms</span>
 
                     </div>
                     <div id="assignmentsNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book-open" />
-                        <p>{compText["assingments"]}</p>
-                        <span className="route">/assignments</span>
+                        <p>{compText["classwork"]}</p>
+                        <span className="route">/classwork</span>
 
                     </div>
                     <div id="examsNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-file-lines" />
-                        <p>{compText["exams"]}</p>
-                        <span className="route">/exams</span>
+                        <p>{compText["Submission"]}</p>
+                        <span className="route">/submission</span>
 
                     </div>
                     <div id="messagesNavButton" className="navButton" onClick={navButtonClick}>
