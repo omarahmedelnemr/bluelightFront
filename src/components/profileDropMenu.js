@@ -1,6 +1,7 @@
 import "./styles/profileDropMenu.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
+import Global from "../general/globalVar";
 
 function ProfileDropMenu() {
     function routeTologout(){
@@ -31,7 +32,7 @@ function ProfileDropMenu() {
     return (
         <div className="profileDropDown" onClick={DropTheProfileMenue}>
             <div className="header ">
-                <img src={image} alt={"Profile Image"}/>
+                <img src={Global.BackendURL+image} alt={"Profile Image"}/>
                 <div>
                     <p className="mainText">{mainText}</p>
                     <p className="subText">{subText}</p>  
@@ -39,9 +40,6 @@ function ProfileDropMenu() {
                 <FontAwesomeIcon className ="lookDown" icon="fa-solid fa-chevron-down"/>
             </div>
             <div className="dropList">
-                {/* <div onClick={routeToAccount}>
-                    <p>Account</p>
-                </div> */}
                 <div onClick={routeTologout}>
                     <p>Logout</p>
                 </div>

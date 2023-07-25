@@ -1,3 +1,16 @@
+.sideMinu{
+    align-items: center;
+
+}
+.sideMinu svg{
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 100%;
+    background-color: #ffffff2e;
+    margin: 0px 10px;
+    display: none;
+}
 .topBar{
     display: flex;
     flex-direction: row;
@@ -11,7 +24,12 @@
 @media (max-width:1440px) {
     .topBar{
         font-size: 1.5vw;
-
     }
 }
+@media (max-width:910px) {
+    .sideMinu svg{
+        display: block;
+    }
 
+
+}

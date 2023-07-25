@@ -49,6 +49,7 @@ function CourseDataPage() {
     const classroomID = localStorage.getItem('classroom')
     const [assinmentList,setAssignmentList] = useState('')
     const [exmaStatus,setExamStatus] = useState(false)
+    const [announcementsStatus,setAnnouncementsStatus] = useState(false)
     const [title,setTitle] = useState(compLang['assingments'])
 
     const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
@@ -97,7 +98,7 @@ function CourseDataPage() {
                                             <td>{data[i]['homework']['publish_date']==null ? '-': data[i]['homework']['publish_date'].split('T')[0]}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
                                             <td>{lang === 'en' ? data[i]['homework']['course']["name"] :data[i]['homework']['course']["arName"]}</td>
-                                            <a href={"./"+subjectName+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
+                                            <a href={"./"+subjectName+"/assignments/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
 
                                         </tr>)
                 }
@@ -113,8 +114,8 @@ function CourseDataPage() {
   function switchWork(event){
     
     //Toggle The Active Features
-    const parent = event.currentTarget.parentElement
-    parent.querySelector('.activeSide').classList.remove('activeSide')
+    const parentClass = event.currentTarget.parentElement
+    parentClass.querySelector('.activeSide').classList.remove('activeSide')
     event.currentTarget.classList.add('activeSide')
 
     //Show the Selected Section
@@ -183,6 +184,15 @@ function CourseDataPage() {
         document.getElementsByClassName('courseExams')[0].style.display = 'none'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'block'
         setTitle(compLang['announce'])
+        if(announcementsStatus ==false){
+
+            axios.get(Global.BackendURL+'/student/CourseAnnouncement?classroomID='+classroomID+"&courseName="+courseName).then((res)=>{
+                console.log(res.data)
+            }).catch((err)=>{
+                console.log("Error!!!")
+                console.log(err)
+            })
+        }
     }
   }
   return (

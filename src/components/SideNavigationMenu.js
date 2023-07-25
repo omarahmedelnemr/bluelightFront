@@ -5,38 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function SideNavigation() {
-    const navList = ['Home',"courses","events","bus","account"]
+    const navList = ['Home',"courses","messages","assignments","exams","account"] //,"bus"
     const lang = localStorage.getItem('lang') 
     const compText = {
-        welcome:{
-            "en":"welcome Back",
-            "ar":"اهلا"
-        },
-        home:{
-            "en":"Home",
-            "ar":"الرئيسية"
-        },
-        courses:{
-            "en":"Courses",
-            "ar":"المقررات"
-        },
-        Events:{
-            "en":"Events",
-            "ar":"المناسبات"
-        },
-        bus:{
-            "en":"Bus",
-            "ar":"الباص"
-        },
-        account:{
-            "en":"Account",
-            "ar":"حسابي"
-        }
+        welcome:     lang === 'en' ? "welcome Back":"اهلا",
+        home:        lang === 'en' ? "Home":"الرئيسية",
+        courses:     lang === 'en' ? "Courses":"المقررات",
+        assingments: lang === 'en' ? "Assignments" : "الواجبات" ,
+        exams:       lang === 'en' ? "Exams" :"الاختبارات",
+        Events:      lang === 'en' ? "Events":"المناسبات",
+        messages:    lang === 'en' ? "Messages":"الرسائل",
+        bus:         lang === 'en' ? "Bus":"الباص",
+        account:     lang === 'en' ? "Account":"حسابي"
         
     }
     useEffect(()=>{
         const endpoints = window.location.pathname.split("/")
-        const path = endpoints[endpoints.length-1]
+        const path = endpoints[endpoints.length-1].toLowerCase()
         try{
             try{
                 document.getElementsByClassName("active")[0].classList.remove("active")
@@ -44,6 +29,7 @@ function SideNavigation() {
                 console.log("No Active Found")
             }
             document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","block")
+            // document.getElementsByClassName("backgroundActive")[0].style.setProperty("width",document.getElementsByClassName("active")[0].style.width)
 
             if (path ==='' || path ==='student' || path ==='parent' || path ==="teacher" || path==="admin"){
                 document.getElementById("homeNavButton").classList.add("active")
@@ -103,38 +89,50 @@ function SideNavigation() {
             <div className="top">
                 <div className="welcome">
                     <img className="logoimage" src={logoImage}/>
-                    <p>{compText["welcome"][lang]} {lang === 'en' ? firstName: firstArName}</p>
+                    <p>{compText["welcome"]} {lang === 'en' ? firstName: firstArName}</p>
                 </div>
             </div>
             <div className="backgroundActive"></div>
             <div className="center">
                     <div id="homeNavButton" className="navButton active" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-house" />
-                        <p>{compText["home"][lang]}</p>
+                        <p>{compText["home"]}</p>
                         <span className="route">/</span>
                     </div>
                     <div id="coursesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book" />
-                        <p>{compText["courses"][lang]}</p>
+                        <p>{compText["courses"]}</p>
                         <span className="route">/courses</span>
 
                     </div>
-                    <div id="eventsNavButton" className="navButton" onClick={navButtonClick}>
-                        {/* <FontAwesomeIcon icon="fa-solid fa-message" /> */}
-                        <FontAwesomeIcon icon="fa-solid fa-users" />
-                        <p>{compText["Events"][lang]}</p>
-                        <span className="route">/events</span>
+                    <div id="assignmentsNavButton" className="navButton" onClick={navButtonClick}>
+                        <FontAwesomeIcon icon="fa-solid fa-book" />
+                        <p>{compText["assingments"]}</p>
+                        <span className="route">/assignments</span>
 
                     </div>
-                    <div id="busNavButton" className="navButton" onClick={navButtonClick}>
+                    <div id="examsNavButton" className="navButton" onClick={navButtonClick}>
+                        <FontAwesomeIcon icon="fa-solid fa-book" />
+                        <p>{compText["exams"]}</p>
+                        <span className="route">/exams</span>
+
+                    </div>
+                    <div id="messagesNavButton" className="navButton" onClick={navButtonClick}>
+                        <FontAwesomeIcon icon="fa-solid fa-message" />
+                        {/* <FontAwesomeIcon icon="fa-solid fa-users" /> */}
+                        <p>{compText["messages"]}</p>
+                        <span className="route">/messages</span>
+
+                    </div>
+                    {/* <div id="busNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-bus" />
-                        <p>{compText["bus"][lang]}</p>
+                        <p>{compText["bus"]}</p>
                         <span className="route">/bus</span>
 
-                    </div>
+                    </div> */}
                     <div id="accountNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-user" />
-                        <p>{compText["account"][lang]}</p>
+                        <p>{compText["account"]}</p>
                         <span className="route">/account</span>
                         
                     </div>

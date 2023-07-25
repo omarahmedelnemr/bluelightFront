@@ -4,17 +4,17 @@ import WorkExamsPanel from '../components/workExamPanel';
 import TopBar from '../components/topBar';
 
 
-function StudentHomeworkPage() {
+function StudentExamPage() {
   const lang = localStorage.getItem('lang')
   const pageLang = {
-    Assignments : lang === 'en' ? "Assignments":"الواجبات"
+    Exams:        lang === "en" ? "Exams":"الاختبارات"
   }
   return (
     <div className='assignments'>
-      <TopBar title={pageLang['Assignments']}/>
-      <WorkExamsPanel type={'Assignments'} limit ={false}/>
+      <TopBar title={pageLang['Exams']}/>
+      <WorkExamsPanel type={'Exams'} limit ={false}/>
     </div>
   );
 }
 
-export default StudentHomeworkPage;
+export default StudentExamPage;

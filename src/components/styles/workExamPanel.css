@@ -71,6 +71,7 @@
     font-size: 15px;
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 .workExamPanel .titleSeemore a svg{
     font-size: 15px;

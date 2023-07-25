@@ -46,7 +46,7 @@
 .sideNav .backgroundActive{
     position: absolute;
     height: 50px;
-    width: 170px;
+    width: 180px;
     background-color: white;
     border-radius: 30px;
     margin: 0px 50px;
@@ -57,7 +57,7 @@
 .sideNav .center div{
     margin: 0px 50px;
     text-align: left;
-    padding: 0px 30px;
+    padding: 0px 15px;
     display: flex;
     flex-direction: row;
     align-items: center;  

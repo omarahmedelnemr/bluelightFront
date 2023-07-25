@@ -1,0 +1,22 @@
+.Account{
+    height: 100%;
+}
+.Account .topBar{
+    margin-bottom: 50px;
+}
+.Account .content{
+    height: 100%;
+    justify-content: space-around;
+}
+.ProfileImage img{
+    width: 200px;
+    border-radius: 100%;
+}
+.personalInfo .row{
+    justify-content: space-between;
+    margin: 20px 20vw;
+    border-bottom: 1px solid;
+}
+.changeDataMessage{
+    color: rgba(0, 0, 0, 0.343);
+}

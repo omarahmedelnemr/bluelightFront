@@ -8,7 +8,6 @@ import compareDates from "../general/compareDates";
 import { useNavigate } from "react-router-dom";
 import routeTo from "../general/reroute";
 function WorkExamsPanel({type,limit}) {
-    const navigate =useNavigate()
     const [assinmentList,setAssignmentList] = useState('')
     const [emptyMessage,setEmptyMessage] = useState(<div className="emptyMessage" >
     <div className="loading"></div>
@@ -67,7 +66,7 @@ function WorkExamsPanel({type,limit}) {
                                             <td>{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
                                             <td>{lang === 'en' ? data[i]['homework']['course']["name"] :data[i]['homework']['course']["arName"]}</td>
-                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
+                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
 
                                         </tr>)
                 }
@@ -100,7 +99,8 @@ function WorkExamsPanel({type,limit}) {
         <div className="workExamPanel">
             <div className={"row titleSeemore "+(limit ?"":"hide")}>
                 <p className="panelTitle">{compLang['type']}</p>
-                <a href={'/student/'+type}>{compLang['seeAll']} {localStorage.getItem('lang')==='en' ?<FontAwesomeIcon icon="fa-solid fa-angles-right" />:<FontAwesomeIcon icon="fa-solid fa-angles-left" />}</a>
+                {/* <a href={'/student/'+type}>{compLang['seeAll']} {localStorage.getItem('lang')==='en' ?<FontAwesomeIcon icon="fa-solid fa-angles-right" />:<FontAwesomeIcon icon="fa-solid fa-angles-left" />}</a> */}
+                <a onClick={()=>{document.getElementById(type.toLowerCase()+"NavButton").click()}}>See All {localStorage.getItem('lang')==='en' ?<FontAwesomeIcon icon="fa-solid fa-angles-right" />:<FontAwesomeIcon icon="fa-solid fa-angles-left" />}</a>
             </div>
             <table>
                 <tr className="tableHeaders">

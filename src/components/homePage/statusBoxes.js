@@ -140,9 +140,9 @@ function StatusBoxes() {
                     </div>
                 </div>
                 <div className={'contentBoxSize1'}>
-                    <div className='boxIcon' style={{backgroundColor:'#a675f4'}}>
+                    {/* <div className='boxIcon' style={{backgroundColor:'#a675f4'}}> */}
                         {/* <FontAwesomeIcon icon="fas fa-envelope" /> */}
-                        <FontAwesomeIcon icon="fa-solid fa-users" />
+                        {/* <FontAwesomeIcon icon="fa-solid fa-users" />
                     </div>
                     <div className='boxTitle'>
                         <p>{compLang["events"]}</p>
@@ -153,7 +153,21 @@ function StatusBoxes() {
                     <div className='boxComment'>
                         <p><span style={{color:"red"}}>{eventsCount}</span> {compLang['eventsMessage']}</p>
 
+                    </div> */}
+                    <div className='boxIcon' style={{backgroundColor:'#f4c075'}}>
+                        <FontAwesomeIcon icon="fas fa-envelope" />
                     </div>
+                    <div className='boxTitle'>
+                        <p>{compLang["messages"]}</p>
+                    </div>
+                    <div className='boxValue'>
+                        <h2>1/3</h2>
+                    </div>
+                    <div className='boxComment'>
+                        <p><span style={{color:"red"}}>2</span> unseen Messages</p>
+
+                    </div>
+                    
                 </div>
                 <div className={'contentBoxSize1 hideInSmall'}>
                     {/* <div className='boxIcon' style={{backgroundColor:'#f4c075'}}>
