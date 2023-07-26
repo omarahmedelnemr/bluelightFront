@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Global from "../general/globalVar";
 
 function ProfileDropMenu() {
+    
     function routeTologout(){
         navigate('/logout')
     }
@@ -26,7 +27,12 @@ function ProfileDropMenu() {
     }
     const navigate = useNavigate()
     const lang = localStorage.getItem('lang')
-    var mainText = (lang ==='en' ? localStorage.getItem("name") :localStorage.getItem("arName")).split(' ')
+    const compText ={
+        name:   lang === 'en' ? localStorage.getItem("name") :localStorage.getItem("arName"),
+        logout: lang === 'en' ? "Logout":"تسجيل الخروج"
+
+    }
+    var mainText = compText['name'].split(' ')
     //get the First Two Names
     mainText = mainText[0]+" "+mainText[1]
     const image = localStorage.getItem("img_dir")
@@ -49,7 +55,7 @@ function ProfileDropMenu() {
             </div>
             <div className="dropList">
                 <div onClick={routeTologout}>
-                    <p>Logout</p>
+                    <p>{compText['logout']}</p>
                 </div>
             </div>
             
