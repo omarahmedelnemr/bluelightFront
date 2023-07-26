@@ -21,7 +21,7 @@ function TeacherHomepage() {
     return (
         <div className="Homepage column fullWidth">
             <TopBar title={pageText["SchoolName"]}/>
-            <h1>Hello</h1>
+            <h1>Still Developing </h1>
         </div>
     );
 }

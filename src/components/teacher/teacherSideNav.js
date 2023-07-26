@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function TeacherSideNavigation() {
-    const navList = ['Home',"classrooms","Classwork","exams","account"] //,"bus","Submission"
+    const navList = ['Home',"classrooms","classwork","exams","account"] //,"bus","Submission"
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:     lang === 'en' ? "welcome Back":"اهلا",
@@ -32,7 +32,6 @@ function TeacherSideNavigation() {
                 console.log("No Active Found")
             }
             document.getElementsByClassName("backgroundActive")[0].style.setProperty("display","block")
-            // document.getElementsByClassName("backgroundActive")[0].style.setProperty("width",document.getElementsByClassName("active")[0].style.width)
 
             if (path ==='' || path ==='student' || path ==='parent' || path ==="teacher" || path==="admin"){
                 document.getElementById("homeNavButton").classList.add("active")
@@ -102,13 +101,13 @@ function TeacherSideNavigation() {
                         <p>{compText["home"]}</p>
                         <span className="route">/</span>
                     </div>
-                    <div id="coursesNavButton" className="navButton" onClick={navButtonClick}>
+                    <div id="classroomsNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book" />
                         <p>{compText["classrooms"]}</p>
                         <span className="route">/classrooms</span>
 
                     </div>
-                    <div id="assignmentsNavButton" className="navButton" onClick={navButtonClick}>
+                    <div id="classworkNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book-open" />
                         <p>{compText["classwork"]}</p>
                         <span className="route">/classwork</span>
