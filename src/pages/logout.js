@@ -6,12 +6,20 @@ function Logout() {
     const navigate = useNavigate()
     const cookies= new Cookies()
     console.log("Request Sent")
-    localStorage.removeItem("img_dir")
-    localStorage.removeItem("role")
-    localStorage.removeItem("name")
-    localStorage.removeItem("arname")
-    localStorage.removeItem("classroom")
-    // localStorage.clear()
+    const keep = ['lang']
+    const keepValues= {}
+    for(var i =0;i<keep.length;i++){
+      keepValues[keep[i]] = localStorage.getItem(keep[i])
+    }
+    // localStorage.removeItem("img_dir")
+    // localStorage.removeItem("role")
+    // localStorage.removeItem("name")
+    // localStorage.removeItem("arname")
+    // localStorage.removeItem("classroom")
+    localStorage.clear()
+    for(var i =0;i<keep.length;i++){
+      localStorage.setItem(keep[i],keepValues[keep[i]])
+    }
     cookies.remove("jwt")
     cookies.remove("role")
     cookies.remove("id")
