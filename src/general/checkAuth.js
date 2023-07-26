@@ -10,7 +10,7 @@ function checkAutherization(){
     const roleCookie = cookieReader.get('role')
     const roleLocal = localStorage.getItem('role')
     const endpoints = window.location.pathname.split("/")
-    console.log(endpoints)
+    // console.log(endpoints)
     if (endpoints[1] !== roleCookie && roleCookie === roleLocal){
         window.location.href = roleLocal
         return "notAuth"
