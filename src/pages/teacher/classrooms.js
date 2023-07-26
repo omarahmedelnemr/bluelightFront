@@ -21,10 +21,11 @@ function ClassroomsPage() {
     }
     const [classes,setClasses] = useState(null)
     const [navButtons,setNavButtons] = useState(null)
+    const [loading,setLoading] = useState(<div className="loading"></div>)
     useEffect(()=>{
         axios.get(Global.BackendURL+"/teacher/classrooms?teacherID="+localStorage.getItem('id')).then((res)=>{
             const data = res.data
-            console.log(data)
+            setLoading(null)
             var inClass = []
             const generalDivs = []
             const subjects = Object.keys(data)
@@ -71,6 +72,8 @@ function ClassroomsPage() {
   }
     return (
         <div className="classroomsPage column fullWidth">
+   {loading}
+
             <TopBar title={pageText["classrooms"]}/>
             <div className='subNavButtons'>
                 {/* <button onClick={switchSubNavButtons}>fav</button> */}
