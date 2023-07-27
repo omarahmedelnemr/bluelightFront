@@ -101,24 +101,18 @@ function TeacherSideNavigation() {
                         <p>{compText["home"]}</p>
                         <span className="route">/</span>
                     </div>
-                    <div id="classroomsNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-book" />
-                        <p>{compText["classrooms"]}</p>
-                        <span className="route">/classrooms</span>
-
-                    </div>
                     <div id="classworkNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book-open" />
                         <p>{compText["classwork"]}</p>
                         <span className="route">/classwork</span>
 
                     </div>
-                    {/* <div id="examsNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-file-lines" />
-                        <p>{compText["Submission"]}</p>
-                        <span className="route">/submission</span>
+                    <div id="classroomsNavButton" className="navButton" onClick={navButtonClick}>
+                        <FontAwesomeIcon icon="fa-solid fa-book" />
+                        <p>{compText["classrooms"]}</p>
+                        <span className="route">/classrooms</span>
 
-                    </div> */}
+                    </div>
                     <div id="messagesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-message" />
                         {/* <FontAwesomeIcon icon="fa-solid fa-users" /> */}
