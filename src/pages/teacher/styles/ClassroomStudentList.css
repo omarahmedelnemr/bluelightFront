@@ -1,14 +1,14 @@
-.classroomInfoPage{
+.ClassroomStudentList{
     position: relative;
     height: 100vh;
     overflow: auto;
 }
-.classroomInfoPage .searchBar{
+.ClassroomStudentList .searchBar{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.classroomInfoPage .searchBar input{
+.ClassroomStudentList .searchBar input{
     flex-basis: 50%;
     height: 40px;
     font-size: 20px;
@@ -19,11 +19,11 @@
     background-color: rgba(255, 255, 255, 0.467);
 
 }
-.classroomInfoPage .searchBar input:focus{
+.ClassroomStudentList .searchBar input:focus{
     border: none;
 }
 
-.classroomInfoPage .studentListContainer{
+.ClassroomStudentList .studentListContainer{
     padding: 1vw 4vw;
 }
 .studentInfoCard{

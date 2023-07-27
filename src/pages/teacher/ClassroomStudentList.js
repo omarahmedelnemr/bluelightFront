@@ -1,14 +1,12 @@
 import '../styles/general.css'
-import './styles/classroomInfo.css'
+import './styles/ClassroomStudentList.css'
 import checkAutherization from '../../general/checkAuth';
 import TopBar from '../../components/topBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Global from '../../general/globalVar';
 import { useParams } from 'react-router-dom';
-import image from '../../content/person.jpg'
-import Input from '../../components/input';
-function ClassroomInfo() {
+function ClassroomStudentList() {
     if (checkAutherization() !== 'Auth'){
         window.location.href ='/login'
     }
@@ -77,7 +75,7 @@ function ClassroomInfo() {
         }
     }
     return (
-        <div className="classroomInfoPage column fullWidth">
+        <div className="ClassroomStudentList column fullWidth">
             {loading}
             <TopBar title={pageText['classrooms']+": "+(classroomID[0] === 'k'? (classroomID.slice(2)+pageText['kg']):(classroomID.slice(1)+pageText[classroomID[0]]))}/>
             <div className='searchBar'>
@@ -90,4 +88,4 @@ function ClassroomInfo() {
     );
 }
 
-export default ClassroomInfo;
+export default ClassroomStudentList;

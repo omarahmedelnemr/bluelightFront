@@ -14,7 +14,7 @@ import StudentExamPage from './pages/student/studentExamPage';
 import TeacherSideNavigation from './components/teacher/teacherSideNav';
 import TeacherHomepage from './pages/teacher/teacherHomePage';
 import ClassroomsPage from './pages/teacher/classrooms';
-import ClassroomInfo from './pages/teacher/classroomInfo';
+import ClassroomInfo from './pages/teacher/ClassroomStudentList';
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')
