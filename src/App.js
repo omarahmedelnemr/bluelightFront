@@ -14,6 +14,7 @@ import StudentExamPage from './pages/student/studentExamPage';
 import TeacherSideNavigation from './components/teacher/teacherSideNav';
 import TeacherHomepage from './pages/teacher/teacherHomePage';
 import ClassroomsPage from './pages/teacher/classrooms';
+import ClassroomInfo from './pages/teacher/classroomInfo';
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')
@@ -55,6 +56,7 @@ function App() {
                     <Routes>
                         <Route exact path='/' element={<TeacherHomepage />} />
                         <Route exact path='/classrooms' element={<ClassroomsPage />} />
+                        <Route exact path='/classrooms/:classroomID' element={<ClassroomInfo />} />
                         <Route path='/account' element={<Account />} />
                     </Routes>
                 </div>
