@@ -8,7 +8,7 @@ function Account() {
         window.location.href ='/login'
     }
     const lang = localStorage.getItem('lang') 
-    const profileImage = Global.BackendURL+localStorage.getItem("img_dir") 
+    const profileImage = Global.BackendURL+"/profilePic/"+localStorage.getItem("img_dir") 
     const pageText = {
         account:       lang === "en" ? "Account" : "حسابي",
         changeMessage: lang === 'en' ? "If any Data Needs To Be Changed, Please Contact your Teacher":"لو احتجت لتغيير اي بيانات, بالرجاء التواصل مع الاستاذ المشرف الاجتماعي",

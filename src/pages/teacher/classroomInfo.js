@@ -42,7 +42,7 @@ function ClassroomInfo() {
                     <div className='studentInfoCard row'>
                         <div className='LeftStudentInfo row'>
                             
-                            <img src={Global.BackendURL+data[i]['img_dir']}  alt='Profile Picture'/>
+                            <img src={Global.BackendURL+"/profilepic/"+data[i]['img_dir']}  alt='Profile Picture'/>
                             
                             <div className='column textInfo'>
                                 <p className='studentName'>{lang === 'en' ? data[i]['name']: data[i]['arName']}</p>
