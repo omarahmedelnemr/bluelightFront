@@ -17,7 +17,9 @@ function Account() {
         classroom:     lang === "en" ? "Classroom" : "الفصل",
         role:          lang === "en" ? "Role" : "الوصف",
         age:           lang === "en" ? "Age" :"العمر",
-        gender:        lang === "en" ? "Gender":"الجنس"
+        gender:        lang === "en" ? "Gender":"الجنس",
+        male:          lang === "en" ? "Male":"ذكر",
+        female:        lang === "en" ? "Female":"أنثي"
     }
     return (
         <div className="Account column fullWidth">
@@ -42,7 +44,7 @@ function Account() {
                     </div>
                     <div className='row'>
                         <p>{pageText["gender"]}</p>
-                        <p>{localStorage.getItem('gender')}</p>
+                        <p>{pageText[localStorage.getItem('gender')]}</p>
                     </div>
                     {localStorage.getItem('role') =='student'?
                     <div className='row'>

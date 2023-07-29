@@ -18,15 +18,17 @@ function ClassroomStudentList() {
     const [loading,setLoading] = useState(<div className="loading"></div>)
     const [studentCards,setStudentCards] = useState(null)
     const pageText = {
-        SchoolName:  lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",
-        classrooms:  lang === 'en' ? "Classrooms":"الفصول",
-        yearsOld:    lang === 'en' ? 'Years old':'سنة',
-        sendMessage: lang === 'en' ? "Send a Message":"أرسل رسالة",
+        SchoolName:    lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",
+        classrooms:    lang === 'en' ? "Classrooms":"الفصول",
+        yearsOld:      lang === 'en' ? 'Years old':'سنة',
+        sendMessage:   lang === 'en' ? "Send a Message":"أرسل رسالة",
         contactParent: lang === 'en' ? "Contact the Parents" : "تواصل مع ولي الامر",
-        kg:          lang === 'en' ? "KG":"حضانة",
-        E:           lang === 'en' ? "Elementary":"ابتدائي",
-        P:           lang === 'en' ? "Preparatory":"اعدادي",
-        S:           lang === 'en' ? "Secondary":"ثانوي"
+        kg:            lang === 'en' ? "KG":"حضانة",
+        E:             lang === 'en' ? "Elementary":"ابتدائي",
+        P:             lang === 'en' ? "Preparatory":"اعدادي",
+        S:             lang === 'en' ? "Secondary":"ثانوي",
+        male:          lang === "en" ? "Male":"ذكر",
+        female:        lang === "en" ? "Female":"أنثي"
 
     }
 
@@ -44,7 +46,7 @@ function ClassroomStudentList() {
                             
                             <div className='column textInfo'>
                                 <p className='studentName'>{lang === 'en' ? data[i]['name']: data[i]['arName']}</p>
-                                <span>{data[i]['age'] + " "+ pageText["yearsOld"]}</span>
+                                <span>{data[i]['age'] + " "+ pageText["yearsOld"]} - {pageText[data[i]['gender']]}</span>
                             </div>
                         </div>
                         <div className='RightStudentInfo'>
