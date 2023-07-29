@@ -1,0 +1,10 @@
+.classworkContent{
+    justify-content: center;
+    align-items: center;
+}
+.classworkPage .content .subContentSection{
+    width: 90%;
+}
+.classworkPage .content .examsSection{
+    display: none;
+}
