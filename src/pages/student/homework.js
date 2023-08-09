@@ -10,6 +10,8 @@ import Question_MCQ from '../../components/student/question_mcq';
 import Question_Written from '../../components/student/question_written';
 import Question_Attachment from '../../components/student/question_attachment';
 import cleanArr from '../../general/cleanArr';
+import compareDates from '../../general/compareDates';
+import formatTime from '../../general/formatTime';
 function HomeworkPage() {
     const {courseName,homeworkID} = useParams() 
     const lang = localStorage.getItem("lang")
@@ -20,7 +22,7 @@ function HomeworkPage() {
       due:             lang === 'en' ? "Due":"متاح حتي",
       publish:         lang === 'en' ? "Publish":"نشر في",
       notSubmitted:    lang === 'en' ? "Not Submitted":"لم يسلم بعد",
-      inTime:          lang === 'en' ? 'Done on Time':"تم في الميعاد",
+      done:            lang === 'en' ? 'Done':"تم",
       doneLate:        lang === 'en' ? "Done Late":"تم متاخرا",
       points:          lang === 'en' ? 'Points':"درجة",
       submit:          lang === 'en' ? "Submit":"تسليم",
@@ -42,27 +44,33 @@ function HomeworkPage() {
     const [questionElements,setQuestionElements] = useState(null)
     const [incompleteMessage,setIncompleteMessage] = useState(null)
     const [submittingStatus,setSubmittingStatus] = useState('')
+    const [DoneStatus,setDoneStatus] = useState(null)
+    const [submissionDate,setSubmissionDate] = useState('')
+
     // Get Homework Headers
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID).then((res)=>{
+        axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+localStorage.getItem('id')).then((res)=>{
             const data = res.data
             setDescription(data['homework']['description'])
             setHomeworkTitle(data['homework']['name'])
             setTotalGrade(data['homework']['grade'])
-            try{
-                setPublishDate(data['homework']['publish_date'].split("T")[0])
-            }catch{
-                setPublishDate("null")
-            }
-            try{
-                setDueDate(data['homework']['due_date'].split("T")[0])
-            }catch{
-                setDueDate("null")
-            }
+            setPublishDate(formatTime(data['homework']['publish_date']))
+            setDueDate(formatTime(data['homework']['due_date']))
             if(data['submitted']){
                 setGraded(data['graded'])
                 // setSubmitted(data['submitted'])
+                setSubmissionDate(formatTime(data['submissionDate']))
+                if (data['homework']['due_date'] === null){
+                    setDoneStatus(pageLang['done'])
+                }else{
+                    const statusDates = compareDates(data['homework']['due_date'],data['submissionDate'])
+                    if (statusDates ==='late'){
+                        setDoneStatus(pageLang['doneLate'])
+                    }else{
+                        setDoneStatus(pageLang['done'])
+                    }
 
+                }
                 if (data['graded']){
                     setYourGrade(<p>{data['grade']} / {data['homework']['grade']}</p>)
                 }else{
@@ -188,7 +196,7 @@ function HomeworkPage() {
         }
         setIncompleteMessage(null)
         setSubmittingStatus(" disabled")
-
+        submission['submissionDate'] = new Date()
         axios.post(Global.BackendURL+"/student/homeworksubmission",submission).then((res)=>{
             console.log("Done")
             const data = res.data
@@ -244,7 +252,7 @@ function HomeworkPage() {
                         <hr />
                     </div>
                     <div className='status column'>
-                        <p>{yourGrade}<spane>Done Late</spane></p>
+                        <p>{yourGrade}<span>{DoneStatus}</span><br/><span className='submittedDate'> {submissionDate}</span></p>
                     </div>
                 </div>
                 <div className='workDescription'>

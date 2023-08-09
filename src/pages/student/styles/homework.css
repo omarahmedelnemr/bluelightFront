@@ -36,6 +36,10 @@
     margin: 0px;
     color: rgb(77, 77, 77);
 }
+#homeworkPage .homeworkSection .homeworkInfo .submittedDate{
+    color: rgba(0, 0, 0, 0.572);
+    font-size: 18px;
+}
 #homeworkPage .homeworkSection .homeworkInfo .info hr{
     border: 2px solid #3b7781;
     flex-basis: 100%;
