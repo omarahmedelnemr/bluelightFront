@@ -46,7 +46,7 @@ function CourseBox({img,name,teacher,route,fav,id}) {
             </div>
             <a href={route} className="hiddenRoute"></a>
             {/* <span className="hiddenMetadata">{id}</span> */}
-            <FontAwesomeIcon icon="fa-solid fa-heart" style={{color:fav?"red":"white"}} onClick={addToFav}/>
+            {/* <FontAwesomeIcon icon="fa-solid fa-heart" style={{color:fav?"red":"white"}} onClick={addToFav}/> */}
         </div>
     </div>
   );

@@ -1,0 +1,62 @@
+#homeworkPage .PageContent{
+    padding: 20px 5%
+}
+#homeworkPage .courseBar{
+    background-color: #3b7781;
+    color: white;
+    border-radius: 10px;
+    /* padding: 20px; */
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+#homeworkPage .courseBar h1{
+    margin: 20px;
+}
+#homeworkPage  .courseBar img{
+    height: 150px;
+}
+#homeworkPage .homeworkSection{
+    /* padding: 10px 5%; */
+    padding: 10px 1%;
+}
+#homeworkPage .homeworkSection .homeworkInfo{
+
+    justify-content: space-between;
+}
+#homeworkPage .homeworkSection .homeworkInfo .info{
+    align-items: flex-start;
+    /* flex-basis: 30%; */
+}
+#homeworkPage .homeworkSection .homeworkInfo .info h1{
+    margin-bottom: 5px;
+}
+#homeworkPage .homeworkSection .homeworkInfo .info p{
+    margin: 0px;
+    color: rgb(77, 77, 77);
+}
+#homeworkPage .homeworkSection .homeworkInfo .info hr{
+    border: 2px solid #3b7781;
+    flex-basis: 100%;
+    width: 100%;
+}
+#homeworkPage .homeworkSection .homeworkInfo .status{
+    align-items: flex-end;
+    justify-content: space-around;
+    font-size: 20px;
+}
+#homeworkPage .homeworkSection .homeworkInfo .status p{
+    margin: 0px;
+    text-align: right;
+}
+
+#homeworkPage .homeworkSection  .workDescription{
+    text-align: start;
+}
+
+#homeworkPage .homeworkSection .wrongMessage{
+    color: red;
+}
+
+

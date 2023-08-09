@@ -9,9 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import compareDates from '../../general/compareDates';
 import routeTo from '../../general/reroute';
 import TopBar from '../../components/topBar';
+import subjectSideImage from '../../content/subjectSideImage.jpeg'
+import profileTest from '../../content/person.jpg'
 function CourseDataPage() {
     const lang = localStorage.getItem("lang")
-    const compLang ={
+    const pageLang ={
       seeAll:      lang === 'en' ? "See All":"مشاهدة الكل",
       name:        lang === 'en' ? "Name":"الاسم",
       grade:       lang === 'en' ? "Total Grade":"الدرجة الكلية",
@@ -28,7 +30,9 @@ function CourseDataPage() {
       notYet:      lang === 'en' ? "Not Graded":"لم تصحح",
       assingments: lang === 'en' ? 'Assignments':"الواجبات",
       exams:       lang === "en" ? "Exams":"الاختبارات",
-      announce:    lang === 'en' ? "Announcements":"الاعلانات"
+      announce:    lang === 'en' ? "Announcements":"الاعلانات",
+      publish:     lang === 'en' ? "Publish":"نشر في",
+      due:         lang === 'en' ? "Due":"حتي"
 
     }
     const iconList = [
@@ -50,7 +54,7 @@ function CourseDataPage() {
     const [assinmentList,setAssignmentList] = useState('')
     const [exmaStatus,setExamStatus] = useState(false)
     const [announcementsStatus,setAnnouncementsStatus] = useState(false)
-    const [title,setTitle] = useState(compLang['assingments'])
+    const [title,setTitle] = useState(pageLang['assingments'])
 
     const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
                                                       <div className="loading"></div>
@@ -63,19 +67,19 @@ function CourseDataPage() {
                                               </div>)            
 
 
-    // setTitle(compLang['assingments'])
+    // setTitle(pageLang['assingments'])
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/courseAssingments?studentID="+studentID+"&classroomID="+classroomID+"&courseName="+courseName).then((res)=>{
             const data = res.data
             if (data == undefined){
                     setEmptyMessage(<div className="emptyAssingmentsMessage" >
                                       {iconList[Math.round(Math.random()*(iconList.length-1))]}
-                                      <p className=""> {compLang['nothing']}</p>
+                                      <p className=""> {pageLang['nothing']}</p>
                                   </div>)
               }else if (data.length == 0){
                   setEmptyMessage(<div className="emptyAssingmentsMessage" >
                                           {iconList[Math.round(Math.random()*(iconList.length-1))]}
-                                          <p className=""> {compLang['nothing']}</p>
+                                          <p className=""> {pageLang['nothing']}</p>
                                       </div>)
               }else{
                 setEmptyMessage(null)
@@ -87,20 +91,30 @@ function CourseDataPage() {
                     }else{
                         homeworkType = data[i]['submitted'] ? "completed": compareDates(data[i]['homework']['due_date'])
                     }
-                    const yourGrade = data[i]['graded'] ? data[i]['grade'] : compLang['notYet']
-                    const GradeClass = data[i]['graded'] ? '':"notGraded"
+                    const yourGrade = data[i]['graded'] ? data[i]['grade'] : '-'
+                    // const GradeClass = data[i]['graded'] ? yourGrade:"-"
                     var subjectName = data[i]['homework']['course']["name"].split(' ').join('')
-                    tableElements.push(<tr className="tableRow" onClick={routeTo}>
-                                            <td>{data[i]['homework']['name']}</td>
-                                            <td>{data[i]['homework']['grade']}</td>
-                                            <td><span className={GradeClass}>{yourGrade}</span></td>
-                                            <td>{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</td>
-                                            <td>{data[i]['homework']['publish_date']==null ? '-': data[i]['homework']['publish_date'].split('T')[0]}</td>
-                                            <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
-                                            <td>{lang === 'en' ? data[i]['homework']['course']["name"] :data[i]['homework']['course']["arName"]}</td>
-                                            <a href={"./"+subjectName+"/assignments/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
+                    tableElements.push(<div className='workBox row'>
+                                            <div className='workInfo column'>
+                                                <div className='column'>
+                                                    <h2>{data[i]['homework']['name']}</h2>
+                                                    <h4>{pageLang['publish']}:{data[i]['homework']['publish_date']==null ? '-': data[i]['homework']['publish_date'].split('T')[0]} - {pageLang['due']}:{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</h4>
+                                                </div>
+                                                <div className='row'>
+                                                    <img src={Global.BackendURL+"/profilepic/"+data[i]['homework']['teacher']['img_dir']}/>
+                                                    <h4>{lang === 'en' ? data[i]['homework']['teacher']['name']:data[i]['homework']['teacher']['arName']}</h4>
 
-                                        </tr>)
+                                                </div>
+                                            </div>
+                                            <div className='workStatus column'>
+                                                <h3>{yourGrade} / {data[i]['homework']['grade']}</h3>
+                                                {/* <h3>{data[i]['submitted']?  yourGrade +" / "+data[i]['homework']['grade'] : '-'}</h3> */}
+
+                                                <span className={homeworkType}>{pageLang[homeworkType]}</span>
+                                            </div>
+                                            <a href={"./"+subjectName+"/assignments/"+data[i]['homework']['id']} className="hiddenRoute"></a>
+
+                                        </div>)
                 }
 
                 setAssignmentList(tableElements)
@@ -119,17 +133,17 @@ function CourseDataPage() {
     event.currentTarget.classList.add('activeSide')
 
     //Show the Selected Section
-    if (event.currentTarget.textContent == compLang['assingments']){
+    if (event.currentTarget.textContent == pageLang['assingments']){
         document.getElementsByClassName('courseAssignment')[0].style.display = 'block'
         document.getElementsByClassName('courseExams')[0].style.display = 'none'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'none'
-        setTitle(compLang['assingments'])
+        setTitle(pageLang['assingments'])
 
-    }else if(event.currentTarget.textContent == compLang['exams']){
+    }else if(event.currentTarget.textContent == pageLang['exams']){
         document.getElementsByClassName('courseAssignment')[0].style.display = 'none'
         document.getElementsByClassName('courseExams')[0].style.display = 'block'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'none'
-        setTitle(compLang['exams'])
+        setTitle(pageLang['exams'])
 
         //Send The Request To Get The Data From The DB if it didn't Load Already
         if (exmaStatus == false){
@@ -138,12 +152,12 @@ function CourseDataPage() {
                 if (data == undefined){
                 setEmptyExamsMessage(<div className="emptyExamsMessage" >
                                         {iconList[Math.round(Math.random()*(iconList.length-1))]}
-                                        <p className=""> {compLang['nothing']}</p>
+                                        <p className=""> {pageLang['nothing']}</p>
                                     </div>)
                 }else if (data.length == 0){
                     setEmptyExamsMessage(<div className="emptyExamsMessage" >
                                             {iconList[Math.round(Math.random()*(iconList.length-1))]}
-                                            <p className=""> {compLang['nothing']}</p>
+                                            <p className=""> {pageLang['nothing']}</p>
                                         </div>)
                 }else{
                     setEmptyExamsMessage(null)
@@ -155,20 +169,27 @@ function CourseDataPage() {
                         }else{
                         examType = data[i]['submitted'] ? "completed": compareDates(data[i]['exam']['due_date'])
                         }
-                        const yourGrade = data[i]['graded'] ? data[i]['grade'] : compLang['notYet']
-                        const GradeClass = data[i]['graded'] ? '':"notGraded"
+                        const yourGrade = data[i]['graded'] ? data[i]['grade'] : '-'
                         var subjectName = data[i]['exam']['course']["name"].split(' ').join('')
-                        tableElements.push(<tr className="tableRow" onClick={routeTo}>
-                                                <td>{data[i]['exam']['name']}</td>
-                                                <td>{data[i]['exam']['grade']}</td>
-                                                <td><span className={GradeClass}>{yourGrade}</span></td>
-                                                <td>{data[i]['exam']['due_date']==null ? '-': data[i]['exam']['due_date'].split('T')[0]}</td>
-                                                <td>{data[i]['exam']['publish_date']==null ? '-': data[i]['exam']['publish_date'].split('T')[0]}</td>
-                                                <td><span className={examType}>{compLang[examType]}</span></td>
-                                                <td>{lang === 'en' ? data[i]['exam']['course']["name"] :data[i]['exam']['course']["arName"]}</td>
-                                                <a href={"./"+subjectName+"/"+data[i]['exam']['id']} className="hiddenRoute">a</a>
+                        tableElements.push(<div className='workBox row'>
+                                            <div className='workInfo column'>
+                                                <div className='column'>
+                                                    <h2>{data[i]['exam']['name']}</h2>
+                                                    <h4>Publish:{data[i]['exam']['publish_date']==null ? '-': data[i]['exam']['publish_date'].split('T')[0]} - due:{data[i]['exam']['due_date']==null ? '-': data[i]['exam']['due_date'].split('T')[0]}</h4>
+                                                </div>
+                                                <div className='row'>
+                                                    <img src={Global.BackendURL+"/profilepic/"+data[i]['exam']['teacher']['img_dir']}/>
+                                                    <h4>{data[i]['exam']['teacher']['name']}</h4>
 
-                                            </tr>)
+                                                </div>
+                                            </div>
+                                            <div className='workStatus column'>
+                                                <h3>{yourGrade} / {data[i]['exam']['grade']}</h3>
+                                                <span className={examType}>{pageLang[examType]}</span>
+                                            </div>
+                                            <a href={"./"+subjectName+"/exam/"+data[i]['exam']['id']} className="hiddenRoute"></a>
+
+                                        </div>)
                     }
 
                     setExamsList(tableElements)
@@ -183,7 +204,7 @@ function CourseDataPage() {
         document.getElementsByClassName('courseAssignment')[0].style.display = 'none'
         document.getElementsByClassName('courseExams')[0].style.display = 'none'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'block'
-        setTitle(compLang['announce'])
+        setTitle(pageLang['announce'])
         if(announcementsStatus ==false){
 
             axios.get(Global.BackendURL+'/student/CourseAnnouncement?classroomID='+classroomID+"&courseName="+courseName).then((res)=>{
@@ -197,49 +218,32 @@ function CourseDataPage() {
   }
   return (
     <div className="column" id='courseDataPage'>
-        <TopBar title={title}/>
-      <div className='subNavButtons'>
-        <button onClick={switchWork} className='activeSide'>{compLang['assingments']}</button>
-        <button onClick={switchWork}>{compLang['exams']}</button>
-        <button onClick={switchWork}>{compLang['announce']}</button>
-      </div>      
-      <div className="courseAssignment courseData">
-            <table>
-            <tr className="tableHeaders">
-                <th>{compLang['name']}</th>
-                <th>{compLang['grade']}</th>
-                <th>{compLang['yourGrade']}</th>
-                <th>{compLang['due']}</th>
-                <th>{compLang['publishDate']}</th>
-                <th>{compLang['status']}</th>
-                <th>{compLang['course']}</th>
-            </tr>
-            <hr/>
-            {assinmentList}
-            </table>
-            {emptyAssingmentsMessage}
+        <TopBar title={pageLang['course']}/>
+        <div className='PageContent column'>
+            <div className='courseBar row'>
+                <h1>{courseName.padStart()}</h1>
+                <img src={subjectSideImage}/>
+            </div>
+            <div className='subNavButtons'>
+                <button onClick={switchWork} className='activeSide'>{pageLang['assingments']}</button>
+                <button onClick={switchWork}>{pageLang['exams']}</button>
+                <button onClick={switchWork}>{pageLang['announce']}</button>
+            </div> 
+            <div className='courseAssignment courseData column'>
 
-    </div>
-    <div className="courseExams courseData">
-        <table>
-        <tr className="tableHeaders">
-            <th>{compLang['name']}</th>
-            <th>{compLang['grade']}</th>
-            <th>{compLang['yourGrade']}</th>
-            <th>{compLang['due']}</th>
-            <th>{compLang['publishDate']}</th>
-            <th>{compLang['status']}</th>
-            <th>{compLang['course']}</th>
-        </tr>
-        <hr/>
-        {examsList}
-        </table>
-        {emptyExamsMessage}
+                {assinmentList}
+                {emptyAssingmentsMessage}
 
-    </div>
-      <div className='courseAnnounce'>
-        
-      </div>
+            </div>     
+            <div className="courseExams courseData column">
+                {examsList}
+                {emptyExamsMessage}
+
+            </div>
+            <div className='courseAnnounce column'>
+                
+            </div>
+        </div>
     </div>
   );
 }

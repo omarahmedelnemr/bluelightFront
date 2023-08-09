@@ -7,6 +7,7 @@ import ArabicImage from '../../content/arabic.jpg'
 import mathImage from '../../content/math.jpg'
 import ScienceImage from '../../content/science.jpg'
 import EnglishImage from '../../content/english.jpg'
+import baseImage from '../../content/courseBase.jpeg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Global from '../../general/globalVar'
@@ -29,6 +30,7 @@ function CoursesPage() {
     "english":EnglishImage,
     "math":mathImage,
     "science":ScienceImage,
+    "baseImage":baseImage
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   useEffect(()=>{
@@ -40,7 +42,8 @@ function CoursesPage() {
 
         //Take the First Two Names
         teacherName = (lang === 'en' ? data[i]["teacher"]["name"] :data[i]["teacher"]["arName"]).split(" ")
-        currentImage = data[i]["name"].toLowerCase() in ImagesList ? ImagesList[data[i]["name"].toLowerCase()] :ImagesList["arabic"]
+        // currentImage = data[i]["name"].toLowerCase() in ImagesList ? ImagesList[data[i]["name"].toLowerCase()] :ImagesList["arabic"]
+        currentImage = ImagesList["baseImage"]
         subjectNamex = data[i]['name'].toLowerCase()
         link  = '/student/courses/'+subjectNamex
         teacherName = teacherName[0]+" "+teacherName[1]
@@ -69,10 +72,10 @@ function CoursesPage() {
   return (
     <div className="column">
       <TopBar title={pageLang["courses"]}/>
-      <div className='subNavButtons'>
+      {/* <div className='subNavButtons'>
         <button className='activeSide' onClick={switchAllFav}>{pageLang['all']}</button>
         <button onClick={switchAllFav}>{pageLang['fav']}</button>
-      </div>
+      </div> */}
 
       <div className='row coursesBoxList'>
           {coursesBoxs}

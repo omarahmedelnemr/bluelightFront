@@ -1,0 +1,96 @@
+.mcq .options{
+    /* flex-basis: 100%; */
+    width: 50%;
+}
+.mcq .options .option{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #f4f3f67e;
+    min-width: 100%;
+    transition: 0.2s;
+    border:1px solid transparent;
+    cursor: pointer;
+    /* flex-basis: 100; */
+}
+.mcq .options .option:hover{
+    border:1px solid #878787;
+}
+
+
+.smcq .options .option .checkBox{
+    width: 20px;
+    height: 20px;
+    border:1px solid  #ababab;;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mmcq .options .option .checkBox{
+    width: 20px;
+    height: 20px;
+    border:1px solid  #ababab;;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.smcq .options .option .checkBox svg,.mmcq .options .option .checkBox svg{
+    display: none;
+}
+.mcq .options .option .optionText{
+    margin: 0px 10px;
+    font-size: 20px;
+}
+.mcq .options .selected .checkBox{
+    background-color:   #ababab;;
+}
+
+
+
+/* Submitted */
+
+.mcq .options .option.disabled{
+    cursor: auto;
+}
+
+.mcq .options .option.disabled:hover{
+    border:1px solid transparent;
+}
+.mcq .options .option.disabled.correct{
+    background-color: #45c486;
+    color: white;
+}
+
+.mcq .options .option.disabled.wrong{
+    background-color: #c44545 ;
+    color: white;
+}
+.mcq .options .option.disabled.correct .checkBox{
+    background-color: white;
+    border:1px solid transparent;
+}
+.mcq .options .option.disabled.wrong .checkBox{
+    background-color: white;
+    border:1px solid transparent;
+}
+.mcq .options .option.disabled.correct .checkBox .correctMark{
+    display: block;
+    color: #45c486;
+}
+.mcq .options .option.disabled.wrong .checkBox .wrongMark{
+    display: block;
+    color: #c44545;
+}
+.mcq .options .option.disabled.missing .checkBox,.mcq .options .option.disabled.Right_Answer .checkBox{
+    background-color: #c44545;
+    border: 1px solid #c44545;
+}
+.mcq .options .option.disabled.missing .checkBox .correctMark,.mcq .options .option.disabled.Right_Answer .checkBox .correctMark{
+    display: block;
+    color: white;
+
+}
