@@ -149,6 +149,12 @@
     padding: 10px;
     border-radius: 10px;
 }
+.courseData .doneLate{
+    background-color: #eeae9c7a;
+    color: #ff00007a;
+    padding: 10px;
+    border-radius: 10px;
+}
 .courseData .notGraded{
     /* background-color: #EEAE9C; */
     /* color:red; */

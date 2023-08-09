@@ -1,10 +1,10 @@
-function compareDates(storedDate) {
+function compareDates(storedDate,storedDate2 =null) {
 
 // Convert the stored date string to a Date object
 var targetDate = new Date(storedDate);
 
 // Get the current date and time
-var currentDate = new Date();
+var currentDate = storedDate2 ===null ?  new Date(): new Date(storedDate2);
 
 // Set the time for the current date to midnight (0 hours, 0 minutes, 0 seconds)
 // currentDate.setHours(0, 0, 0, 0);

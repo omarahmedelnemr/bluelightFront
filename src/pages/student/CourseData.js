@@ -11,6 +11,7 @@ import routeTo from '../../general/reroute';
 import TopBar from '../../components/topBar';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
 import profileTest from '../../content/person.jpg'
+import formatTime from '../../general/formatTime'
 function CourseDataPage() {
     const lang = localStorage.getItem("lang")
     const pageLang ={
@@ -26,7 +27,8 @@ function CourseDataPage() {
       still  :     lang === 'en' ? "Still":"هناك وقت",
       today  :     lang === 'en' ? "Today":"اليوم",
       late  :      lang === 'en' ? "Late":"متأخر",
-      completed:   lang === "en" ? "Completed":"تم",
+      completed:   lang === "en" ? "Done":"تم",
+      doneLate:    lang === 'en' ? "Done Late":"تم متاخرا",
       notYet:      lang === 'en' ? "Not Graded":"لم تصحح",
       assingments: lang === 'en' ? 'Assignments':"الواجبات",
       exams:       lang === "en" ? "Exams":"الاختبارات",
@@ -86,11 +88,31 @@ function CourseDataPage() {
                 var tableElements = []
                 for(var i=0;i<data.length;i++){
                     var homeworkType;
-                    if(data[i]['homework']['due_date'] == null){
-                        homeworkType = 'still'
+                    // if(data[i]['homework']['due_date'] == null){
+                    //     homeworkType = 'still'
+                    // }else{
+                    //     homeworkType = data[i]['submitted'] ? "completed": compareDates(data[i]['homework']['due_date'])
+                    // }
+
+                    if (data[i]['submitted']){
+                        if (data[i]['homework']['due_date'] ===null){
+                            homeworkType = 'completed'
+                        }else{
+                            homeworkType = compareDates(data[i]['homework']['due_date'],data[i]['submissionDate']) ==='late' ? 'doneLate':"completed"
+
+                        }
                     }else{
-                        homeworkType = data[i]['submitted'] ? "completed": compareDates(data[i]['homework']['due_date'])
+                        if (data[i]['homework']['due_date'] ===null){
+                            homeworkType = 'still'
+
+                        }else{
+                            homeworkType = data[i]['submitted'] ? "completed": compareDates(data[i]['homework']['due_date'])
+
+                        }
+
                     }
+                    
+
                     const yourGrade = data[i]['graded'] ? data[i]['grade'] : '-'
                     // const GradeClass = data[i]['graded'] ? yourGrade:"-"
                     var subjectName = data[i]['homework']['course']["name"].split(' ').join('')
@@ -98,7 +120,7 @@ function CourseDataPage() {
                                             <div className='workInfo column'>
                                                 <div className='column'>
                                                     <h2>{data[i]['homework']['name']}</h2>
-                                                    <h4>{pageLang['publish']}:{data[i]['homework']['publish_date']==null ? '-': data[i]['homework']['publish_date'].split('T')[0]} - {pageLang['due']}:{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</h4>
+                                                    <h4>{pageLang['publish']}:{data[i]['homework']['publish_date']==null ? '-':  formatTime(data[i]['homework']['publish_date'])} - {pageLang['due']}:{data[i]['homework']['due_date']==null ? '-': formatTime(data[i]['homework']['due_date'])}</h4>
                                                 </div>
                                                 <div className='row'>
                                                     <img src={Global.BackendURL+"/profilepic/"+data[i]['homework']['teacher']['img_dir']}/>
