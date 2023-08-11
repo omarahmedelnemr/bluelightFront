@@ -1,4 +1,4 @@
-import "./styles/SideNavigation.css"
+// import "./styles/SideNavigation.css"
 import logoImage from '../../content/logo.jpeg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
@@ -81,11 +81,22 @@ function SideNavigation() {
     const firstName = localStorage.getItem("name").split(" ")[0]
     const firstArName = localStorage.getItem("arName").split(" ")[0]
     const navigate = useNavigate();
+    function blockBackground(){
+        if (lang === 'en'){
+            document.getElementsByClassName('sideNav')[0].style.setProperty('left','-280px')
+        }else{
+            document.getElementsByClassName('sideNav')[0].style.setProperty('right','-280px')
+        }
+        document.getElementsByClassName('sideNav')[0].querySelector('.backgroundBlock').style.setProperty('display','none')
+
+    }
     useEffect(()=>{
         document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
     })
     return (
         <div className="sideNav">
+            <div className="backgroundBlock" onClick={blockBackground}></div>
+
             <div className="top">
                 <div className="welcome">
                     <img className="logoimage" src={logoImage}/>

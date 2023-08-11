@@ -3,8 +3,14 @@ import ProfileDropMenu from "./profileDropMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function TopBar({title}) {
     function showHideMinu(){
-        document.getElementsByClassName('sideNav')[0].style.setProperty('width','280px')
-        console.log(document.getElementsByClassName('sideNav')[0].style.width)
+        if (localStorage.getItem('lang') ==='en'){
+            document.getElementsByClassName('sideNav')[0].style.setProperty('left','0px')
+            document.getElementsByClassName('sideNav')[0].style.setProperty('right','auto')
+        }else{
+            document.getElementsByClassName('sideNav')[0].style.setProperty('right','0px')
+            document.getElementsByClassName('sideNav')[0].style.setProperty('left','auto')
+        }
+        document.getElementsByClassName('sideNav')[0].querySelector('.backgroundBlock').style.setProperty('display','block')
     }
     return (
         <div className="topBar">

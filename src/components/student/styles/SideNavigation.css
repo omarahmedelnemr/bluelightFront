@@ -10,13 +10,28 @@
     padding: 2vh 0px;
     position: relative;
     transition: 0.2s;
+    z-index: 99;
+    left: 0;
 }
-@media (max-width: 910px) {
+.sideNav .backgroundBlock{
+    display: none;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.324);
+    z-index: -99;
+
+}
+
+@media (max-width: 1090px) {
     .sideNav{
-        width: 0px;
+        /* width: 0px ; */
         overflow: hidden;
-        position: absolute;
-        z-index: 99;
+        position: fixed;
+        left: -280px;
     }
 }
 
