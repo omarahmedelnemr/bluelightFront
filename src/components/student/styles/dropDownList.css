@@ -1,3 +1,7 @@
+.dropDownList{
+    position: relative;
+    margin: 5px;
+}
 .dropDownList .header{
     display: flex;
     flex-direction: row;
@@ -7,6 +11,8 @@
     border-radius: 60px;
     padding: 10px;
     min-width: 120px;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.128);
+
 
 }
 .dropDownList .withImage{
@@ -37,4 +43,40 @@
 }
 .dropDownList .header svg{
     font-size: 13px;
+    transition: 0.5s;
+}
+
+
+.dropDownList .options{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.128);
+    border-radius: 10px;
+    margin-top: 5px;
+    height: 0px;
+    transition: 0.2s;
+    overflow: hidden;
+    height: max-content;
+    /* padding: 6px; */
+    /* left: -6px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+.dropDownList .options p{
+    transition: 0.5s;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 6px;
+}
+.dropDownList .options .activeSelectOption{
+    background-color: rgb(220, 220, 220);
+
+}
+.dropDownList .options p:hover{
+    background-color: rgb(191, 191, 191);
 }
