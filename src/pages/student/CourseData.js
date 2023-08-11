@@ -79,7 +79,7 @@ function CourseDataPage() {
                                       <p className=""> {pageLang['nothing']}</p>
                                   </div>)
               }else if (data.length == 0){
-                  setEmptyMessage(<div className="emptyAssingmentsMessage" >
+                    setEmptyMessage(<div className="emptyAssingmentsMessage" >
                                           {iconList[Math.round(Math.random()*(iconList.length-1))]}
                                           <p className=""> {pageLang['nothing']}</p>
                                       </div>)
@@ -238,6 +238,7 @@ function CourseDataPage() {
         }
     }
   }
+
   return (
     <div className="column" id='courseDataPage'>
         <TopBar title={pageLang['course']}/>
@@ -251,12 +252,30 @@ function CourseDataPage() {
                 <button onClick={switchWork}>{pageLang['exams']}</button>
                 <button onClick={switchWork}>{pageLang['announce']}</button>
             </div> 
-            <div className='courseAssignment courseData column'>
+            <div className='row worklistAndAnalysis'>
+                <div className='courseAssignment courseData column'>
 
-                {assinmentList}
-                {emptyAssingmentsMessage}
+                    {assinmentList}
+                    {emptyAssingmentsMessage}
 
-            </div>     
+                </div>
+                <div className='analysisAssignment column'>
+                    <div className='Graph column'>
+                        <div style={{backgroundImage:"linear-gradient(90deg, #dfdf66 50%, red 50%)",borderRadius:"100%",width:"200px",height:"200px"}}></div>
+                        <p>Still</p>
+                        <p>Late</p>
+                        <p>Done</p>
+                        <p>Done Late</p>
+                    </div>
+                    <div className='lineStatus column'>
+                        <h2>Grades</h2>
+                        <p>50%</p>
+                        <div className='linePercentage'></div>
+                    </div>
+                    
+                </div>
+            </div>
+     
             <div className="courseExams courseData column">
                 {examsList}
                 {emptyExamsMessage}
