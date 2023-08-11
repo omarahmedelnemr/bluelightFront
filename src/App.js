@@ -16,6 +16,9 @@ import TeacherHomepage from './pages/teacher/teacherHomePage';
 import ClassroomsPage from './pages/teacher/classrooms';
 import ClassroomInfo from './pages/teacher/ClassroomStudentList';
 import Classwork from './pages/teacher/classwork';
+
+import {Chart, ArcElement} from 'chart.js'
+Chart.register(ArcElement);
 // require('dotenv').config()
 function App() {
   const lang = localStorage.getItem('lang')
