@@ -28,6 +28,16 @@
 /* #courseDataPage .courseAssignment{
     flex-basis: 60%;
 } */
+#courseDataPage .sortBy{
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+
+
+
+
 
 #courseDataPage .worklistAndAnalysis{
     justify-content: space-around;
@@ -80,26 +90,51 @@
 }
 
 #courseDataPage .analysisAssignment{
-    flex-basis: 25%;
-    justify-content: space-between;
+    /* flex-basis: 25%; */
+    width: 25%;
+    justify-content: flex-start;
     align-items: center;
-    height: 25%;
+    max-height: 25%;
+}
+
+@media (max-width: 800px) {
+    #courseDataPage .analysisAssignment{
+        display: none;
+    }
+}
+#courseDataPage .analysisAssignment .Graph .chart-container{
+    width: 200px;
+}
+@media (max-width: 1440px) {
+#courseDataPage .analysisAssignment .Graph .chart-container{
+    width: 132px
+
+} 
 }
 #courseDataPage .analysisAssignment .Graph{
     justify-content: center;
     align-items: center;
-    flex-basis: 15%;
     padding: 20px;
+    height: max-content;
     width: 100%;
     margin: 15px;
     background-color: rgba(255, 255, 255, 0.684);
     border-radius: 15px;
     box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.173);
 }
+#courseDataPage .analysisAssignment .Graph .labelsRow{
+    width: 100%;
+    justify-content: space-around;
+}
+#courseDataPage .analysisAssignment .Graph .labelsRow span{ 
+    display: inline-block;
+    width: 30px;
+    height: 10px;
+}
 
 #courseDataPage .analysisAssignment .lineStatus{
-    flex-basis: 25%;
-    margin: 25px;
+    /* flex-basis: 25%; */
+    /* margin: 25px; */
     padding: 20px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.684);
@@ -118,9 +153,10 @@
 }
 #courseDataPage .analysisAssignment .lineStatus .linePercentage{
     height: 10px;
-    width: 100%;
+    width: 0%;
     /* background-color: blue; */
-    background-image: linear-gradient(90deg,blue 70%,#0000ff6b 30%);
+    background-image: linear-gradient(90deg,blue ,#0000ff6b );
+    transition: 0.5s;
     border-radius: 10px;
 }
 .courseData .hiddenRoute{
@@ -174,8 +210,8 @@
     width: 100%;
 }
 .courseData .still{
-    background-color: lightgreen;
-    color:green;
+    background-color: #EFEE8F;
+    color:#959535;
     padding: 10px;
     border-radius: 10px;
 }

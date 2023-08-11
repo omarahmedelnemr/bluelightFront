@@ -12,7 +12,14 @@ import TopBar from '../../components/topBar';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
 import profileTest from '../../content/person.jpg'
 import formatTime from '../../general/formatTime'
+import PieChart from '../../components/pieChart';
+import checkAutherization from '../../general/checkAuth';
+import DropDownList from '../../components/student/dropDownList';
+
 function CourseDataPage() {
+    if (checkAutherization() !== 'Auth'){
+        window.location.href ='/login'
+    }
     const lang = localStorage.getItem("lang")
     const pageLang ={
       seeAll:      lang === 'en' ? "See All":"مشاهدة الكل",
@@ -34,7 +41,8 @@ function CourseDataPage() {
       exams:       lang === "en" ? "Exams":"الاختبارات",
       announce:    lang === 'en' ? "Announcements":"الاعلانات",
       publish:     lang === 'en' ? "Publish":"نشر في",
-      due:         lang === 'en' ? "Due":"حتي"
+      due:         lang === 'en' ? "Due":"حتي",
+      grades:      lang === 'en' ? 'Grades':"الدرجات"
 
     }
     const iconList = [
@@ -57,7 +65,48 @@ function CourseDataPage() {
     const [exmaStatus,setExamStatus] = useState(false)
     const [announcementsStatus,setAnnouncementsStatus] = useState(false)
     const [title,setTitle] = useState(pageLang['assingments'])
+    const [homeworkGrades,setHomeworksGrades] = useState(0)
+    const [chartValues,setChartValue] = useState([0, 0, 0,0])
+    const chartData = {
+        labels: [ "Late" , 'still', 'Done', 'Done Late' ],
+        // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+        datasets: [
+            {
+              label: 'Popularity of colours',
+              data: chartValues,
+              // you can set indiviual colors for each bar
+              backgroundColor: ['red', "#EFEE8F",'lightgreen' , "#ff00007a"],
+              borderWidth: 0,
+            }
+        ]
+    }
+    console.log("Charts: ",chartData.datasets )
+    useEffect(()=>{
 
+        console.log("Clicked")
+        var grades= 0
+        var totalGrades =0
+        var Localgrade;
+        const homeworkElement = document.querySelector(".courseAssignment").getElementsByClassName('workBox')
+        const values = {}//"still":0,'late':0,"done":0,"done late":0}
+        for (var i=0;i<homeworkElement.length;i++){
+            if (values[homeworkElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] === undefined){
+                values[homeworkElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] = 0
+            }
+            values[homeworkElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] +=1
+            Localgrade = homeworkElement[i].querySelector('.workStatus h3').innerHTML
+            if (Localgrade.includes("-") == false){
+                grades += Number(Localgrade.split('/')[0])
+                totalGrades += Number(Localgrade.split('/')[1])
+            }
+        }
+        console.log(values)
+        setChartValue(Object.values(values))
+
+        setHomeworksGrades(Math.round((grades/totalGrades)*100))
+        document.querySelector(".lineStatus .linePercentage").style.width = '70%'
+    },[assinmentList])
+    
     const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
                                                       <div className="loading"></div>
                                                   </div>)
@@ -69,31 +118,24 @@ function CourseDataPage() {
                                               </div>)            
 
 
-    // setTitle(pageLang['assingments'])
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/courseAssingments?studentID="+studentID+"&classroomID="+classroomID+"&courseName="+courseName).then((res)=>{
             const data = res.data
             if (data == undefined){
                     setEmptyMessage(<div className="emptyAssingmentsMessage" >
-                                      {iconList[Math.round(Math.random()*(iconList.length-1))]}
-                                      <p className=""> {pageLang['nothing']}</p>
-                                  </div>)
-              }else if (data.length == 0){
+                                        {iconList[Math.round(Math.random()*(iconList.length-1))]}
+                                        <p className=""> {pageLang['nothing']}</p>
+                                    </div>)
+                }else if (data.length == 0){
                     setEmptyMessage(<div className="emptyAssingmentsMessage" >
-                                          {iconList[Math.round(Math.random()*(iconList.length-1))]}
-                                          <p className=""> {pageLang['nothing']}</p>
-                                      </div>)
-              }else{
+                                            {iconList[Math.round(Math.random()*(iconList.length-1))]}
+                                            <p className=""> {pageLang['nothing']}</p>
+                                        </div>)
+                }else{
                 setEmptyMessage(null)
                 var tableElements = []
                 for(var i=0;i<data.length;i++){
                     var homeworkType;
-                    // if(data[i]['homework']['due_date'] == null){
-                    //     homeworkType = 'still'
-                    // }else{
-                    //     homeworkType = data[i]['submitted'] ? "completed": compareDates(data[i]['homework']['due_date'])
-                    // }
-
                     if (data[i]['submitted']){
                         if (data[i]['homework']['due_date'] ===null){
                             homeworkType = 'completed'
@@ -114,7 +156,6 @@ function CourseDataPage() {
                     
 
                     const yourGrade = data[i]['graded'] ? data[i]['grade'] : '-'
-                    // const GradeClass = data[i]['graded'] ? yourGrade:"-"
                     var subjectName = data[i]['homework']['course']["name"].split(' ').join('')
                     tableElements.push(<div className='workBox row'>
                                             <div className='workInfo column'>
@@ -130,8 +171,6 @@ function CourseDataPage() {
                                             </div>
                                             <div className='workStatus column'>
                                                 <h3>{yourGrade} / {data[i]['homework']['grade']}</h3>
-                                                {/* <h3>{data[i]['submitted']?  yourGrade +" / "+data[i]['homework']['grade'] : '-'}</h3> */}
-
                                                 <span className={homeworkType}>{pageLang[homeworkType]}</span>
                                             </div>
                                             <a href={"./"+subjectName+"/assignments/"+data[i]['homework']['id']} className="hiddenRoute"></a>
@@ -141,14 +180,14 @@ function CourseDataPage() {
 
                 setAssignmentList(tableElements)
 
-              }
+                }
         }).catch((err)=>{
             console.log(err)
         })
     },[])
 
-  function switchWork(event){
-    
+    function switchWork(event){
+
     //Toggle The Active Features
     const parentClass = event.currentTarget.parentElement
     parentClass.querySelector('.activeSide').classList.remove('activeSide')
@@ -237,9 +276,15 @@ function CourseDataPage() {
             })
         }
     }
-  }
+    }
 
-  return (
+
+
+
+
+
+
+    return (
     <div className="column" id='courseDataPage'>
         <TopBar title={pageLang['course']}/>
         <div className='PageContent column'>
@@ -250,8 +295,30 @@ function CourseDataPage() {
             <div className='subNavButtons'>
                 <button onClick={switchWork} className='activeSide'>{pageLang['assingments']}</button>
                 <button onClick={switchWork}>{pageLang['exams']}</button>
-                <button onClick={switchWork}>{pageLang['announce']}</button>
+                {/* <button onClick={switchWork}>{pageLang['announce']}</button> */}
             </div> 
+            <div className='row sortBy'>
+                <p>sort By </p>
+                <DropDownList obj={[
+                    {
+                        'text':"options 1",
+                        'function':()=>{console.log("option 1 Clicked")}
+                    },
+                    {
+                        'text':"options 2",
+                        'function':()=>{console.log("option 2 Clicked")}
+                    },
+                    {
+                        'text':"options 3",
+                        'function':()=>{console.log("option 3 Clicked")}
+                    },
+                    {
+                        'text':"options 4",
+                        'function':()=>{console.log("option 4 Clicked")}
+                    }
+                    ]}/>
+                
+            </div>
             <div className='row worklistAndAnalysis'>
                 <div className='courseAssignment courseData column'>
 
@@ -261,21 +328,24 @@ function CourseDataPage() {
                 </div>
                 <div className='analysisAssignment column'>
                     <div className='Graph column'>
-                        <div style={{backgroundImage:"linear-gradient(90deg, #dfdf66 50%, red 50%)",borderRadius:"100%",width:"200px",height:"200px"}}></div>
-                        <p>Still</p>
-                        <p>Late</p>
-                        <p>Done</p>
-                        <p>Done Late</p>
+                        <PieChart chartData={chartData} title = "Homeworks"/>
+
+                        <div className='row labelsRow'>
+                            <p><span style={{backgroundColor:'#EFEE8F'}}></span> {pageLang['still']}</p>
+                            <p><span style={{backgroundColor:'red'}}></span> {pageLang['late']}</p>
+                            <p><span  style={{backgroundColor:'lightgreen'}}></span> {pageLang['completed']}</p>
+                            <p><span  style={{backgroundColor:'#ff00007a'}}></span> {pageLang['doneLate']}</p>
+                        </div>
+
                     </div>
-                    <div className='lineStatus column'>
-                        <h2>Grades</h2>
-                        <p>50%</p>
+                    <div className='lineStatus column'> 
+                        <h2>{pageLang['grades']}</h2>
+                        <p>{homeworkGrades}%</p>
                         <div className='linePercentage'></div>
                     </div>
                     
                 </div>
             </div>
-     
             <div className="courseExams courseData column">
                 {examsList}
                 {emptyExamsMessage}
@@ -286,7 +356,7 @@ function CourseDataPage() {
             </div>
         </div>
     </div>
-  );
+    );
 }
 
 export default CourseDataPage;
