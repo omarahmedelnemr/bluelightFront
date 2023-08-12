@@ -175,7 +175,7 @@ function CourseDataPage() {
                                             <div className='workInfo column'>
                                                 <div className='column'>
                                                     <h2>{data[i]['homework']['name']}</h2>
-                                                    <h4>{pageLang['publish']}:{data[i]['homework']['publish_date']==null ? '-':  formatTime(data[i]['homework']['publish_date'])} - {pageLang['due']}:{data[i]['homework']['due_date']==null ? '-': formatTime(data[i]['homework']['due_date'])}</h4>
+                                                    <h4>{pageLang['publish']}: {data[i]['homework']['publish_date']==null ? '-':  formatTime(data[i]['homework']['publish_date'])} - {pageLang['due']}: {data[i]['homework']['due_date']==null ? '-': formatTime(data[i]['homework']['due_date'])}</h4>
                                                 </div>
                                                 <div className='row'>
                                                     <img src={Global.BackendURL+"/profilepic/"+data[i]['homework']['teacher']['img_dir']}/>
