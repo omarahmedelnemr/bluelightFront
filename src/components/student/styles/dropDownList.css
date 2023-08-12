@@ -65,7 +65,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    opacity: 0;
+    z-index: 99999;
+    display: none;
 }
 .dropDownList .options p{
     transition: 0.5s;

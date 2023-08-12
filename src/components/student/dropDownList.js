@@ -9,35 +9,41 @@ function DropDownList({obj}) {
         }else{
             event.currentTarget.querySelector('svg').style.setProperty("rotate","180deg")
         }
-        if ( event.currentTarget.parentElement.querySelector(".options").style.opacity === '1'){
-            event.currentTarget.parentElement.querySelector(".options").style.setProperty("opacity","0")
+        if ( event.currentTarget.parentElement.querySelector(".options").style.display === 'flex'){
+            // event.currentTarget.parentElement.querySelector(".options").style.setProperty("opacity","0")
+            event.currentTarget.parentElement.querySelector(".options").style.setProperty("display","none")
 
         }else{
-            event.currentTarget.parentElement.querySelector(".options").style.setProperty("opacity","1")
+            event.currentTarget.parentElement.querySelector(".options").style.setProperty("display","flex")
         }
 
     }
     function close(event){
-        event.currentTarget.style.setProperty("opacity","0")
+            event.currentTarget.parentElement.querySelector(".options").style.setProperty("display","none")
+            // event.currentTarget.style.setProperty("opacity","0")
         event.currentTarget.parentElement.querySelector('svg').style.setProperty("rotate","0deg")
 
     }
     function makeActive(event){
+        try{
         event.currentTarget.parentElement.querySelector('.activeSelectOption').classList.remove('activeSelectOption')
+        }catch{
+            console.log("Not Active Sort")
+        }
         event.currentTarget.querySelector("p").classList.add("activeSelectOption")
         event.currentTarget.parentElement.parentElement.querySelector(".mainText").innerHTML = event.currentTarget.querySelector("p").innerHTML
     }
 
 
-    const elements = [<div onClick={makeActive}><p onClick={obj[0]['function']} className="activeSelectOption">{obj[0]['text']}</p></div>]
-    for(var i=1;i<obj.length;i++){
+    const elements = []//[<div onClick={makeActive}><p onClick={obj[0]['function']} className="activeSelectOption">{obj[0]['text']}</p></div>]
+    for(var i=0;i<obj.length;i++){
         elements.push(<div onClick={makeActive}><p onClick={obj[i]['function']}>{obj[i]['text']}</p></div>)
     }
     return (
         <div className="dropDownList" >
             <div className="header" onClick={activate}>
                 <div>
-                    <p className="mainText">{obj[0]['text']}</p>
+                    <p className="mainText">Select</p>
                 </div>
                 <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
             </div>

@@ -42,7 +42,8 @@ function CourseDataPage() {
       announce:    lang === 'en' ? "Announcements":"الاعلانات",
       publish:     lang === 'en' ? "Publish":"نشر في",
       due:         lang === 'en' ? "Due":"حتي",
-      grades:      lang === 'en' ? 'Grades':"الدرجات"
+      grades:      lang === 'en' ? 'Grades':"الدرجات",
+      sortBy:      lang === 'en' ? 'Sort By':'رتب حسب'
 
     }
     const iconList = [
@@ -68,14 +69,14 @@ function CourseDataPage() {
     const [homeworkGrades,setHomeworksGrades] = useState(0)
     const [chartValues,setChartValue] = useState([0, 0, 0,0])
     const chartData = {
-        labels: [ "Late" , 'still', 'Done', 'Done Late' ],
+        labels: [ 'still', "Late" , 'Done', 'Done Late' ],
         // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
         datasets: [
             {
               label: 'Popularity of colours',
               data: chartValues,
               // you can set indiviual colors for each bar
-              backgroundColor: ['red', "#EFEE8F",'lightgreen' , "#ff00007a"],
+              backgroundColor: [ "#EFEE8F",'red','lightgreen' , "#ff00007a"],
               borderWidth: 0,
             }
         ]
@@ -83,28 +84,41 @@ function CourseDataPage() {
     console.log("Charts: ",chartData.datasets )
     useEffect(()=>{
 
-        console.log("Clicked")
         var grades= 0
         var totalGrades =0
         var Localgrade;
-        const homeworkElement = document.querySelector(".courseAssignment").getElementsByClassName('workBox')
+        const activeSide = document.querySelector(".activeSide").innerHTML.toLowerCase()
+        var workElement;
+        if (activeSide === 'assignments'){
+             workElement = document.querySelector(".courseAssignment").getElementsByClassName('workBox')
+        }else{
+            workElement = document.querySelector(".courseExams").getElementsByClassName('workBox')
+
+        }
         const values = {}//"still":0,'late':0,"done":0,"done late":0}
-        for (var i=0;i<homeworkElement.length;i++){
-            if (values[homeworkElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] === undefined){
-                values[homeworkElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] = 0
+        for (var i=0;i<workElement.length;i++){
+            if (values[workElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] === undefined){
+                values[workElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] = 0
             }
-            values[homeworkElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] +=1
-            Localgrade = homeworkElement[i].querySelector('.workStatus h3').innerHTML
+            values[workElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] +=1
+            Localgrade = workElement[i].querySelector('.workStatus h3').innerHTML
             if (Localgrade.includes("-") == false){
                 grades += Number(Localgrade.split('/')[0])
                 totalGrades += Number(Localgrade.split('/')[1])
             }
         }
-        console.log(values)
-        setChartValue(Object.values(values))
+        var sortedValues = []
+            sortedValues = [
+                values[pageLang['still'].toLowerCase()],
+                values[pageLang['late'].toLowerCase()],
+                values[pageLang['completed'].toLowerCase()],
+                values[pageLang['doneLate'].toLowerCase()],
+            ]
+        setChartValue(sortedValues)
+        if (activeSide === 'assignments'){
+            setHomeworksGrades(Math.round((grades/totalGrades)*100))
+        }
 
-        setHomeworksGrades(Math.round((grades/totalGrades)*100))
-        document.querySelector(".lineStatus .linePercentage").style.width = '70%'
     },[assinmentList])
     
     const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
@@ -283,6 +297,113 @@ function CourseDataPage() {
 
 
 
+    const [normalSortType,setSortType] = useState('asc')
+
+    function changeSortType(event){
+        const value = event.currentTarget.querySelector("p").innerHTML
+        if (value === 'asc'){
+            setSortType('des')
+        }else{
+            setSortType('asc')
+        }
+        event.currentTarget.parentElement.querySelector(".activeSelectOption").click()
+    }
+
+    function sortWorkBoxes(sortBy) {
+        const workContainer = document.querySelector('.courseAssignment.courseData.column');
+        const workBoxes = Array.from(workContainer.querySelectorAll('.workBox'));
+        if (sortBy === 'yourGrade'){
+            console.log("inside")
+            workBoxes.sort((a, b) => {
+                const aValue = extractValue(a, sortBy);
+                const bValue = extractValue(b, sortBy);
+                if (normalSortType=== 'asc'){
+                    if(aValue.includes('-')){
+                        return -1
+                    }else if (bValue.includes('-')){
+                        return 1
+                    }else{
+                    return Number(aValue) - Number(bValue);}
+                }else{
+                    if(aValue.includes('-')){
+                        return 1
+                    }else if (bValue.includes('-')){
+                        return -1
+                    }else{
+                    return Number(bValue) - Number(aValue);}
+                }
+            }); 
+        }else if(sortBy === 'publishDate' || sortBy === 'dueDate' ){
+            console.log("poop")
+            workBoxes.sort((a, b) => {
+                const aValue = extractValue(a, sortBy);
+                const bValue = extractValue(b, sortBy);
+                console.log("COmaper: ",  new Date(aValue).getTime() > new Date(bValue).getTime())
+                if(normalSortType === 'asc'){
+                    return new Date(aValue).getTime() - new Date(bValue).getTime();
+                }else{
+                    return new Date(bValue).getTime() - new Date(aValue).getTime();
+
+                }
+            });
+        }else if (sortBy === 'homeworkStatus'){
+            const labelsChart = [pageLang["still"],pageLang['late'],pageLang['completed'],pageLang['doneLate']]
+            workBoxes.sort((a, b) => {
+
+            const aValue = extractValue(a, sortBy);
+            const bValue = extractValue(b, sortBy);
+            if(normalSortType=== 'asc'){
+                return labelsChart.indexOf(aValue) - labelsChart.indexOf(bValue)
+            }else{
+                return labelsChart.indexOf(bValue) - labelsChart.indexOf(aValue)
+
+            }
+        }); 
+
+        }else{
+
+            workBoxes.sort((a, b) => {
+                const aValue = extractValue(a, sortBy);
+                const bValue = extractValue(b, sortBy);
+                console.log("COmaper: ", aValue.localeCompare(bValue))
+                if(normalSortType ==='asc'){
+                    return aValue.localeCompare(bValue); // Use localeCompare for string comparison
+                }else{
+                    return bValue.localeCompare(aValue); // Use localeCompare for string comparison
+
+                }
+            });
+        }
+        workBoxes.forEach(box => workContainer.appendChild(box));
+    }
+    
+    function extractValue(workBox, sortBy) {
+        const workInfo = workBox.querySelector('.workInfo');
+        switch (sortBy) {
+            case 'publishDate':
+                return workInfo.querySelector('h4').textContent.split(' - ')[0];
+            case 'dueDate':
+                return workInfo.querySelector('h4').textContent.split(' - ')[1];
+            case 'name':
+                return workInfo.querySelector('h2').textContent;
+            case 'yourGrade':
+                return workBox.querySelector('.workStatus h3').textContent.split(' / ')[0];
+            case 'homeworkStatus':
+                return workBox.querySelector('.workStatus span').textContent;
+            default:
+                return '';
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     return (
     <div className="column" id='courseDataPage'>
@@ -298,25 +419,30 @@ function CourseDataPage() {
                 {/* <button onClick={switchWork}>{pageLang['announce']}</button> */}
             </div> 
             <div className='row sortBy'>
-                <p>sort By </p>
+                <p>{pageLang['sortBy']}</p>
                 <DropDownList obj={[
                     {
-                        'text':"options 1",
-                        'function':()=>{console.log("option 1 Clicked")}
+                        'text':pageLang['publish'],
+                        'function':()=>{sortWorkBoxes("publishDate")}
                     },
                     {
-                        'text':"options 2",
-                        'function':()=>{console.log("option 2 Clicked")}
+                        'text':pageLang['due'],
+                        'function':()=>{sortWorkBoxes("dueDate")}
                     },
                     {
-                        'text':"options 3",
-                        'function':()=>{console.log("option 3 Clicked")}
+                        'text':"name",
+                        'function':()=>{sortWorkBoxes("name")}
                     },
                     {
-                        'text':"options 4",
-                        'function':()=>{console.log("option 4 Clicked")}
+                        'text':"yourGrade",
+                        'function':()=>{sortWorkBoxes("yourGrade")}
+                    },
+                    {
+                        'text':"Status",
+                        'function':()=>{sortWorkBoxes("homeworkStatus")}
                     }
                     ]}/>
+                    <div onClick={changeSortType} className='row sortIcon'><p>{normalSortType}</p>{normalSortType ==='asc'? <FontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />:<FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />}</div>
                 
             </div>
             <div className='row worklistAndAnalysis'>
@@ -326,26 +452,6 @@ function CourseDataPage() {
                     {emptyAssingmentsMessage}
 
                 </div>
-                <div className='analysisAssignment column'>
-                    <div className='Graph column'>
-                        <PieChart chartData={chartData} title = "Homeworks"/>
-
-                        <div className='row labelsRow'>
-                            <p><span style={{backgroundColor:'#EFEE8F'}}></span> {pageLang['still']}</p>
-                            <p><span style={{backgroundColor:'red'}}></span> {pageLang['late']}</p>
-                            <p><span  style={{backgroundColor:'lightgreen'}}></span> {pageLang['completed']}</p>
-                            <p><span  style={{backgroundColor:'#ff00007a'}}></span> {pageLang['doneLate']}</p>
-                        </div>
-
-                    </div>
-                    <div className='lineStatus column'> 
-                        <h2>{pageLang['grades']}</h2>
-                        <p>{homeworkGrades}%</p>
-                        <div className='linePercentage'></div>
-                    </div>
-                    
-                </div>
-            </div>
             <div className="courseExams courseData column">
                 {examsList}
                 {emptyExamsMessage}
@@ -354,6 +460,28 @@ function CourseDataPage() {
             <div className='courseAnnounce column'>
                 
             </div>
+
+            <div className='analysisAssignment column'>
+                    <div className='Graph column'>
+                        <PieChart chartData={chartData} title = "Homeworks"/>
+
+                        <div className='row labelsRow'>
+                            <p><span style={{backgroundColor:'#EFEE8F'}}></span> {pageLang['still']}</p>
+                            <p><span style={{backgroundColor:'red'}}></span> {pageLang['late']}</p>
+                            <p>< span  style={{backgroundColor:'lightgreen'}}></span> {pageLang['completed']}</p>
+                            <p><span  style={{backgroundColor:'#ff00007a'}}></span> {pageLang['doneLate']}</p>
+                        </div>
+
+                    </div>
+                    <div className='lineStatus column'> 
+                        <h2>{pageLang['grades']}</h2>
+                        <p>{homeworkGrades}%</p>
+                        <div className='linePercentage' style={{width:homeworkGrades+"%"}}></div>
+                    </div>
+                    
+                </div>
+            </div>
+
         </div>
     </div>
     );

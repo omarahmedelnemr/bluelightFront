@@ -32,6 +32,17 @@
     justify-content: flex-end;
     align-items: center;
 }
+#courseDataPage .sortBy .sortIcon{
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding:6px;
+
+}
+#courseDataPage .sortBy .sortIcon *{
+    margin: 2px;
+}
 
 
 
@@ -42,7 +53,7 @@
 #courseDataPage .worklistAndAnalysis{
     justify-content: space-around;
 }
-#courseDataPage .courseAssignment .workBox{
+#courseDataPage .workBox{
     justify-content: space-between;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.684);
@@ -54,37 +65,37 @@
     position: relative;
 
 }
-#courseDataPage .courseAssignment .workBox:hover{
+#courseDataPage .workBox:hover{
     box-shadow: -5px 5px 10px  rgba(0, 0, 0, 0.358);
 }
-#courseDataPage .courseAssignment .workBox *{
+#courseDataPage .workBox *{
     font-weight: 500;
 }
-#courseDataPage .courseAssignment .workBox .workInfo,
-#courseDataPage .courseAssignment .workBox .workInfo div{
+#courseDataPage .workBox .workInfo,
+#courseDataPage .workBox .workInfo div{
     align-items: flex-start;
     justify-content: space-between;
     
 }
-#courseDataPage .courseAssignment .workBox .workInfo .row{
+#courseDataPage .workBox .workInfo .row{
     /* justify-content: baseline; */
     align-items: center;
 }
 
-#courseDataPage .courseAssignment .workBox .workInfo div *{
+#courseDataPage .workBox .workInfo div *{
 
     margin: 1px;
 }
-#courseDataPage .courseAssignment .workBox .workInfo img{
+#courseDataPage .workBox .workInfo img{
     width: 30px;
     border-radius: 100%;
     margin: 0px 5px;
 
 }
-#courseDataPage .courseAssignment .workBox .workInfo div h4{
+#courseDataPage .workBox .workInfo div h4{
     color: rgba(67, 67, 67, 0.703);
 }
-#courseDataPage .courseAssignment .workBox .workStatus{
+#courseDataPage .workBox .workStatus{
     justify-content: space-around;
     align-items: flex-end;
 }
