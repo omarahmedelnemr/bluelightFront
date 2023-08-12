@@ -18,6 +18,7 @@ import ClassroomInfo from './pages/teacher/ClassroomStudentList';
 import Classwork from './pages/teacher/classwork';
 
 import {Chart, ArcElement} from 'chart.js'
+import StudentMessagesPage from './pages/student/Messages';
 Chart.register(ArcElement);
 // require('dotenv').config()
 function App() {
@@ -43,6 +44,7 @@ function App() {
 
                         <Route path='/assignments' element={<StudentHomeworkPage/>} />
                         <Route path='/exams' element={<StudentExamPage/>} />
+                        <Route path='/messages' element={<StudentMessagesPage/>} />
                         <Route path='/account' element={<Account />} />
 
                         {/* <Route path= "courses/" element={}/> */}
