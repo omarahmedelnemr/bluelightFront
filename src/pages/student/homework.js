@@ -12,7 +12,11 @@ import Question_Attachment from '../../components/student/question_attachment';
 import cleanArr from '../../general/cleanArr';
 import compareDates from '../../general/compareDates';
 import formatTime from '../../general/formatTime';
+import checkAutherization from '../../general/checkAuth';
 function HomeworkPage() {
+    if (checkAutherization() !== 'Auth'){
+        window.location.href ='/login'
+    }
     const {courseName,homeworkID} = useParams() 
     const lang = localStorage.getItem("lang")
     const pageLang ={
