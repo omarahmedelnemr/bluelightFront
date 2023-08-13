@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import compareDates from "../../general/compareDates";
 import { useNavigate } from "react-router-dom";
 import routeTo from "../../general/reroute";
+import formatTime from '../../general/formatTime'
 function WorkExamsPanel({type,limit}) {
     const [assinmentList,setAssignmentList] = useState('')
     const [emptyMessage,setEmptyMessage] = useState(<div className="emptyMessage" >
@@ -25,16 +26,18 @@ function WorkExamsPanel({type,limit}) {
         <FontAwesomeIcon icon="fa-solid fa-cat" />
     ]
     useEffect(()=>{
-        var workEndpoint;
+        var workEndpoint,workType;
         if(type == "Assignments"){
             workEndpoint = "homeworklist"
+            workType = 'homework'
         }else{
             workEndpoint = "examslist"
+            workType = 'exam'
 
         }
         axios.get(Global.BackendURL+"/student/"+workEndpoint+"?studentID="+id).then((res)=>{
             const data = res.data
-            
+            console.log(data)
             if (data == undefined){
                 setEmptyMessage(<div className="emptyMessage" >
                                         {iconList[Math.round(Math.random()*(iconList.length-1))]}
@@ -53,20 +56,20 @@ function WorkExamsPanel({type,limit}) {
                 var bound = limit?(data.length>5?5:data.length):(data.length)
                 for(var i=0;i<bound;i++){
                     var homeworkType;
-                    if(data[i]['homework']['due_date'] == null){
+                    if(data[i][workType]['due_date'] == null){
                         homeworkType = 'still'
                     }else{
-                        homeworkType = compareDates(data[i]['homework']['due_date'])
+                        homeworkType = compareDates(data[i][workType]['due_date'])
                     }
-                    var subjectName = data[i]['homework']['course']["name"].split(' ').join('')
-                    
+                    var subjectName = data[i][workType]['course']["name"].split(' ').join('')
                     tableElements.push(<tr className="tableRow" onClick={routeTo}>
-                                            <td>{data[i]['homework']['name']}</td>
-                                            <td>{data[i]['homework']['grade']}</td>
-                                            <td>{data[i]['homework']['due_date']==null ? '-': data[i]['homework']['due_date'].split('T')[0]}</td>
+                                            <td>{data[i][workType]['name']}</td>
+                                            <td>{data[i][workType]['grade']}</td>
+                                            <td>{data[i][workType]['publish_date'] === null ? "-":formatTime(data[i][workType]['publish_date'])}</td>
+                                            <td>{data[i][workType]['due_date']==null ? '-': formatTime(data[i][workType]['due_date'])}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
-                                            <td>{lang === 'en' ? data[i]['homework']['course']["name"] :data[i]['homework']['course']["arName"]}</td>
-                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i]['homework']['id']} className="hiddenRoute">a</a>
+                                            <td>{lang === 'en' ? data[i][workType]['course']["name"] :data[i][workType]['course']["arName"]}</td>
+                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i][workType]['id']} className="hiddenRoute">a</a>
 
                                         </tr>)
                 }
@@ -82,17 +85,18 @@ function WorkExamsPanel({type,limit}) {
 
     const lang = localStorage.getItem('lang')
     const compLang ={
-        type:   lang === 'en' ? (type === "Assignments"? "Assignments":"Exams"):(type === "Assignments"? "الواجبات":"الاختبارات"),
-        seeAll: lang === 'en' ? "See All":"مشاهدة الكل",
-        name:   lang === 'en' ? "Name":"الاسم",
-        grade:  lang === 'en' ? "Grade":"الدرجة الكلية",
-        due:    lang === 'en' ? "Due Date":"اخر موعد تسليم",
-        status: lang === 'en' ? "Status":"الحالة",
-        course: lang === "en" ? "Course":"المادة",
-        nothing:lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
-        still  :lang === 'en' ? "Still":"هناك وقت",
-        today  :lang === 'en' ? "Today":"اليوم",
-        late  :lang === 'en' ? "Late":"متأخر"
+        type:    lang === 'en' ? (type === "Assignments"? "Assignments":"Exams"):(type === "Assignments"? "الواجبات":"الاختبارات"),
+        seeAll:  lang === 'en' ? "See All":"مشاهدة الكل",
+        name:    lang === 'en' ? "Name":"الاسم",
+        grade:   lang === 'en' ? "Grade":"الدرجة الكلية",
+        due:     lang === 'en' ? "Due Date":"اخر موعد تسليم",
+        publish: lang === 'en' ? "Publish Date":"نشر في", 
+        status:  lang === 'en' ? "Status":"الحالة",
+        course:  lang === "en" ? "Course":"المادة",
+        nothing: lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
+        still:   lang === 'en' ? "Still":"هناك وقت",
+        today:   lang === 'en' ? "Today":"اليوم",
+        late:    lang === 'en' ? "Late":"متأخر"
 
     }
     return (
@@ -106,6 +110,7 @@ function WorkExamsPanel({type,limit}) {
                 <tr className="tableHeaders">
                     <th>{compLang['name']}</th>
                     <th>{compLang['grade']}</th>
+                    <th>{compLang['publish']}</th>
                     <th>{compLang['due']}</th>
                     <th>{compLang['status']}</th>
                     <th>{compLang['course']}</th>
