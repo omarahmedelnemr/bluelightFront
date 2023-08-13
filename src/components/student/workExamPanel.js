@@ -37,7 +37,6 @@ function WorkExamsPanel({type,limit}) {
         }
         axios.get(Global.BackendURL+"/student/"+workEndpoint+"?studentID="+id).then((res)=>{
             const data = res.data
-            console.log(data)
             if (data == undefined){
                 setEmptyMessage(<div className="emptyMessage" >
                                         {iconList[Math.round(Math.random()*(iconList.length-1))]}
