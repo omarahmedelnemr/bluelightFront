@@ -81,7 +81,6 @@ function CourseDataPage() {
             }
         ]
     }
-    console.log("Charts: ",chartData.datasets )
     useEffect(()=>{
 
         var grades= 0
@@ -275,20 +274,6 @@ function CourseDataPage() {
                 console.log(err)
             })
         }
-    }else{
-        document.getElementsByClassName('courseAssignment')[0].style.display = 'none'
-        document.getElementsByClassName('courseExams')[0].style.display = 'none'
-        document.getElementsByClassName('courseAnnounce')[0].style.display = 'block'
-        setTitle(pageLang['announce'])
-        if(announcementsStatus ==false){
-
-            axios.get(Global.BackendURL+'/student/CourseAnnouncement?classroomID='+classroomID+"&courseName="+courseName).then((res)=>{
-                console.log(res.data)
-            }).catch((err)=>{
-                console.log("Error!!!")
-                console.log(err)
-            })
-        }
     }
     }
 
@@ -313,7 +298,6 @@ function CourseDataPage() {
         const workContainer = document.querySelector('.courseAssignment.courseData.column');
         const workBoxes = Array.from(workContainer.querySelectorAll('.workBox'));
         if (sortBy === 'yourGrade'){
-            console.log("inside")
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
                 const bValue = extractValue(b, sortBy);
@@ -334,11 +318,9 @@ function CourseDataPage() {
                 }
             }); 
         }else if(sortBy === 'publishDate' || sortBy === 'dueDate' ){
-            console.log("poop")
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
                 const bValue = extractValue(b, sortBy);
-                console.log("COmaper: ",  new Date(aValue).getTime() > new Date(bValue).getTime())
                 if(normalSortType === 'asc'){
                     return new Date(aValue).getTime() - new Date(bValue).getTime();
                 }else{
@@ -365,7 +347,6 @@ function CourseDataPage() {
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
                 const bValue = extractValue(b, sortBy);
-                console.log("COmaper: ", aValue.localeCompare(bValue))
                 if(normalSortType ==='asc'){
                     return aValue.localeCompare(bValue); // Use localeCompare for string comparison
                 }else{
