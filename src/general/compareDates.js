@@ -21,11 +21,9 @@ if (timeDifference < 0) {
 return 'late'
 } else if (timeDifference < oneDayInMilliseconds) {
   // The stored date is within one day
-  console.log("The stored date is within one day.");
   return 'today'
 } else {
   // The stored date is in the future and more than one day away
-  console.log("The stored date is in the future and more than one day away.");
   return 'still'
 }
 
