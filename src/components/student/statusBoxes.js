@@ -88,7 +88,7 @@ function StatusBoxes() {
         eventsMessage:       lang === "en" ? "un-seen Events" : "مناسبات لم تشاهدها"
     }
     return (
-        <div class="row statusBoxes">
+        <div className="row statusBoxes">
             <div className='row'>
                 
                 <div className={'contentBoxSize1'}>
