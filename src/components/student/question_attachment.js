@@ -71,8 +71,6 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
     const [noFilesYet,setNoFilesYet] = useState(noFileVal)
 
 
-    console.log("a: ",preview)
-
     // Show a Preview of attachment With Type Image
     function showBigImage(event){
         var element = event.currentTarget.querySelector("img")
