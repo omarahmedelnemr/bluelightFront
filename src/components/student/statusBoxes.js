@@ -62,10 +62,10 @@ function StatusBoxes() {
     })
 
     // get Events Numbers
-    const [eventsCount,setEventCount] = useState('-')
+    const [messagesCount,setMessagesCount] = useState('-')
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/eventsCount?classroomID="+localStorage.getItem("classroom")).then((res)=>{
-            setEventCount(res.data.count)
+        axios.get(Global.BackendURL+"/student/messagesCount?studentID="+localStorage.getItem("id")).then((res)=>{
+            setMessagesCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
         })
@@ -140,20 +140,6 @@ function StatusBoxes() {
                     </div>
                 </div>
                 <div className={'contentBoxSize1'}>
-                    {/* <div className='boxIcon' style={{backgroundColor:'#a675f4'}}> */}
-                        {/* <FontAwesomeIcon icon="fas fa-envelope" /> */}
-                        {/* <FontAwesomeIcon icon="fa-solid fa-users" />
-                    </div>
-                    <div className='boxTitle'>
-                        <p>{compLang["events"]}</p>
-                    </div>
-                    <div className='boxValue'>
-                        <h2>{eventsCount}</h2>
-                    </div>
-                    <div className='boxComment'>
-                        <p><span style={{color:"red"}}>{eventsCount}</span> {compLang['eventsMessage']}</p>
-
-                    </div> */}
                     <div className='boxIcon' style={{backgroundColor:'#f4c075'}}>
                         <FontAwesomeIcon icon="fas fa-envelope" />
                     </div>
@@ -161,30 +147,13 @@ function StatusBoxes() {
                         <p>{compLang["messages"]}</p>
                     </div>
                     <div className='boxValue'>
-                        <h2>1/3</h2>
+                        <h2>{messagesCount}</h2>
                     </div>
                     <div className='boxComment'>
-                        <p><span style={{color:"red"}}>2</span> unseen Messages</p>
+                        <p>{messagesCount > 0?<span style={{color:"red"}}>{messagesCount}</span>:<span>{messagesCount}</span>} unseen Messages</p>
 
                     </div>
-                    
                 </div>
-                <div className={'contentBoxSize1 hideInSmall'}>
-                    {/* <div className='boxIcon' style={{backgroundColor:'#f4c075'}}>
-                        <FontAwesomeIcon icon="fas fa-envelope" />
-                    </div>
-                    <div className='boxTitle'>
-                        <p>{compLang["messages"]}</p>
-                    </div>
-                    <div className='boxValue'>
-                        <h2>1/3</h2>
-                    </div>
-                    <div className='boxComment'>
-                        <p><span style={{color:"red"}}>2</span> late Submission</p>
-
-                    </div> */}
-                </div>
-                
             </div>
 
         </div>
