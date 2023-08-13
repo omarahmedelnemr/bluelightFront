@@ -262,7 +262,7 @@ function CourseDataPage() {
                                                 <h3>{yourGrade} / {data[i]['exam']['grade']}</h3>
                                                 <span className={examType}>{pageLang[examType]}</span>
                                             </div>
-                                            <a href={"./"+subjectName+"/exam/"+data[i]['exam']['id']} className="hiddenRoute"></a>
+                                            <a href={"./"+subjectName+"/exams/"+data[i]['exam']['id']} className="hiddenRoute"></a>
 
                                         </div>)
                     }

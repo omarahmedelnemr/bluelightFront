@@ -19,6 +19,9 @@ import Classwork from './pages/teacher/classwork';
 
 import {Chart, ArcElement} from 'chart.js'
 import StudentMessagesPage from './pages/student/Messages';
+import ExamPage from './pages/student/exam';
+import ForgetPassword from './pages/forgetPassword';
+import ResetPassword from './pages/resetPassword';
 Chart.register(ArcElement);
 // require('dotenv').config()
 function App() {
@@ -29,6 +32,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/Login' element={<Login />} />
+          <Route path='/forgetPassword' element={<ForgetPassword />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/' element={<Login />} />
           <Route path="/logout" element={<Logout/>}/>
           <Route path='/student/*' element={
@@ -41,6 +46,7 @@ function App() {
                         <Route path='/courses' element={<CoursesPage />} />
                         <Route path='/courses/:courseName' element={<CourseDataPage />} />
                         <Route path='/courses/:courseName/assignments/:homeworkID' element={<HomeworkPage />} />
+                        <Route path='/courses/:courseName/exams/:examID' element={<ExamPage />} />
 
                         <Route path='/assignments' element={<StudentHomeworkPage/>} />
                         <Route path='/exams' element={<StudentExamPage/>} />
