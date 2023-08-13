@@ -1,4 +1,4 @@
-#loginContainer{
+#resetContainer{
     /* background-color: rgb(188, 188, 188); */
     background-image: url('../../content/44.jpg');
     background-size: cover;
@@ -12,7 +12,7 @@
     position: relative;
     direction: ltr;
 }
-#loginPageOpacity{
+#resetPasswordPageOpacity{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -20,22 +20,22 @@
     z-index: 0;
 }
 #formOpacity{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(62, 62, 62, 0.166);
+    /* position: absolute; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* background-color: rgba(62, 62, 62, 0.166); */
+    display: none;
     z-index: 1;
 }
-#loginFormContainer{
+#resetPasswordFormContainer{
     position: relative;
-    min-width: 850px;
+    min-width: 440px;
     background-color: white;
     display: flex;
     flex-direction: row;
-    height: 60vh;
-    background-image: url('../../content/44.jpg');
+    height: max-content;
     background-size: cover;
-    justify-content: end;
+    justify-content: center;
     overflow: hidden;
     border-radius: 25px;
     box-shadow: -5px 5px 10px gray;
@@ -47,29 +47,22 @@
     position: relative;
     z-index: 2;
 }
-#loginSideImage{
-    width: 50%;
-}
-#mainLoginForm{
-    width: 50%;
+#mainResetPasswordForm{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
     z-index: 2;
+    height: max-content;
+    padding: 30px;
 }
-#mainLoginForm .forgetLink{
-    display: block;
-    text-align: start;
-    margin: 0px 10px;
-}
-#mainLoginForm .Button{
+#mainResetPasswordForm .Button{
     margin-top: 35px;
 }
-#mainLoginForm .WrongMessage{
+#mainResetPasswordForm .WrongMessage{
     color: red;
 }
-#mainLoginForm .rightMessage{
+#mainResetPasswordForm .rightMessage{
     color: lightgreen;
 }

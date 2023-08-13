@@ -53,11 +53,7 @@ function Login() {
           for(var i = 0;i<dataList.length;i++){
             localStorage.setItem(dataList[i],res.data[dataList[i]])
           }
-        // localStorage.setItem("name", res.data['name'])
-        // localStorage.setItem("arname", res.data['arName'])
-        // localStorage.setItem("img_dir", res.data['img_dir'])
-        // localStorage.setItem("classroom",res.data["classroom"])
-        // localStorage.setItem("role",res.data['role'])
+
         }
 
         if(localStorage.getItem("lang") ===undefined || localStorage.getItem("lang") ===null){
@@ -112,6 +108,7 @@ function Login() {
             <div>
               <Input type={"text"} label={"username"} ID = {"loginUsername"} />
               <Input type={"password"} label={"Password"} ID = {"loginPassword"} showPassword={true} />
+              <a href="./forgetPassword" className='forgetLink'>Forget Password</a>
             </div>
             <Button text={"Login"} onClickFunc={SubmitLogin}/>
         </div>
