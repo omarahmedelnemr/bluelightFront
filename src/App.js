@@ -45,6 +45,7 @@ function App() {
                         <Route path='/assignments' element={<StudentHomeworkPage/>} />
                         <Route path='/exams' element={<StudentExamPage/>} />
                         <Route path='/messages' element={<StudentMessagesPage/>} />
+                        <Route path='/messages/:ID' element={<StudentMessagesPage/>} />
                         <Route path='/account' element={<Account />} />
 
                         {/* <Route path= "courses/" element={}/> */}
