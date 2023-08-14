@@ -168,6 +168,7 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
             {questionAttachmentsPreview}
         </div>
         <p className='hide questionID'>{questionInfo['id']}</p>
+        <p className='hide questionNumber'>{questionInfo['QNumber']}</p>
         <div className='options'>
             {options}
         </div>

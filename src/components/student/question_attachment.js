@@ -264,6 +264,7 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
                 {questionAttachmentsPreview}
             </div>
             <p className='hide questionID'>{questionInfo['id']}</p>
+            <p className='hide questionNumber'>{questionInfo['QNumber']}</p>
             
             <div className='attachemntFiles'>
                 {AttachmentErrorMessage}
