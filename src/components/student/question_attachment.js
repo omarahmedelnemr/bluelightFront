@@ -257,7 +257,7 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
             {bigPreview}
             {/* <p className='questionText'>{questionInfo['QNumber']}) {questionInfo['questionText']}</p> */}
             <div className='row'>
-                <p className='questionText'>{questionInfo['QNumber']}) {questionInfo['questionText']} </p>
+                <p className='questionText'>{mode === 'homework'? questionInfo['QNumber']+")":"" } {questionInfo['questionText']} </p>
                 {graded && questionInfo['yourGrade'] > 0 ?<span className='plus'>&nbsp;&nbsp; +{questionInfo['yourGrade']}</span>:''}
             </div>
             <div className='preview'>

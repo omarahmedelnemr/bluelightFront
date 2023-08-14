@@ -163,7 +163,7 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
     <div className={questionInfo['type']+' question enabled mcq'}>
         {bigPreview}
         <div className='row'>
-            <p className='questionText'>{questionInfo['QNumber']}) {questionInfo['questionText']} </p>
+            <p className='questionText'>{mode === 'homework'? questionInfo['QNumber']+")":"" } {questionInfo['questionText']} </p>
             {questionGrades}
         </div>
         <div className='preview'>
