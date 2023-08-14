@@ -58,16 +58,28 @@ function CourseDataPage() {
         <FontAwesomeIcon icon="fa-solid fa-cat" />
     ]
   
-    const cookieReader = new Cookies()
     const {courseName} = useParams()
-    const studentID = cookieReader.get('id')
+    const studentID = localStorage.getItem('id')
     const classroomID = localStorage.getItem('classroom')
     const [assinmentList,setAssignmentList] = useState('')
     const [exmaStatus,setExamStatus] = useState(false)
-    const [announcementsStatus,setAnnouncementsStatus] = useState(false)
     const [title,setTitle] = useState(pageLang['assingments'])
     const [homeworkGrades,setHomeworksGrades] = useState(0)
     const [chartValues,setChartValue] = useState([0, 0, 0,0])
+    const [activePart,setactivePart] = useState("Homework")
+    const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
+                                                      <div className="loading"></div>
+                                                  </div>)
+
+    const [examsList,setExamsList] = useState('')
+
+    const [emptyExamsMessage,setEmptyExamsMessage] = useState(<div className="emptyExamsMessage" >
+                                                  <div className="loading"></div>
+                                              </div>)            
+
+
+
+
     const chartData = {
         labels: [ 'still', "Late" , 'Done', 'Done Late' ],
         // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
@@ -114,21 +126,18 @@ function CourseDataPage() {
                 values[pageLang['doneLate'].toLowerCase()],
             ]
         setChartValue(sortedValues)
+
+        setHomeworksGrades(Math.round((grades/totalGrades)*100))
         if (activeSide === 'assignments'){
-            setHomeworksGrades(Math.round((grades/totalGrades)*100))
+            setactivePart("Homework")
+        }else{
+            setactivePart("Exams")
+            // setHomeworksGrades(10)
+
         }
 
-    },[assinmentList])
+    },[assinmentList,title,examsList])
     
-    const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
-                                                      <div className="loading"></div>
-                                                  </div>)
-
-    const [examsList,setExamsList] = useState('')
-
-    const [emptyExamsMessage,setEmptyExamsMessage] = useState(<div className="emptyExamsMessage" >
-                                                  <div className="loading"></div>
-                                              </div>)            
 
 
     useEffect(()=>{
@@ -279,29 +288,40 @@ function CourseDataPage() {
 
 
 
-
+    localStorage.setItem("sortby",'asc')
 
 
     const [normalSortType,setSortType] = useState('asc')
 
     function changeSortType(event){
         const value = event.currentTarget.querySelector("p").innerHTML
+        console.log("Clicked")
         if (value === 'asc'){
             setSortType('des')
+            localStorage.setItem("sortby",'des')
+
         }else{
             setSortType('asc')
+            localStorage.setItem("sortby",'asc')
         }
         event.currentTarget.parentElement.querySelector(".activeSelectOption").click()
+        console.log(event.currentTarget.parentElement.querySelector(".activeSelectOption"))
     }
 
     function sortWorkBoxes(sortBy) {
-        const workContainer = document.querySelector('.courseAssignment.courseData.column');
+        var workContainer
+        if (activePart === 'Homework'){
+            workContainer = document.querySelector('.courseAssignment.courseData.column');
+
+        }else{
+            workContainer = document.querySelector('.courseExams.courseData.column');
+        }
         const workBoxes = Array.from(workContainer.querySelectorAll('.workBox'));
         if (sortBy === 'yourGrade'){
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
                 const bValue = extractValue(b, sortBy);
-                if (normalSortType=== 'asc'){
+                if (localStorage.getItem("sortby") === 'asc'){
                     if(aValue.includes('-')){
                         return -1
                     }else if (bValue.includes('-')){
@@ -444,7 +464,7 @@ function CourseDataPage() {
 
             <div className='analysisAssignment column'>
                     <div className='Graph column'>
-                        <PieChart chartData={chartData} title = "Homeworks"/>
+                        <PieChart chartData={chartData} title = {activePart}/>
 
                         <div className='row labelsRow'>
                             <p><span style={{backgroundColor:'#EFEE8F'}}></span> {pageLang['still']}</p>
