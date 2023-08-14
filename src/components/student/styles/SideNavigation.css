@@ -103,6 +103,7 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
+    align-items: start;
 }
 
 .sideNav .bottom .chooseLang{
@@ -123,4 +124,39 @@
     background-color: #3d5ef0;
     color:white;
     cursor:default    ;
+}
+.sideNav .bottom .reportIssuText{
+    width: 75%;
+    background-color:white;
+    color: black;
+    border-radius: 10px;
+    font-weight: 300;
+    padding: 10px;
+    margin: 10px;
+    position: absolute;
+    bottom: 7%;
+    left: 5%;
+    transition: 0.5s;
+    display: none;
+}
+.sideNav .bottom .reportIssu{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #3d5ef0;
+    color: white;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 0px 50px;
+}
+.sideNav .bottom .reportIssu:hover {
+    background-color: #6b83ed;
+}
+
+.sideNav .bottom .reportIssu:hover .reportIssuText{
+    display: block;
 }

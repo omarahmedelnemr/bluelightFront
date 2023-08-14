@@ -22,6 +22,8 @@ import StudentMessagesPage from './pages/student/Messages';
 import ExamPage from './pages/student/exam';
 import ForgetPassword from './pages/forgetPassword';
 import ResetPassword from './pages/resetPassword';
+import Setting from './pages/settings';
+import ChangeUsername from './pages/changeUsername';
 Chart.register(ArcElement);
 // require('dotenv').config()
 function App() {
@@ -53,6 +55,9 @@ function App() {
                         <Route path='/messages' element={<StudentMessagesPage/>} />
                         <Route path='/messages/:ID' element={<StudentMessagesPage/>} />
                         <Route path='/account' element={<Account />} />
+                        <Route path='/settings' element={<Setting />} />
+                        <Route path='/changeUsername' element={<ChangeUsername />} />
+
 
                         {/* <Route path= "courses/" element={}/> */}
                         {/* <Route path='/*' element={<div><h1>Hello</h1><h3>We Are Still Developing This Page</h3></div>} /> */}

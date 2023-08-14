@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function SideNavigation() {
-    const navList = ['Home',"courses","messages","assignments","exams","account"] //,"bus"
+    const navList = ['Home',"courses","messages","assignments","exams","account", "settings"] //,"bus"
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:     lang === 'en' ? "welcome Back":"اهلا",
@@ -16,7 +16,8 @@ function SideNavigation() {
         Events:      lang === 'en' ? "Events":"المناسبات",
         messages:    lang === 'en' ? "Messages":"الرسائل",
         bus:         lang === 'en' ? "Bus":"الباص",
-        account:     lang === 'en' ? "Account":"حسابي"
+        account:     lang === 'en' ? "Account":"حسابي",
+        settings:     lang === 'en' ? "Settings":"الاعدادات"
         
     }
     useEffect(()=>{
@@ -90,9 +91,9 @@ function SideNavigation() {
         document.getElementsByClassName('sideNav')[0].querySelector('.backgroundBlock').style.setProperty('display','none')
 
     }
-    useEffect(()=>{
-        document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
-    })
+    // useEffect(()=>{
+        // document.getElementById(localStorage.getItem('lang')).classList.add('activeLang')
+    // })
     return (
         <div className="sideNav">
             <div className="backgroundBlock" onClick={blockBackground}></div>
@@ -147,13 +148,25 @@ function SideNavigation() {
                         <span className="route">/account</span>
                         
                     </div>
+                    <div id="settingsNavButton" className="navButton" onClick={navButtonClick}>
+                        <FontAwesomeIcon icon="fa-solid fa-gear" />
+                        <p>{compText["settings"]}</p>
+                        <span className="route">/settings</span>
+                        
+                    </div>
                     
             </div>
             <div className="bottom">
-                <div className="row chooseLang">
-                    <p id="ar" onClick={changeLang}>ar</p>
-                    <p id="en" onClick={changeLang}>en</p>
-                </div>
+                    <a href={"./reportIssu"}>
+
+                        <div className='reportIssu'>
+                        <FontAwesomeIcon icon="fa-solid fa-circle-question" />
+                            <div className='reportIssuText'>
+                                <p>If you Want to Report a Problem, Suggest a Feature or Request a Infomation Change Please Contact us</p>
+                            </div>
+                        </div>
+                    </a>
+
             </div>
         </div>
     );
