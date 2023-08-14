@@ -26,6 +26,7 @@ import Setting from './pages/settings';
 import ChangeUsername from './pages/changeUsername';
 import ChangePassword from './pages/changePassword';
 import ReportPage from './pages/reportIssu';
+import TimeTablePage from './pages/student/timetable';
 
 Chart.register(ArcElement);
 // require('dotenv').config()
@@ -57,6 +58,7 @@ function App() {
                         <Route path='/exams' element={<StudentExamPage/>} />
                         <Route path='/messages' element={<StudentMessagesPage/>} />
                         <Route path='/messages/:ID' element={<StudentMessagesPage/>} />
+                        <Route path='/timetable' element={<TimeTablePage />} />
                         <Route path='/account' element={<Account />} />
                         <Route path='/settings' element={<Setting />} />
                         <Route path='/changeUsername' element={<ChangeUsername />} />
