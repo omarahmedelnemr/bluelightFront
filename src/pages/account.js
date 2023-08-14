@@ -11,7 +11,7 @@ function Account() {
     const profileImage = Global.BackendURL+"/profilePic/"+localStorage.getItem("img_dir") 
     const pageText = {
         account:       lang === "en" ? "Account" : "حسابي",
-        changeMessage: lang === 'en' ? "If any Data Needs To Be Changed, Please Contact your Teacher":"لو احتجت لتغيير اي بيانات, بالرجاء التواصل مع الاستاذ المشرف الاجتماعي",
+        changeMessage: lang === 'en' ? "If any other Data Needs To Be Changed, Please Contact Us":"لو احتجت لتغيير اي بيانات, بالرجاء التواصل معنا ",
         name:          lang === "en" ? "English Name": "الاسم بالانجليزية",
         arabicName:    lang === "en" ? "Arabic Name" : "الاسم بالعربية",
         classroom:     lang === "en" ? "Classroom" : "الفصل",
