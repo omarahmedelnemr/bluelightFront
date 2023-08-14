@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function SideNavigation() {
-    const navList = ['Home',"courses","messages","assignments","exams","account", "settings"] //,"bus"
+    const navList = ['Home',"courses","messages","assignments","exams","account", "settings", "timetable"] //,"bus"
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:     lang === 'en' ? "welcome Back":"اهلا",
@@ -17,7 +17,8 @@ function SideNavigation() {
         messages:    lang === 'en' ? "Messages":"الرسائل",
         bus:         lang === 'en' ? "Bus":"الباص",
         account:     lang === 'en' ? "Account":"حسابي",
-        settings:     lang === 'en' ? "Settings":"الاعدادات"
+        settings:    lang === 'en' ? "Settings":"الاعدادات",
+        timetable:   lang === 'en' ? "TimeTable":"جدول الحصص" 
         
     }
     useEffect(()=>{
@@ -136,12 +137,12 @@ function SideNavigation() {
                         <span className="route">/messages</span>
 
                     </div>
-                    {/* <div id="busNavButton" className="navButton" onClick={navButtonClick}>
-                        <FontAwesomeIcon icon="fa-solid fa-bus" />
-                        <p>{compText["bus"]}</p>
-                        <span className="route">/bus</span>
+                    <div id="timetableNavButton" className="navButton" onClick={navButtonClick}>
+                    <FontAwesomeIcon icon="fa-solid fa-calendar" />
+                        <p>{compText["timetable"]}</p>
+                        <span className="route">/timetable</span>
 
-                    </div> */}
+                    </div>
                     <div id="accountNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-user" />
                         <p>{compText["account"]}</p>
