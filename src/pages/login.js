@@ -55,7 +55,7 @@ function Login() {
           }
 
         }
-
+        localStorage.setItem('username',username)
         if(localStorage.getItem("lang") ===undefined || localStorage.getItem("lang") ===null){
           localStorage.setItem("lang","en")
         }
