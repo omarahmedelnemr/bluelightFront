@@ -1,0 +1,62 @@
+
+.reportPage .reportForm{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+.reportPage .reportForm .FormComponants{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.reportPage .FormComponants .input-effect{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: -5px 5px 5px rgba(161, 161, 161, 0.302);
+
+
+}
+.reportPage .FormComponants .red{
+    color: red;
+}
+.reportPage .FormComponants .input-effect input{
+    font-size: 20px;
+}
+
+.reportPage .FormComponants textarea{
+    width: 98%;
+    /* width: 100%; */
+    height: 50vh;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 18px;
+    box-shadow: -5px 5px 10px rgba(161, 161, 161, 0.302);
+    border: none;
+}
+.reportPage .FormComponants button{
+    width: 100%;
+    margin: 50px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border:none;
+    background-color: #3d5ef0;
+    color: white;
+    box-shadow: -5px 5px 10px rgba(161, 161, 161, 0.302);
+    transition: 0.5s;
+    cursor: pointer;
+}
+.reportPage .FormComponants button:hover{
+    background-color: #6078e2;
+
+}
+
+.reportPage .FormComponants button.disabled{
+    pointer-events: none;
+}
