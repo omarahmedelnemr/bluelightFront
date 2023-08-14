@@ -11,6 +11,7 @@
     align-items: center;
     position: relative;
     direction: ltr;
+    transition: 0.2s;
 }
 #loginPageOpacity{
     position: absolute;
@@ -39,6 +40,7 @@
     overflow: hidden;
     border-radius: 25px;
     box-shadow: -5px 5px 10px gray;
+    transition: 0.2s;
 
 }
 
@@ -72,4 +74,26 @@
 }
 #mainLoginForm .rightMessage{
     color: lightgreen;
+}
+
+
+@media (max-width:870px) {
+    #formWavyEffect{
+        display: none;
+    }
+    #formOpacity{
+        display: none;
+    }
+    #loginFormContainer{
+        background-image: none;
+    }
+    #loginFormContainer{
+        min-width: 400px;
+        height: max-content;
+        padding: 50px;
+        justify-content: center;
+    }
+    #mainLoginForm{
+        width: 100%;
+    }
 }
