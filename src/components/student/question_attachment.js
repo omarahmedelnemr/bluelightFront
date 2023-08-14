@@ -18,10 +18,10 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
     }
 
     //Check if the Question in Normal Mode (Homework) or in Exam Mode So No Local Storage
-    if (mode === 'homework'){
+    // if (mode === 'homework'){
 
         //Check if there is Attachments in LocalStorage
-        var uniqueLocalID ="homework"+questionInfo['id']+"Q"+questionInfo['QNumber']
+        var uniqueLocalID =mode+questionInfo['id']+"Q"+questionInfo['QNumber']
         if (localStorage.getItem(uniqueLocalID) === undefined || localStorage.getItem(uniqueLocalID) === '' ||localStorage.getItem(uniqueLocalID) === null){
             var previewBaseEement = []
             localStorage.setItem(uniqueLocalID,'')
@@ -60,11 +60,11 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
         var  attachVal = localStorage.getItem(uniqueLocalID).split(",")
         var   preVal = previewBaseEement
         var noFileVal =  previewBaseEement.length==0?<p>{compLang['noFiles']}</p>:null
-    }else{
-        var attachVal = []
-        var   preVal = []
-        var noFileVal = <p>{compLang['noFiles']}</p>
-    }
+    // }else{
+    //     var attachVal = []
+    //     var   preVal = []
+    //     var noFileVal = <p>{compLang['noFiles']}</p>
+    // }
     
     const [attachment,setAttachments]= useState(attachVal)
     var   [preview,setPreview] = useState(preVal)

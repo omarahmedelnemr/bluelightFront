@@ -26,11 +26,10 @@ function Question_Written({questionInfo,answered,mode,graded = null}) {
         )
     }
 
-    var uniqueLocalID ="homework"+questionInfo['id']+"Q"+questionInfo['QNumber']
+    var uniqueLocalID =mode+questionInfo['id']+"Q"+questionInfo['QNumber']
     function saveToLocalStorage(event){
-        if (mode ==='homework'){
-            localStorage.setItem(uniqueLocalID,event.currentTarget.value)
-        }
+        localStorage.setItem(uniqueLocalID,event.currentTarget.value)
+        
     }
     // Display Attachment That in The Question Description
     const questionAttachmentsPreview =[]
