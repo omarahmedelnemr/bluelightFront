@@ -1,5 +1,5 @@
 import './styles/general.css'
-import './styles/changePassword.css'
+import './styles/changeUsername.css'
 import checkAutherization from '../general/checkAuth';
 import Global from '../general/globalVar';
 import TopBar from '../components/topBar';
@@ -48,7 +48,7 @@ function ChangeUsername() {
         console.log("currentUsername: "+currentUsername+" newUsername: "+newUsername+" userPassword: "+userPassword)
     }
     return (
-        <div id ={"ChangeUsername"} className="changeUsername column fullWidth">
+        <div id ={"ChangeUsername"} className="changePages column fullWidth">
             <TopBar title={pageText["changeUsername"]}/>
             <div className='pageContent'>
                 <div className='form'>
