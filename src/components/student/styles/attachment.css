@@ -66,6 +66,16 @@
 
 
 }
+.preview::-webkit-scrollbar{
+    background-color: rgba(38, 38, 38, 0.113);
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+}
+.preview::-webkit-scrollbar-thumb{
+    background-color: rgb(97, 97, 97);
+    border-radius: 10px;
+}
 .attachmentPreview{
     width: 150px;
     /* max-width: 230px; */
