@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import Global from '../../general/globalVar'
 function Question_MCQ({questionInfo,answered,mode,graded=null}) {
-    console.log("mcq: ",questionInfo)
     var uniqueLocalID =mode+questionInfo['id']+"Q"+questionInfo['QNumber']
     const options =[]
     var questionGrades = null;
@@ -51,7 +50,6 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
 
 
     for(var i=0;i<questionInfo['options'].length;i++){
-        console.log(questionInfo['options'][0])
         if (answered){
             if (graded ===null || graded === false){
                 options.push(
