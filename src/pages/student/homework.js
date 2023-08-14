@@ -30,10 +30,13 @@ function HomeworkPage() {
       doneLate:        lang === 'en' ? "Done Late":"تم متاخرا",
       points:          lang === 'en' ? 'Points':"درجة",
       submit:          lang === 'en' ? "Submit":"تسليم",
+      unsubmit:        lang === 'en' ? "unSubmit":"الغاء التسليم",
       connectionError: lang === 'en' ? "Error While Submitted, Please Try Again":"حدث خطأ, حاول مرة اخري",
       mcqMissing:      lang === "en" ? "There is a MCQ You Didn't answer Yet" : " يوجد سوال اختيار من متعدد لم يتم الاجابه عليه", 
       writtenMissing:  lang === "en" ? "There is a Written Question You Didn't answer Yet" : "يوجد سوال كتابي لم يتم الاجابة عليه", 
       attachMissing:   lang === "en" ? "There is an Attachment Question You Didn't answer Yet" : "يوجد سؤال لم يتم الاجابة عليه", 
+      cantUnsubmit:    lang === "en" ? "You Can't ubSubmit Graded Homework":"لا يمكنك الغاء تسليم واجب تم تصحيحه",
+
 
     }
     const [title,setTitle] = useState('Homework')
@@ -274,8 +277,8 @@ function HomeworkPage() {
                         :graded===false?
                         <div className={'SubmitButton'+submittingStatus} onClick={unSubmitWork}>
                         <div className='loading'></div>
-                        unSubmit</div>:
-                        null}
+                        {pageLang['unsubmit']}</div>:
+                        <span>{pageLang['cantUnsubmit']}</span>}
                     </div>
                 </div>
             </div>
