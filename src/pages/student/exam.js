@@ -301,7 +301,8 @@ function ExamPage() {
             console.log(data)
             for (var i =0;i<questions.length;i++){
                 const Qid = questions[i].querySelector(".questionID").innerHTML
-                localStorage.removeItem('exam'+Qid+"Q"+(i+1))
+                const QActualNumber = questions[i].querySelector(".questionNumber").innerHTML
+                localStorage.removeItem('exam'+Qid+"Q"+QActualNumber)
             }
             localStorage.removeItem("StartedExam")
             localStorage.removeItem("duration")
@@ -317,7 +318,6 @@ function ExamPage() {
 
 
     useEffect(()=>{
-        console.log("Ru nn ing")
         try{
             if (isRunning && bacgkroundStatus =='notBlock' && localStorage.getItem("StartedExam") != null){
                 document.getElementById("startAQuizButton").click()
