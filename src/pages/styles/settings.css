@@ -1,0 +1,64 @@
+.personalInfo button{
+    border:none;
+    background-color: #3d5ef0;
+    color: white;
+    font-weight: bolder;
+    border-radius: 10px;
+    margin: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.personalInfo button:hover{
+    background-color: #516eee;
+
+}
+
+.personalInfo button:active{
+    background-color: #677fed;
+
+}
+.personalInfo .contentChange{
+    align-items: center;
+    border-bottom: 0px;
+    margin: 10px;
+}
+.personalInfo .contentChange a{
+    padding: 10px;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    /* border:none;
+    background-color: #3d5ef0;
+    color: white;
+    font-weight: bolder;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer; */
+}
+.personalInfo .chooseLang{
+    /* justify-content: end; */
+    width: 170px;
+    height: max-content;
+    background-color: white;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 0px;
+    border: none;
+    box-shadow: -.5px 5px 10px rgba(81, 81, 81, 0.447);
+}
+.personalInfo .chooseLang p{
+    margin: 0px;
+    width: 100%;
+    color:black;
+    background-color: #c9ddfe;
+    cursor: pointer;
+    padding: 10px;
+}
+.personalInfo .chooseLang .activeLang{
+    background-color: #3d5ef0;
+    color:white;
+    cursor:default    ;
+}
