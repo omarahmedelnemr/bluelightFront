@@ -43,7 +43,8 @@ function CoursesPage() {
         //Take the First Two Names
         teacherName = (lang === 'en' ? data[i]["teacher"]["name"] :data[i]["teacher"]["arName"]).split(" ")
         // currentImage = data[i]["name"].toLowerCase() in ImagesList ? ImagesList[data[i]["name"].toLowerCase()] :ImagesList["arabic"]
-        currentImage = ImagesList["baseImage"]
+        currentImage = ImagesList[data[i]['name'].toLowerCase()] === undefined ? ImagesList["baseImage"]:ImagesList[data[i]['name'].toLowerCase()]
+
         subjectNamex = data[i]['name'].toLowerCase()
         link  = '/student/courses/'+subjectNamex
         teacherName = teacherName[0]+" "+teacherName[1]
