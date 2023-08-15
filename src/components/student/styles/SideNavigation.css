@@ -15,7 +15,7 @@
 }
 @media (max-width:500px) {
     .sideNav{
-        zoom: 0.85;
+        zoom: 0.9;
     }
 }
 .sideNav .backgroundBlock{
