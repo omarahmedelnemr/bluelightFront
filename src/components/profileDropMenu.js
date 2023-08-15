@@ -46,7 +46,7 @@ function ProfileDropMenu() {
     return (
         <div className="profileDropDown" onClick={DropTheProfileMenue}>
             <div className="header ">
-                <img src={Global.BackendURL+"/profilePic/"+image} alt={"Profile Image"}/>
+                <img src={Global.BackendURL+"/avatar/"+image} alt={"Profile Image"}/>
                 <div>
                     <p className="mainText">{mainText}</p>
                     <p className="subText">{subText}</p>  

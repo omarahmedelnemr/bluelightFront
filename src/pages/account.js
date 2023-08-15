@@ -8,7 +8,7 @@ function Account() {
         window.location.href ='/login'
     }
     const lang = localStorage.getItem('lang') 
-    const profileImage = Global.BackendURL+"/profilePic/"+localStorage.getItem("img_dir") 
+    const profileImage = Global.BackendURL+"/avatar/"+localStorage.getItem("img_dir") 
     const pageText = {
         account:       lang === "en" ? "Account" : "حسابي",
         changeMessage: lang === 'en' ? "If any other Data Needs To Be Changed, Please Contact Us":"لو احتجت لتغيير اي بيانات, بالرجاء التواصل معنا ",
@@ -27,7 +27,15 @@ function Account() {
             <div className='content column'>
 
                 <div className='ProfileImage'>
-                    <img src={profileImage}/>
+                    <div className='imgContainer'>
+                        <a href="./changeAvatar">
+                            <img src={profileImage}/>
+                            <div className='ChangePicCover'>
+                                <p>Change Image</p>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
                 <div className='personalInfo column'>
                     <div className='row'>
