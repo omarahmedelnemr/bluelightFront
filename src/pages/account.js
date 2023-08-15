@@ -19,7 +19,8 @@ function Account() {
         age:           lang === "en" ? "Age" :"العمر",
         gender:        lang === "en" ? "Gender":"الجنس",
         male:          lang === "en" ? "Male":"ذكر",
-        female:        lang === "en" ? "Female":"أنثي"
+        female:        lang === "en" ? "Female":"أنثي",
+        changeImg:     lang === 'en' ? "Change Image":"تغيير الصورة",
     }
     return (
         <div className="Account column fullWidth">
@@ -31,7 +32,7 @@ function Account() {
                         <a href="./changeAvatar">
                             <img src={profileImage}/>
                             <div className='ChangePicCover'>
-                                <p>Change Image</p>
+                                <p>{pageText['changeImg']}</p>
                             </div>
                         </a>
                     </div>

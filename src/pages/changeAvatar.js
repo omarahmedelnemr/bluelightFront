@@ -16,7 +16,7 @@ function ChangeAvatar() {
     const [disabled,setDisabled] = useState("disabled")
     const [allAvatarsElements,setAllAvatarsElement] = useState(null)
     const pageText = {
-        title: lang === "en" ? "Change Avatar" : "تغيير الصوره",
+        title: lang === "en" ? "Change Avatar" : "تغيير الصورة",
         save:    lang === 'en' ? "Save":"حفظ"      
     }
 
