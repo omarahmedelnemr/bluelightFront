@@ -97,3 +97,8 @@
         width: 100%;
     }
 }
+@media (max-width:500px) {
+    #loginFormContainer{
+        zoom:0.7;
+    }
+}
