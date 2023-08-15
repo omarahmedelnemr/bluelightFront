@@ -13,6 +13,11 @@
     z-index: 99;
     left: 0;
 }
+@media (max-width:500px) {
+    .sideNav{
+        zoom: 0.85;
+    }
+}
 .sideNav .backgroundBlock{
     display: none;
     position:fixed;
