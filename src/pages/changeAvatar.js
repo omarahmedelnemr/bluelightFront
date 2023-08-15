@@ -17,7 +17,7 @@ function ChangeAvatar() {
     const [allAvatarsElements,setAllAvatarsElement] = useState(null)
     const pageText = {
         title: lang === "en" ? "Change Avatar" : "تغيير الصورة",
-        save:    lang === 'en' ? "Save":"حفظ"      
+        save:  lang === 'en' ? "Save":"حفظ"      
     }
 
     function chooseAvatar(event){
@@ -51,13 +51,14 @@ function ChangeAvatar() {
     },[mainImg])
     function SaveImg(event){
         console.log(mainImg)
+        const imageName = mainImg.split("/")[mainImg.split("/").length-1]
+
         const req = {
             userID:localStorage.getItem("id"),
             role:localStorage.getItem("role"),
-            avatar:mainImg
+            avatar:imageName
         }
         axios.post(Global.BackendURL+"/changeAvatar",req).then((res)=>{
-            const imageName = mainImg.split("/")[mainImg.split("/").length-1]
             localStorage.setItem("img_dir",imageName)
             window.location.reload(false);
 
