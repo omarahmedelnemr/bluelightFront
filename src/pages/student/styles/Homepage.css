@@ -31,6 +31,12 @@
         flex-basis: 90%;
     }
 }
+@media (max-width: 500px) {
+    .Homepage{
+    
+        zoom: 0.6;
+    }
+}
 
 .test{
     background-color: #dbeaff;
