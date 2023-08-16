@@ -241,6 +241,7 @@ function ExamPage() {
         const submission = {
             "studentID":localStorage.getItem('id'),
             "examID" :localStorage.getItem('StartedExam'),
+            "submissionDate": new Date ().toLocaleString(),
             "answers":[]
         }
 
@@ -293,7 +294,6 @@ function ExamPage() {
         setsubmitButtonStatus(" disabled")
         setStubmitText(pageLang['submitting'])
         setBackButtonStatus("disabled")
-        submission['submissionDate'] = new Date()
         console.log(submission)
         axios.post(Global.BackendURL+"/student/examsubmission",submission).then((res)=>{
             console.log("Done")
