@@ -258,6 +258,7 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
             {/* <p className='questionText'>{questionInfo['QNumber']}) {questionInfo['questionText']}</p> */}
             <div className='row'>
                 <p className='questionText'>{mode === 'homework'? questionInfo['QNumber']+")":"" } {questionInfo['questionText']} </p>
+                <p className='isRequired'>&nbsp;{questionInfo['isRequired']?"*":""}</p>
                 {graded && questionInfo['yourGrade'] > 0 ?<span className='plus'>&nbsp;&nbsp; +{questionInfo['yourGrade']}</span>:''}
             </div>
             <div className='preview'>

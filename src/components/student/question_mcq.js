@@ -162,6 +162,7 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
         {bigPreview}
         <div className='row'>
             <p className='questionText'>{mode === 'homework'? questionInfo['QNumber']+")":"" } {questionInfo['questionText']} </p>
+            <p className='isRequired'>&nbsp;{questionInfo['isRequired']?"*":""}</p>
             {questionGrades}
         </div>
         <div className='preview'>

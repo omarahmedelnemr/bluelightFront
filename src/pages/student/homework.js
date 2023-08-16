@@ -30,13 +30,12 @@ function HomeworkPage() {
       doneLate:        lang === 'en' ? "Done Late":"تم متاخرا",
       points:          lang === 'en' ? 'Points':"درجة",
       submit:          lang === 'en' ? "Submit":"تسليم",
-      unsubmit:        lang === 'en' ? "unSubmit":"الغاء التسليم",
+      unsubmit:        lang === 'en' ? "unsubmit":"الغاء التسليم",
       connectionError: lang === 'en' ? "Error While Submitted, Please Try Again":"حدث خطأ, حاول مرة اخري",
       mcqMissing:      lang === "en" ? "There is a MCQ You Didn't answer Yet" : " يوجد سوال اختيار من متعدد لم يتم الاجابه عليه", 
       writtenMissing:  lang === "en" ? "There is a Written Question You Didn't answer Yet" : "يوجد سوال كتابي لم يتم الاجابة عليه", 
       attachMissing:   lang === "en" ? "There is an Attachment Question You Didn't answer Yet" : "يوجد سؤال لم يتم الاجابة عليه", 
-      cantUnsubmit:    lang === "en" ? "You Can't ubSubmit Graded Homework":"لا يمكنك الغاء تسليم واجب تم تصحيحه",
-
+      cantUnsubmit:    lang === "en" ? "You Can't unsubmit Graded Homework":"لا يمكنك الغاء تسليم واجب تم تصحيحه",
 
     }
     const [title,setTitle] = useState('Homework')
@@ -173,9 +172,8 @@ function HomeworkPage() {
                     })
                     answered+=options[x].classList.contains('selected')
                 }
-                if (answered ===0){
+                if (answered ===0 && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['mcqMissing']}</p>)
-                    
                     return;
                 }
             }
@@ -184,7 +182,7 @@ function HomeworkPage() {
                 ans['attachments']=null
                 ans["options"] = null
 
-                if(ans['answer']===null || ans['answer'] === ''){
+                if((ans['answer']===null || ans['answer'] === '')  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*' ){
 
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['writtenMissing']}</p>)
                     return;
@@ -194,7 +192,7 @@ function HomeworkPage() {
                 ans['attachments']=cleanArr(questions[i].querySelector('.attachmentsValues').innerHTML.split(","),'')
                 ans["options"] = null
                 console.log(ans['attachments'])
-                if(ans['attachments']===null || ans['attachments'][0] === undefined || ans['attachments'][0] === '' || ans['attachments'] === undefined){
+                if(( ans['attachments']===null || ans['attachments'][0] === undefined || ans['attachments'][0] === '' || ans['attachments'] === undefined)  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
                     console.log('incise')
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['attachMissing']}</p>)
                     return;

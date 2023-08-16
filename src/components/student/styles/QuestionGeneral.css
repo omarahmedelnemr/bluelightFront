@@ -24,3 +24,8 @@
 .question .row{
     align-items: center;
 }
+
+
+.isRequired{
+    color: red;
+}

@@ -262,7 +262,7 @@ function ExamPage() {
                     })
                     answered+=options[x].classList.contains('selected')
                 }
-                if (answered ===0  && isRunning){
+                if (answered ===0  && isRunning && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['mcqMissing']}</p>)
                     return;
                 }
@@ -272,7 +272,7 @@ function ExamPage() {
                 ans['attachments']=null
                 ans["options"] = null
 
-                if((ans['answer']===null || ans['answer'] === '') && isRunning ){
+                if((ans['answer']===null || ans['answer'] === '') && isRunning  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*' ){
 
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['writtenMissing']}</p>)
                     return;
@@ -282,7 +282,7 @@ function ExamPage() {
                 ans['attachments']=cleanArr(questions[i].querySelector('.attachmentsValues').innerHTML.split(","),'')
                 ans["options"] = null
                 console.log(ans['attachments'])
-                if((ans['attachments']===null || ans['attachments'][0] === undefined || ans['attachments'][0] === '' || ans['attachments'] === undefined) && isRunning){
+                if((ans['attachments']===null || ans['attachments'][0] === undefined || ans['attachments'][0] === '' || ans['attachments'] === undefined) && isRunning  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
                     console.log('incise')
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['attachMissing']}</p>)
                     return;

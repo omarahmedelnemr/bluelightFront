@@ -43,6 +43,8 @@
     background-color: white;
     border-radius: 20px;
     padding:6px;
+    cursor:pointer;
+
 
 }
 #courseDataPage .sortBy .sortIcon *{
@@ -50,7 +52,11 @@
 }
 
 
-
+#courseDataPage .sortBy .sortIcon.disabled{
+    background-color: rgb(233, 233, 233);
+    pointer-events:none;
+    cursor:not-allowed;
+}
 
 
 
