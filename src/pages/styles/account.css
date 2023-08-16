@@ -1,6 +1,11 @@
 .Account{
     height: 100%;
 }
+@media (max-width:500px) {
+    .Account{
+        zoom: 0.58;
+    }
+}
 .Account .topBar{
     margin-bottom: 25px;
 }

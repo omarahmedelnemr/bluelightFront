@@ -1,3 +1,8 @@
 .assignments .workExamPanel{
     margin: 20px;
 }
+@media (max-width:500px) {
+    .assignments{
+        zoom: 0.58;
+    }
+}

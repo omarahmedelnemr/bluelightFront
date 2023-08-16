@@ -3,6 +3,11 @@
     flex-basis: 60%;
     width: 60%;
 }
+@media (max-width:500px) {
+    #courseDataPage{
+        zoom: 0.58;
+    }
+}
 #courseDataPage .courseAssignment{
     display: block;
 }

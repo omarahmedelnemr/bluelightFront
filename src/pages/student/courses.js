@@ -71,12 +71,8 @@ function CoursesPage() {
     event.currentTarget.classList.add('activeSide')
   }
   return (
-    <div className="column">
+    <div className="column CoursesPage">
       <TopBar title={pageLang["courses"]}/>
-      {/* <div className='subNavButtons'>
-        <button className='activeSide' onClick={switchAllFav}>{pageLang['all']}</button>
-        <button onClick={switchAllFav}>{pageLang['fav']}</button>
-      </div> */}
 
       <div className='row coursesBoxList'>
           {coursesBoxs}

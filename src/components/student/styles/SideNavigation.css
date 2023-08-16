@@ -37,6 +37,8 @@
         overflow: hidden;
         position: fixed;
         left: -280px;
+        height: 96%;
+        width: 230px;
     }
 }
 
