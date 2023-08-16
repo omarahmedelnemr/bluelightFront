@@ -203,7 +203,7 @@ function HomeworkPage() {
         }
         setIncompleteMessage(null)
         setSubmittingStatus(" disabled")
-        submission['submissionDate'] = new Date()
+        submission['submissionDate'] = new Date().toLocaleString()
         axios.post(Global.BackendURL+"/student/homeworksubmission",submission).then((res)=>{
             console.log("Done")
             const data = res.data
