@@ -1,4 +1,3 @@
-import Cookies from 'universal-cookie';
 import '../styles/general.css'
 import './styles/courseData.css'
 import { useParams } from 'react-router-dom';
@@ -43,8 +42,13 @@ function CourseDataPage() {
       publish:     lang === 'en' ? "Publish":"نشر في",
       due:         lang === 'en' ? "Due":"حتي",
       grades:      lang === 'en' ? 'Grades':"الدرجات",
-      sortBy:      lang === 'en' ? 'Sort By':'رتب حسب'
-
+      sortBy:      lang === 'en' ? 'Sort By':'رتب حسب',
+      sortDue:     lang === 'en' ? "Due Date":"تاريخ التسليم",
+      sortPublish: lang === 'en' ? "Publish Date":"تاريخ النشر",
+      sortName:    lang === 'en' ? "Name":"الاسم",
+      sortGrade:   lang === 'en' ? "Your Grade":"درجتك",
+      sortStatus:  lang === 'en' ? "Status":"الحالة" 
+        
     }
     const iconList = [
         <FontAwesomeIcon icon="fa-solid fa-otter" />,
@@ -67,6 +71,7 @@ function CourseDataPage() {
     const [homeworkGrades,setHomeworksGrades] = useState(0)
     const [chartValues,setChartValue] = useState([0, 0, 0,0])
     const [activePart,setactivePart] = useState("Homework")
+    const [sortTypeIcon,setSortTypeIcon] = useState(" disabled")
     const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
                                                       <div className="loading"></div>
                                                   </div>)
@@ -317,6 +322,7 @@ function CourseDataPage() {
             workContainer = document.querySelector('.courseExams.courseData.column');
         }
         const workBoxes = Array.from(workContainer.querySelectorAll('.workBox'));
+        setSortTypeIcon("")
         if (sortBy === 'yourGrade'){
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
@@ -423,27 +429,27 @@ function CourseDataPage() {
                 <p>{pageLang['sortBy']}</p>
                 <DropDownList obj={[
                     {
-                        'text':pageLang['publish'],
+                        'text':pageLang['sortPublish'],
                         'function':()=>{sortWorkBoxes("publishDate")}
                     },
                     {
-                        'text':pageLang['due'],
+                        'text':pageLang['sortDue'],
                         'function':()=>{sortWorkBoxes("dueDate")}
                     },
                     {
-                        'text':"name",
+                        'text':pageLang['sortName'],
                         'function':()=>{sortWorkBoxes("name")}
                     },
                     {
-                        'text':"yourGrade",
+                        'text':pageLang['sortGrade'],
                         'function':()=>{sortWorkBoxes("yourGrade")}
                     },
                     {
-                        'text':"Status",
+                        'text':pageLang['sortStatus'],
                         'function':()=>{sortWorkBoxes("homeworkStatus")}
                     }
                     ]}/>
-                    <div onClick={changeSortType} className='row sortIcon'><p>{normalSortType}</p>{normalSortType ==='asc'? <FontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />:<FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />}</div>
+                    <div onClick={changeSortType} className={'row sortIcon'+sortTypeIcon}><p>{normalSortType}</p>{normalSortType ==='asc'? <FontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />:<FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />}</div>
                 
             </div>
             <div className='row worklistAndAnalysis'>
@@ -467,10 +473,10 @@ function CourseDataPage() {
                         <PieChart chartData={chartData} title = {activePart}/>
 
                         <div className='row labelsRow'>
-                            <p><span style={{backgroundColor:'#EFEE8F'}}></span> {pageLang['still']}</p>
-                            <p><span style={{backgroundColor:'red'}}></span> {pageLang['late']}</p>
-                            <p>< span  style={{backgroundColor:'lightgreen'}}></span> {pageLang['completed']}</p>
-                            <p><span  style={{backgroundColor:'#ff00007a'}}></span> {pageLang['doneLate']}</p>
+                            <p><span style={{backgroundColor:'#EFEE8F'}}></span><br/>{pageLang['still']}</p>
+                            <p><span style={{backgroundColor:'red'}}></span><br/>{pageLang['late']}</p>
+                            <p>< span  style={{backgroundColor:'lightgreen'}}></span><br/>{pageLang['completed']}</p>
+                            <p><span  style={{backgroundColor:'#ff00007a'}}></span><br/>{pageLang['doneLate']}</p>
                         </div>
 
                     </div>
