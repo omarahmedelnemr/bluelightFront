@@ -20,7 +20,7 @@ function HomeworkPage() {
     const {courseName,homeworkID} = useParams() 
     const lang = localStorage.getItem("lang")
     const pageLang ={
-      assingments:     lang === 'en' ? 'Assignments':"الواجبات",
+      Homework:        lang === 'en' ? 'Homework':"الواجبات",
       exams:           lang === "en" ? "Exams":"الاختبارات",
       announce:        lang === 'en' ? "Announcements":"الاعلانات",
       due:             lang === 'en' ? "Due":"متاح حتي",
@@ -38,7 +38,7 @@ function HomeworkPage() {
       cantUnsubmit:    lang === "en" ? "You Can't unsubmit Graded Homework":"لا يمكنك الغاء تسليم واجب تم تصحيحه",
 
     }
-    const [title,setTitle] = useState('Homework')
+    const [title,setTitle] = useState(pageLang['Homework'])
     const [homeworkTitle,setHomeworkTitle] = useState('')
     const [publishDate,setPublishDate] = useState("-/-/-")
     const [dueDate,setDueDate] = useState("-/-/-")
