@@ -102,3 +102,11 @@
         zoom:0.7;
     }
 }
+
+.logout{
+    height: 100vh;
+    padding: 50px;
+}
+.logout h1{
+    margin-top: 0px;
+}
