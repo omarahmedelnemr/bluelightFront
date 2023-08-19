@@ -55,6 +55,11 @@
 .attachment .attachemntFiles .custom-file-upload:active{
     background-color:#c2cdff;
 }
+.attachment .attachemntFiles .YourWorkText{
+    background: #90a4fd;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+}
 .preview{
     /* display: flex;
     flex-direction: row; */

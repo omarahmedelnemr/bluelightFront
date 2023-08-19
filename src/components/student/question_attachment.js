@@ -68,7 +68,7 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
     
     const [attachment,setAttachments]= useState(attachVal)
     var   [preview,setPreview] = useState(preVal)
-    const [noFilesYet,setNoFilesYet] = useState(noFileVal)
+    var [noFilesYet,setNoFilesYet] = useState(noFileVal)
 
 
     // Show a Preview of attachment With Type Image
@@ -155,7 +155,9 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
     // Dispaly Questions With it's answers if The Student Answer That Homework
     if (answered){
         const attachmentsNames = questionInfo['Studentattachment']
-        
+        if (attachmentsNames.length !== 0 ){
+            noFilesYet = null 
+        }
         preview = []
         for (var i=0;i<attachmentsNames.length;i++){
             console.log("Helllllo")
@@ -269,7 +271,7 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
             
             <div className='attachemntFiles'>
                 {AttachmentErrorMessage}
-                <p>{compLang['yourWork']}:</p>
+                <p className='YourWorkText'>{compLang['yourWork']}:</p>
                 <div className='preview'>
                     {noFilesYet}
                     {preview}
