@@ -11,7 +11,7 @@ function StatusBoxes() {
     const [totalAssignmentsCount,setTotalAssignmentsCount] = useState('-')
     const [assignmentsCount,setAssignmentsCount] = useState('-')
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/totalhomeworkcount?studentID="+cookieReader.get('id')).then((res)=>{
+        axios.get("/student/totalhomeworkcount?studentID="+localStorage.getItem('id')).then((res)=>{
             setTotalAssignmentsCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
