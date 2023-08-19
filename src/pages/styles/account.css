@@ -18,14 +18,20 @@
 }
 .ProfileImage .imgContainer{
     width: 200px;
+    height: 200px;
     border-radius: 100%;
     overflow: hidden;
     margin: auto;
     position: relative;
     cursor: pointer;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .ProfileImage img{
-    width: 100%;
+    width: 90%;
+    height: 90%;
 }
 .ProfileImage .ChangePicCover{
     margin: auto;
