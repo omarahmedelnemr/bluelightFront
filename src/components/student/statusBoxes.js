@@ -27,23 +27,22 @@ function StatusBoxes() {
 
     // get Exams Numbers
     const [totalExamsCount,setTotalExamsCount] = useState('-')
-    const [examsCount,setExamsCount] = useState('-')
+    const [examGrades,setExamsGrades] = useState('-')
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/totalexamscount?studentID="+cookieReader.get('id')).then((res)=>{
-            setTotalExamsCount(res.data.count)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    })
-    useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/examscount?studentID="+cookieReader.get('id')).then((res)=>{
-            setExamsCount(res.data.count)
+        axios.get(Global.BackendURL+"/student/examGrades?studentID="+cookieReader.get('id')).then((res)=>{
+            const data = res.data
+            if (data['totalGrade'] === 0 ){
+                setExamsGrades('-')
+            }else{
+                const percentage = Math.round(data['grade']*100 / data['totalGrade'])
+                setExamsGrades(percentage)
+            }
         }).catch((err)=>{
             console.log(err)
         })
     })
 
-    // get Exams Numbers
+    // get Attendance Numbers
     const [totalAttendanceCount,setTotalAttendanceCount] = useState('-')
     const [attendedCount,setAttendedCount] = useState('-')
     useEffect(()=>{
@@ -114,10 +113,10 @@ function StatusBoxes() {
                         <p>{compLang["exams"]}</p>
                     </div>
                     <div className='boxValue'>
-                        <h2>{(totalExamsCount === '-' || examsCount === "-") ? '-' :(totalExamsCount - examsCount)}/{totalExamsCount}</h2>
+                        <h2>{examGrades} %</h2>
                     </div>
                     <div className='boxComment'>
-                        <p>{examsCount === '-' ? '-' : (examsCount  < 2? (examsCount ==0 ? compLang["examsMessage1"]:compLang["examsMessage2"]):compLang["examsMessage3"])}</p>
+                        <p>{examGrades < 75? (examGrades<50? compLang["examsMessage3"]:compLang["examsMessage2"]):compLang["examsMessage1"]}</p>
                     </div>
                 </div>
             </div>
