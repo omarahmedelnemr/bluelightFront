@@ -48,7 +48,8 @@
 #homeworkPage .homeworkSection .homeworkInfo .status{
     align-items: flex-end;
     justify-content: space-around;
-    font-size: 20px;
+    font-size: 19px;
+    color: rgba(0, 0, 0, 0.572);
 }
 #homeworkPage .homeworkSection .homeworkInfo .status p{
     margin: 0px;
