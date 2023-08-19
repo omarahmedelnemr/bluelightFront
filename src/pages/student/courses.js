@@ -7,6 +7,9 @@ import ArabicImage from '../../content/arabic.jpg'
 import mathImage from '../../content/math.jpg'
 import ScienceImage from '../../content/science.jpg'
 import EnglishImage from '../../content/english.jpg'
+import PhysicsImage from '../../content/physics.jpg'
+import ChemistryImage from '../../content/chemistry.jpg'
+import DrawingImage from '../../content/drawing.jpg'
 import baseImage from '../../content/courseBase.jpeg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -30,6 +33,9 @@ function CoursesPage() {
     "english":EnglishImage,
     "math":mathImage,
     "science":ScienceImage,
+    "Darwing":DrawingImage,
+    "physics":PhysicsImage,
+    "chemistry":ChemistryImage,
     "baseImage":baseImage
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
