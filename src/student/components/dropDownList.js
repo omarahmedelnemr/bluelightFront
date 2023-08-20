@@ -43,7 +43,7 @@ function DropDownList({obj}) {
         <div className="dropDownList" >
             <div className="header" onClick={activate}>
                 <div>
-                    <p className="mainText">Select</p>
+                    <p className="mainText">{localStorage.getItem("lang") === 'en' ? "Select":"اختر"}</p>
                 </div>
                 <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
             </div>
