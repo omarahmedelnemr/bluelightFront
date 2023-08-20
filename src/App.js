@@ -1,33 +1,37 @@
 import './App.css';
-import Homepage from './pages/student/home';
-import Login from './pages/login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './components/FontawesomeIcons'
-import SideNavigation from './components/student/SideNavigationMenu';
-import CoursesPage from './pages/student/courses';
-import Logout from './pages/logout';
-import StudentHomeworkPage from './pages/student/studentWork';
-import CourseDataPage from './pages/student/CourseData';
-import HomeworkPage from './pages/student/homework';
-import Account from './pages/account';
-import StudentExamPage from './pages/student/studentExamPage';
-import TeacherSideNavigation from './components/teacher/teacherSideNav';
-import TeacherHomepage from './pages/teacher/teacherHomePage';
-import ClassroomsPage from './pages/teacher/classrooms';
-import ClassroomInfo from './pages/teacher/ClassroomStudentList';
-import Classwork from './pages/teacher/classwork';
-
 import {Chart, ArcElement} from 'chart.js'
-import StudentMessagesPage from './pages/student/Messages';
-import ExamPage from './pages/student/exam';
-import ForgetPassword from './pages/forgetPassword';
-import ResetPassword from './pages/resetPassword';
-import Setting from './pages/settings';
-import ChangeUsername from './pages/changeUsername';
-import ChangePassword from './pages/changePassword';
-import ReportPage from './pages/reportIssu';
-import TimeTablePage from './pages/student/timetable';
-import ChangeAvatar from './pages/changeAvatar';
+
+import './general/components/FontawesomeIcons'
+import Login from './general/pages/login';
+import Logout from './general/pages/logout';
+import Account from './general/pages/account';
+import ForgetPassword from './general/pages/forgetPassword';
+import ResetPassword from './general/pages/resetPassword';
+import Setting from './general/pages/settings';
+import ChangeUsername from './general/pages/changeUsername';
+import ChangePassword from './general/pages/changePassword';
+import ReportPage from './general/pages/reportIssu';
+import ChangeAvatar from './general/pages/changeAvatar';
+
+import Homepage from './student/pages/home';
+import SideNavigation from './student/components/SideNavigationMenu';
+import CoursesPage from './student/pages/courses';
+import StudentHomeworkPage from './student/pages/studentWork';
+import CourseDataPage from './student/pages/CourseData';
+import HomeworkPage from './student/pages/homework';
+import StudentExamPage from './student/pages/studentExamPage';
+import StudentMessagesPage from './student/pages/Messages';
+import ExamPage from './student/pages/exam';
+import TimeTablePage from './student/pages/timetable';
+
+import TeacherSideNavigation from './teacher/components/teacherSideNav';
+import TeacherHomepage from './teacher/pages/teacherHomePage';
+import ClassroomsPage from './teacher/pages/classrooms';
+import ClassroomInfo from './teacher/pages/ClassroomStudentList';
+import Classwork from './teacher/pages/classwork';
+
+
 
 Chart.register(ArcElement);
 // require('dotenv').config()
