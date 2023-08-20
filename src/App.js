@@ -49,7 +49,7 @@ function App() {
           <Route path="/logout" element={<Logout/>}/>
           <Route path='/student/*' element={
           
-            <div className='row fullWidth pageLang'>
+            <div  id='StudentSidePages' className='row fullWidth pageLang'>
                 <SideNavigation />
                 <div className='column mainContent fullWidth'>
                     <Routes>
@@ -81,7 +81,7 @@ function App() {
           }/>
           <Route path='/teacher/*' element={
           
-            <div className='row fullWidth pageLang'>
+            <div id='TeacherSidePages' className='row fullWidth pageLang'>
                 <TeacherSideNavigation />
                 <div className='column mainContent fullWidth'>
                     <Routes>
