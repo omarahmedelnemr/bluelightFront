@@ -10,7 +10,7 @@ function Homepage() {
     }
     const lang = localStorage.getItem('lang') 
     const pageText = {
-        SchoolName: lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",
+        SchoolName: lang === 'en' ? "Bluelight Schools":"مدارس بلو لايت الدولية",
         overview:{
             "en":"overview",
             "ar":"نظرة عامة"
