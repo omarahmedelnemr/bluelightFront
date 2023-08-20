@@ -1,4 +1,4 @@
-import '../../student/components/styles/SideNavigation.css'
+import './styles/TeacherSideNavigation.css'
 import logoImage from '../../content/logo.jpeg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
