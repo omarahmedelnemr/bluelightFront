@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.9dd3fe39.css",
-    "main.js": "/static/js/main.d8fb6027.js",
+    "main.css": "/static/css/main.74c7d60e.css",
+    "main.js": "/static/js/main.6dd3863e.js",
     "static/js/787.a3e9bff8.chunk.js": "/static/js/787.a3e9bff8.chunk.js",
-    "static/media/144.jpg": "/static/media/144.205b8497d593e8a2ce31.jpg",
     "static/media/44.jpg": "/static/media/44.0b7af8973304dad54b4a.jpg",
+    "static/media/physics.jpg": "/static/media/physics.5b7eb333802e4d35978e.jpg",
+    "static/media/drawing.jpg": "/static/media/drawing.20a1865ea85e12efce16.jpg",
     "static/media/math.jpg": "/static/media/math.883eff9b9284d786dce9.jpg",
     "static/media/english.jpg": "/static/media/english.22c8469138626e1bd147.jpg",
     "static/media/courseBase.jpeg": "/static/media/courseBase.7ac4dc64d315a7711537.jpeg",
     "static/media/science.jpg": "/static/media/science.ef919f8a23477abd9024.jpg",
-    "static/media/person.jpg": "/static/media/person.b127dc31e0b4d18622b8.jpg",
+    "static/media/chemistry.jpg": "/static/media/chemistry.145746b5e1d50d8d5aaf.jpg",
     "static/media/subjectSideImage.jpeg": "/static/media/subjectSideImage.56d7d7cd3e3cef6e9027.jpeg",
     "static/media/arabic.jpg": "/static/media/arabic.566864237ed8c33517d0.jpg",
     "static/media/logo.jpeg": "/static/media/logo.b4d95720faf43a38cf16.jpeg",
     "index.html": "/index.html",
-    "main.9dd3fe39.css.map": "/static/css/main.9dd3fe39.css.map",
-    "main.d8fb6027.js.map": "/static/js/main.d8fb6027.js.map",
+    "main.74c7d60e.css.map": "/static/css/main.74c7d60e.css.map",
+    "main.6dd3863e.js.map": "/static/js/main.6dd3863e.js.map",
     "787.a3e9bff8.chunk.js.map": "/static/js/787.a3e9bff8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9dd3fe39.css",
-    "static/js/main.d8fb6027.js"
+    "static/css/main.74c7d60e.css",
+    "static/js/main.6dd3863e.js"
   ]
 }
