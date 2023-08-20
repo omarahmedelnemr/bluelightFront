@@ -19,33 +19,35 @@ function CourseDataPage() {
     }
     const lang = localStorage.getItem("lang")
     const pageLang ={
-      seeAll:      lang === 'en' ? "See All":"مشاهدة الكل",
-      name:        lang === 'en' ? "Name":"الاسم",
-      grade:       lang === 'en' ? "Total Grade":"الدرجة الكلية",
-      due:         lang === 'en' ? "Due Date":"اخر موعد تسليم",
-      publishDate: lang === 'en' ? "Publish Date":"تاريخ النشر",
-      yourGrade:   lang === "en" ? "Your Grade":"درجتك",
-      status:      lang === 'en' ? "Status":"الحالة",
-      course:      lang === "en" ? "Course":"المادة",
-      nothing:     lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
-      still  :     lang === 'en' ? "Still":"هناك وقت",
-      today  :     lang === 'en' ? "Today":"اليوم",
-      late  :      lang === 'en' ? "Late":"متأخر",
-      completed:   lang === "en" ? "Done":"تم",
-      doneLate:    lang === 'en' ? "Done Late":"تم متاخرا",
-      notYet:      lang === 'en' ? "Not Graded":"لم تصحح",
-      assingments: lang === 'en' ? 'Assignments':"الواجبات",
-      exams:       lang === "en" ? "Exams":"الاختبارات",
-      announce:    lang === 'en' ? "Announcements":"الاعلانات",
-      publish:     lang === 'en' ? "Publish":"نشر في",
-      due:         lang === 'en' ? "Due":"حتي",
-      grades:      lang === 'en' ? 'Grades':"الدرجات",
-      sortBy:      lang === 'en' ? 'Sort By':'رتب حسب',
-      sortDue:     lang === 'en' ? "Due Date":"تاريخ التسليم",
-      sortPublish: lang === 'en' ? "Publish Date":"تاريخ النشر",
-      sortName:    lang === 'en' ? "Name":"الاسم",
-      sortGrade:   lang === 'en' ? "Your Grade":"درجتك",
-      sortStatus:  lang === 'en' ? "Status":"الحالة" 
+      seeAll:        lang === 'en' ? "See All":"مشاهدة الكل",
+      name:          lang === 'en' ? "Name":"الاسم",
+      grade:         lang === 'en' ? "Total Grade":"الدرجة الكلية",
+      due:           lang === 'en' ? "Due Date":"اخر موعد تسليم",
+      publishDate:   lang === 'en' ? "Publish Date":"تاريخ النشر",
+      yourGrade:     lang === "en" ? "Your Grade":"درجتك",
+      status:        lang === 'en' ? "Status":"الحالة",
+      course:        lang === "en" ? "Course":"المادة",
+      nothing:       lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
+      still  :       lang === 'en' ? "Still":"هناك وقت",
+      today  :       lang === 'en' ? "Today":"اليوم",
+      late  :        lang === 'en' ? "Late":"متأخر",
+      completed:     lang === "en" ? "Done":"تم",
+      doneLate:      lang === 'en' ? "Done Late":"تم متاخرا",
+      notYet:        lang === 'en' ? "Not Graded":"لم تصحح",
+      assignments:   lang === 'en' ? 'Assignments':"الواجبات",
+      exams:         lang === "en" ? "Exams":"الاختبارات",
+      announce:      lang === 'en' ? "Announcements":"الاعلانات",
+      publish:       lang === 'en' ? "Publish":"نشر في",
+      due:           lang === 'en' ? "Due":"حتي",
+      grades:        lang === 'en' ? 'Grades':"الدرجات",
+      sortBy:        lang === 'en' ? 'Sort By':'رتب حسب',
+      sortDue:       lang === 'en' ? "Due Date":"تاريخ التسليم",
+      sortPublish:   lang === 'en' ? "Publish Date":"تاريخ النشر",
+      sortName:      lang === 'en' ? "Name":"الاسم",
+      sortGrade:     lang === 'en' ? "Your Grade":"درجتك",
+      sortStatus:    lang === 'en' ? "Status":"الحالة",
+      Homework:      lang === 'en' ? "Homework":"الواجبات",
+      Exams:         lang === 'en' ? "Exams":"الاختبارات"
         
     }
     const iconList = [
@@ -65,10 +67,10 @@ function CourseDataPage() {
     const classroomID = localStorage.getItem('classroom')
     const [assinmentList,setAssignmentList] = useState('')
     const [exmaStatus,setExamStatus] = useState(false)
-    const [title,setTitle] = useState(pageLang['assingments'])
+    const [title,setTitle] = useState(pageLang['assignments'])
     const [homeworkGrades,setHomeworksGrades] = useState(0)
     const [chartValues,setChartValue] = useState([0, 0, 0,0])
-    const [activePart,setactivePart] = useState("Homework")
+    const [activePart,setactivePart] = useState(pageLang["Homework"])
     const [sortTypeIcon,setSortTypeIcon] = useState(" disabled")
     const [emptyAssingmentsMessage,setEmptyMessage] = useState(<div className="emptyAssingmentsMessage" >
                                                       <div className="loading"></div>
@@ -103,11 +105,12 @@ function CourseDataPage() {
         var Localgrade;
         const activeSide = document.querySelector(".activeSide").innerHTML.toLowerCase()
         var workElement;
-        if (activeSide === 'assignments'){
+        if (activeSide === pageLang['assignments'].toLowerCase()){
              workElement = document.querySelector(".courseAssignment").getElementsByClassName('workBox')
+             setactivePart('Homework')
         }else{
             workElement = document.querySelector(".courseExams").getElementsByClassName('workBox')
-
+            setactivePart('Exams')
         }
         const values = {}//"still":0,'late':0,"done":0,"done late":0}
         for (var i=0;i<workElement.length;i++){
@@ -131,13 +134,6 @@ function CourseDataPage() {
         setChartValue(sortedValues)
 
         setHomeworksGrades(Math.round((grades/totalGrades)*100))
-        if (activeSide === 'assignments'){
-            setactivePart("Homework")
-        }else{
-            setactivePart("Exams")
-            // setHomeworksGrades(10)
-
-        }
 
     },[assinmentList,title,examsList])
     
@@ -219,11 +215,11 @@ function CourseDataPage() {
     event.currentTarget.classList.add('activeSide')
 
     //Show the Selected Section
-    if (event.currentTarget.textContent == pageLang['assingments']){
+    if (event.currentTarget.textContent == pageLang['assignments']){
         document.getElementsByClassName('courseAssignment')[0].style.display = 'block'
         document.getElementsByClassName('courseExams')[0].style.display = 'none'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'none'
-        setTitle(pageLang['assingments'])
+        setTitle(pageLang['assignments'])
 
     }else if(event.currentTarget.textContent == pageLang['exams']){
         document.getElementsByClassName('courseAssignment')[0].style.display = 'none'
@@ -308,7 +304,6 @@ function CourseDataPage() {
             localStorage.setItem("sortby",'asc')
         }
         event.currentTarget.parentElement.querySelector(".activeSelectOption").click()
-        console.log(event.currentTarget.parentElement.querySelector(".activeSelectOption"))
     }
 
     function sortWorkBoxes(sortBy) {
@@ -419,7 +414,7 @@ function CourseDataPage() {
                 <img src={subjectSideImage}/>
             </div>
             <div className='subNavButtons'>
-                <button onClick={switchWork} className='activeSide'>{pageLang['assingments']}</button>
+                <button onClick={switchWork} className='activeSide'>{pageLang['assignments']}</button>
                 <button onClick={switchWork}>{pageLang['exams']}</button>
                 {/* <button onClick={switchWork}>{pageLang['announce']}</button> */}
             </div> 
@@ -468,7 +463,7 @@ function CourseDataPage() {
 
             <div className='analysisAssignment column'>
                     <div className='Graph column'>
-                        <PieChart chartData={chartData} title = {activePart}/>
+                        <PieChart chartData={chartData} title = {pageLang[activePart]}/>
 
                         <div className='row labelsRow'>
                             <p><span style={{backgroundColor:'#EFEE8F'}}></span><br/>{pageLang['still']}</p>

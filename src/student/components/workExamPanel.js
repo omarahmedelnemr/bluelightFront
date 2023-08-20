@@ -10,8 +10,8 @@ import formatTime from '../../publicFunctions/formatTime'
 function WorkExamsPanel({type,limit}) {
     const [assinmentList,setAssignmentList] = useState('')
     const [emptyMessage,setEmptyMessage] = useState(<div className="emptyMessage" >
-    <div className="loading"></div>
-</div>)
+                                                        <div className="loading"></div>
+                                                    </div>)
     const id = new Cookies().get('id')
     const iconList = [
         <FontAwesomeIcon icon="fa-solid fa-otter" />,
@@ -102,7 +102,7 @@ function WorkExamsPanel({type,limit}) {
             <div className={"row titleSeemore "+(limit ?"":"hide")}>
                 <p className="panelTitle">{compLang['type']}</p>
                 {/* <a href={'/student/'+type}>{compLang['seeAll']} {localStorage.getItem('lang')==='en' ?<FontAwesomeIcon icon="fa-solid fa-angles-right" />:<FontAwesomeIcon icon="fa-solid fa-angles-left" />}</a> */}
-                <a onClick={()=>{document.getElementById(type.toLowerCase()+"NavButton").click()}}>See All {localStorage.getItem('lang')==='en' ?<FontAwesomeIcon icon="fa-solid fa-angles-right" />:<FontAwesomeIcon icon="fa-solid fa-angles-left" />}</a>
+                <a onClick={()=>{document.getElementById(type.toLowerCase()+"NavButton").click()}}>{compLang['seeAll']} {localStorage.getItem('lang')==='en' ?<FontAwesomeIcon icon="fa-solid fa-angles-right" />:<FontAwesomeIcon icon="fa-solid fa-angles-left" />}</a>
             </div>
             <table>
                 <tr className="tableHeaders">
