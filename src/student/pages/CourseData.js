@@ -41,13 +41,15 @@ function CourseDataPage() {
       due:           lang === 'en' ? "Due":"حتي",
       grades:        lang === 'en' ? 'Grades':"الدرجات",
       sortBy:        lang === 'en' ? 'Sort By':'رتب حسب',
-      sortDue:       lang === 'en' ? "Due Date":"تاريخ التسليم",
+      sortDue:       lang === 'en' ? "Due Date":"اخر موعد",
       sortPublish:   lang === 'en' ? "Publish Date":"تاريخ النشر",
       sortName:      lang === 'en' ? "Name":"الاسم",
       sortGrade:     lang === 'en' ? "Your Grade":"درجتك",
       sortStatus:    lang === 'en' ? "Status":"الحالة",
       Homework:      lang === 'en' ? "Homework":"الواجبات",
-      Exams:         lang === 'en' ? "Exams":"الاختبارات"
+      Exams:         lang === 'en' ? "Exams":"الاختبارات",
+      asc:           lang === 'en' ? "asc":"تصاعدي",
+      des:           lang === 'en' ? "des":"تنازلي"
         
     }
     const iconList = [
@@ -295,12 +297,17 @@ function CourseDataPage() {
     function changeSortType(event){
         const value = event.currentTarget.querySelector("p").innerHTML
         console.log("Clicked")
-        if (value === 'asc'){
+        console.log(value)
+        console.log(value === pageLang['asc'])
+        if (value === pageLang['asc']){
             setSortType('des')
+            console.log("a7a")
+            localStorage.removeItem('sortby')
             localStorage.setItem("sortby",'des')
 
         }else{
             setSortType('asc')
+            localStorage.removeItem('sortby')
             localStorage.setItem("sortby",'asc')
         }
         event.currentTarget.parentElement.querySelector(".activeSelectOption").click()
@@ -340,7 +347,7 @@ function CourseDataPage() {
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
                 const bValue = extractValue(b, sortBy);
-                if(normalSortType === 'asc'){
+                if(localStorage.getItem('sortby') === 'asc'){
                     return new Date(aValue).getTime() - new Date(bValue).getTime();
                 }else{
                     return new Date(bValue).getTime() - new Date(aValue).getTime();
@@ -353,7 +360,7 @@ function CourseDataPage() {
 
             const aValue = extractValue(a, sortBy);
             const bValue = extractValue(b, sortBy);
-            if(normalSortType=== 'asc'){
+            if(localStorage.getItem('sortby')=== 'asc'){
                 return labelsChart.indexOf(aValue) - labelsChart.indexOf(bValue)
             }else{
                 return labelsChart.indexOf(bValue) - labelsChart.indexOf(aValue)
@@ -366,7 +373,7 @@ function CourseDataPage() {
             workBoxes.sort((a, b) => {
                 const aValue = extractValue(a, sortBy);
                 const bValue = extractValue(b, sortBy);
-                if(normalSortType ==='asc'){
+                if(localStorage.getItem("sortby") ==='asc'){
                     return aValue.localeCompare(bValue); // Use localeCompare for string comparison
                 }else{
                     return bValue.localeCompare(aValue); // Use localeCompare for string comparison
@@ -442,7 +449,7 @@ function CourseDataPage() {
                         'function':()=>{sortWorkBoxes("homeworkStatus")}
                     }
                     ]}/>
-                    <div onClick={changeSortType} className={'row sortIcon'+sortTypeIcon}><p>{normalSortType}</p>{normalSortType ==='asc'? <FontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />:<FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />}</div>
+                    <div onClick={changeSortType} className={'row sortIcon'+sortTypeIcon}><p>{pageLang[normalSortType]}</p>{normalSortType ==='asc'? <FontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />:<FontAwesomeIcon icon="fa-solid fa-arrow-down-wide-short" />}</div>
                 
             </div>
             <div className='row worklistAndAnalysis'>
