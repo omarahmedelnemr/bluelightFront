@@ -1,8 +1,13 @@
-.assignments .workExamPanel{
+#ParentSidePages .assignments .workExamPanel{
     margin: 20px;
 }
 @media (max-width:500px) {
-    .assignments{
+    #ParentSidePages .assignments{
         zoom: 0.58;
     }
+}
+
+
+#ParentSidePages .assignments .NotTodo{
+    display: none;
 }

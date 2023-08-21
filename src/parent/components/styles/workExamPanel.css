@@ -1,4 +1,4 @@
-.workExamPanel{
+#ParentSidePages  .workExamPanel{
     background-color: #dbeaff;
     border-radius: 10px;
     padding: 20px;
@@ -7,7 +7,7 @@
     position: relative;
     min-width: 500px;
 }
-.workExamPanel .emptyMessage{
+#ParentSidePages  .workExamPanel .emptyMessage{
     position: absolute;
     top: 50%;
     width: 50%;
@@ -19,7 +19,7 @@
     align-items: center;
 
 }
-.workExamPanel .emptyMessage .loading{
+#ParentSidePages  .workExamPanel .emptyMessage .loading{
     width: 40px;
     height: 40px;
     border: 5px dashed #373e486b;
@@ -27,62 +27,73 @@
 
 }
 @media (prefers-reduced-motion: no-preference) {
-    .workExamPanel .emptyMessage .loading{
+    #ParentSidePages  .workExamPanel .emptyMessage .loading{
       animation: infinitRotate infinite 10s linear;
     }
   }
-.workExamPanel svg{
+#ParentSidePages  .workExamPanel svg{
     font-size: 40px;
 
 }
-.workExamPanel table{
+#ParentSidePages  .workExamPanel table{
     position: relative;
     width: 100%;
 }
-.workExamPanel table .still{
+#ParentSidePages  .workExamPanel table .still{
     background-color: lightgreen;
     color:green;
     padding: 10px;
     border-radius: 10px;
 }
-.workExamPanel table .today{
+#ParentSidePages  .workExamPanel table .today{
     background-color: #EFEE8F;
     color:#959535;
     padding: 10px;
     border-radius: 10px;
 }
 
-.workExamPanel table .late{
+#ParentSidePages  .workExamPanel table .late{
     background-color: #EEAE9C;
     color:red;
     padding: 10px;
     border-radius: 10px;
 }
 
+#ParentSidePages .workExamPanel table .done{
+    background-color: lightgreen;
+    color:green;
+    padding: 10px;
+    border-radius: 10px;
+}
+#ParentSidePages .workExamPanel table .doneLate{
+    background-color: #eeae9c7a;
+    color: #ff00007a;
+    padding: 10px;
+    border-radius: 10px;
+}
 
-
-.workExamPanel .titleSeemore{
+#ParentSidePages  .workExamPanel .titleSeemore{
     justify-content: space-between;
 }
-.workExamPanel .hide{
+#ParentSidePages  .workExamPanel .hide{
     display: none;
 }
-.workExamPanel .titleSeemore a{
+#ParentSidePages  .workExamPanel .titleSeemore a{
     font-size: 15px;
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
-.workExamPanel .titleSeemore a svg{
+#ParentSidePages  .workExamPanel .titleSeemore a svg{
     font-size: 15px;
 
 }
-.workExamPanel .panelTitle{
+#ParentSidePages  .workExamPanel .panelTitle{
     text-align: left;
     margin-top: 0px;
     font-weight: bolder;
 }
-.workExamPanel tr{
+#ParentSidePages  .workExamPanel tr{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -90,25 +101,29 @@
     height: 50px;
 
 }
-.workExamPanel .tableRow{
+#ParentSidePages  .workExamPanel .tableRow{
     transition: 0.5s;
     border-radius: 10px;
     cursor: pointer;
 }
-.workExamPanel .tableRow:hover{
+#ParentSidePages  .workExamPanel .tableRow:hover{
     box-shadow: -2px 2px 5px gray;
 }
 
-.workExamPanel tr td{
+#ParentSidePages  .workExamPanel tr td{
     margin: 0px 10px;
 }
-.workExamPanel .tableHeaders{
+#ParentSidePages  .workExamPanel .tableHeaders{
     border-bottom: 1px solid gray;
     text-align: center;
 }
-.workExamPanel hr{
+#ParentSidePages  .workExamPanel hr{
     border: 1px solid #c9ddfe;
     position: absolute;
     width: 100%;
     margin: 0px;
 }
+
+
+
+

@@ -1,4 +1,3 @@
-import Cookies from "universal-cookie";
 import "./styles/workExamPanel.css"
 import axios from "axios";
 import Global from "../../publicFunctions/globalVar";
@@ -7,12 +6,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import compareDates from "../../publicFunctions/compareDates";
 import routeTo from "../../publicFunctions/reroute";
 import formatTime from '../../publicFunctions/formatTime'
-function WorkExamsPanel({type,limit}) {
+function WorkExamsPanel({type,limit,submitted = false}) {
     const [assinmentList,setAssignmentList] = useState('')
     const [emptyMessage,setEmptyMessage] = useState(<div className="emptyMessage" >
                                                         <div className="loading"></div>
                                                     </div>)
     const id = localStorage.getItem("currentStudentID")
+    const studentName = localStorage.getItem("currentStudentName").split(" ")[0]
+    const studentArName = localStorage.getItem("currentStudentArName").split(" ")[0]
+    const lang = localStorage.getItem('lang')
+    const compLang ={
+        type:           lang === 'en' ? (type === "Assignments"? "Assignments":"Exams"):(type === "Assignments"? "الواجبات":"الاختبارات"),
+        seeAll:         lang === 'en' ? "See All":"مشاهدة الكل",
+        name:           lang === 'en' ? "Name":"الاسم",
+        grade:          lang === 'en' ? "Total Grade":"الدرجة الكلية",
+        studentGrade:   lang === 'en' ? studentName+"'s Grade":"درجة "+studentArName,
+        due:            lang === 'en' ? "Due Date":"اخر موعد تسليم",
+        publish:        lang === 'en' ? "Publish Date":"نشر في", 
+        status:         lang === 'en' ? "Status":"الحالة",
+        course:         lang === "en" ? "Course":"المادة",
+        nothing:        lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
+        still:          lang === 'en' ? "Still":"هناك وقت",
+        today:          lang === 'en' ? "Today":"اليوم",
+        late:           lang === 'en' ? "Late":"متأخر",
+        done:           lang === 'en' ? "Done":"تم",
+        doneLate:       lang === 'en' ? "Done Late":"تم متاخر"
+
+    }
     const iconList = [
         <FontAwesomeIcon icon="fa-solid fa-otter" />,
         <FontAwesomeIcon icon="fa-solid fa-hippo" />,
@@ -26,13 +46,22 @@ function WorkExamsPanel({type,limit}) {
     ]
     useEffect(()=>{
         var workEndpoint,workType;
-        if(type == "Assignments"){
-            workEndpoint = "homeworklist"
-            workType = 'homework'
+        if (submitted){
+            if(type == "Assignments"){
+                workEndpoint = "submittedhomeworklist"
+                workType = 'homework'
+            }else{
+                workEndpoint = "submittedhomeworklist"
+                workType = 'submittedexamslist'
+            }
         }else{
-            workEndpoint = "examslist"
-            workType = 'exam'
-
+            if(type == "Assignments"){
+                workEndpoint = "homeworklist"
+                workType = 'homework'
+            }else{
+                workEndpoint = "examslist"
+                workType = 'exam'
+            }
         }
         axios.get(Global.BackendURL+"/student/"+workEndpoint+"?studentID="+id).then((res)=>{
             const data = res.data
@@ -54,15 +83,30 @@ function WorkExamsPanel({type,limit}) {
                 var bound = limit?(data.length>5?5:data.length):(data.length)
                 for(var i=0;i<bound;i++){
                     var homeworkType;
-                    if(data[i][workType]['due_date'] == null){
-                        homeworkType = 'still'
+                    if (submitted){
+                        if(data[i][workType]['due_date'] == null){
+                            homeworkType = 'done'
+                        }else{
+                            homeworkType = compareDates(data[i][workType]['due_date'])
+                            if (homeworkType === 'late'){
+                                homeworkType = 'doneLate'
+                            }else{
+                                homeworkType = 'done'
+                            }
+                        }
                     }else{
-                        homeworkType = compareDates(data[i][workType]['due_date'])
+                        if(data[i][workType]['due_date'] == null){
+                            homeworkType = 'still'
+                        }else{
+                            homeworkType = compareDates(data[i][workType]['due_date'])
+                        }
                     }
+
                     var subjectName = data[i][workType]['course']["name"].split(' ').join('')
                     tableElements.push(<tr className="tableRow" onClick={routeTo}>
                                             <td>{data[i][workType]['name']}</td>
                                             <td>{data[i][workType]['grade']}</td>
+                                            {submitted ? (data[i]['graded']? <td>{data[i]['grade']}</td>: '-'):null}
                                             <td>{data[i][workType]['publish_date'] === null ? "-":formatTime(data[i][workType]['publish_date'])}</td>
                                             <td>{data[i][workType]['due_date']==null ? '-': formatTime(data[i][workType]['due_date'])}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
@@ -81,22 +125,7 @@ function WorkExamsPanel({type,limit}) {
         })
     },[])
 
-    const lang = localStorage.getItem('lang')
-    const compLang ={
-        type:    lang === 'en' ? (type === "Assignments"? "Assignments":"Exams"):(type === "Assignments"? "الواجبات":"الاختبارات"),
-        seeAll:  lang === 'en' ? "See All":"مشاهدة الكل",
-        name:    lang === 'en' ? "Name":"الاسم",
-        grade:   lang === 'en' ? "Grade":"الدرجة الكلية",
-        due:     lang === 'en' ? "Due Date":"اخر موعد تسليم",
-        publish: lang === 'en' ? "Publish Date":"نشر في", 
-        status:  lang === 'en' ? "Status":"الحالة",
-        course:  lang === "en" ? "Course":"المادة",
-        nothing: lang === "en" ? "Nothing To Do Here":"لاشئ عليك هنا",
-        still:   lang === 'en' ? "Still":"هناك وقت",
-        today:   lang === 'en' ? "Today":"اليوم",
-        late:    lang === 'en' ? "Late":"متأخر"
 
-    }
     return (
         <div className="workExamPanel">
             <div className={"row titleSeemore "+(limit ?"":"hide")}>
@@ -108,6 +137,7 @@ function WorkExamsPanel({type,limit}) {
                 <tr className="tableHeaders">
                     <th>{compLang['name']}</th>
                     <th>{compLang['grade']}</th>
+                    {submitted ? <th>{compLang['studentGrade']}</th>:null}
                     <th>{compLang['publish']}</th>
                     <th>{compLang['due']}</th>
                     <th>{compLang['status']}</th>
