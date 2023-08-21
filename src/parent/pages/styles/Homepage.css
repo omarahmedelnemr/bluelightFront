@@ -1,0 +1,52 @@
+.Homepage{
+    background-color: #c9ddfe;
+    /* display: flex;
+    flex-direction: row; */
+}
+.Homepage .statusBoxes{
+    /* justify-content: space-around; */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.Homepage .overviewTitle{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+.Homepage .dataColumns{
+    padding: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.Homepage .dataColumns .workToSubmit,
+.Homepage .dataColumns .analytics{
+
+    flex-basis: 45%;
+}
+@media (max-width: 1440px) {
+    .Homepage .dataColumns .workToSubmit,
+    .Homepage .dataColumns .analytics{
+    
+        flex-basis: 90%;
+    }
+}
+@media (max-width: 500px) {
+    .Homepage{
+    
+        zoom: 0.58;
+    }
+    .CoursesPage{
+        zoom: 0.58;
+    }
+}
+
+
+.test{
+    background-color: #dbeaff;
+    height: 350px;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 10px;
+    display: none;
+}

@@ -32,6 +32,16 @@ import ClassroomInfo from './teacher/pages/ClassroomStudentList';
 import Classwork from './teacher/pages/classwork';
 
 
+import ParentSideNavigation from './parent/components/ParentSideNavigationMenu';
+import ParentHomepage from './parent/pages/parentHomepage';
+import ParentCoursesPage from './parent/pages/Parentcourses';
+import ParentCourseDataPage from './parent/pages/ParentCourseData';
+import ParentHomeworkPage from './parent/pages/parentHomework';
+import ParentHomeworkListPage from './parent/pages/ParentHomeworkListPage';
+import ParentMessagesPage from './parent/pages/ParentMessagesPage';
+import ParentExamListPage from './parent/pages/parentExamListPage';
+import ParentExamPage from './parent/pages/ParentExamPage'
+
 
 Chart.register(ArcElement);
 // require('dotenv').config()
@@ -95,7 +105,41 @@ function App() {
                 </div>
             </div>
         }/>
-          <Route path="/teacher/grading" element={<p>Test Done <a href='./'>Go Back</a></p>}/>
+        <Route path='/parent/*' element={
+          
+          <div id='ParentSidePages' className='row fullWidth pageLang'>
+              <ParentSideNavigation />
+              <div className='column mainContent fullWidth'>
+                  <Routes>
+                      <Route exact path='/' element={<ParentHomepage />} />
+                      {/* <Route path='/classwork' element={<ParentCla />} /> */}
+
+                        <Route path='/courses' element={<ParentCoursesPage />} />
+                        <Route path='/courses/:courseName' element={<ParentCourseDataPage />} />
+                        <Route path='/courses/:courseName/assignments/:homeworkID' element={<ParentHomeworkPage />} />
+                        <Route path='/courses/:courseName/exams/:examID' element={<ParentExamPage />} />
+
+                        <Route path='/assignments' element={<ParentHomeworkListPage/>} />
+                        <Route path='/exams' element={<ParentExamListPage/>} />
+                        <Route path='/messages' element={<ParentMessagesPage/>} />
+                        <Route path='/messages/:ID' element={<ParentMessagesPage/>} />
+
+
+                        <Route path='/account' element={<Account />} />
+                        <Route path='/settings' element={<Setting />} />
+                        <Route path='/changeUsername' element={<ChangeUsername />} />
+                        <Route path='/changePassword' element={<ChangePassword />} />
+                        <Route path='/reportIssu' element={<ReportPage />} />
+                        <Route path='/changeAvatar' element={<ChangeAvatar />} />
+                        
+                        <Route path='/timetable' element={<TimeTablePage />} />
+
+                  </Routes>
+              </div>
+          </div>
+      }/>
+      
+          <Route path="/teacher/grading" element={<p>Test Done <a href='/'>Go Back</a></p>}/>
 
           {/* <Route path='/*' element={<h2 style={{backgroundColor:"white"}}>Please Login First<br/><a href="/login">Login</a></h2>}/> */}
         </Routes>

@@ -1,0 +1,182 @@
+#StudentMessagesPage{
+    height: 100vh;
+    overflow: hidden;
+}
+#StudentMessagesPage .pageContent{
+    justify-content: space-between;
+    
+}
+#StudentMessagesPage .mailBox{
+    box-shadow: 0px 10px 10px gray;
+    background-color: #ffffff61;
+    width: 400px;
+    height: 88vh;
+    overflow: auto;
+    position: relative;
+    justify-content: flex-start;
+}
+
+.EmptyMailBox{
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.431);
+}
+.EmptyMailBox svg{
+    font-size: 25px;
+}
+/* width */
+#StudentMessagesPage .mailBox::-webkit-scrollbar,#StudentMessagesPage .MessageInfo::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+#StudentMessagesPage .mailBox::-webkit-scrollbar-track, #StudentMessagesPage .MessageInfo::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+  
+  /* Handle */
+#StudentMessagesPage .mailBox::-webkit-scrollbar-thumb,#StudentMessagesPage .MessageInfo::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+  /* Handle on hover */
+#StudentMessagesPage .mailBox::-webkit-scrollbar-thumb:hover,#StudentMessagesPage .MessageInfo::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+#StudentMessagesPage .mailBox .messageBox{
+    background-color: rgba(255, 255, 255, 0.446);
+    height: 100px;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 0.5s;
+    border-left: 5px solid blue;
+    /* width: 200px; */
+
+}
+#StudentMessagesPage .mailBox .messageBox:hover{
+    background-color: rgba(192, 192, 192, 0.456);
+
+}
+#StudentMessagesPage .mailBox .messageBox.reading{
+    background-color: rgba(192, 192, 192, 0.456);
+
+}
+#StudentMessagesPage .mailBox .messageBox .notReadMessages{
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 100%;
+}
+#StudentMessagesPage .mailBox .messageBox .messageOverview{
+    align-items: flex-start;
+    justify-content: center;
+}
+#StudentMessagesPage .mailBox .messageBox .messageOverview h2{
+    margin: 0px;
+}
+#StudentMessagesPage .mailBox .messageBox span{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+#StudentMessagesPage .mailBox .messageBox img{ 
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+        /* margin: 5px; */
+}
+#StudentMessagesPage .mailBox .messageBox .seenPublic{
+    justify-content: space-between;
+    height: 100%;
+    align-items: flex-end;
+}
+#StudentMessagesPage .mailBox .messageBox .seenPublic .public{
+    background-color: rgb(121 239 175);
+    
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#StudentMessagesPage .mailBox .messageBox .seenPublic .private{
+    background-color: rgb(0 225 102);
+    padding: 5px;
+    border-radius: 10px;
+
+}
+
+#StudentMessagesPage .MessageInfo{
+    background-color: #ffffff61;
+    height: 83vh;
+    flex-basis: 70%;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px gray;
+
+    padding: 30px;
+    overflow: auto;
+    text-align: start;
+
+
+}
+#StudentMessagesPage .MessageInfo .header .senderCard{
+    font-size: 20px;
+    justify-content: flex-start;
+
+    align-items:center;
+}
+#StudentMessagesPage .MessageInfo .header .senderCard .column{
+    justify-content: space-around;
+}
+#StudentMessagesPage .MessageInfo .header .senderCard img{
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+}
+
+#StudentMessagesPage .MessageInfo .header h1{
+    margin: 0px;
+}
+
+#StudentMessagesPage .MessageInfo .body img{
+    max-width: 500px;
+    margin: 10px;
+}
+#StudentMessagesPage .MessageInfo .body p{
+    font-size: 20px;
+}
+
+#StudentMessagesPage .MessageInfo .body .attachmentsOverview{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    flex-wrap: wrap;
+}
+#StudentMessagesPage .MessageInfo .body .attachmentsOverview .attachmentPreview{
+    width: 200px;
+    /* max-width: 230px; */
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    margin: 20px;
+    display: inline-block;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#StudentMessagesPage .MessageInfo .body .attachmentsOverview .attachmentPreview p{
+    left: 0;
+}
+@media (max-width:920px) {
+    #StudentMessagesPage .mailBox{
+        flex-basis: 100%;
+    }
+    #StudentMessagesPage .MessageInfo{
+        display: none;
+    }
+}

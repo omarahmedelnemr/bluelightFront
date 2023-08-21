@@ -1,0 +1,169 @@
+#ParentSidePages .sideNav{
+    width: 280px;
+    height: 96vh;
+    background-color: #373e48;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    font-weight: bolder;
+    padding: 2vh 0px;
+    position: relative;
+    transition: 0.2s;
+    z-index: 99;
+    left: 0;
+}
+@media (max-width:500px) {
+    #ParentSidePages .sideNav{
+        zoom: 0.95;
+    }
+}
+#ParentSidePages .sideNav .backgroundBlock{
+    display: none;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.324);
+    z-index: -99;
+
+}
+
+@media (max-width: 1090px) {
+    #ParentSidePages .sideNav{
+        /* width: 0px ; */
+        overflow: hidden;
+        position: fixed;
+        left: -280px;
+        height: 96%;
+        width: 230px;
+    }
+}
+
+#ParentSidePages .sideNav .top{
+    flex-grow: 1;
+}
+#ParentSidePages .sideNav .top .welcome .logoimage{
+    width: 30px;
+    height: 30px;
+    margin:0px 5px;
+}
+#ParentSidePages .sideNav .top .welcome{
+    margin: 0px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border-radius: 30px;
+}
+#ParentSidePages .sideNav .center{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 3;
+    position: relative;
+}
+#ParentSidePages .sideNav .backgroundActive{
+    position: absolute;
+    height: 50px;
+    width: 170px;
+    background-color: white;
+    border-radius: 30px;
+    margin: 0px 50px;
+    /* top:217px; */
+    transition: 0.5s;
+
+}
+#ParentSidePages .sideNav .center div{
+    margin: 0px 50px;
+    text-align: left;
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;  
+}
+#ParentSidePages .sideNav .center .navButton{
+    cursor: pointer;
+}
+#ParentSidePages .sideNav .center .navButton .route{
+    display: none;
+}
+#ParentSidePages .sideNav .center .navButton svg{
+    margin: 0px 15px;
+    font-size: 20px;
+}
+
+#ParentSidePages .sideNav .center .active{
+    /* background-color: white; */
+    color: black;
+    border-radius: 30px;
+}
+#ParentSidePages .sideNav .center .active svg{
+    color: #3d5ef0;
+}
+#ParentSidePages .sideNav .bottom{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+}
+
+#ParentSidePages .sideNav .bottom .chooseLang{
+    justify-content: center;
+    width: 170px;
+    background-color: white;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 0px 50px;}
+#ParentSidePages .sideNav .bottom .chooseLang p{
+    margin: 0px;
+    width: 100%;
+    color:black;
+    background-color: #c9ddfe;
+    cursor: pointer;
+}
+#ParentSidePages .sideNav .bottom .chooseLang .activeLang{
+    background-color: #3d5ef0;
+    color:white;
+    cursor:default    ;
+}
+#ParentSidePages .sideNav .bottom .reportIssuText{
+    width: 75%;
+    background-color:white;
+    color: black;
+    border-radius: 10px;
+    font-weight: 300;
+    padding: 10px;
+    margin: 10px;
+    position: absolute;
+    bottom: 7%;
+    left: 5%;
+    transition: 0.5s;
+    display: none;
+}
+#ParentSidePages .sideNav .bottom .reportIssu{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #3d5ef0;
+    color: white;
+    font-size: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 0px 50px;
+}
+#ParentSidePages .sideNav .bottom .reportIssu:hover {
+    background-color: #6b83ed;
+}
+
+#ParentSidePages .sideNav .bottom .reportIssu:hover .reportIssuText{
+    display: block;
+}

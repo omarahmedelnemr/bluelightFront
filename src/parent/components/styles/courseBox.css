@@ -1,0 +1,73 @@
+.coursesBoxList{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.CourseBox{
+    background-color: #fdfdfd;
+    box-shadow: -5px 5px 10px #8d8d8d38;
+    width: 170px;
+    border-radius: 15px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* padding: 20px; */
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+    position: relative;
+    flex-basis: 21%;
+    margin: 1%;
+    height: 45%;
+    min-width: 260px;
+    max-height: 330px;
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+.CourseBox:hover{
+    box-shadow: -10px 10px 10px #8d8d8d94;
+
+}
+.CourseBox .hiddenRoute{
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+    position: absolute;
+    display: block;
+}
+.CourseBox img{
+    /* border-radius: 10px; */
+    /* width: 170px;
+    height: 170px; */
+    width: 100%;
+    height: 65%;
+}
+.CourseBox .courseInfo{
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 20px;
+}
+.CourseBox .courseInfo div{
+    text-align: center;
+}
+.CourseBox .courseInfo h2,
+    .CourseBox .courseInfo p{
+        margin: 5px;
+        font-weight: 500;
+}
+.CourseBox .courseInfo p{
+    color: #1b1b1b80;
+}
+.CourseBox .courseInfo svg{
+    font-size: 20px;
+    z-index: 10;
+}
