@@ -10,8 +10,10 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
     const [attachLoading,setAttachLoading] = useState(null)
     const [AttachmentErrorMessage,setAttachmentErrorMessage] = useState(null)
     const lang =localStorage.getItem("lang")
+    const StudentName = localStorage.getItem("currentStudentName").split(" ")[0]
+    const StudentArName = localStorage.getItem("currentStudentArName").split(" ")[0]
     const compLang = {
-        yourWork:  lang === 'en' ? "Your Work":"ملفاتك",
+        yourWork:  lang === 'en' ? StudentName+"'s Work": "اجابة "+ StudentArName,
         upload:    lang === 'en' ? "Upload Your Files":"ارفع ملفاتك",
         uploading: lang === 'en' ? "Uploading":"جار الرفع",
         noFiles:   lang === 'en' ? "No Files Yet":"لا ملفات حتي الان"
@@ -277,13 +279,6 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
                     {preview}
                 </div>
                 <p className='hide attachmentsValues'>{attachment.join(',')}</p>
-                {/* <p className='hide attachmentsValues'>1691459483631.png,1691459483632.png,1691459483630.png</p> */}
-                {answered?null:
-                <label class="custom-file-upload">
-                    {attachLoading === null?<input type="file" onChange={uploadFile}/>:<input type="file" onChange={uploadFile} disabled/>}
-                    {attachLoading===null?compLang['upload']:compLang['uploading']}
-                    {attachLoading}
-                </label>}
 
             </div>
 

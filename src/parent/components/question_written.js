@@ -66,11 +66,7 @@ function Question_Written({questionInfo,answered,mode,graded = null}) {
             </div>
             <p className='hide questionID'>{questionInfo['id']}</p>
             <p className='hide questionNumber'>{questionInfo['QNumber']}</p>
-            {answered?
-                <textarea className='textAnswer' placeholder={compLang['yourAnswer']} disabled value={questionInfo['Studentanswer']}></textarea>
-                :
-                <textarea className='textAnswer' placeholder={compLang['yourAnswer']} onChange={saveToLocalStorage} defaultValue={localStorage.getItem(uniqueLocalID)}></textarea>
-                }
+            <textarea className='textAnswer' placeholder={compLang['yourAnswer']} disabled value={questionInfo['Studentanswer']}></textarea>
         </div>
   );
 }

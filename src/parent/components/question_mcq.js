@@ -53,7 +53,7 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
         if (answered){
             if (graded ===null || graded === false){
                 options.push(
-                    <div className={'option disabled'+  (questionInfo['options'][i]["Studentanswer"]? " selected":'')} onClick={selectOption}>
+                    <div className={'option disabled'+  (questionInfo['options'][i]["Studentanswer"]? " selected":'')}>
                         <div className='checkBox'></div>
                         <p className='hide optionID'>{questionInfo['options'][i]['id']}</p>
                         <p className='optionText'>{questionInfo['options'][i]['text']}</p>
@@ -84,7 +84,7 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
                 }
                 
                 options.push(
-                    <div className={'option disabled'+  (questionInfo['options'][i]["Studentanswer"]? " selected":'')+correct} onClick={selectOption}>
+                    <div className={'option disabled'+  (questionInfo['options'][i]["Studentanswer"]? " selected":'')+correct}>
                         <div className='checkBox'>
                             <FontAwesomeIcon icon="fa-solid fa-check" className='correctMark'/>
                             <FontAwesomeIcon icon="fa-solid fa-xmark"  className='wrongMark'/>
@@ -104,7 +104,7 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
                 selectedLocal = ''
             }
             options.push(
-                <div className={'option enabled'+selectedLocal} onClick={selectOption}>
+                <div className={'option disabled'+selectedLocal}>
                     <div className='checkBox'>
                     </div>
                     <p className='hide optionID'>{questionInfo['options'][i]['id']}</p>
@@ -114,47 +114,6 @@ function Question_MCQ({questionInfo,answered,mode,graded=null}) {
         }
     }
 
-    function selectOption(event){
-        if (answered === false){
-            const parent = event.currentTarget.parentElement
-            console.log( event.currentTarget)
-            const selected = parent.querySelector('.selected')
-            const current =  event.currentTarget.classList.contains("selected")
-            const type = parent.parentElement.classList[0]
-            var selfID = event.currentTarget.querySelector(".optionID").innerHTML
-            if (type ==='smcq'){
-                if(selected !== null ){
-                    selected.classList.remove("selected")
-                    localStorage.removeItem(uniqueLocalID)
-                }
-                if(current === false){
-                    event.currentTarget.classList.add("selected")
-                    localStorage.setItem(uniqueLocalID,selfID)
-                }
-            }else{
-                var oldLocal = localStorage.getItem(uniqueLocalID)
-                if(current === false){
-                    event.currentTarget.classList.add("selected")
-                    localStorage.setItem(uniqueLocalID,oldLocal+","+selfID)
-
-                }else{
-                    console.log("remove")
-                    event.currentTarget.classList.remove("selected")
-                    // oldLocal = oldLocal.replace(","+selfID)
-                    // oldLocal = oldLocal.replace(selfID+",")
-                    oldLocal =  oldLocal.replace(selfID)
-                    localStorage.setItem(uniqueLocalID,oldLocal)
-                }
-            }
-            // var oldLocal = localStorage.getItem(uniqueLocalID)
-            // if (oldLocal!==null){
-            //     var newLocal = oldLocal.split(',').includes(selfID)?'':","+selfID
-            //     localStorage.setItem(uniqueLocalID,oldLocal+newLocal)
-            // }else{
-            //     localStorage.setItem(uniqueLocalID,selfID)
-            // }
-        }
-    }
 
     
   return (
