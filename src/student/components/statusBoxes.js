@@ -3,9 +3,7 @@ import './styles/statusBoxes.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
-import Cookies from 'universal-cookie';
 function StatusBoxes() {
-    const cookieReader =new Cookies()
     
     // get Assignments Numbers
     const [totalAssignmentsCount,setTotalAssignmentsCount] = useState('-')
@@ -18,7 +16,7 @@ function StatusBoxes() {
         })
     })
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/homeworkcount?studentID="+cookieReader.get('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/homeworkcount?studentID="+localStorage.getItem('id')).then((res)=>{
             setAssignmentsCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
@@ -29,7 +27,7 @@ function StatusBoxes() {
     const [totalExamsCount,setTotalExamsCount] = useState('-')
     const [examGrades,setExamsGrades] = useState('-')
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/examGrades?studentID="+cookieReader.get('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/examGrades?studentID="+localStorage.getItem('id')).then((res)=>{
             const data = res.data
             if (data['totalGrade'] === 0 ){
                 setExamsGrades('-')
@@ -46,14 +44,14 @@ function StatusBoxes() {
     const [totalAttendanceCount,setTotalAttendanceCount] = useState('-')
     const [attendedCount,setAttendedCount] = useState('-')
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/totalAttendance?studentID="+cookieReader.get('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/totalAttendance?studentID="+localStorage.getItem('id')).then((res)=>{
             setTotalAttendanceCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
         })
     })
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/AttendanceCount?studentID="+cookieReader.get('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/AttendanceCount?studentID="+localStorage.getItem('id')).then((res)=>{
             setAttendedCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
