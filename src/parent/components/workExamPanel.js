@@ -51,8 +51,8 @@ function WorkExamsPanel({type,limit,submitted = false}) {
                 workEndpoint = "submittedhomeworklist"
                 workType = 'homework'
             }else{
-                workEndpoint = "submittedhomeworklist"
-                workType = 'submittedexamslist'
+                workEndpoint = "submittedexamslist"
+                workType = 'exam'
             }
         }else{
             if(type == "Assignments"){
