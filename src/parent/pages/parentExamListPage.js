@@ -1,6 +1,6 @@
 import './styles/studentWork.css'
 
-import WorkExamsPanel from '../../student/components/workExamPanel';
+import WorkExamsPanel from '../components/workExamPanel';
 import TopBar from '../../general/components/topBar';
 
 

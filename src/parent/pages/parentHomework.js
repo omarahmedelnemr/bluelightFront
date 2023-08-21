@@ -6,9 +6,9 @@ import TopBar from '../../general/components/topBar';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
-import Question_MCQ from '../../student/components/question_mcq';
-import Question_Written from '../../student/components/question_written';
-import Question_Attachment from '../../student/components/question_attachment';
+import Question_MCQ from '../components/question_mcq';
+import Question_Written from '../components/question_written';
+import Question_Attachment from '../components/question_attachment';
 import cleanArr from '../../publicFunctions/cleanArr';
 import compareDates from '../../publicFunctions/compareDates';
 import formatTime from '../../publicFunctions/formatTime';
@@ -55,7 +55,7 @@ function ParentHomeworkPage() {
 
     // Get Homework Headers
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+localStorage.getItem('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
             const data = res.data
             setDescription(data['homework']['description'])
             setHomeworkTitle(data['homework']['name'])
@@ -141,103 +141,6 @@ function ParentHomeworkPage() {
             console.log("still Loading")
         }
         },[submitted])
-
-    function submitWork(event){
-        if (event.currentTarget.classList.contains("disabled")){
-            return;
-        }
-        const questions  = event.currentTarget.parentElement.getElementsByClassName("question")
-        var questionType;
-        const submission = {
-            "studentID":localStorage.getItem('id'),
-            "homeworkID" :homeworkID,
-            "submissionDate":new Date().toLocaleString(),
-            "answers":[]
-        }
-
-        for(var i = 0 ;i < questions.length;i++){
-            questionType = questions[i].classList[0]
-            const ans = {}
-            ans['id'] = Number(questions[i].querySelector(".questionID").innerHTML)
-            if (questionType === 'smcq' || questionType === 'mmcq'){
-                ans['answer'] = ''
-                ans['attachments']=null
-                ans["options"] = []
-                const options = questions[i].getElementsByClassName('option')
-                var answered = 0;
-                for (var x = 0;x<options.length;x++){
-                    ans["options"].push({
-                        "id":Number(options[x].querySelector(".optionID").innerHTML),
-                        "checked":options[x].classList.contains('selected')
-                    })
-                    answered+=options[x].classList.contains('selected')
-                }
-                if (answered ===0 && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
-                    setIncompleteMessage(<p className='wrongMessage'>{pageLang['mcqMissing']}</p>)
-                    return;
-                }
-            }
-            else if(questionType === "written"){
-                ans['answer'] = questions[i].querySelector("textarea").value
-                ans['attachments']=null
-                ans["options"] = null
-
-                if((ans['answer']===null || ans['answer'] === '')  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*' ){
-
-                    setIncompleteMessage(<p className='wrongMessage'>{pageLang['writtenMissing']}</p>)
-                    return;
-                }
-            }else{
-                ans['answer'] = ''
-                ans['attachments']=cleanArr(questions[i].querySelector('.attachmentsValues').innerHTML.split(","),'')
-                ans["options"] = null
-                console.log(ans['attachments'])
-                if(( ans['attachments']===null || ans['attachments'][0] === undefined || ans['attachments'][0] === '' || ans['attachments'] === undefined)  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
-                    console.log('incise')
-                    setIncompleteMessage(<p className='wrongMessage'>{pageLang['attachMissing']}</p>)
-                    return;
-                }
-            }
-            submission['answers'].push(ans)
-        }
-        setIncompleteMessage(null)
-        setSubmittingStatus(" disabled")
-        axios.post(Global.BackendURL+"/student/homeworksubmission",submission).then((res)=>{
-            console.log("Done")
-            const data = res.data
-            console.log(data)
-            setSubmittingStatus("")
-            for (var i =0;i<questions.length;i++){
-                const Qid = questions[i].querySelector(".questionID").innerHTML
-                localStorage.removeItem('homework'+Qid+"Q"+(i+1))
-            }
-            window.location.reload(false);
-        }).catch((err)=>{
-            setIncompleteMessage(<p className='wrongMessage'>{pageLang["connectionError"]}</p>)
-            setSubmittingStatus("")    
-            console.log("Error !!")
-            console.log(err)
-        })
-        console.log(submission)
-    }
-
-    function unSubmitWork(even){
-        const req = {
-            "homeworkID":homeworkID,
-            "studentID":localStorage.getItem('id')
-        }
-        console.log("rq: ",req)
-        axios.delete(Global.BackendURL+"/student/homeworksubmission",{data:req}).then((res)=>{
-            console.log("Unsubmitted")
-            const data = res.data
-            console.log(data)
-            window.location.reload(false);
-            
-        }).catch((err)=>{
-            console.log("Error!")
-            console.log(err)
-        })
-    }
   return (
     <div className="homework" id='homeworkPage'>
         <TopBar title={title} />

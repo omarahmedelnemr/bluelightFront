@@ -40,7 +40,7 @@ function ParentCoursesPage() {
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   useEffect(()=>{
-    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+cookieReader.get("id")).then((res)=>{
+    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('currentStudentClassroom')+"&studentID="+localStorage.getItem("currentStudentID")).then((res)=>{
       const data = res.data
       const coursesPreList = []
       var teacherName,currentImage,subjectNamex,link,favIcon;
@@ -52,7 +52,7 @@ function ParentCoursesPage() {
         currentImage = ImagesList[data[i]['name'].toLowerCase()] === undefined ? ImagesList["baseImage"]:ImagesList[data[i]['name'].toLowerCase()]
 
         subjectNamex = data[i]['name'].toLowerCase()
-        link  = '/student/courses/'+subjectNamex
+        link  = '/parent/courses/'+subjectNamex
         teacherName = teacherName[0]+" "+teacherName[1]
         coursesPreList.push(
           <CourseBox 

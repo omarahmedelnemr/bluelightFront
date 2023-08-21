@@ -11,7 +11,7 @@ import subjectSideImage from '../../content/subjectSideImage.jpeg'
 import formatTime from '../../publicFunctions/formatTime'
 import PieChart from '../../general/components/pieChart';
 import checkAutherization from '../../publicFunctions/checkAuth';
-import DropDownList from '../../student/components/dropDownList';
+import DropDownList from '../components/dropDownList';
 
 function ParentCourseDataPage() {
     if (checkAutherization() !== 'Auth'){
@@ -65,8 +65,8 @@ function ParentCourseDataPage() {
     ]
   
     const {courseName} = useParams()
-    const studentID = localStorage.getItem('id')
-    const classroomID = localStorage.getItem('classroom')
+    const studentID = localStorage.getItem('currentStudentID')
+    const classroomID = localStorage.getItem('currentStudentClassroom')
     const [assinmentList,setAssignmentList] = useState('')
     const [exmaStatus,setExamStatus] = useState(false)
     const [title,setTitle] = useState(pageLang['assignments'])

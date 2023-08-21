@@ -24,8 +24,7 @@ function StatusBoxes() {
     })
 
     // get Exams Numbers
-    const [totalExamsCount,setTotalExamsCount] = useState('-')
-    const [examGrades,setExamsGrades] = useState('-')
+    const [examGrades,setExamsGrades] = useState(0)
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/examGrades?studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
             const data = res.data
