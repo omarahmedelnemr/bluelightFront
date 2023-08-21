@@ -112,6 +112,7 @@ function WorkExamsPanel({type,limit,submitted = false}) {
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
                                             <td>{lang === 'en' ? data[i][workType]['course']["name"] :data[i][workType]['course']["arName"]}</td>
                                             <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i][workType]['id']} className="hiddenRoute">a</a>
+                                            {/* {type ==="Exams" && submitted ? <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i][workType]['id']} className="hiddenRoute">a</a>:null} */}
 
                                         </tr>)
                 }

@@ -1,16 +1,7 @@
-#studentExamPage{
-    min-height: 100vh;
-    position: relative;
+#examPage .PageContent{
+    padding: 20px 5%
 }
-
-#studentExamPage .PageContent{
-    padding: 20px 5%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-#studentExamPage .courseBar{
+#examPage .courseBar{
     background-color: #3b7781;
     color: white;
     border-radius: 10px;
@@ -20,67 +11,59 @@
     position: relative;
     overflow: hidden;
 }
-#studentExamPage .courseBar h1{
+#examPage .courseBar h1{
     margin: 20px;
 }
-#studentExamPage  .courseBar img{
+#examPage  .courseBar img{
     height: 150px;
 }
-#studentExamPage .ExamSection{
+#examPage .examSection{
     /* padding: 10px 5%; */
     padding: 10px 1%;
 }
-#studentExamPage .ExamSection .examInfo{
+#examPage .examSection .examInfo{
 
     justify-content: space-between;
 }
-#studentExamPage .ExamSection .examInfo .info{
+#examPage .examSection .examInfo .info{
     align-items: flex-start;
     /* flex-basis: 30%; */
 }
-#studentExamPage .ExamSection .examInfo .info h1{
+#examPage .examSection .examInfo .info h1{
     margin-bottom: 5px;
 }
-#studentExamPage .ExamSection .examInfo .info p{
+#examPage .examSection .examInfo .info p{
     margin: 0px;
     color: rgb(77, 77, 77);
 }
-#studentExamPage .ExamSection .examInfo .submittedDate{
+#examPage .examSection .examInfo .submittedDate{
     color: rgba(0, 0, 0, 0.572);
     font-size: 18px;
 }
-#studentExamPage .ExamSection .examInfo .info hr{
+#examPage .examSection .examInfo .info hr{
     border: 2px solid #3b7781;
     flex-basis: 100%;
     width: 100%;
 }
-#studentExamPage .ExamSection .examInfo .status{
+#examPage .examSection .examInfo .status{
     align-items: flex-end;
     justify-content: space-around;
-    font-size: 20px;
-    
+    font-size: 19px;
+    color: rgba(0, 0, 0, 0.572);
 }
-#studentExamPage .ExamSection .examInfo .status .minutes{
-    color: rgb(92, 92, 92);
-    display: block;
-}
-#studentExamPage .ExamSection .examInfo .status p{
+#examPage .examSection .examInfo .status p{
     margin: 0px;
     text-align: right;
 }
 
-#studentExamPage .ExamSection  .workDescription{
+#examPage .examSection  .workDescription{
     text-align: start;
 }
 
-#studentExamPage .ExamSection .wrongMessage{
+#examPage .examSection .wrongMessage{
     color: red;
-    margin: 0px;
 }
-
-
-
-#studentExamPage .SubmitButton,#studentExamPage .StartQuizButton{
+.examQuestions .SubmitButton,.SubmitButton{
     background-color: #3d5ef0;
     color: white;
     padding: 10px;
@@ -90,18 +73,19 @@
     cursor: pointer;
     position: relative;
 }
-#studentExamPage .SubmitButton:hover,#studentExamPage .StartQuizButton:hover{
+.examQuestions .SubmitButton:hover,.SubmitButton:hover{
     background-color: #2246e8;
 
 }
-#studentExamPage .SubmitButton:active,#studentExamPage .StartQuizButton:active{
+.examQuestions .SubmitButton:active,.SubmitButton:active{
     background-color: #506def;
 
 }
-#studentExamPage .SubmitButton .loading,#studentExamPage .StartQuizButton .loading{
+.examQuestions .SubmitButton .loading,.SubmitButton .loading{
     display: none;
 }
-#studentExamPage .SubmitButton.disabled, #studentExamPage .StartQuizButton.disabled{
+
+.examQuestions .SubmitButton.disabled,.SubmitButton.disabled{
     background-color: rgba(0, 43, 233, 0.512);
     color: white;
     padding: 10px;
@@ -110,16 +94,16 @@
     transition: 0.5s;
     cursor:auto;
 }
-#studentExamPage .SubmitButton.disabled:hover, #studentExamPage .StartQuizButton.disabled:hover{
+.examQuestions .SubmitButton.disabled:hover,.SubmitButton.disabled:hover{
     background-color: rgba(0, 43, 233, 0.512);
 
 }
-#studentExamPage .SubmitButton.disabled:active, #studentExamPage .StartQuizButton.disabled:active{
+.examQuestions .SubmitButton.disabled:active,.SubmitButton.disabled:active{
     background-color: rgba(0, 43, 233, 0.512);
 
 }
 
-#studentExamPage .SubmitButton.disabled .loading, #studentExamPage .StartQuizButton.disabled .loading{
+.examQuestions .SubmitButton.disabled .loading,.SubmitButton.disabled .loading{
     height: 100%;
     top: -5px;
     left: 48%;
@@ -127,150 +111,3 @@
     /* width: 100%; */
 }
 
-
-
-#studentExamPage .block{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    background-color: rgba(0, 0, 0, 0.359);
-    z-index: 999999999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-#studentExamPage .notBlock *{
-    display: none;
-}
-#studentExamPage .block .QuestionWindow{
-    width: 50%;
-    height: 75%;
-    background-color: white;
-    border-radius: 20px;
-    position: relative;
-    box-shadow: -5px 5px 10px #535353;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    padding: 10px;
-
-}
-@media (max-width:930px) {
-    #studentExamPage .block .QuestionWindow{
-        width:80%
-    }
-}
-@media (max-width:530px) {
-    #studentExamPage .block .QuestionWindow{
-        width:90%
-    }
-}
-#studentExamPage .block .QuestionWindow .topQuestionBar{
-    width: 90%;
-    flex-basis: 10%;
-}
-#studentExamPage .block .QuestionWindow .topQuestionBar .statusBar{
-    justify-content:center;
-    align-items: center;
-    width: 100%;
-    border-bottom: 0px;
-    direction: ltr;
-}
-#studentExamPage .block .QuestionWindow .topQuestionBar  .totalBar{
-    flex-basis: 60%;
-    background-color: rgb(195, 195, 195);
-    height: 15px;
-    border-radius: 10px;
-    position: relative;
-}
-#studentExamPage .block .QuestionWindow .topQuestionBar  .currentBar{
-    background-color: #3d5ef0;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    border-radius: 10px;
-    transition: 0.5s;
-}
-#studentExamPage .block .QuestionWindow .topQuestionBar .barNumber{
-    font-weight: 500;
-    margin: 0px 10px;
-}
-#studentExamPage .block .QuestionWindow .ExamQuestion{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: absolute;
-    width: 80%;
-    height: 100%;
-    transition: 0.9s;
-    left: 10%;
-    top: 0;
-    display: inline-block;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-#studentExamPage .block .QuestionWindow .ExamQuestion::-webkit-scrollbar{
-    background-color: rgba(38, 38, 38, 0.113);
-    width: 8px;
-    border-radius: 10px;
-}
-#studentExamPage .block .QuestionWindow .ExamQuestion::-webkit-scrollbar-thumb{
-    background-color: rgb(97, 97, 97);
-    border-radius: 10px;
-}
-.QuestionContainer{
-    /* display: flex; */
-    /* width: ; */
-    position: relative;
-    flex-basis: 75%;
-    width: 100%;
-}
-#studentExamPage .block .QuestionWindow .examNavbuttons{
-    width: 100%;
-    flex-basis: 10%;
-}
-#studentExamPage .block .QuestionWindow .examNavbuttons .QButton{
-    background-color: #3d5ef0;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    border:none;
-    border-radius: 10px;
-    font-size: 20px;
-    transition: 0.5s;
-    cursor: pointer;
-    position: relative;
-    width: 70%;
-    cursor: pointer;
-}
-#studentExamPage .block .QuestionWindow .examNavbuttons  .QButton:hover{
-    background-color: #637ced;
-}
-#studentExamPage .block .QuestionWindow .examNavbuttons  .QButton.disabled{
-    background-color: rgb(109, 109, 109);
-    pointer-events: none;
-}
-#studentExamPage .block .QuestionWindow .examNavbuttons  .QButton:active{
-    background-color: #889bf1;
-
-}
-#studentExamPage .block .QuestionWindow .ExamQuestion .question{
-    width: 100%;
-}
-#studentExamPage .block .QuestionWindow .ExamQuestion .question  .options{
-    width: 85%;
-}
-#studentExamPage .block .QuestionWindow .ExamQuestion .question  textarea{
-    width: 85%;
-}
-#studentExamPage .block .QuestionWindow .previesQuesion{
-    left: -100%;
-}
-#studentExamPage .block .QuestionWindow .nextQuestion{
-    left: 110%;
-}
