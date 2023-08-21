@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function ParentSideNavigation() {
-    const navList = ['Home',"courses","messages","assignments","exams","account", "settings", "timetable"] //,"bus"
+    const navList = ['Home',"analytics","courses","messages","assignments","exams","account", "settings", "timetable"] //,"bus"
     const lang = localStorage.getItem('lang') 
     const compText = {
         welcome:     lang === 'en' ? "welcome Back":"اهلا",
@@ -18,7 +18,8 @@ function ParentSideNavigation() {
         bus:         lang === 'en' ? "Bus":"الباص",
         account:     lang === 'en' ? "Account":"حسابي",
         settings:    lang === 'en' ? "Settings":"الاعدادات",
-        timetable:   lang === 'en' ? "TimeTable":"جدول الحصص" 
+        timetable:   lang === 'en' ? "TimeTable":"جدول الحصص",
+        analytics:   lang === 'en' ? "analytics":"احصائيات" 
         
     }
     useEffect(()=>{
@@ -112,12 +113,19 @@ function ParentSideNavigation() {
                         <p>{compText["home"]}</p>
                         <span className="route">/</span>
                     </div>
+                    <div id="analyticsNavButton" className="navButton" onClick={navButtonClick}>
+                        <FontAwesomeIcon icon="fa-solid fa-chart-line" />
+                        <p>{compText["analytics"]}</p>
+                        <span className="route">/analytics</span>
+
+                    </div>
                     <div id="coursesNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book" />
                         <p>{compText["courses"]}</p>
                         <span className="route">/courses</span>
 
                     </div>
+
                     <div id="assignmentsNavButton" className="navButton" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-book-open" />
                         <p>{compText["assingments"]}</p>
