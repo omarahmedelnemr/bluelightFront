@@ -11,16 +11,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ParentMessagesPage() {
     const lang = localStorage.getItem('lang')
+    const studentName = localStorage.getItem('currentStudentName').split(" ")[0]
+    const studentArName = localStorage.getItem('currentStudentArName').split(" ")[0]
     const pageLang = {
         messages: lang === 'en' ? "Messages":"الرسائل",
         teacher:  lang === 'en' ? "Teacher":"مدرس",
         private:  lang === 'en' ? "Private":"خاص",
-        public:   lang === 'en' ? "Public":"عام"
+        public:   lang === 'en' ? "Public For "+studentName:"عام ل"+studentArName
     }
     const {ID} = useParams()
     const [bigPreview,setBigPreview] = useState(null)
     const [messages,setMessages] = useState(null)
-    const [messagesList,setMessagesList] = useState([])
     const [senderName,setSenderName] = useState(null)
     const [senderImage,setSenderImage] = useState(null)
     const [senderState,setSenderState] = useState(null)
@@ -45,7 +46,7 @@ function ParentMessagesPage() {
 
     // Get All Private Messages
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/messages?studentID="+localStorage.getItem('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/parent/messages?studentID="+localStorage.getItem('currentStudentID')+"&parentID="+localStorage.getItem('id')).then((res)=>{
             const data = res.data
             const Elements = []
             setLoading(null)
@@ -59,7 +60,7 @@ function ParentMessagesPage() {
                             <p className='hide messageID'>{data[i]['id']}</p>
                         </div>
                         <div className='column seenPublic'>
-                            <span className={data[i]['seen']?'':'notReadMessages'}></span>
+                            <span className={data[i]['seen'] || data[i]['seen'] === undefined?'':'notReadMessages'}></span>
                             <span className={data[i]['private']?"private":"public"}>{data[i]['private']?pageLang['private']:pageLang['public']}</span>
                         </div>
                         <span className='hide allData'>{JSON.stringify(data[i])}</span>
