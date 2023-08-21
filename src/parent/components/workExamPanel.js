@@ -12,7 +12,7 @@ function WorkExamsPanel({type,limit}) {
     const [emptyMessage,setEmptyMessage] = useState(<div className="emptyMessage" >
                                                         <div className="loading"></div>
                                                     </div>)
-    const id = new Cookies().get('id')
+    const id = localStorage.getItem("currentStudentID")
     const iconList = [
         <FontAwesomeIcon icon="fa-solid fa-otter" />,
         <FontAwesomeIcon icon="fa-solid fa-hippo" />,
