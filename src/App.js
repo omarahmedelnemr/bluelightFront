@@ -23,7 +23,7 @@ import HomeworkPage from './student/pages/homework';
 import StudentExamPage from './student/pages/studentExamPage';
 import StudentMessagesPage from './student/pages/Messages';
 import ExamPage from './student/pages/exam';
-import TimeTablePage from './student/pages/timetable';
+import TimeTablePage from './general/pages/timetable';
 
 import TeacherSideNavigation from './teacher/components/teacherSideNav';
 import TeacherHomepage from './teacher/pages/teacherHomePage';
@@ -42,6 +42,7 @@ import ParentMessagesPage from './parent/pages/ParentMessagesPage';
 import ParentExamListPage from './parent/pages/parentExamListPage';
 import ParentExamPage from './parent/pages/ParentExamPage'
 import ParentAnalytics from './parent/pages/ParentAnalytics';
+import ParentSendMessagePage from './parent/pages/ParentSendMessage';
 
 
 Chart.register(ArcElement);
@@ -125,6 +126,7 @@ function App() {
                         <Route path='/exams' element={<ParentExamListPage/>} />
                         <Route path='/messages' element={<ParentMessagesPage/>} />
                         <Route path='/messages/:ID' element={<ParentMessagesPage/>} />
+                        <Route path='/sendMessage' element={<ParentSendMessagePage/>} />
 
 
                         <Route path='/account' element={<Account />} />

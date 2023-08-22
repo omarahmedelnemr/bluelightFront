@@ -1,0 +1,44 @@
+#TimeTablePage{
+
+}
+
+
+#TimeTablePage .mainTable{
+    width: 100%;
+}
+
+#TimeTablePage .mainTable thead{
+    background-color:rgb(61 94 240 / 63%);
+    color: white;
+    height: 50px;
+
+}
+#TimeTablePage .mainTable tbody td{
+    transition: 0.2s;
+    height: 50px;
+    padding: 10px 0px ;
+    border: 1px solid rgba(0, 0, 0, 0.455);
+}
+#TimeTablePage .mainTable tbody td:hover{
+    background-color:  rgba(255, 255, 255, 0.403);;
+}
+#TimeTablePage .mainTable tbody .dayCell{
+    background-color:rgba(82, 111, 240, 0.305);
+    color: white;
+    padding: 10px;
+}
+#TimeTablePage .mainTable tbody .dayCell:hover{
+    background-color: rgba(82, 111, 240, 0.305);
+
+}
+
+#TimeTablePage .mainTable tbody td div{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#TimeTablePage .mainTable tbody td div span{
+    color: gray;
+}
