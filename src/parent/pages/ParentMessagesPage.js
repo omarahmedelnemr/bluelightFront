@@ -7,17 +7,19 @@ import Global from '../../publicFunctions/globalVar';
 import {  useParams } from 'react-router-dom';
 import formatTime from '../../publicFunctions/formatTime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import routeTo from '../../publicFunctions/reroute'
 
 function ParentMessagesPage() {
     const lang = localStorage.getItem('lang')
     const studentName = localStorage.getItem('currentStudentName').split(" ")[0]
     const studentArName = localStorage.getItem('currentStudentArName').split(" ")[0]
     const pageLang = {
-        messages: lang === 'en' ? "Messages":"الرسائل",
-        teacher:  lang === 'en' ? "Teacher":"مدرس",
-        private:  lang === 'en' ? "Private":"خاص",
-        public:   lang === 'en' ? "Public For "+studentName:"عام ل"+studentArName
+        messages:    lang === 'en' ? "Messages":"الرسائل",
+        teacher:     lang === 'en' ? "Teacher":"مدرس",
+        private:     lang === 'en' ? "Private":"خاص",
+        public:      lang === 'en' ? "Public For "+studentName:"عام ل"+studentArName,
+        notYet:      lang === 'en' ? "No Messages Yet":"لا رسائل بعد",
+        newMessage:  lang === 'en' ? "New Message":"رسالة جديدة"
     }
     const {ID} = useParams()
     const [bigPreview,setBigPreview] = useState(null)
@@ -75,7 +77,7 @@ function ParentMessagesPage() {
                 setMessages([
                 <div className='EmptyMailBox'>
                     <FontAwesomeIcon icon="fa-solid fa-comment-slash" />
-                    <p>Not Message Yet</p>
+                    <p>{pageLang['notYet']}</p>
                 </div>])
             }
         }).catch((err)=>{
@@ -169,9 +171,14 @@ function ParentMessagesPage() {
         {bigPreview}
 
         <div className='row pageContent'>
-            <div className='mailBox column'>      
-                    {loading}           
-                    {messages}
+            <div className='mailBox column'>
+                <div className='SendMessage row' onClick={routeTo}>
+                    <FontAwesomeIcon icon="fa-solid fa-plus" />
+                    <h3>{pageLang['newMessage']}</h3>
+                    <a href="./sendMessage" className='hiddenRoute'></a>
+                </div>      
+                {loading}           
+                {messages}
             </div>
             {title === null?"":
             <div className='MessageInfo'>
