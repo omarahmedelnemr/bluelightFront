@@ -41,7 +41,6 @@ import ParentHomeworkListPage from './parent/pages/ParentHomeworkListPage';
 import ParentMessagesPage from './parent/pages/ParentMessagesPage';
 import ParentExamListPage from './parent/pages/parentExamListPage';
 import ParentExamPage from './parent/pages/ParentExamPage'
-import ParentAnalytics from './parent/pages/ParentAnalytics';
 import ParentSendMessagePage from './parent/pages/ParentSendMessage';
 
 
@@ -116,7 +115,6 @@ function App() {
                       <Route exact path='/' element={<ParentHomepage />} />
                       {/* <Route path='/classwork' element={<ParentCla />} /> */}
 
-                        <Route path='/analytics' element={<ParentAnalytics />} />
                         <Route path='/courses' element={<ParentCoursesPage />} />
                         <Route path='/courses/:courseName' element={<ParentCourseDataPage />} />
                         <Route path='/courses/:courseName/assignments/:homeworkID' element={<ParentHomeworkPage />} />
