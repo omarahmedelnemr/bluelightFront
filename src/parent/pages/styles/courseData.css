@@ -125,11 +125,11 @@
     }
 }
 #ParentSidePages #courseDataPage .analysisAssignment .Graph .chart-container{
-    width: 200px;
+    width: 100%;
 }
 @media (max-width: 1440px) {
 #ParentSidePages #courseDataPage .analysisAssignment .Graph .chart-container{
-    width: 132px
+    width: 230px
 
 } 
 }

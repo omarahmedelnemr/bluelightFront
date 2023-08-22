@@ -472,12 +472,12 @@ function ParentCourseDataPage() {
                     <div className='Graph column'>
                         <PieChart chartData={chartData} title = {pageLang[activePart]}/>
 
-                        <div className='row labelsRow'>
+                        {/* <div className='row labelsRow'>
                             <p><span style={{backgroundColor:'#EFEE8F'}}></span><br/>{pageLang['still']}</p>
                             <p><span style={{backgroundColor:'red'}}></span><br/>{pageLang['late']}</p>
                             <p>< span  style={{backgroundColor:'lightgreen'}}></span><br/>{pageLang['completed']}</p>
                             <p><span  style={{backgroundColor:'#ff00007a'}}></span><br/>{pageLang['doneLate']}</p>
-                        </div>
+                        </div> */}
 
                     </div>
                     <div className='lineStatus column'> 
