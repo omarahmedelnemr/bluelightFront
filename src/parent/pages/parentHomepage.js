@@ -7,6 +7,7 @@ import StatusBoxes from '../components/statusBoxes';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
+import PieChart from '../../general/components/pieChart';
 function ParentHomepage() {
     if (checkAutherization() !== 'Auth'){
         window.location.href ='/login'
@@ -70,7 +71,32 @@ function ParentHomepage() {
             console.log("Error!\n",err)
         })
     },[])
-
+    const chartData = {
+        labels: [ 'still', 'Done' ],
+        // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+        datasets: [
+            {
+              label: 'Popularity of colours',
+              data: [12,43],
+              // you can set indiviual colors for each bar
+              backgroundColor: [ "lightgreen",'#ff00008c' , "#ff00007a"],
+              borderWidth: 0,
+            }
+        ]
+    }
+    const chartData2 = {
+        labels: [ 'still', 'Done' ],
+        // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+        datasets: [
+            {
+              label: 'Popularity of colours',
+              data: [234,123],
+              // you can set indiviual colors for each bar
+              backgroundColor: [ "lightgreen",'#ff00008c' , "#ff00007a"],
+              borderWidth: 0,
+            }
+        ]
+    }
     // Change The Current Student info in Local Storage
     function changeCurrentStudent(event){
         if(localStorage.getItem("studentsNum") == 2){
@@ -132,15 +158,19 @@ function ParentHomepage() {
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
                     {homeworkPanel}
-                    <div className='test'>
-
-                    </div>  
-                </div>
-                <div className='column analytics'>
-                    
                     {examPanel}
 
-                    <div className='test'>
+                </div>
+                <div className='column analytics'>
+                <span>الجرافات لسه محتاجين تظبيط</span>
+                    
+                    <div className='ChatDiv'>
+                        <PieChart chartData={chartData}/>
+
+                    </div>  
+
+                    <div className='ChatDiv'>
+                        <PieChart chartData={chartData2} />
 
                     </div>
                 </div>

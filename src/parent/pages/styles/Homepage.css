@@ -55,24 +55,35 @@
 #ParentSidePages .Homepage .dataColumns{
     padding: 20px;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 
 }
-#ParentSidePages .Homepage .dataColumns .workToSubmit,
+#ParentSidePages .Homepage .dataColumns .workToSubmit{
+    flex-basis: 45%;
+    
+}
 #ParentSidePages .Homepage .dataColumns .analytics{
 
-    flex-basis: 45%;
+    flex-basis: 30%;
+}
+#ParentSidePages .Homepage .dataColumns .analytics .chart-container{
+    height: 350px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @media (max-width: 1440px) {
-    #ParentSidePages .Homepage .dataColumns .workToSubmit,
-    #ParentSidePages .Homepage .dataColumns .analytics{
-    
+    #ParentSidePages .Homepage .dataColumns .workToSubmit{
         flex-basis: 90%;
+    }
+    #ParentSidePages .Homepage .dataColumns .analytics{
+        display: none;
     }
 }
 @media (max-width: 500px) {
     #ParentSidePages .Homepage{
-    
         zoom: 0.58;
     }
     #ParentSidePages .CoursesPage{
@@ -81,12 +92,14 @@
 }
 
 
-#ParentSidePages .test{
+#ParentSidePages .dataColumns .ChatDiv{
     background-color: #dbeaff;
     height: 350px;
     padding: 20px;
     margin: 5px;
     border-radius: 10px;
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
