@@ -22,6 +22,8 @@ function ParentHomepage() {
 
     const [currentStudentName,setCurrentStudent] = useState(null)
     const [studentsChooseList,setChooseList] = useState([])
+    const [homeworkPanel,setHomeworkPanel] = useState([])
+    const [examPanel,setExamPanel] = useState([])
 
     // Get The Avilable Student For This Parent
     useEffect(()=>{
@@ -42,13 +44,13 @@ function ParentHomepage() {
                 localStorage.setItem("studentsNum",students.length)
                 localStorage.setItem("StudentsList",JSON.stringify(students))
 
-            }else{
-                if (lang === 'en'){
-                    setCurrentStudent(localStorage.getItem("currentStudentName").split(" ")[0])
-                }else{
-                    setCurrentStudent(localStorage.getItem("currentStudentArName").split(" ")[0])
-                }
             }
+            if (lang === 'en'){
+                setCurrentStudent(localStorage.getItem("currentStudentName").split(" ")[0])
+            }else{
+                setCurrentStudent(localStorage.getItem("currentStudentArName").split(" ")[0])
+            }
+            
             if (students.length>2){
                 const preList = []
                 for (var i =0;i<students.length;i++){
@@ -62,7 +64,8 @@ function ParentHomepage() {
                 console.log("pre: ",preList)
                 setChooseList(preList)
             }
-
+            setHomeworkPanel(<WorkExamsPanel type={"Assignments"} limit={true}/>)
+            setExamPanel( <WorkExamsPanel type={"Exams"} limit={true}/>)
         }).catch((err)=>{
             console.log("Error!\n",err)
         })
@@ -128,14 +131,14 @@ function ParentHomepage() {
             <StatusBoxes />
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
-                    <WorkExamsPanel type={"Assignments"} limit={true}/>
+                    {homeworkPanel}
                     <div className='test'>
 
                     </div>  
                 </div>
                 <div className='column analytics'>
                     
-                    <WorkExamsPanel type={"Exams"} limit={true}/>
+                    {examPanel}
 
                     <div className='test'>
 
