@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
-import Cookies from 'universal-cookie';
 import Watermark from '../components/watermark';
 import Global from '../../publicFunctions/globalVar'
 import checkAutherization from '../../publicFunctions/checkAuth';
@@ -12,8 +11,7 @@ import checkAutherization from '../../publicFunctions/checkAuth';
 
 function Login() {
   if (checkAutherization() === 'Auth'){
-    const reader = new Cookies()
-    window.location.href ='/'+reader.get('role')
+    window.location.href ='/'+localStorage.getItem("role")
   }
   function handleKeyPress(event) {
     // Check if the key pressed is the Enter key (keyCode 13)
@@ -39,14 +37,6 @@ function Login() {
       axios.post(Global.BackendURL+"/login",{username:username,password:password},{ withCredentials: true})
       .then((res)=>{
         
-        //Set The Cookies Manual 
-        const cookies = new Cookies();
-        cookies.set("jwt",res.data['jwt'])
-        cookies.set("role",res.data['role'])
-        cookies.set("id",res.data['id'])
-        cookies.set("CookiesState","By React")
-
-
         //Set Local Storage Variables
         if (localStorage.getItem("name") ===null){
           const dataList = Object.keys(res.data)
