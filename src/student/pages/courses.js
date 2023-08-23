@@ -14,14 +14,12 @@ import baseImage from '../../content/courseBase.jpeg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar'
-import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 function CoursesPage() {
   if (checkAutherization() !== 'Auth'){
     window.location.href ='/login'
   }
   const navigate = useNavigate()
-  const cookieReader = new Cookies()
   const lang = localStorage.getItem('lang')
   const pageLang = {
     courses: lang === 'en' ? "Courses" : "المقررات",
@@ -40,7 +38,7 @@ function CoursesPage() {
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   useEffect(()=>{
-    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+cookieReader.get("id")).then((res)=>{
+    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+localStorage.getItem("id")).then((res)=>{
       const data = res.data
       const coursesPreList = []
       var teacherName,currentImage,subjectNamex,link,favIcon;

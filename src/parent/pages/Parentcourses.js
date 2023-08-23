@@ -14,14 +14,10 @@ import baseImage from '../../content/courseBase.jpeg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar'
-import Cookies from 'universal-cookie';
-import { useNavigate } from 'react-router-dom';
 function ParentCoursesPage() {
   if (checkAutherization() !== 'Auth'){
     window.location.href ='/login'
   }
-  const navigate = useNavigate()
-  const cookieReader = new Cookies()
   const lang = localStorage.getItem('lang')
   const pageLang = {
     courses: lang === 'en' ? "Courses" : "المقررات",

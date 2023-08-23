@@ -1,5 +1,4 @@
 import "./styles/courseBox.css"
-import Cookies from "universal-cookie";
 function CourseBox({img,name,teacher,route,fav,id}) {
   function addToFav(event){
       // Get the parent div element (courseInfo)
@@ -12,8 +11,7 @@ function CourseBox({img,name,teacher,route,fav,id}) {
       const courseName = siblingSpan.textContent;    
       
       //get Student's id
-      const cookieReader = new Cookies()
-      const studentID = cookieReader.get('id')
+      const studentID = localStorage.getItem("id")
       // if(localStorage.getItem('favorite')==null){
       //   localStorage.setItem('favorite',courseName)
       // }else{

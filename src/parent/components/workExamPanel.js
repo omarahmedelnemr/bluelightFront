@@ -12,8 +12,8 @@ function WorkExamsPanel({type,limit,submitted = false}) {
                                                         <div className="loading"></div>
                                                     </div>)
     const id = localStorage.getItem("currentStudentID")
-    const studentName = localStorage.getItem("currentStudentName").split(" ")[0]
-    const studentArName = localStorage.getItem("currentStudentArName").split(" ")[0]
+    const studentName = limit ? '':localStorage.getItem("currentStudentName").split(" ")[0]
+    const studentArName = limit ? '':localStorage.getItem("currentStudentArName").split(" ")[0]
     const lang = localStorage.getItem('lang')
     const compLang ={
         type:           lang === 'en' ? (type === "Assignments"? "Assignments":"Exams"):(type === "Assignments"? "الواجبات":"الاختبارات"),

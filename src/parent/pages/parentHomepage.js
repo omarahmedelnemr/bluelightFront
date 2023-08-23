@@ -4,14 +4,20 @@ import TopBar from '../../general/components/topBar';
 import WorkExamsPanel from '../components/workExamPanel';
 import checkAutherization from '../../publicFunctions/checkAuth';
 import StatusBoxes from '../components/statusBoxes';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState,useHistory } from 'react';
+// import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
 import PieChart from '../../general/components/pieChart';
+import axios from "../../publicFunctions/axiosAuth"
+// import { useHistory } from 'react-router-dom';
+
+// Inside your React component
 function ParentHomepage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
+    // if (checkAutherization() !== 'Auth'){
+    //     window.location.href ='/login'
+    // }
+    const history = useHistory();
+
     const lang = localStorage.getItem('lang') 
     const pageText = {
         SchoolName: lang === 'en' ? "Bluelight Schools":"مدارس بلو لايت الدولية",
@@ -23,15 +29,16 @@ function ParentHomepage() {
 
     const [currentStudentName,setCurrentStudent] = useState(null)
     const [studentsChooseList,setChooseList] = useState([])
-    const [homeworkPanel,setHomeworkPanel] = useState([])
-    const [examPanel,setExamPanel] = useState([])
-
     // Get The Avilable Student For This Parent
     useEffect(()=>{
         axios.get(Global.BackendURL+"/parent/mystudents?parentID="+localStorage.getItem("id"))
         .then((res)=>{
             const data =  res.data
-
+            // After handling the response from the server
+            if (res.status === 401) {
+                // Redirect the user to the login page
+                history.push('/login');
+            }
             // Reset the LocalStorage Main Info
             localStorage.setItem("img_dir",data["img_dir"])
 
@@ -65,9 +72,13 @@ function ParentHomepage() {
                 console.log("pre: ",preList)
                 setChooseList(preList)
             }
-            setHomeworkPanel(<WorkExamsPanel type={"Assignments"} limit={true}/>)
-            setExamPanel( <WorkExamsPanel type={"Exams"} limit={true}/>)
         }).catch((err)=>{
+
+            // After handling the response from the server
+            if (err.status === 401) {
+                // Redirect the user to the login page
+                history.push('/login');
+            }
             console.log("Error!\n",err)
         })
     },[])
@@ -157,9 +168,8 @@ function ParentHomepage() {
             <StatusBoxes />
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
-                    {homeworkPanel}
-                    {examPanel}
-
+                    <WorkExamsPanel type={"Assignments"} limit={true}/>
+                    <WorkExamsPanel type={"Exams"} limit={true}/>
                 </div>
                 <div className='column analytics'>
                 <span>الجرافات لسه محتاجين تظبيط</span>
