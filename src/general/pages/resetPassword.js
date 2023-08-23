@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
-import Cookies from 'universal-cookie';
 import Watermark from '../components/watermark';
 import Global from '../../publicFunctions/globalVar'
 import checkAutherization from '../../publicFunctions/checkAuth';
@@ -12,8 +11,7 @@ import checkAutherization from '../../publicFunctions/checkAuth';
 
 function ResetPassword() {
   if (checkAutherization() === 'Auth'){
-    const reader = new Cookies()
-    window.location.href ='/'+reader.get('role')
+    window.location.href ='/'+localStorage.getItem("role")
   }
   function SubmitResetPassword(){
     const newPassword = document.getElementById("newPassword").value
