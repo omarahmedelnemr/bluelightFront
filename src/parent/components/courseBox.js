@@ -12,23 +12,7 @@ function CourseBox({img,name,teacher,route,fav,id}) {
       
       //get Student's id
       const studentID = localStorage.getItem("currentStudentID")
-      // if(localStorage.getItem('favorite')==null){
-      //   localStorage.setItem('favorite',courseName)
-      // }else{
-      //   const item = localStorage.getItem('favorite')
-      //   const favList = item.split(',')
-      //   if (favList.includes(courseName)){
-      //     event.currentTarget.style.color = 'white'
-      //     console.log(favList.indexOf(courseName))
-      //     favList.splice(favList.indexOf(courseName),1)
-      //   }else{
-      //     favList.push(courseName)
-      //     event.currentTarget.style.color = 'red'
-      //     console.log(event.currentTarget)
-      //   }
-      //   localStorage.setItem('favorite',favList.join(','))
-        
-      // }
+
   }
   return (
     <div className="CourseBox">
@@ -39,8 +23,6 @@ function CourseBox({img,name,teacher,route,fav,id}) {
                 <p>{teacher}</p>
             </div>
             <a href={route} className="hiddenRoute"></a>
-            {/* <span className="hiddenMetadata">{id}</span> */}
-            {/* <FontAwesomeIcon icon="fa-solid fa-heart" style={{color:fav?"red":"white"}} onClick={addToFav}/> */}
         </div>
     </div>
   );
