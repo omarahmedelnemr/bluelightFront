@@ -4,7 +4,7 @@ import TopBar from '../../general/components/topBar';
 import WorkExamsPanel from '../components/workExamPanel';
 import checkAutherization from '../../publicFunctions/checkAuth';
 import StatusBoxes from '../components/statusBoxes';
-import { useEffect, useState,useHistory } from 'react';
+import { useEffect, useState } from 'react';
 // import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
 import PieChart from '../../general/components/pieChart';
@@ -13,10 +13,10 @@ import axios from "../../publicFunctions/axiosAuth"
 
 // Inside your React component
 function ParentHomepage() {
-    // if (checkAutherization() !== 'Auth'){
-    //     window.location.href ='/login'
-    // }
-    const history = useHistory();
+    if (checkAutherization() !== 'Auth'){
+        window.location.href ='/login'
+    }
+    // const history = useHistory();
 
     const lang = localStorage.getItem('lang') 
     const pageText = {
