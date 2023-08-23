@@ -27,7 +27,6 @@ function Homepage() {
 
             <div className='row overviewTitle'>
                 <h2>{pageText['overview'][lang]}</h2>
-                {/* <DropDownList mainText={pageText["last30"][lang]}/> */}
             </div>  
             <StatusBoxes />
             <div className='row dataColumns'>
