@@ -96,7 +96,9 @@
     margin: 0px 15px;
     font-size: 20px;
 }
-
+.sideNav .center .navButton p{
+    text-wrap: nowrap;
+}
 .sideNav .center .active{
     /* background-color: white; */
     color: black;

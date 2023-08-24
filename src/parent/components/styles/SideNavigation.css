@@ -105,6 +105,9 @@
 #ParentSidePages .sideNav .center .active svg{
     color: #3d5ef0;
 }
+#ParentSidePages .sideNav .center .navButton p{
+    text-wrap: nowrap;
+}
 #ParentSidePages .sideNav .bottom{
     flex-grow: 1;
     display: flex;

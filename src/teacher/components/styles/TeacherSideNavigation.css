@@ -105,6 +105,9 @@
 #TeacherSidePages .sideNav .center .active svg{
     color: #3d5ef0;
 }
+#TeacherSidePages .sideNav .center .navButton p{
+    text-wrap: nowrap;
+}
 #TeacherSidePages .sideNav .bottom{
     flex-grow: 1;
     display: flex;
