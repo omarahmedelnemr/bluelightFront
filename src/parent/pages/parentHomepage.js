@@ -35,10 +35,10 @@ function ParentHomepage() {
         .then((res)=>{
             const data =  res.data
             // After handling the response from the server
-            if (res.status === 401) {
-                // Redirect the user to the login page
-                history.push('/login');
-            }
+            // if (res.status === 401) {
+            //     // Redirect the user to the login page
+            //     history.push('/login');
+            // }
             // Reset the LocalStorage Main Info
             localStorage.setItem("img_dir",data["img_dir"])
 
@@ -74,11 +74,11 @@ function ParentHomepage() {
             }
         }).catch((err)=>{
 
-            // After handling the response from the server
-            if (err.status === 401) {
-                // Redirect the user to the login page
-                history.push('/login');
-            }
+            // // After handling the response from the server
+            // if (err.status === 401) {
+            //     // Redirect the user to the login page
+            //     history.push('/login');
+            // }
             console.log("Error!\n",err)
         })
     },[])
