@@ -3,7 +3,7 @@ import './styles/statusBoxes.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
-function StatusBoxes() {
+function StatusBoxes({studentName ='1'}) {
     
     // get Assignments Numbers
     const [totalAssignmentsCount,setTotalAssignmentsCount] = useState('-')
@@ -40,18 +40,13 @@ function StatusBoxes() {
     })
 
     // get Attendance Numbers
-    const [totalAttendanceCount,setTotalAttendanceCount] = useState('-')
-    const [attendedCount,setAttendedCount] = useState('-')
-    useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/totalAttendance?studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
-            setTotalAttendanceCount(res.data.count)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    })
+    const [attendanceRate,setAttendanceRate] = useState('-')
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/AttendanceCount?studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
-            setAttendedCount(res.data.count)
+            const data = res.data
+            const rate = Math.round((data["attended"]/(data['attended']+data['absent']))*100)
+            setAttendanceRate(rate)
+
         }).catch((err)=>{
             console.log(err)
         })
@@ -126,12 +121,11 @@ function StatusBoxes() {
                         <p>{compLang["attendance"]}</p>
                     </div>
                     <div className='boxValue'>
-                        {/* <h2>1/3</h2> */}
-                        <h2>{(totalAttendanceCount === '-' || attendedCount === "-") ? '-' :(totalAttendanceCount ==0 ? 100 :   attendedCount * 100/totalAttendanceCount )} %</h2>
+                        <h2>{attendanceRate === '-' ? 100 :attendanceRate} %</h2>
 
                     </div>
                     <div className='boxComment'>
-                        <p>{attendedCount === '-' ? '-' : ((totalAttendanceCount ==0 ? 100 :   Math.round(attendedCount * 100/totalAttendanceCount) )  > 90? compLang["attendanceMessage1"]:compLang["attendanceMessage2"])}</p>
+                        <p>{attendanceRate === '-' ? compLang["attendanceMessage1"]: attendanceRate  > 90? compLang["attendanceMessage1"]:compLang["attendanceMessage2"]}</p>
 
                     </div>
                 </div>

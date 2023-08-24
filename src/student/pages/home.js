@@ -5,9 +5,9 @@ import WorkExamsPanel from '../../student/components/workExamPanel';
 import checkAutherization from '../../publicFunctions/checkAuth';
 import StatusBoxes from '../../student/components/statusBoxes';
 function Homepage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
+    // if (checkAutherization() !== 'Auth'){
+    //     window.location.href ='/login'
+    // }
     const lang = localStorage.getItem('lang') 
     const pageText = {
         SchoolName: lang === 'en' ? "Bluelight Schools":"مدارس بلو لايت الدولية",

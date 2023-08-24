@@ -165,7 +165,7 @@ function ParentHomepage() {
                  :null
                  }
             </div>  
-            <StatusBoxes />
+            <StatusBoxes  studentName={currentStudentName}/>
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
                     <WorkExamsPanel type={"Assignments"} limit={true}/>
