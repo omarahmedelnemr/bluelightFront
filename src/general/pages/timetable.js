@@ -8,7 +8,15 @@ import Global from '../../publicFunctions/globalVar';
 function TimeTablePage() {
   const lang = localStorage.getItem('lang')
   const pageLang = {
-    timetable : lang === 'en' ? "Time Table":"جدول الحصص"
+    timetable : lang === 'en' ? "Time Table":"جدول الحصص",
+    day:        lang === 'en' ? "Day":"اليوم",
+    Saturday:   lang === "en" ? "Saturday":"السبت",
+    Sunday:     lang === "en" ? "Sunday":"الأحد",
+    Monday:     lang === "en" ? "Monday":"الأثنين",
+    Tusday:     lang === "en" ? "Tusday":"الثلاثاء",
+    Wednesday:  lang === "en" ? "Wednesday":"الأربعاء",
+    Thursday:   lang === "en" ? "Thursday":"الخميس",
+    Friday:     lang === "en" ? "Friday":"الجمعة",
   }
 
     var classroomID;
@@ -36,7 +44,7 @@ function TimeTablePage() {
             var preTableCell = []
             const preTableRow = []
             for (var i=0;i<tableDays.length;i++){
-                preTableCell.push(<td className='dayCell'>{tableDays[i]}</td>)
+                preTableCell.push(<td className='dayCell'>{pageLang[tableDays[i]]}</td>)
                 for (var x = 0;x<headers.length;x++){
                     const teacherName = (lang === 'en' ? data[tableDays[i]][headers[x]]['teacher'] : data[tableDays[i]][headers[x]]['arTeacher']).split(" ").slice(0,2).join(" ")
                     preTableCell.push(
@@ -67,7 +75,7 @@ function TimeTablePage() {
                 <table className='mainTable'>
                     <thead>
                         <tr>
-                            <th>Day</th>
+                            <th>{pageLang['day']}</th>
                             {tableHeaders}
                         </tr>
                     </thead>
