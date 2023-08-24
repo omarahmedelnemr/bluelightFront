@@ -44,7 +44,12 @@ function StatusBoxes({studentName ='1'}) {
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/AttendanceCount?studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
             const data = res.data
-            const rate = Math.round((data["attended"]/(data['attended']+data['absent']))*100)
+            var rate;
+            if ((data['attended']+data['absent']) != 0 ){
+                rate = Math.round((data["attended"]/(data['attended']+data['absent']))*100)
+            }else{
+                rate = 100
+            }
             setAttendanceRate(rate)
 
         }).catch((err)=>{
