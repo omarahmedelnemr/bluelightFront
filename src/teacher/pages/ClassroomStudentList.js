@@ -46,7 +46,7 @@ function ClassroomStudentList() {
                             
                             <div className='column textInfo'>
                                 <p className='studentName'>{lang === 'en' ? data[i]['name']: data[i]['arName']}</p>
-                                <span>{data[i]['age'] + " "+ pageText["yearsOld"]} - {pageText[data[i]['gender']]}</span>
+                                {/* <span>{data[i]['age'] + " "+ pageText["yearsOld"]} - {pageText[data[i]['gender']]}</span> */}
                             </div>
                         </div>
                         <div className='RightStudentInfo'>
