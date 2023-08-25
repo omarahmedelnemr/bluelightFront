@@ -91,7 +91,7 @@ function Login() {
           </svg>
           <div id='mainLoginForm'>
             <div>
-                <h1>Welcome To Nile Schools</h1>
+                <h1>Welcome To Bluelight Schools</h1>
                 <p className='rightMessage'>{logingmessege}</p>
                 <p className='WrongMessage'>{messege}</p>           
             </div>
