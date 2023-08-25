@@ -10,7 +10,7 @@ function TopBar({title}) {
             document.getElementsByClassName('sideNav')[0].style.setProperty('right','0px')
             document.getElementsByClassName('sideNav')[0].style.setProperty('left','auto')
         }
-        document.getElementsByClassName('sideNav')[0].querySelector('.backgroundBlock').style.setProperty('display','block')
+        document.querySelector('.sideNav').querySelector('.backgroundBlock').style.setProperty('display','block')
     }
     return (
         <div className="topBar">
