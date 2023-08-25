@@ -34,6 +34,7 @@ function ParentCoursesPage() {
     "chemistry":ChemistryImage,
     "baseImage":baseImage
   }
+  const [loading,setLoading] = useState(<div className='loading'></div>)
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   useEffect(()=>{
     axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('currentStudentClassroom')+"&studentID="+localStorage.getItem("currentStudentID")).then((res)=>{
@@ -61,6 +62,7 @@ function ParentCoursesPage() {
             />)
       }
       setCoursesBoxs(coursesPreList)
+      setLoading(null)
     }).catch((err)=>{
       console.log(err)
     })    
@@ -75,7 +77,7 @@ function ParentCoursesPage() {
   return (
     <div className="column CoursesPage">
       <TopBar title={pageLang["courses"]}/>
-
+      {loading}
       <div className='row coursesBoxList'>
           {coursesBoxs}
 

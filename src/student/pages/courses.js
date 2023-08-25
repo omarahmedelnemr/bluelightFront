@@ -14,12 +14,10 @@ import baseImage from '../../content/courseBase.jpeg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar'
-import { useNavigate } from 'react-router-dom';
 function CoursesPage() {
   if (checkAutherization() !== 'Auth'){
     window.location.href ='/login'
   }
-  const navigate = useNavigate()
   const lang = localStorage.getItem('lang')
   const pageLang = {
     courses: lang === 'en' ? "Courses" : "المقررات",
@@ -37,6 +35,7 @@ function CoursesPage() {
     "baseImage":baseImage
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
+  const [loading,setLoading] = useState(<div className='loading'></div>)
   useEffect(()=>{
     axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+localStorage.getItem("id")).then((res)=>{
       const data = res.data
@@ -63,6 +62,7 @@ function CoursesPage() {
             />)
       }
       setCoursesBoxs(coursesPreList)
+      setLoading(null)
     }).catch((err)=>{
       console.log(err)
     })    
@@ -77,7 +77,7 @@ function CoursesPage() {
   return (
     <div className="column CoursesPage">
       <TopBar title={pageLang["courses"]}/>
-
+      {loading}
       <div className='row coursesBoxList'>
           {coursesBoxs}
 
