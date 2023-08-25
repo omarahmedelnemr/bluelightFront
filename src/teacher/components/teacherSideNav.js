@@ -95,6 +95,8 @@ function TeacherSideNavigation() {
                 </div>
             </div>
             <div className="backgroundActive"></div>
+            <div className='backgroundBlock'></div>
+
             <div className="center">
                     <div id="homeNavButton" className="navButton active" onClick={navButtonClick}>
                         <FontAwesomeIcon icon="fa-solid fa-house" />
