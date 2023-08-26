@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Global from '../../publicFunctions/globalVar';
 import PieChart from '../../general/components/pieChart';
 import axios from "../../publicFunctions/axiosAuth"
+import BarChart from '../../general/components/BarChart';
 // import { useHistory } from 'react-router-dom';
 
 // Inside your React component
@@ -108,6 +109,19 @@ function ParentHomepage() {
             }
         ]
     }
+    const chartData3 = {
+        labels: [ 'Math', 'Arabic',"English","Drawing","Science", "Chemistry","Physics" ],
+        // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+        datasets: [
+            {
+              label: "Percintage",
+              data: [90,98,70,100,80,95,92],
+              // you can set indiviual colors for each bar
+              backgroundColor: [ "lightgreen",'#ff00008c' , "#ff00007a","yellow","blue","lightblue","green"],
+              borderWidth: 0,
+            }
+        ]
+    }
     // Change The Current Student info in Local Storage
     function changeCurrentStudent(event){
         if(localStorage.getItem("studentsNum") == 2){
@@ -175,7 +189,8 @@ function ParentHomepage() {
                 <span>الجرافات لسه محتاجين تظبيط</span>
                     
                     <div className='ChatDiv'>
-                        <PieChart chartData={chartData}/>
+                        {/* <PieChart chartData={chartData}/> */}
+                        <BarChart chartData={chartData3} title={"Grades"}/>
 
                     </div>  
 
