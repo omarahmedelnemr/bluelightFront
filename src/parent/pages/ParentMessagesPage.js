@@ -78,7 +78,7 @@ function ParentMessagesPage() {
         socket.on("messages",(data)=>{
             console.log("Messages: ",data)
             const preElement = []
-            for(var i=data.length-1;i>=0;i--){
+            for(var i= 0;i< data.length;i++){
                 var date = new Date(data[i]["date"]).toLocaleTimeString()//.split(":")
                 console.log("dataEEE: ",data[i]["date"])
                 // date[2] = date[2].slice(3,5)

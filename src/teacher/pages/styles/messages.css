@@ -156,6 +156,8 @@
     height: 75%;
     padding: 20px;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
     
 }
 #TeacherSidePages #StudentMessagesPage .ChatRoom  .chatMessages .messageBox {
