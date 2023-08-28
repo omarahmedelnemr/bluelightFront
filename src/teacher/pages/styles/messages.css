@@ -133,8 +133,12 @@
     height: 15px;
     width: 15px;
     display: block;
-    background-color: red;
+    background-color: transparent;
     border-radius: 100%;
+}
+#TeacherSidePages #StudentMessagesPage .mailBox .chatroomBox .newSeen .newMessage.red{
+    background-color: red;
+
 }
 #TeacherSidePages #StudentMessagesPage .ChatRoom{
     background-color: white;
@@ -200,25 +204,50 @@
     color: black;
 
 }
+#TeacherSidePages #StudentMessagesPage .ChatRoom .sendMessage{
+    border-radius: 10px;;
+    border: 1px solid rgb(153, 153, 153);
+    overflow: hidden;
+    display: none;
 
-#TeacherSidePages #StudentMessagesPage .mailBox::-webkit-scrollbar,#TeacherSidePages #StudentMessagesPage .MessageInfo::-webkit-scrollbar {
+}
+#TeacherSidePages #StudentMessagesPage .ChatRoom .sendMessage input{
+    border-radius: 10px;
+    border: 0;
+    padding: 10px;
+    font-size: 15px;
+
+}
+#TeacherSidePages #StudentMessagesPage .ChatRoom .sendMessage input:focus{
+    outline: none;
+}
+#TeacherSidePages #StudentMessagesPage .ChatRoom .sendMessage .sendMessagesButton{
+    background-color:white;
+    border: 0px;
+    color: #3d5ef0;
+    font-size: 20px;
+    margin: 0px 10px;
+}
+#TeacherSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar,#TeacherSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar {
     width: 10px;
 }
   
   /* Track */
-#TeacherSidePages #StudentMessagesPage .mailBox::-webkit-scrollbar-track, #TeacherSidePages #StudentMessagesPage .MessageInfo::-webkit-scrollbar-track{
+  #TeacherSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-track, #TeacherSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-track{
     background: #f1f1f1;
 }
   
   /* Handle */
-#TeacherSidePages #StudentMessagesPage .mailBox::-webkit-scrollbar-thumb,#TeacherSidePages #StudentMessagesPage .MessageInfo::-webkit-scrollbar-thumb {
+  #TeacherSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb,#TeacherSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb {
     background: #888;
+    border-radius: 30px;
 }
   
   /* Handle on hover */
-#TeacherSidePages #StudentMessagesPage .mailBox::-webkit-scrollbar-thumb:hover,#TeacherSidePages #StudentMessagesPage .MessageInfo::-webkit-scrollbar-thumb:hover {
+  #TeacherSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb:hover,#TeacherSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 
 
 

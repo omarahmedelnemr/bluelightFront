@@ -60,7 +60,7 @@ function StatusBoxes({studentName ='1'}) {
     // get Events Numbers
     const [messagesCount,setMessagesCount] = useState('-')
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/parent/messagesCount?parentID="+localStorage.getItem('id')).then((res)=>{
+        axios.get(Global.BackendURL+"/unseenMessagesCount?userID="+localStorage.getItem('id')+"&role="+localStorage.getItem("role")).then((res)=>{
             setMessagesCount(res.data.count)
         }).catch((err)=>{
             console.log(err)
