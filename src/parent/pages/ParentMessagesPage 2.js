@@ -2,42 +2,68 @@ import TopBar from '../../general/components/topBar';
 import './styles/messages.css'
 import '../../general/pages/styles/general.css'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
+import {  useParams } from 'react-router-dom';
 import formatTime from '../../publicFunctions/formatTime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import routeTo from '../../publicFunctions/reroute'
 import io from "socket.io-client";
 
-const socket = io(Global.BackendURL+"/chat"); // Connect to the Socket.IO server
-socket.emit("userInfo",{id:localStorage.getItem("id"),role:localStorage.getItem("role")})
+const socket = io(); // Connect to the Socket.IO server
 function ParentMessagesPage() {
     const lang = localStorage.getItem('lang')
+    // const studentName = localStorage.getItem('currentStudentName').split(" ")[0]
+    // const studentArName = localStorage.getItem('currentStudentArName').split(" ")[0]
     const pageLang = {
         messages:    lang === 'en' ? "Messages":"الرسائل",
         teacher:     lang === 'en' ? "Teacher":"مدرس",
         private:     lang === 'en' ? "Private":"خاص",
+        // public:      lang === 'en' ? "Public For "+studentName:"عام ل"+studentArName,
         notYet:      lang === 'en' ? "No Messages Yet":"لا رسائل بعد",
         Messages:    lang === 'en' ? "Messages":"الرسائل"
     }
+    const {ID} = useParams()
     const [bigPreview,setBigPreview] = useState(null)
     const [chatroomBoxes,setChatroomBoxes] = useState(null)
     const [messages,setMessages] = useState(null)
     const [activeImage,setActiveImage] = useState(null)
     const [activeUsername,setActiveUserName] = useState(null)
     const [loading,setLoading] = useState(<div className="loading"></div> )
-    // const [activeTeacher,setActiveTeacher] = useState(null)
+    const [activeTeacher,setActiveTeacher] = useState(null)
+    const [counter,setCounter] =useState(0)
     const [srRole,setsrRole] = useState(null)
+    const [toggleTrue,setToggleTrue] = useState(0)
     
+    useEffect(() => {
+        const intervalID = setInterval(() =>  {
+            const myID = localStorage.getItem("id")
+            const role = localStorage.getItem("role")
+            const lastDate = localStorage.getItem("LatestDate")
+            axios.get(Global.BackendURL+"/messageupdate?userID="+myID+"&role="+role+"&lastDate="+lastDate).then((res)=>{
+                console.log(res.data)
+                if (res.data.newUpdate){
+                    setToggleTrue(toggleTrue+1)
+                }
+            }).catch((err)=>{
+                console.log("Error!!\n",err)
+            })
+        }, 1000);
+    
+        return () => clearInterval(intervalID);
+    }, []);
 
     useEffect(()=>{
         console.log("Toggeled")
         const role = localStorage.getItem("role")
         const myID = localStorage.getItem("id")
-        socket.on("chatrooms",(data)=>{
-            console.log("SOCKET Data",data)
-            if (data  ==='error'){
-                return data
-            }
+        axios.get(Global.BackendURL+"/chatrooms?userID="+myID+"&role="+role).then((res)=>{
+            console.log(res.data)
+            const data = res.data
             const preElement = []
+            // if (data.length !=0 ){
+            //     localStorage.setItem("LatestDate",data[0]["lastUpdate"])
+            // }
             for(var i=0;i<data.length;i++){
                 var date = new Date(data[i]["lastUpdate"]).toLocaleTimeString().split(":")
                 date[2] = date[2].slice(3,5)
@@ -69,13 +95,76 @@ function ParentMessagesPage() {
                 )
             }
             setChatroomBoxes(preElement)
-            setLoading(null)
 
 
 
 
+
+        }).catch((err)=>{
+            console.log("Error!\n",err)
         })
-        socket.on("messages",(data)=>{
+
+        if (activeTeacher != null){
+            axios.get(Global.BackendURL+"/message?teacherID="+activeTeacher+"&srRole="+role+"&srID="+myID).then((res)=>{
+                const data = res.data
+                console.log("Messages: ",data)
+                const preElement = []
+                for(var i=data.length-1;i>=0;i--){
+                    var date = new Date(data[i]["date"]).toLocaleTimeString().split(":")
+                    date[2] = date[2].slice(3,5)
+                    date = date[0] + ":" + date[1] +" "+date[2]
+                    if (data[i]['sender'] === role){
+                        preElement.push(
+                            <div className='messageBox sent'>
+                                <p className='hide messageID'>{data[i]['id']}</p>
+                                <div className='messageInfo'>
+                                    <p>{data[i]['text']}</p>
+                                    <span className='sendDate'>{date}</span>
+                                    {/* <FontAwesomeIcon icon="fa-solid fa-check-double" /> */}
+                                </div>
+    
+                            </div>
+                        )
+                    }else{
+                        preElement.push(
+                            <div className='messageBox received'>
+                                <p className='hide messageID'>{data[i]['id']}</p>
+                                <div className='messageInfo'>
+                                    <p>{data[i]['text']}</p>
+                                    <span className='sendDate'>{date}</span>
+                                    {/* <FontAwesomeIcon icon="fa-solid fa-check-double" /> */}
+                                </div>
+                            </div>
+                        )
+                    }
+                }
+                setMessages(preElement)
+                document.querySelector(".chatMessages").scrollTop = "20000px"
+
+            }).catch((err)=>{
+                console.log("Error!!\n",err)
+            })
+        }
+    },[activeTeacher,toggleTrue])
+
+    function openChatRoom(event){
+        const el = event.currentTarget
+        const teacherID = el.querySelector(".teacherID").innerHTML
+        const srRole = el.querySelector(".srRole").innerHTML
+        const username = el.querySelector(".senderName").innerHTML
+        const lastUpdate = el.querySelector(".lastUpdate").innerHTML
+        
+        setActiveTeacher(teacherID)
+        setsrRole(srRole)
+        const userImage = el.querySelector("img").src
+        setActiveUserName(username)
+        setActiveImage(userImage)
+        localStorage.setItem("LatestDate",lastUpdate)
+        
+        const role = localStorage.getItem("role") === "teacher" ? srRole:"teacher"
+        const myID = localStorage.getItem("id")
+        axios.get(Global.BackendURL+"/message?teacherID="+teacherID+"&srRole="+role+"&srID="+myID).then((res)=>{
+            const data = res.data
             console.log("Messages: ",data)
             const preElement = []
             for(var i=data.length-1;i>=0;i--){
@@ -83,6 +172,7 @@ function ParentMessagesPage() {
                 console.log("dataEEE: ",data[i]["date"])
                 // date[2] = date[2].slice(3,5)
                 // date = date[0] + ":" + date[1] +" "+date[2]
+                console.log("if: ",data[i]['sender']," : ", role, " : ",data[i]['sender'] === role)
                 if (data[i]['sender'] === localStorage.getItem("role")){
                     preElement.push(
                         <div className='messageBox sent'>
@@ -109,67 +199,28 @@ function ParentMessagesPage() {
                 }
             }
             setMessages(preElement)
+        }).catch((err)=>{
+            console.log("Error!!\n",err)
         })
-
-        socket.on("update",(data)=>{
-            console.log("I am on Update, mydata is : ",data)
-            const activeChat = localStorage.getItem("ActiveChat")
-            if (data === "Done"){
-                socket.emit("chatrooms",{id:myID,role:role})
-                if (activeChat != null && activeChat != ''){
-                    
-                    socket.emit("messages",{chatroomID:activeChat})
-                }else{
-                    console.log("No Active Teacher")
-                }
-            }
-
-        })
-
-        socket.emit("chatrooms",{id:myID,role:role})
-        if (localStorage.getItem("ActiveChat") !== null && localStorage.getItem("ActiveChat") !== ''){
-            socket.emit("messages",{chatroomID:localStorage.getItem("ActiveChat")})
-        }
-    },[])
-
-    function openChatRoom(event){
-
-        const activeBox =  event.currentTarget.parentElement.querySelector(".active")
-        if(activeBox !== null){
-            activeBox.classList.remove("active")
-        }
-        event.currentTarget.classList.add("active")
-        const el = event.currentTarget
-        const teacherID = el.querySelector(".teacherID").innerHTML
-        const srRole = el.querySelector(".srRole").innerHTML
-        const username = el.querySelector(".senderName").innerHTML
-        const activeChat = el.querySelector(".chatroomID").innerHTML
-        const lastUpdate = el.querySelector(".lastUpdate").innerHTML
-        const userImage = el.querySelector("img").src
-        
-        localStorage.setItem("ActiveTeacher",teacherID)
-        localStorage.setItem("ActiveChat",activeChat)
-        localStorage.setItem("LatestDate",lastUpdate)
-        setActiveUserName(username)
-        setActiveImage(userImage)
-        
-        socket.emit("messages",{chatroomID:activeChat})
     }
 
     function sendMessage(event){
         const req = {
-            // teacherID: localStorage.getItem("ActiveTeacher"),
-            // srRole : srRole,
-            // srID   : localStorage.getItem("id"),
-            chatroomID: localStorage.getItem("ActiveChat"),
+            teacherID: activeTeacher,
+            srRole : srRole,
+            srID   : localStorage.getItem("id"),
             sender : localStorage.getItem("role"),
             date   : new Date(),
             text   : event.currentTarget.parentElement.querySelector(".sendInput").value
         }
-        socket.emit("sendMessage",req)
         event.currentTarget.parentElement.querySelector(".sendInput").value = ''
-        console.log("Message Sent")
+        console.log("req: ",req)
+        axios.post(Global.BackendURL+"/message",req).then((res)=>{
+            console.log(res.data)
+        }).catch((err)=>{
+            console.log("Error!!\n",err)
 
+        })
     }
 
     function openSearchList(event){
@@ -202,7 +253,7 @@ function ParentMessagesPage() {
                 <div className='searchInSent'>
                     <input type='text' placeholder='Find in Chats'/>
                 </div>      
-                {loading}           
+                {/* {loading}            */}
                 {chatroomBoxes}
             </div>
             <div className='ChatRoom'>

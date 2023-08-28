@@ -42,6 +42,7 @@ import ParentMessagesPage from './parent/pages/ParentMessagesPage';
 import ParentExamListPage from './parent/pages/parentExamListPage';
 import ParentExamPage from './parent/pages/ParentExamPage'
 import ParentSendMessagePage from './parent/pages/ParentSendMessage';
+import TeacherMessagesPage from './teacher/pages/TeacherMessagesPage';
 
 
 Chart.register(ArcElement);
@@ -100,6 +101,7 @@ function App() {
                         <Route exact path='/classrooms' element={<ClassroomsPage />} />
                         <Route exact path='/classrooms/:classroomID' element={<ClassroomInfo />} />
                         <Route path='/classwork' element={<Classwork />} />
+                        <Route path='/messages' element={<TeacherMessagesPage/>} />
 
                         <Route path='/account' element={<Account />} />
                     </Routes>
