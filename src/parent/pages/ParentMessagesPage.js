@@ -6,16 +6,21 @@ import Global from '../../publicFunctions/globalVar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import io from "socket.io-client";
 import chatDateFormat from '../../publicFunctions/chatDate';
+import axios from 'axios';
 
 const socket = io(Global.BackendURL+"/chat"); // Connect to the Socket.IO server
 function ParentMessagesPage() {
     const lang = localStorage.getItem('lang')
     const pageLang = {
-        messages:    lang === 'en' ? "Messages":"الرسائل",
-        teacher:     lang === 'en' ? "Teacher":"مدرس",
-        private:     lang === 'en' ? "Private":"خاص",
-        notYet:      lang === 'en' ? "No Messages Yet":"لا رسائل بعد",
-        Messages:    lang === 'en' ? "Messages":"الرسائل"
+        messages:     lang === 'en' ? "Messages":"الرسائل",
+        teacher:      lang === 'en' ? "Teacher":"مدرس",
+        private:      lang === 'en' ? "Private":"خاص",
+        notYet:       lang === 'en' ? "No Messages Yet":"لا رسائل بعد",
+        Messages:     lang === 'en' ? "Messages":"الرسائل",
+        teacher:      lang === 'en' ? "Teacher":"مدرس",
+        sendAmessage: lang === 'en' ? "Send a Message":"أرسل رسالة",
+        findInChats:  lang === 'en' ? "Find in Chats":"ابحث في الرسائل",
+        searchInNew:  lang === 'en' ? "Search For New Message":"أبحث عن رسالة جديدة"
     }
     const [bigPreview,setBigPreview] = useState(null)
     const [chatroomBoxes,setChatroomBoxes] = useState(null)
@@ -26,7 +31,7 @@ function ParentMessagesPage() {
     // const [activeTeacher,setActiveTeacher] = useState(null)
     const [srRole,setsrRole] = useState(null)
     const [unseenCount,setUnseetCount] = useState(0)
-    
+    const [teachersList,setTeachersList] = useState(null)
 
     useEffect(()=>{
         const role = localStorage.getItem("role")
@@ -177,7 +182,7 @@ function ParentMessagesPage() {
     function sendMessage(event){
         const req = {
             // teacherID: localStorage.getItem("ActiveTeacher"),
-            // srRole : srRole,
+            // srRole : localStorage.getItem("role"),
             // srID   : localStorage.getItem("id"),
             chatroomID: localStorage.getItem("ActiveChat"),
             sender : localStorage.getItem("role"),
@@ -204,14 +209,49 @@ function ParentMessagesPage() {
             box.style.display = 'none'; // Hide the chatroomBox
           }
         });
-      }
+    }
 
+    function filterTeachersList(event) {
+        const searchValue = event.target.value.toLowerCase();
+        const chatroomBoxes = document.querySelectorAll('.chatSuggestion');
+        chatroomBoxes.forEach((box) => {
+          const senderTitle = box.querySelector('.teacherName').innerHTML.toLowerCase();
+          if (senderTitle.includes(searchValue)) {
+            box.style.display = 'flex'; // Show the chatroomBox
+          } else {
+            box.style.display = 'none'; // Hide the chatroomBox
+          }
+        });
+    }
     function openSearchList(event){
         const element = event.currentTarget
+        if (teachersList === null){
+            axios.get(Global.BackendURL+"/teachersList").then((res)=>{
+                const data = res.data
+                const preElement = []
+                for (var i=0;i<data.length;i++){
+                    preElement.push(
+                            <div className='chatSuggestion'>
+                                <img src={Global.BackendURL+"/avatar/"+data[i]['img_dir']}/>
+                                <div className='column'>
+                                    <p className='teacherName'>{lang === 'en' ? data[i]['name']:data[i]['arName']}</p>
+                                    <span>{lang === 'en' ? data[i]['course']['name'] +" "+pageLang['teacher'] :pageLang['teacher'] +" "+ data[i]['course']['name']}</span>
+                                </div>
+                            </div>
+                    )
+                }
+                setTeachersList(preElement)
+            }).catch((err)=>{
+                console.log("Error!!\n",err)
+            })
+        }
         if (element.style.transform === "rotate(-225deg)" ){
             element.style.transform = "rotate(0deg)"
+            element.parentElement.querySelector("input").style.setProperty("width","40px")
         }else{
             element.style.transform = "rotate(-225deg)"
+            element.parentElement.querySelector("input").style.setProperty("width","87%")
+        
         }
 
     }
@@ -227,13 +267,21 @@ function ParentMessagesPage() {
                         <h2>{pageLang['Messages']}</h2>
                         <span className='NewNumber'>{unseenCount}</span>
                     </div>
-                    <div className='NewMessageButton'  onClick={openSearchList}>
-                        <FontAwesomeIcon icon="fa-solid fa-plus" />
+                    <div>
+
                     </div>
-                    <a href="./sendMessage" className='hiddenRoute'></a>
+                    <div className='newChatroom'>
+                        <input type={"text"}  placeholder={pageLang['searchInNew']} onChange={filterTeachersList}/>
+                        <div className='NewMessageButton'  onClick={openSearchList}>
+                            <FontAwesomeIcon icon="fa-solid fa-plus" />
+                        </div>
+                        <div className='newChatroomSuggestions'>
+                            {teachersList}
+                        </div>
+                    </div>
                 </div>
                 <div className='searchInSent'>
-                    <input type='text' placeholder='Find in Chats' onChange={handleChatroomSearchInput}/>
+                    <input type='text' placeholder={pageLang['findInChats']} onChange={handleChatroomSearchInput}/>
                 </div>      
                 {loading}     
                 <div className='currentChatBoxes'>
@@ -249,7 +297,7 @@ function ParentMessagesPage() {
                     {messages}
                 </div>
                 <div className='sendMessage row'>
-                    <input type='text' className='sendInput'  id={"chatSendInput"} placeholder='Send a Message'/>
+                    <input type='text' className='sendInput'  id={"chatSendInput"} placeholder={pageLang['sendAmessage']}/>
                     <button className='sendMessagesButton' onClick={sendMessage}><FontAwesomeIcon icon="fa-solid fa-paper-plane" /></button>
                 </div>
             </div>

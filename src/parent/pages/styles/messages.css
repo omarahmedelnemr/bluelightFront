@@ -42,7 +42,19 @@
     border-radius: 100%;
     font-weight: bolder;
 }
-#ParentSidePages #StudentMessagesPage .mailBox .header .NewMessageButton{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom input{
+    position: absolute;
+    right: 30px;
+    width: 70%;
+    width: 40px;
+    border-radius: 40px;
+    height: 40px;
+    border: 1px solid;
+    padding: 10px;
+    z-index: 10;
+    transition: 0.5s;
+}
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .NewMessageButton{
     background-color: #3d5ef0;
     color: white;
     font-size: 20px;
@@ -54,6 +66,49 @@
     align-items: center;
     justify-content: center;
     transition: 0.5s;
+    z-index: 100;
+    position: relative;
+}
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom input:focus ~.newChatroomSuggestions{
+    display: block;
+}
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions{
+    position: absolute;
+    width: 87%;
+    height: 600px;
+    right: 5%;
+    border:1px solid rgb(198, 198, 198);
+    border-radius: 10px;
+    background-color: white;
+    padding: 1%;
+    margin-top: 10px;
+    display: none;
+    overflow: auto;
+}
+
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion{
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    transition: 0.5s;
+}
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion .column{
+    align-items: flex-start;
+}
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion img{
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    margin: 0 10px;
+}
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion p{
+    margin: 0px;
+    margin-top: 5px;
 }
 #ParentSidePages #StudentMessagesPage .mailBox .searchInSent{
     margin: 20px 0px;
@@ -229,24 +284,38 @@
     overflow: auto;
 }
 
-#ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar,#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar {
+
+/* ScrollBar Edit */
+
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions{
+
+}
+#ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar,
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar,
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar {
     width: 10px;
 }
   
   /* Track */
-  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-track, #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-track{
+  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-track,
+  #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-track,
+  #ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-track{
     background: #f1f1f1;
 }
   
   /* Handle */
-  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb,#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb {
+  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb,
+  #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb,
+  #ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-thumb{
     background: #888;
     border-radius: 30px;
 
 }
   
   /* Handle on hover */
-  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb:hover,#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb:hover {
+  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb:hover,
+  #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb:hover
+  #ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-thumb:hover{
     background: #555;
 
 }
