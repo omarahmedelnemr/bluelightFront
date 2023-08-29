@@ -179,6 +179,9 @@ function ParentMessagesPage() {
 
     }
 
+
+    
+
     function sendMessage(event){
         const req = {
             // teacherID: localStorage.getItem("ActiveTeacher"),
