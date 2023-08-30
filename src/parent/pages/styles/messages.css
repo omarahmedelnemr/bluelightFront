@@ -61,6 +61,18 @@
     border-left: 1px solid gray;
     padding: 0px 30px;
 }
+
+#StudentMessagesPage .mailBox .emptyMailBoxMessage{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 40%;
+    color: #3d5ef072;
+    font-size: 20px;
+}
+#StudentMessagesPage .mailBox .emptyMailBoxMessage svg{
+    font-size: 30px;
+}
  #StudentMessagesPage .mailBox .header{
     justify-content: space-between;
     align-items: center;

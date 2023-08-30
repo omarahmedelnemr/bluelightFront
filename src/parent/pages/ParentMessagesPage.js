@@ -43,7 +43,7 @@ function ParentMessagesPage() {
     const [unseenCount,setUnseetCount] = useState(0)
     const [teachersList,setTeachersList] = useState(null)
     const [connectionLost,setConnectionLostMessage] = useState(null)
-
+    const [emptyMailBox,setEmptyMailBox] = useState(null)
     useEffect(()=>{
         const role = localStorage.getItem("role")
         const myID = localStorage.getItem("id")
@@ -85,7 +85,14 @@ function ParentMessagesPage() {
             setChatroomBoxes(preElement)
             setLoading(null)
 
-
+            if (data.length === 0){
+                setEmptyMailBox(
+                    <div className='emptyMailBoxMessage'>
+                        <FontAwesomeIcon icon="fa-solid fa-envelope-open" />
+                        <p>No Messages To Display</p>
+                    </div>
+                )
+            }
 
 
         })
@@ -428,6 +435,7 @@ function ParentMessagesPage() {
         {connectionLost}     
         <div className='row pageContent'>
             <div className='mailBox column'>
+                {emptyMailBox}
                 <div className='header row'>
                     <div className='row'>
                         <h2>{pageLang['Messages']}</h2>
