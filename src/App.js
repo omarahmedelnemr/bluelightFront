@@ -21,7 +21,7 @@ import StudentHomeworkPage from './student/pages/studentWork';
 import CourseDataPage from './student/pages/CourseData';
 import HomeworkPage from './student/pages/homework';
 import StudentExamPage from './student/pages/studentExamPage';
-import StudentMessagesPage from './student/pages/Messages';
+// import StudentMessagesPage from './student/pages/Messages';
 import ExamPage from './student/pages/exam';
 import TimeTablePage from './general/pages/timetable';
 
@@ -73,8 +73,8 @@ function App() {
 
                         <Route path='/assignments' element={<StudentHomeworkPage/>} />
                         <Route path='/exams' element={<StudentExamPage/>} />
-                        <Route path='/messages' element={<StudentMessagesPage/>} />
-                        <Route path='/messages/:ID' element={<StudentMessagesPage/>} />
+                        <Route path='/messages' element={<ParentMessagesPage/>} />
+                        {/* <Route path='/messages/:ID' element={<StudentMessagesPage/>} /> */}
                         <Route path='/timetable' element={<TimeTablePage />} />
                         <Route path='/account' element={<Account />} />
                         <Route path='/settings' element={<Setting />} />

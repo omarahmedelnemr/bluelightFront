@@ -1,12 +1,12 @@
- #StudentMessagesPage{
+#ParentSidePages #StudentMessagesPage{
     height: 100vh;
     overflow: hidden;
     position: relative;
 }
- #StudentMessagesPage .topBar{
+#ParentSidePages #StudentMessagesPage .topBar{
     height: 10%;
 }
- #StudentMessagesPage .disconnected{
+#ParentSidePages #StudentMessagesPage .disconnected{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -19,7 +19,7 @@
     align-items: center;
     z-index: 9999;
 }
- #StudentMessagesPage .disconnected .DisconnectBox{
+#ParentSidePages #StudentMessagesPage .disconnected .DisconnectBox{
     background-color:#373e48 ;
     color: white;
     box-shadow: -5px 5px 10px rgb(122, 122, 122);
@@ -29,7 +29,7 @@
     font-size: 150%;
     margin: 20px;
 }
- #StudentMessagesPage .disconnected .DisconnectBox button{
+#ParentSidePages #StudentMessagesPage .disconnected .DisconnectBox button{
     width: 70%;
     height: 40px;
     border-radius: 10px;
@@ -39,17 +39,17 @@
     border:none;
     transition: 0.5s;
 }
- #StudentMessagesPage .disconnected .DisconnectBox button:hover{
+#ParentSidePages #StudentMessagesPage .disconnected .DisconnectBox button:hover{
     background-color: #637cef;
     cursor: pointer;
 
 }
- #StudentMessagesPage .pageContent{
+#ParentSidePages #StudentMessagesPage .pageContent{
     justify-content: space-between;
     height: 90%;
     
 }
- #StudentMessagesPage .mailBox{
+#ParentSidePages #StudentMessagesPage .mailBox{
     background-color: white;
     flex-basis: 25%;
     min-width: 320px;
@@ -61,18 +61,18 @@
     border-left: 1px solid gray;
     padding: 0px 30px;
 }
- #StudentMessagesPage .mailBox .header{
+#ParentSidePages #StudentMessagesPage .mailBox .header{
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid gray;
     padding: 15px 0px;
     height: 70px;
 }
- #StudentMessagesPage .mailBox .header .row{
+#ParentSidePages #StudentMessagesPage .mailBox .header .row{
     align-items: center;
     justify-content: space-around;
 }
- #StudentMessagesPage .mailBox .header .row .NewNumber{
+#ParentSidePages #StudentMessagesPage .mailBox .header .row .NewNumber{
     background-color: red;
     color: white;
     width: 20px;
@@ -81,7 +81,7 @@
     border-radius: 100%;
     font-weight: bolder;
 }
- #StudentMessagesPage .mailBox .header .newChatroom input{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom input{
     position: absolute;
     right: 30px;
     width: 70%;
@@ -93,12 +93,12 @@
     z-index: 10;
     transition: 0.5s;
 }
- #StudentMessagesPage .mailBox .header .newChatroom input.ar{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom input.ar{
     right: auto;
     left: 30px;
 
 }
- #StudentMessagesPage .mailBox .header .newChatroom .NewMessageButton{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .NewMessageButton{
     background-color: #3d5ef0;
     color: white;
     font-size: 20px;
@@ -113,10 +113,10 @@
     z-index: 100;
     position: relative;
 }
- #StudentMessagesPage .mailBox .header .newChatroom input:active ~.newChatroomSuggestions{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom input:active ~.newChatroomSuggestions{
     /* display: block; */
 }
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions{
     position: absolute;
     width: 87%;
     height: 600px;
@@ -130,78 +130,78 @@
     overflow: auto;
 }
 
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion{
     display: flex;
     padding: 10px;
     border-radius: 10px;
     margin: 5px;
     transition: 0.5s;
 }
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion:hover{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion:hover{
     background-color: rgb(228, 228, 228);
 }
 
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion .column{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion .column{
     align-items: flex-start;
 }
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion img{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion img{
     width: 50px;
     height: 50px;
     border-radius: 20%;
     margin: 0 10px;
 }
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion p{
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion p{
     margin: 0px;
     margin-top: 5px;
 }
- #StudentMessagesPage .mailBox .searchInSent{
+#ParentSidePages #StudentMessagesPage .mailBox .searchInSent{
     margin: 20px 0px;
 }
- #StudentMessagesPage .mailBox .searchInSent input{
+#ParentSidePages #StudentMessagesPage .mailBox .searchInSent input{
     height: 50px;
     background-color: #f3f3f3;
     border: none;
     border-radius: 10px;
     padding: 20px;
 }
- #StudentMessagesPage .EmptyMailBox{
+#ParentSidePages #StudentMessagesPage .EmptyMailBox{
     position: absolute;
     top: 45%;
     left: 30%;
     font-size: 20px;
     color: rgba(0, 0, 0, 0.431);
 }
- #StudentMessagesPage .EmptyMailBox svg{
+#ParentSidePages #StudentMessagesPage .EmptyMailBox svg{
     font-size: 25px;
 }
- #StudentMessagesPage .mailBox .chatroomBox{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox{
     /* background-color: gray; */
     padding: 10px;
     border-radius: 5px;
     justify-content: space-between;
     transition: 0.5s;
 }
- #StudentMessagesPage .mailBox .chatroomBox.active{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox.active{
     background-color:rgba(218, 218, 218, 0.603);
 }
- #StudentMessagesPage .mailBox .chatroomBox:hover{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox:hover{
     background-color: #f3f3f3 ;
 
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo img{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo img{
     width: 70px;
     height: 70px;
     border-radius: 10px;
     margin: 0px 10px;
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo{
     justify-content: flex-start;
     align-items: flex-start;
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .senderName{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .senderName{
     margin:  5px 0px;
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .latestMessage{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .latestMessage{
     margin: 0;
     color: gray;
     max-width: 140px; /* Adjust this value as needed */
@@ -209,11 +209,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .chatLastDate{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .chatLastDate{
     direction: ltr;
     color: gray;
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .Tags{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .Tags{
     background-color: #3d5ef0c5;
     color: white;
     padding: 7px;
@@ -221,34 +221,34 @@
     border-radius: 10px;
 
 }
- #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .Tags.warning{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .Tags.warning{
     background-color: #f03d3dc5;
 }
- #StudentMessagesPage .mailBox .chatroomBox .newSeen{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .newSeen{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
- #StudentMessagesPage .mailBox .chatroomBox .newSeen .newMessage{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .newSeen .newMessage{
     height: 15px;
     width: 15px;
     display: block;
     background-color:transparent;
     border-radius: 100%;
 }
- #StudentMessagesPage .mailBox .chatroomBox .newSeen .newMessage.red{
+#ParentSidePages #StudentMessagesPage .mailBox .chatroomBox .newSeen .newMessage.red{
     background-color: red;
 
 }
 
- #StudentMessagesPage .ChatRoom{
+#ParentSidePages #StudentMessagesPage .ChatRoom{
     background-color: white;
     flex-basis: 80%;
     padding: 0px 20px;
     position: relative;
     transition: 0.5s;
 }
- #StudentMessagesPage .ChatRoom .ChatroomMainMessage{
+#ParentSidePages #StudentMessagesPage .ChatRoom .ChatroomMainMessage{
     position: absolute;
     top: 50%;
     left: 35%;
@@ -256,10 +256,10 @@
     color:#3d5ef072;
     font-size: 20px;
 }
- #StudentMessagesPage .ChatRoom .ChatroomMainMessage svg{
+#ParentSidePages #StudentMessagesPage .ChatRoom .ChatroomMainMessage svg{
     font-size: 40px;
 }
- #StudentMessagesPage .ChatRoom .CloseChatRoom{
+#ParentSidePages #StudentMessagesPage .ChatRoom .CloseChatRoom{
     position: absolute;
     width: 50px;
     height: 50px;
@@ -274,7 +274,7 @@
 
 
 }
- #StudentMessagesPage .ChatRoom .header{
+#ParentSidePages #StudentMessagesPage .ChatRoom .header{
     border-bottom: 1px solid gray;
     padding: 15px 0px;
     height: 70px;
@@ -282,10 +282,10 @@
     align-items: center;
 }
 
- #StudentMessagesPage .ChatRoom .header img{
+#ParentSidePages #StudentMessagesPage .ChatRoom .header img{
     max-width: 50px;
 }
- #StudentMessagesPage .ChatRoom  .chatMessages{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages{
     height: 75%;
     padding: 20px;
     overflow: auto;
@@ -294,10 +294,10 @@
     direction: ltr;
     
 }
- #StudentMessagesPage .ChatRoom  .chatMessages .messageBox {
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .messageBox {
     width: 100%;
 }
- #StudentMessagesPage .ChatRoom  .chatMessages .messageBox .messageInfo{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .messageBox .messageInfo{
     border-radius: 10px;
     display: flex;
     align-items: flex-end;
@@ -307,90 +307,90 @@
     margin: 3px 0px;
 
 } 
- #StudentMessagesPage .ChatRoom  .chatMessages .messageBox .messageInfo p{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .messageBox .messageInfo p{
     margin: 0;
     text-align: start;
 }
- #StudentMessagesPage .ChatRoom  .chatMessages .messageBox  .sendDate{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .messageBox  .sendDate{
     /* color: gray; */
     margin: 0px 10px;
     text-wrap:nowrap;
 }
- #StudentMessagesPage .ChatRoom  .chatMessages .sent{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .sent{
     display: flex;
     justify-content: flex-end;
 }
- #StudentMessagesPage .ChatRoom  .chatMessages .sent .messageInfo{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .sent .messageInfo{
     background-color: #3d5ef0;
     text-align: end;
 }
 
- #StudentMessagesPage .ChatRoom  .chatMessages .received{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .received{
     display: flex;
     justify-content: flex-start;
 }
- #StudentMessagesPage .ChatRoom  .chatMessages .received .messageInfo{
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages .received .messageInfo{
     background-color: #f3f3f3;
     color: black;
 
 }
- #StudentMessagesPage .ChatRoom .sendMessage{
+#ParentSidePages #StudentMessagesPage .ChatRoom .sendMessage{
     border-radius: 10px;;
     border: 1px solid rgb(153, 153, 153);
     overflow: hidden;
     display: none;
 
 }
- #StudentMessagesPage .ChatRoom .sendMessage input{
+#ParentSidePages #StudentMessagesPage .ChatRoom .sendMessage input{
     border-radius: 10px;
     border: 0;
     padding: 10px;
     font-size: 15px;
 
 }
- #StudentMessagesPage .ChatRoom .sendMessage input:focus{
+#ParentSidePages #StudentMessagesPage .ChatRoom .sendMessage input:focus{
     outline: none;
 }
- #StudentMessagesPage .ChatRoom .sendMessage .sendMessagesButton{
+#ParentSidePages #StudentMessagesPage .ChatRoom .sendMessage .sendMessagesButton{
     background-color:white;
     border: 0px;
     color: #3d5ef0;
     font-size: 20px;
     margin: 0px 10px;
 }
- #StudentMessagesPage  .currentChatBoxes{
+#ParentSidePages #StudentMessagesPage  .currentChatBoxes{
     overflow: auto;
 }
 
 
 /* ScrollBar Edit */
 
- #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar,
- #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar,
- #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar {
+#ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar,
+#ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar,
+#ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar {
     width: 10px;
 }
   
   /* Track */
-   #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-track,
-   #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-track,
-   #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-track{
+  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-track,
+  #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-track,
+  #ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-track{
     background: #f1f1f1;
 }
   
   /* Handle */
-   #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb,
-   #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb,
-   #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-thumb{
+  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb,
+  #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb,
+  #ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-thumb{
     background: #888;
     border-radius: 30px;
 
 }
   
   /* Handle on hover */
-   #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb:hover,
-   #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb:hover
-   #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-thumb:hover{
+  #ParentSidePages #StudentMessagesPage  .currentChatBoxes::-webkit-scrollbar-thumb:hover,
+  #ParentSidePages #StudentMessagesPage .ChatRoom  .chatMessages::-webkit-scrollbar-thumb:hover
+  #ParentSidePages #StudentMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions::-webkit-scrollbar-thumb:hover{
     background: #555;
 
 }
@@ -398,34 +398,34 @@
 
 /* Control The Height Variations */
 @media (max-height:870px) {
-     #StudentMessagesPage .chatMessages{
+    #ParentSidePages #StudentMessagesPage .chatMessages{
         max-height: 70%;
     }
 }
 @media (max-height:840px) {
-     #StudentMessagesPage .chatMessages{
+    #ParentSidePages #StudentMessagesPage .chatMessages{
         max-height: 69%;
     }
 }
 
 @media (max-height:800px) {
-     #StudentMessagesPage .chatMessages{
+    #ParentSidePages #StudentMessagesPage .chatMessages{
         max-height: 68%;
     }
 }
 @media (max-height:760px) {
-     #StudentMessagesPage .chatMessages{
+    #ParentSidePages #StudentMessagesPage .chatMessages{
         max-height: 67%;
     }
 }
 @media (max-height:700px) {
-     #StudentMessagesPage .chatMessages{
+    #ParentSidePages #StudentMessagesPage .chatMessages{
         max-height: 64%;
     }
 }
 
 @media (max-height:650px) {
-     #StudentMessagesPage .chatMessages{
+    #ParentSidePages #StudentMessagesPage .chatMessages{
         max-height: 61%;
     }
 }
@@ -433,11 +433,11 @@
 
 /* Control The Width Variations */
 @media (max-width: 500px) {
-     #StudentMessagesPage *{
+    #ParentSidePages #StudentMessagesPage *{
         font-size: 15px;
         /* zoom: 0.58; */
     }
-     #StudentMessagesPage .topBar{
+    #ParentSidePages #StudentMessagesPage .topBar{
         zoom: 0.58;
         height: 8%;
     
@@ -448,11 +448,11 @@
 
 
 @media (max-width:920px) {
-     #StudentMessagesPage .mailBox{
+    #ParentSidePages #StudentMessagesPage .mailBox{
         flex-basis: 100%;
         min-width: 93vw;
     }
-     #StudentMessagesPage .ChatRoom{
+    #ParentSidePages #StudentMessagesPage .ChatRoom{
         /* display: none; */
         /* left: 100%; */
         min-width: 95vw;
@@ -464,19 +464,19 @@
 }
 
 @media (max-width:680px) {
-     #StudentMessagesPage .mailBox{
+    #ParentSidePages #StudentMessagesPage .mailBox{
         min-width: 90vw;
     }
-     #StudentMessagesPage .ChatRoom{
+    #ParentSidePages #StudentMessagesPage .ChatRoom{
         min-width: 92vw;
 
     }
 }
 @media (max-width:460px) {
-     #StudentMessagesPage .mailBox{
+    #ParentSidePages #StudentMessagesPage .mailBox{
         min-width: 88vw;
     }
-     #StudentMessagesPage .ChatRoom{
+    #ParentSidePages #StudentMessagesPage .ChatRoom{
         min-width: 90vw;
 
     }

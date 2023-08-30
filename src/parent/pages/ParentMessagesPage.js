@@ -436,7 +436,7 @@ function ParentMessagesPage() {
                     <div>
 
                     </div>
-                    <div className='newChatroom'>
+                    <div className={`newChatroom ${localStorage.getItem('role') === 'student'?"hide":""}`}>
                         <input type={"text"} className={lang}  placeholder={pageLang['searchInNew']} onClick={(event)=>{document.querySelector(".newChatroomSuggestions").style.display = 'block'}} onChange={filterTeachersList}/>
                         <div className='NewMessageButton'  onClick={openSearchList}>
                             <FontAwesomeIcon icon="fa-solid fa-plus" />
