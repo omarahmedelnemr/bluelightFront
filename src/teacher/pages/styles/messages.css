@@ -299,7 +299,8 @@
 #TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages{
     height: 75%;
     padding: 20px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column-reverse;
     direction: ltr;
@@ -330,12 +331,41 @@
 #TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent{
     display: flex;
     justify-content: flex-end;
+    position: relative;
 }
 #TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent .messageInfo{
     background-color: #3d5ef0;
     text-align: end;
 }
+#TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent .messageOptions{
+    transition: 0.2s;
+    width: 0px;
+    text-align: center;
+    overflow: hidden;
+}
+#TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent:hover .messageOptions{
+    width: 10px;
+}
+#TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent .options{
+    background-color: rgb(255, 98, 98);
+    /* padding:10px; */
+    height: 35px;
+    overflow: 0px;
+    border-radius: 10px;
+    box-shadow: -2px 0px 2px #92a2e9;
+    margin: 5px 5px;
+    width: 0px;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
 
+}
+#TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent .options.open{
+    width: 35px;
+}
+#TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .sent .options svg{
+    margin: 10px;
+}
 #TeacherSidePages #TeacherMessagesPage .ChatRoom  .chatMessages .received{
     display: flex;
     justify-content: flex-start;

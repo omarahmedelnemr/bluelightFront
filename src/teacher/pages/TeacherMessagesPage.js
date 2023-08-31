@@ -65,7 +65,7 @@ function TeacherMessagesPage() {
                             <div className='column senderInfo'>
                                 <h3 className='senderName'>{(data[i][targetUsers][lang==='en'?'name':"arName"]).split(" ").slice(0,2).join(" ")}</h3>
                                 <span className='chatLastDate'>{date} - {pageLang[targetUsers]}</span>
-                                <p className='latestMessage'>{data[i]['latestSeen']?"":data[i]['latest']}</p>
+                                <p className='latestMessage'>{data[i]['latestSeen'] || (Number(localStorage.getItem("ActiveChat")) === Number(data[i]['id'])) ?"":data[i]['latest']}</p>
                                 <div className='row'>
                                     {/* <span className='Tags warning'>Warning</span>
                                     <span className='Tags'>Publish</span> */}
@@ -73,8 +73,8 @@ function TeacherMessagesPage() {
                             </div>
                         </div>
                         <div className='newSeen'>
-                            <span className={`newMessage ${data[i]['latestSeen']?"":"red"}` }></span>
-                            <span className='messageType green'>PR</span>
+                        <span className={`newMessage ${data[i]['latestSeen'] || (Number(localStorage.getItem("ActiveChat")) === Number(data[i]['id']))?"":"red"}` }></span>
+                            {/* <span className='messageType green'>PR</span> */}
                         </div>
                         <p className='hide chatroomID'>{data[i]['id']}</p>
                         <p className='hide teacherID'>{data[i]['teacher']['id']}</p>
@@ -111,9 +111,17 @@ function TeacherMessagesPage() {
                             <div className='messageInfo'>
                                 <p>{data[i]['text']}</p>
                                 <span className='sendDate'>{date}</span>
-                                {/* <FontAwesomeIcon icon="fa-solid fa-check-double" color={data[i]['seen']?"blue":"white"}/> */}
+                                <FontAwesomeIcon icon="fa-solid fa-check-double" color={data[i]['seen']?"blue":"white"}/>
+                                {
+                                    data[i]['seen']?null:
+                                    <div  onClick={ShowDeleteButton}>
+                                    <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" className='messageOptions'/>
+                                </div>
+                                  } 
                             </div>
-
+                            <div className='options' onClick={DeleteAmessage}>
+                                <span><FontAwesomeIcon icon="fa-solid fa-trash" /></span>
+                            </div>
                         </div>
                     )
                 }else{
@@ -136,9 +144,10 @@ function TeacherMessagesPage() {
             }
         })
         socket.on("update",(data)=>{
-            console.log("Updateing ")
-            const activeChat = localStorage.getItem("ActiveChat")
+
             if (data === "Done"){
+                console.log("Updateing ")
+                const activeChat = localStorage.getItem("ActiveChat")
                 socket.emit("chatrooms",{id:myID,role:role})
                 socket.emit("getMessageCount",{userID:myID,role:role})
 
@@ -415,6 +424,26 @@ function TeacherMessagesPage() {
 
     function refreshPage(){
         window.location.reload()
+    }
+
+    function ShowDeleteButton(event){
+        // console.log("N: ",(event.currentTarget.parentElement.parentElement.querySelector(".options").classListss.includes("open")))
+        if (event.currentTarget.parentElement.parentElement.querySelector(".options.open") !== null){
+                event.currentTarget.parentElement.parentElement.querySelector(".options").classList.remove("open")
+
+        }else{
+            if (document.querySelector(".options.open") !=null){
+                document.querySelector(".options.open").classList.remove("open")
+    
+            }
+            event.currentTarget.parentElement.parentElement.querySelector(".options").classList.add("open")
+        } 
+
+    }
+
+    function DeleteAmessage(event){
+        const messageID = event.currentTarget.parentElement.querySelector(".messageID").innerHTML
+        socket.emit("deleteMessage",{messageID:messageID})
     }
     return (
     <div id='TeacherMessagesPage'>

@@ -26,8 +26,8 @@ function ParentMessagesPage() {
         chatEmptyMain:     lang === 'en' ? "Chat is Still Empty, Send The First Message":"المحادثة لاتزال فارغة, ارسل اول رسالة",
         chatNoActiveMain:  lang === 'en' ? "No Active Chat Yet":"لا توجد محادثةة مفعلة بعد",
         connectionLost:    lang === 'en' ? "Unfortunatly, We Lost the Connection, please Refresh The Page to Re-Connect":"للاسف, لقد قفدنا الاتصال, بالرجاء اعادة تحميل الصفحة لاعادة الاتصال",
-        refresh:           lang === 'en' ? "Refresh":"اعادة التحميل"
-    
+        refresh:           lang === 'en' ? "Refresh":"اعادة التحميل",
+        emptyMailBox:      lang === 'en' ? "No Messages To Display":"لا توجد رسائل لعرضها"
     }
     const [bigPreview,setBigPreview] = useState(null)
     const [chatroomBoxes,setChatroomBoxes] = useState(null)
@@ -64,7 +64,7 @@ function ParentMessagesPage() {
                             <div className='column senderInfo'>
                                 <h3 className='senderName'>{(data[i][targetUsers][lang==='en'?'name':"arName"]).split(" ").slice(0,2).join(" ")}</h3>
                                 <span className='chatLastDate'>{date}</span>
-                                <p className='latestMessage'>{data[i]['latestSeen']?"":data[i]['latest']}</p>
+                                <p className='latestMessage'>{data[i]['latestSeen'] || (Number(localStorage.getItem("ActiveChat")) === Number(data[i]['id'])) ?"":data[i]['latest']}</p>
                                 <div className='row'>
                                     {/* <span className='Tags warning'>Warning</span>
                                     <span className='Tags'>Publish</span> */}
@@ -72,8 +72,8 @@ function ParentMessagesPage() {
                             </div>
                         </div>
                         <div className='newSeen'>
-                            <span className={`newMessage ${data[i]['latestSeen']?"":"red"}` }></span>
-                            <span className='messageType green'>PR</span>
+                            <span className={`newMessage ${data[i]['latestSeen'] && (Number(localStorage.getItem("ActiveChat")) !== Number(data[i]['id']))?"":"red"}` }></span>
+                            {/* <span className='messageType green'>PR</span> */}
                         </div>
                         <p className='hide chatroomID'>{data[i]['id']}</p>
                         <p className='hide teacherID'>{data[i]['teacher']['id']}</p>
@@ -89,7 +89,7 @@ function ParentMessagesPage() {
                 setEmptyMailBox(
                     <div className='emptyMailBoxMessage'>
                         <FontAwesomeIcon icon="fa-solid fa-envelope-open" />
-                        <p>No Messages To Display</p>
+                        <p>{pageLang['emptyMailBox']}</p>
                     </div>
                 )
             }
@@ -108,9 +108,17 @@ function ParentMessagesPage() {
                             <div className='messageInfo'>
                                 <p>{data[i]['text']}</p>
                                 <span className='sendDate'>{date}</span>
-                                {/* <FontAwesomeIcon icon="fa-solid fa-check-double" color={data[i]['seen']?"blue":"white"}/> */}
+                                <FontAwesomeIcon icon="fa-solid fa-check-double" color={data[i]['seen']?"blue":"white"}/>
+                                {
+                                    data[i]['seen']?null:
+                                    <div  onClick={ShowDeleteButton}>
+                                    <FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" className='messageOptions'/>
+                                </div>
+                                  } 
                             </div>
-
+                            <div className='options' onClick={DeleteAmessage}>
+                                <span><FontAwesomeIcon icon="fa-solid fa-trash" /></span>
+                            </div>
                         </div>
                     )
                 }else{
@@ -428,6 +436,28 @@ function ParentMessagesPage() {
 
     function refreshPage(){
         window.location.reload()
+    }
+
+    function ShowDeleteButton(event){
+        // console.log("N: ",(event.currentTarget.parentElement.parentElement.querySelector(".options").classListss.includes("open")))
+        if (event.currentTarget.parentElement.parentElement.querySelector(".options.open") !== null){
+                event.currentTarget.parentElement.parentElement.querySelector(".options").classList.remove("open")
+
+        }else{
+            if (document.querySelector(".options.open") !=null){
+                document.querySelector(".options.open").classList.remove("open")
+    
+            }
+            event.currentTarget.parentElement.parentElement.querySelector(".options").classList.add("open")
+        } 
+
+    }
+
+    function DeleteAmessage(event){
+        const messageID = event.currentTarget.parentElement.querySelector(".messageID").innerHTML
+        event.currentTarget.parentElement.querySelector(".open").classList.remove("open")
+        socket.emit("deleteMessage",{messageID:messageID})
+
     }
     return (
     <div id='StudentMessagesPage'>
