@@ -154,6 +154,7 @@
 
 #TeacherSidePages #TeacherMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion .column{
     align-items: flex-start;
+    text-align: start;
 }
 #TeacherSidePages #TeacherMessagesPage .mailBox .header .newChatroom .newChatroomSuggestions .chatSuggestion img{
     width: 50px;

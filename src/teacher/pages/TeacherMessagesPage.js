@@ -27,7 +27,9 @@ function TeacherMessagesPage() {
         chatEmptyMain:     lang === 'en' ? "Chat is Still Empty, Send The First Message":"المحادثة لاتزال فارغة, ارسل اول رسالة",
         chatNoActiveMain:  lang === 'en' ? "No Active Chat Yet":"لا توجد محادثةة مفعلة بعد",
         connectionLost:    lang === 'en' ? "Unfortunatly, We Lost the Connection, please Refresh The Page to Re-Connect":"للاسف, لقد قفدنا الاتصال, بالرجاء اعادة تحميل الصفحة لاعادة الاتصال",
-        refresh:           lang === 'en' ? "Refresh":"اعادة التحميل"
+        refresh:           lang === 'en' ? "Refresh":"اعادة التحميل",
+        father:            lang === 'en' ? "Father":"والد",
+        mother:            lang === 'en' ? "Mother":"والده"
     
     }
     const [chatroomBoxes,setChatroomBoxes] = useState(null)
@@ -50,6 +52,12 @@ function TeacherMessagesPage() {
         const myID = localStorage.getItem("id")
         socket.on("chatrooms",(data)=>{
             if (data  ==='error'){
+                setEmptyMailBox(
+                    <div className='emptyMailBoxMessage'>
+                        <FontAwesomeIcon icon="fa-solid fa-envelope-open" />
+                        <p>No Messages To Display</p>
+                    </div>
+                )
                 return data
             }
             const preElement = []
@@ -94,12 +102,26 @@ function TeacherMessagesPage() {
                         <p>No Messages To Display</p>
                     </div>
                 )
+            }else{
+                setEmptyMailBox(null)
+
             }
 
 
 
         })
         socket.on("messages",(data)=>{
+            console.log("Datatata: ",data)
+            if (data === 'Not Found' || data === 'error'){
+                setMessages(<div className='ChatroomMainMessage'>
+                    <FontAwesomeIcon icon="fa-solid fa-comments" />
+                    <p>{pageLang['chatNoActiveMain']}</p>
+                </div>)
+                if (data === 'Not Found'){
+                    localStorage.setItem("ActiveChat","new")
+                }
+            return data
+            }
             const preElement = []
             for(var i= 0;i< data.length;i++){
                 var date = new Date(data[i]["date"])//.split(":")
@@ -249,13 +271,14 @@ function TeacherMessagesPage() {
 
     function initializeChatroom(event){
         event.currentTarget.parentElement.style.display = "none"
-        const teacherName = event.currentTarget.querySelector(".teacherName").innerHTML
-        const teacherID = event.currentTarget.querySelector(".teacherID").innerHTML
-        const teacherImg = event.currentTarget.querySelector("img").src
+        const userName = event.currentTarget.querySelector(".userName").innerHTML
+        const userID = event.currentTarget.querySelector(".userID").innerHTML
+        const userRole = event.currentTarget.querySelector(".srRole").innerHTML
+        const userImg = event.currentTarget.querySelector("img").src
 
         const currentChatBoxes = document.querySelectorAll('.chatroomBox')
         for (var i =0;i<currentChatBoxes.length;i++){
-            if (Number(currentChatBoxes[i].querySelector('.teacherID').innerHTML) === Number(teacherID)){
+            if (Number(currentChatBoxes[i].querySelector('.srID').innerHTML) === Number(userID)){
                 currentChatBoxes[i].click()
                 break
             }
@@ -263,10 +286,12 @@ function TeacherMessagesPage() {
 
         // If the Chat Doesn't Exist in Current Chat Boxs
         if (i === currentChatBoxes.length){
-            setActiveImage(teacherImg)
-            setActiveUserName(teacherName)
+            setActiveImage(userImg)
+            setActiveUserName(userName)
             localStorage.setItem("ActiveChat","new")
-            localStorage.setItem("ActiveTeacher",teacherID)
+            localStorage.setItem("activeSrRole",userRole)
+            localStorage.setItem("activeSrID",userID)
+            localStorage.setItem("ActiveTeacher",localStorage.getItem("id"))
             document.querySelector(".sendMessage").style.display = 'flex'
             setMessages(<div className='ChatroomMainMessage'>
                             <FontAwesomeIcon icon="fa-solid fa-handshake" />
@@ -277,7 +302,38 @@ function TeacherMessagesPage() {
 
         
     }
+    function initializeParentChatroom(event){
+        event.currentTarget.parentElement.style.display = "none"
+        const studentID = event.currentTarget.querySelector(".userID").innerHTML
+        const userRole = event.currentTarget.querySelector(".srRole").innerHTML
 
+        axios.get(Global.BackendURL+"/teacherParentRelation?studentID="+studentID+"&relation="+userRole).then((res)=>{
+            const data = res.data[0]
+            console.log("Parent :",data)
+            console.log("ParentIMg :",data['img_dir'])
+            setActiveImage(Global.BackendURL+"/avatar/"+data['img_dir'])
+            if (lang ==="en"){
+                setActiveUserName(data['name'])
+            }else{
+                setActiveUserName(data['arName'])
+            }
+            localStorage.setItem("activeSrID",data['id'])
+            localStorage.setItem("activeSrRole",'parent')
+            localStorage.setItem("ActiveChat","new")
+            localStorage.setItem("ActiveTeacher",localStorage.getItem("id"))
+            document.querySelector(".sendMessage").style.display = 'flex'
+            setMessages(<div className='ChatroomMainMessage'>
+            <FontAwesomeIcon icon="fa-solid fa-handshake" />
+            <p>{pageLang['chatEmptyMain']}</p>
+        </div>)
+        document.querySelector(".NewMessageButton").click()
+
+
+        }).catch((err)=>{
+            console.log("Error!!\n",err)
+        })
+
+    }
 
     function sendMessage(event){
         const currentParent = event.currentTarget.parentElement
@@ -365,7 +421,7 @@ function TeacherMessagesPage() {
         const searchValue = event.target.value.toLowerCase();
         const chatroomBoxes = document.querySelectorAll('.chatSuggestion');
         chatroomBoxes.forEach((box) => {
-          const senderTitle = box.querySelector('.teacherName').innerHTML.toLowerCase();
+          const senderTitle = box.querySelector('.userName').innerHTML.toLowerCase();
           if (senderTitle.includes(searchValue)) {
             box.style.display = 'flex'; // Show the chatroomBox
           } else {
@@ -373,23 +429,42 @@ function TeacherMessagesPage() {
           }
         });
     }
+
     function openSearchList(event){
         const element = event.currentTarget
+        console.log("hellllaskjasdljkasjlkas")
         if (suggestionsList === null){
-            axios.get(Global.BackendURL+"/teachersList").then((res)=>{
-                const data = res.data
+            axios.get(Global.BackendURL+"/teacherSuggestionsList?teacherID="+localStorage.getItem("id")).then((res)=>{
+                const data = res.data['Students']
+                console.log("Data:" , data)
                 const preElement = []
                 for (var i=0;i<data.length;i++){
                     preElement.push(
                             <div className='chatSuggestion' onClick={initializeChatroom}>
                                 <img src={Global.BackendURL+"/avatar/"+data[i]['img_dir']}/>
                                 <div className='column'>
-                                    <p className='teacherName'>{lang === 'en' ? data[i]['name']:data[i]['arName']}</p>
-                                    <span>{lang === 'en' ? data[i]['course']['name'] +" "+pageLang['teacher'] :pageLang['teacher'] +" "+ data[i]['course']['name']}</span>
+                                    <p className='userName'>{lang === 'en' ? data[i]['name']:data[i]['arName']}</p>
+                                    <span>{data[i]['classroom']['id']} - {pageLang['student ']}</span>
                                 </div>
-                                <p className='teacherID hide'>{data[i]['id']}</p>
+                                <p className='userID hide'>{data[i]['id']}</p>
+                                <p className='srRole hide'>student</p>
                             </div>
                     )
+                    for (var relative of data[i]['relatives']){
+                        preElement.push(
+
+                        <div className='chatSuggestion' onClick={initializeParentChatroom}>
+                            <img src={Global.BackendURL+"/avatar/"+data[i]['img_dir']}/>
+                            <div className='column'>
+                                <p className='userName'>{lang === 'en' ? data[i]['name'] +"'s "+pageLang[relative]:pageLang[relative]+" "+data[i]['arName']}</p>
+                                <span>{data[i]['classroom']['id']}</span>
+                            </div>
+                            <p className='userID hide'>{data[i]['id']}</p>
+                            <p className='srRole hide'>{relative}</p>
+                        </div>
+                    )
+
+                    }
                 }
                 setSuggestionsList(preElement)
             }).catch((err)=>{
@@ -445,6 +520,7 @@ function TeacherMessagesPage() {
         const messageID = event.currentTarget.parentElement.querySelector(".messageID").innerHTML
         socket.emit("deleteMessage",{messageID:messageID})
     }
+
     return (
     <div id='TeacherMessagesPage'>
         <TopBar title={pageLang['messages']}/>
