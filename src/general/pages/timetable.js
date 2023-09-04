@@ -71,7 +71,7 @@ function TimeTablePage() {
     return (
         <div id="TimeTablePage" className='column'>
             <TopBar title={pageLang['timetable']}/>
-            <div className='tableContainer'>
+            <div className={'tableContainer '+lang}>
                 <table className='mainTable'>
                     <thead>
                         <tr>

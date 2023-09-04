@@ -51,8 +51,12 @@
     #TimeTablePage .tableContainer{
         transform: rotate(90deg);
         overflow:visible;
-        margin: 60px;
+        margin:0px  60px;
         zoom: 0.68;
 
+    }
+    #TimeTablePage .tableContainer.ar{
+        transform: rotate(-90deg);
+    
     }
 }
