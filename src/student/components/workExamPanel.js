@@ -66,7 +66,7 @@ function WorkExamsPanel({type,limit}) {
                                             <td>{data[i][workType]['due_date']==null ? '-': formatTime(data[i][workType]['due_date'])}</td>
                                             <td><span className={homeworkType}>{compLang[homeworkType]}</span></td>
                                             <td>{lang === 'en' ? data[i][workType]['course']["name"] :data[i][workType]['course']["arName"]}</td>
-                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i][workType]['id']} className="hiddenRoute">a</a>
+                                            <a href={"./courses/"+subjectName.toLowerCase()+"/"+type.toLowerCase()+"/"+data[i][workType]['id']} className="hiddenRoute"></a>
 
                                         </tr>)
                 }
