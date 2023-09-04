@@ -111,3 +111,9 @@
     /* width: 100%; */
 }
 
+
+@media (max-width:500px){
+    #homeworkPage{
+        zoom: 0.58;
+    }
+}

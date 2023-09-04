@@ -274,3 +274,9 @@
 #studentExamPage .block .QuestionWindow .nextQuestion{
     left: 110%;
 }
+
+@media (max-width:500px){
+    #studentExamPage{
+        zoom: 0.58;
+    }
+}
