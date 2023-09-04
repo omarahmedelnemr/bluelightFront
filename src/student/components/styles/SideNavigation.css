@@ -10,7 +10,7 @@
     padding: 2vh 0px;
     position: relative;
     transition: 0.2s;
-    z-index: 99;
+    z-index: 999;
     left: 0;
 }
 @media (max-width:500px) {
@@ -61,6 +61,11 @@
     border-radius: 30px;
     text-wrap: nowrap;
     padding: 0px 10px;
+}
+@media (max-width:500px) {
+    .sideNav .top .welcome{
+        zoom: 0.8;
+    }
 }
 .sideNav .center{
     display: flex;
