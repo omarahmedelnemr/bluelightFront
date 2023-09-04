@@ -11,7 +11,7 @@ import checkAutherization from '../../publicFunctions/checkAuth';
 
 function Login() {
   if (checkAutherization() === 'Auth'){
-    window.location.href ='/'+localStorage.getItem("role")
+    window.location.href ='/'+localStorage.getItem("role")+"/"
   }
   function handleKeyPress(event) {
     // Check if the key pressed is the Enter key (keyCode 13)
@@ -52,7 +52,7 @@ function Login() {
 
         setMessege('')
         setLogingmessege("Logging")
-        navigate('/'+res.data['role'])
+        navigate('/'+res.data['role']+"/")
       }).catch((err)=>{
         try{
           setMessege(err.response.data)
