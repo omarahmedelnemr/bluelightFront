@@ -26,7 +26,7 @@ function ParentMessagesPage() {
         findInChats:       lang === 'en' ? "Find in Chats":"ابحث في الرسائل",
         searchInNew:       lang === 'en' ? "Search For New Message":"أبحث عن رسالة جديدة",
         chatEmptyMain:     lang === 'en' ? "Chat is Still Empty, Send The First Message":"المحادثة لاتزال فارغة, ارسل اول رسالة",
-        chatNoActiveMain:  lang === 'en' ? "No Active Chat Yet":"لا توجد محادثةة مفعلة بعد",
+        chatNoActiveMain:  lang === 'en' ? "No Active Chat Yet":"لا توجد محادثة مفعلة بعد",
         connectionLost:    lang === 'en' ? "Unfortunatly, We Lost the Connection, please Refresh The Page to Re-Connect":"للاسف, لقد قفدنا الاتصال, بالرجاء اعادة تحميل الصفحة لاعادة الاتصال",
         refresh:           lang === 'en' ? "Refresh":"اعادة التحميل",
         emptyMailBox:      lang === 'en' ? "No Messages To Display":"لا توجد رسائل لعرضها"
