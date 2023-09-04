@@ -79,7 +79,9 @@
         flex-basis: 90%;
     }
     #ParentSidePages .Homepage .dataColumns .analytics{
-        display: none;
+        /* display: none; */
+        flex-basis: 90%;
+
     }
 }
 @media (max-width: 500px) {

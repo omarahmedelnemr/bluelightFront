@@ -30,6 +30,8 @@ function ParentHomepage() {
 
     const [currentStudentName,setCurrentStudent] = useState(null)
     const [studentsChooseList,setChooseList] = useState([])
+    const [homeworkChartLabels,setHomeworkChartLabels] = useState([])
+    const [homeworkChartData,setHomeworkChartData] = useState([])
     // Get The Avilable Student For This Parent
     useEffect(()=>{
         axios.get(Global.BackendURL+"/parent/mystudents?parentID="+localStorage.getItem("id"))
@@ -83,39 +85,31 @@ function ParentHomepage() {
             console.log("Error!\n",err)
         })
     },[])
+
+    // Add Charts to Homework
+    useEffect(()=>{
+        axios.get(Global.BackendURL+"/parent/lasttengrades?studentID="+localStorage.getItem("currentStudentID")).then((res)=>{
+            const data = res.data
+            console.log("Data: ",data)
+            const chartData = []
+            const chartLabels = []
+            for (var homework of data){
+                chartLabels.push(homework['homework'])
+                chartData.push(homework['grade'])
+            }
+            setHomeworkChartLabels(chartLabels)
+            setHomeworkChartData(chartData)
+        }).catch((err)=>{
+            console.log("Error!\n",err)
+        })
+    },[])
     const chartData = {
-        labels: [ 'still', 'Done' ],
-        // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-        datasets: [
-            {
-              label: 'Popularity of colours',
-              data: [12,43],
-              // you can set indiviual colors for each bar
-              backgroundColor: [ "lightgreen",'#ff00008c' , "#ff00007a"],
-              borderWidth: 0,
-            }
-        ]
-    }
-    const chartData2 = {
-        labels: [ 'still', 'Done' ],
-        // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-        datasets: [
-            {
-              label: 'Popularity of colours',
-              data: [234,123],
-              // you can set indiviual colors for each bar
-              backgroundColor: [ "lightgreen",'#ff00008c' , "#ff00007a"],
-              borderWidth: 0,
-            }
-        ]
-    }
-    const chartData3 = {
-        labels: [ 'Math', 'Arabic',"English","Drawing","Science", "Chemistry","Physics" ],
+        labels: homeworkChartLabels,
         // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
         datasets: [
             {
               label: "Percintage",
-              data: [90,98,70,100,80,95,92],
+              data:homeworkChartData,
               // you can set indiviual colors for each bar
               backgroundColor: [ "lightgreen",'#ff00008c' , "#ff00007a","yellow","blue","lightblue","green"],
               borderWidth: 0,
@@ -183,21 +177,22 @@ function ParentHomepage() {
             <div className='row dataColumns'>
                 <div className='column workToSubmit'>
                     <WorkExamsPanel type={"Assignments"} limit={true}/>
-                    <WorkExamsPanel type={"Exams"} limit={true}/>
+                    {/* <WorkExamsPanel type={"Exams"} limit={true}/> */}
                 </div>
                 <div className='column analytics'>
-                <span>الجرافات لسه محتاجين تظبيط</span>
+                    {/* <span>الجرافات لسه محتاجين تظبيط</span> */}
+                    <WorkExamsPanel type={"Exams"} limit={true}/>
                     
-                    <div className='ChatDiv'>
+                    {/* <div className='ChatDiv'> */}
                         {/* <PieChart chartData={chartData}/> */}
-                        <BarChart chartData={chartData3} title={"Grades"}/>
+                        {/* <BarChart chartData={chartData} title={"Grades"}/> */}
 
-                    </div>  
+                    {/* </div>   */}
 
-                    <div className='ChatDiv'>
-                        <PieChart chartData={chartData2} />
+                    {/* <div className='ChatDiv'> */}
+                        {/* <PieChart chartData={chartData2} /> */}
 
-                    </div>
+                    {/* </div> */}
                 </div>
             </div> 
         </div>
