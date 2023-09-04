@@ -11,6 +11,7 @@
     align-items: center;
     position: relative;
     direction: ltr;
+    transition: 0.2s;
 }
 #forgetPasswordPageOpacity{
     position: absolute;
@@ -41,7 +42,16 @@
     box-shadow: -5px 5px 10px gray;
 
 }
-
+@media (max-width:870px) {
+    #mainForgetPasswordForm{
+        width: 100%;
+    }
+}
+@media (max-width:500px) {
+    #forgetPasswordFormContainer{
+        zoom:0.7;
+    }
+}
 #formWavyEffect{
     transform: rotateY(180deg);
     position: relative;
@@ -66,4 +76,10 @@
 }
 #mainForgetPasswordForm .rightMessage{
     color: lightgreen;
+}
+
+@media (max-width:500px) {
+    #forgetContainer{
+        /* zoom: 0.58; */
+    }
 }

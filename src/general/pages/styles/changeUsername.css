@@ -23,3 +23,9 @@
 .changePages .pageContent .form .green{
     color: rgb(0, 159, 0);
 }
+@media (max-width:500px) {
+    .changePages{
+        zoom: 0.58;
+        justify-content: space-between;
+    }
+}

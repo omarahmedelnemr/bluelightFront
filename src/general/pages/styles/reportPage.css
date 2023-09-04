@@ -60,3 +60,9 @@
 .reportPage .FormComponants button.disabled{
     pointer-events: none;
 }
+
+@media (max-width:500px) {
+    .reportPage {
+        zoom: 0.58;
+    }
+}
