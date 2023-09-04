@@ -2,7 +2,10 @@
 
 }
 
-
+#TimeTablePage .tableContainer{
+    overflow: auto;
+    transition: 0.5s;
+}
 #TimeTablePage .mainTable{
     width: 100%;
 }
@@ -41,4 +44,17 @@
 }
 #TimeTablePage .mainTable tbody td div span{
     color: gray;
+}
+
+@media (max-width:500px){
+    #TimeTablePage .topBar{
+        zoom:0.68
+    }
+    #TimeTablePage .tableContainer{
+        transform: rotate(90deg);
+        overflow:visible;
+        margin: 60px;
+        zoom: 0.68;
+
+    }
 }
