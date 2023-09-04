@@ -9,6 +9,7 @@ import chatDateFormat from '../../publicFunctions/chatDate';
 import axios from 'axios';
 
 const socket = io(Global.BackendURL+"/chat"); // Connect to the Socket.IO server
+socket.emit('store-user',{userID:localStorage.getItem("id"),userRole:localStorage.getItem('role')})
 const RedesignOnWidth = 920
 function TeacherMessagesPage() {
     const lang = localStorage.getItem('lang')
@@ -159,6 +160,11 @@ function TeacherMessagesPage() {
                 }
             }
             setMessages(preElement)
+            const CheckSeenReq = {
+                chatroomID:localStorage.getItem("ActiveChat"),
+                userRole:localStorage.getItem("role")
+            }
+            // socket.emit("checkAsSeem",CheckSeenReq)
         })
         socket.on("getMessageCount",(data)=>{
             if (data!='error'){
@@ -277,6 +283,15 @@ function TeacherMessagesPage() {
         const userImg = event.currentTarget.querySelector("img").src
 
         const currentChatBoxes = document.querySelectorAll('.chatroomBox')
+        if (window.innerWidth <= RedesignOnWidth){
+            window.history.pushState({ overlayOpen: false }, null, ''); // Push a state to the history
+
+            // window.history.pushState(null, '', './openChat');
+            console.log(window.history)
+            document.querySelector(".ChatRoom").style.left = "-100%"
+            document.querySelector(".CloseChatRoom").style.display = 'flex'
+
+        }
         for (var i =0;i<currentChatBoxes.length;i++){
             if (Number(currentChatBoxes[i].querySelector('.srID').innerHTML) === Number(userID)){
                 currentChatBoxes[i].click()
@@ -311,6 +326,15 @@ function TeacherMessagesPage() {
             const data = res.data[0]
             console.log("Parent :",data)
             console.log("ParentIMg :",data['img_dir'])
+            if (window.innerWidth <= RedesignOnWidth){
+                window.history.pushState({ overlayOpen: false }, null, ''); // Push a state to the history
+    
+                // window.history.pushState(null, '', './openChat');
+                console.log(window.history)
+                document.querySelector(".ChatRoom").style.left = "-100%"
+                document.querySelector(".CloseChatRoom").style.display = 'flex'
+    
+            }
             setActiveImage(Global.BackendURL+"/avatar/"+data['img_dir'])
             if (lang ==="en"){
                 setActiveUserName(data['name'])

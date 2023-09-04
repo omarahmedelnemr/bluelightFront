@@ -9,6 +9,8 @@ import chatDateFormat from '../../publicFunctions/chatDate';
 import axios from 'axios';
 
 const socket = io(Global.BackendURL+"/chat"); // Connect to the Socket.IO server
+socket.emit('store-user',{userID:localStorage.getItem("id"),userRole:localStorage.getItem('role')})
+
 const RedesignOnWidth = 920
 function ParentMessagesPage() {
     const lang = localStorage.getItem('lang')
@@ -97,6 +99,17 @@ function ParentMessagesPage() {
 
         })
         socket.on("messages",(data)=>{
+            console.log("Datatata: ",data)
+            if (data === 'Not Found' || data === 'error'){
+                setMessages(<div className='ChatroomMainMessage'>
+                    <FontAwesomeIcon icon="fa-solid fa-comments" />
+                    <p>{pageLang['chatNoActiveMain']}</p>
+                </div>)
+                if (data === 'Not Found'){
+                    localStorage.setItem("ActiveChat","new")
+                }
+            return data
+            }
             const preElement = []
             for(var i= 0;i< data.length;i++){
                 var date = new Date(data[i]["date"])//.split(":")
@@ -270,6 +283,17 @@ function ParentMessagesPage() {
         const teacherImg = event.currentTarget.querySelector("img").src
 
         const currentChatBoxes = document.querySelectorAll('.chatroomBox')
+
+
+        if (window.innerWidth <= RedesignOnWidth){
+            window.history.pushState({ overlayOpen: false }, null, ''); // Push a state to the history
+
+            // window.history.pushState(null, '', './openChat');
+            console.log(window.history)
+            document.querySelector(".ChatRoom").style.left = "-100%"
+            document.querySelector(".CloseChatRoom").style.display = 'flex'
+
+        }
         for (var i =0;i<currentChatBoxes.length;i++){
             if (Number(currentChatBoxes[i].querySelector('.teacherID').innerHTML) === Number(teacherID)){
                 currentChatBoxes[i].click()
