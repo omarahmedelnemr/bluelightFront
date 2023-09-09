@@ -9,7 +9,6 @@ import Global from '../../publicFunctions/globalVar';
 import Question_MCQ from '../components/question_mcq';
 import Question_Written from '../components/question_written';
 import Question_Attachment from '../components/question_attachment';
-import cleanArr from '../../publicFunctions/cleanArr';
 import compareDates from '../../publicFunctions/compareDates';
 import formatTime from '../../publicFunctions/formatTime';
 import checkAutherization from '../../publicFunctions/checkAuth';
@@ -49,13 +48,13 @@ function ParentHomeworkPage() {
     const [description,setDescription] = useState(null)
     const [questionElements,setQuestionElements] = useState(null)
     const [incompleteMessage,setIncompleteMessage] = useState(null)
-    const [submittingStatus,setSubmittingStatus] = useState('')
     const [DoneStatus,setDoneStatus] = useState(null)
     const [submissionDate,setSubmissionDate] = useState('')
 
+    const studentID = localStorage.getItem('currentStudentID')
     // Get Homework Headers
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+studentID).then((res)=>{
             const data = res.data
             setDescription(data['homework']['description'])
             setHomeworkTitle(data['homework']['name'])
@@ -118,7 +117,7 @@ function ParentHomeworkPage() {
                 console.log(err)
             })
         }else if(submitted ==true){
-            axios.get(Global.BackendURL+"/student/submittedhomeworkquestions?homeworkID="+homeworkID+"&studentID="+localStorage.getItem("id")).then((res)=>{
+            axios.get(Global.BackendURL+"/student/submittedhomeworkquestions?homeworkID="+homeworkID+"&studentID="+studentID).then((res)=>{
                 const data = res.data
                 const QuestionList = []
                 console.log("test Graded: ",graded)
