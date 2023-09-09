@@ -15,7 +15,7 @@ import ReportPage from './general/pages/reportIssu';
 import ChangeAvatar from './general/pages/changeAvatar';
 
 import Homepage from './student/pages/home';
-import SideNavigation from './student/components/SideNavigationMenu';
+import StudentSideNavigation from './student/components/StudentSideNavigation';
 import CoursesPage from './student/pages/courses';
 import StudentHomeworkPage from './student/pages/studentWork';
 import CourseDataPage from './student/pages/CourseData';
@@ -32,7 +32,7 @@ import ClassroomInfo from './teacher/pages/ClassroomStudentList';
 import Classwork from './teacher/pages/classwork';
 
 
-import ParentSideNavigation from './parent/components/ParentSideNavigationMenu';
+import ParentSideNavigation from './parent/components/ParentSideNavigation';
 import ParentHomepage from './parent/pages/parentHomepage';
 import ParentCoursesPage from './parent/pages/Parentcourses';
 import ParentCourseDataPage from './parent/pages/ParentCourseData';
@@ -62,7 +62,7 @@ function App() {
           <Route path='/student/*' element={
           
             <div  id='StudentSidePages' className='row fullWidth pageLang'>
-                <SideNavigation />
+                <StudentSideNavigation />
                 <div className='column mainContent fullWidth'>
                     <Routes>
                         <Route exact path='/' element={<Homepage />} />

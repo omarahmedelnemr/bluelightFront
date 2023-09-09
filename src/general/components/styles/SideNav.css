@@ -1,4 +1,4 @@
-#ParentSidePages .sideNav{
+.sideNav{
     width: 280px;
     height: 96vh;
     background-color: #373e48;
@@ -14,11 +14,11 @@
     left: 0;
 }
 @media (max-width:500px) {
-    #ParentSidePages .sideNav{
+    .sideNav{
         zoom: 0.95;
     }
 }
-#ParentSidePages .sideNav .backgroundBlock{
+.sideNav .backgroundBlock{
     display: none;
     position:fixed;
     top: 0px;
@@ -32,7 +32,7 @@
 }
 
 @media (max-width: 1090px) {
-    #ParentSidePages .sideNav{
+    .sideNav{
         /* width: 0px ; */
         overflow: hidden;
         position: fixed;
@@ -42,15 +42,15 @@
     }
 }
 
-#ParentSidePages .sideNav .top{
+.sideNav .top{
     flex-grow: 1;
 }
-#ParentSidePages .sideNav .top .welcome .logoimage{
+.sideNav .top .welcome .logoimage{
     width: 30px;
     height: 30px;
     margin:0px 5px;
 }
-#ParentSidePages .sideNav .top .welcome{
+.sideNav .top .welcome{
     margin: 0px 20px;
     display: flex;
     flex-direction: row;
@@ -63,18 +63,18 @@
     padding: 0px 10px;
 }
 @media (max-width:500px) {
-    #ParentSidePages .sideNav .top .welcome{
+    .sideNav .top .welcome{
         zoom: 0.8;
     }
 }
-#ParentSidePages .sideNav .center{
+.sideNav .center{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     flex-grow: 3;
     position: relative;
 }
-#ParentSidePages .sideNav .backgroundActive{
+.sideNav .backgroundActive{
     position: absolute;
     height: 50px;
     width: 170px;
@@ -85,7 +85,7 @@
     transition: 0.5s;
 
 }
-#ParentSidePages .sideNav .center div{
+.sideNav .center div{
     margin: 0px 50px;
     text-align: left;
     padding: 0px 5px;
@@ -93,29 +93,28 @@
     flex-direction: row;
     align-items: center;  
 }
-#ParentSidePages .sideNav .center .navButton{
+.sideNav .center .navButton{
     cursor: pointer;
 }
-#ParentSidePages .sideNav .center .navButton .route{
+.sideNav .center .navButton .route{
     display: none;
 }
-#ParentSidePages .sideNav .center .navButton svg{
+.sideNav .center .navButton svg{
     margin: 0px 15px;
     font-size: 20px;
 }
-
-#ParentSidePages .sideNav .center .active{
+.sideNav .center .navButton p{
+    text-wrap: nowrap;
+}
+.sideNav .center .activeNavButton{
     /* background-color: white; */
     color: black;
     border-radius: 30px;
 }
-#ParentSidePages .sideNav .center .active svg{
+.sideNav .center .activeNavButton svg{
     color: #3d5ef0;
 }
-#ParentSidePages .sideNav .center .navButton p{
-    text-wrap: nowrap;
-}
-#ParentSidePages .sideNav .bottom{
+.sideNav .bottom{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -123,26 +122,26 @@
     align-items: start;
 }
 
-#ParentSidePages .sideNav .bottom .chooseLang{
+.sideNav .bottom .chooseLang{
     justify-content: center;
     width: 170px;
     background-color: white;
     border-radius: 30px;
     overflow: hidden;
     margin: 0px 50px;}
-#ParentSidePages .sideNav .bottom .chooseLang p{
+.sideNav .bottom .chooseLang p{
     margin: 0px;
     width: 100%;
     color:black;
     background-color: #c9ddfe;
     cursor: pointer;
 }
-#ParentSidePages .sideNav .bottom .chooseLang .activeLang{
+.sideNav .bottom .chooseLang .activeLang{
     background-color: #3d5ef0;
     color:white;
     cursor:default    ;
 }
-#ParentSidePages .sideNav .bottom .reportIssuText{
+.sideNav .bottom .reportIssuText{
     width: 75%;
     background-color:white;
     color: black;
@@ -156,7 +155,7 @@
     transition: 0.5s;
     display: none;
 }
-#ParentSidePages .sideNav .bottom .reportIssu{
+.sideNav .bottom .reportIssu{
     width: 50px;
     height: 50px;
     display: flex;
@@ -170,10 +169,10 @@
     cursor: pointer;
     margin: 0px 50px;
 }
-#ParentSidePages .sideNav .bottom .reportIssu:hover {
+.sideNav .bottom .reportIssu:hover {
     background-color: #6b83ed;
 }
 
-#ParentSidePages .sideNav .bottom .reportIssu:hover .reportIssuText{
+.sideNav .bottom .reportIssu:hover .reportIssuText{
     display: block;
 }
