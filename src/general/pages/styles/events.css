@@ -1,0 +1,49 @@
+.eventsList{
+    /* width: 100%; */
+    padding: 50px 100px;
+}
+.eventsList .event{
+    /* width: 100%; */
+    background-color: white;
+    box-shadow: -5px 5px 10px rgb(201, 201, 201);
+    border-radius: 10px;
+    padding: 10px 50px;
+    margin: 10px 0px ;
+}
+.eventsList .event .eventHeader{
+    /* width: 100%; */
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.eventsList .event .eventHeader .eventHeaderInfo{
+    text-align: start;
+}
+.eventsList .event .eventHeader .eventHeaderInfo h2{
+    margin: 0px;
+}
+.eventsList .event .eventHeader .arrow{
+    font-size: 20px;
+    transition: 0.5s;
+}
+.eventsList .event .eventHeader .arrow svg{
+    transition: 0.5s;
+
+}
+.eventsList .event .eventBody{
+    height: 0px;
+    min-height: 0px;
+    max-height: min-content;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.eventsList .event .eventBody.active{
+    min-height: 100px;
+    height:min-content;
+    /* max-height: max-content; */
+}
+
+.eventsList .event:has(> .eventBody.active) svg{
+    transform: rotate(180deg);
+}
