@@ -8,9 +8,9 @@ import Global from '../../publicFunctions/globalVar';
 import formatTime from '../../publicFunctions/formatTime';
 import cleanArr from '../../publicFunctions/cleanArr';
 import generateNumberList from '../../publicFunctions/randomList';
-import Question_MCQ from '../../student/components/question_mcq';
-import Question_Written from '../../student/components/question_written';
-import Question_Attachment  from '../../student/components/question_attachment';
+import Question_MCQ from '../../general/components/question_mcq';
+import Question_Written from '../../general/components/question_written';
+import Question_Attachment  from '../../general/components/question_attachment';
 
 
 

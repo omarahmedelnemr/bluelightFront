@@ -6,9 +6,9 @@ import TopBar from '../../general/components/topBar';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
 import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
-import Question_MCQ from '../../student/components/question_mcq';
-import Question_Written from '../../student/components/question_written';
-import Question_Attachment from '../../student/components/question_attachment';
+import Question_MCQ from '../../general/components/question_mcq';
+import Question_Written from '../../general/components/question_written';
+import Question_Attachment from '../../general/components/question_attachment';
 import cleanArr from '../../publicFunctions/cleanArr';
 import compareDates from '../../publicFunctions/compareDates';
 import formatTime from '../../publicFunctions/formatTime';

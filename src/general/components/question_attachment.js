@@ -10,11 +10,18 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
     const [attachLoading,setAttachLoading] = useState(null)
     const [AttachmentErrorMessage,setAttachmentErrorMessage] = useState(null)
     const lang =localStorage.getItem("lang")
+    var ParentStudent = localStorage.getItem("currentStudentName")
+    var ParentStudentAr = localStorage.getItem("currentStudentArName")
+    if (ParentStudent !== null){
+        ParentStudent = ParentStudent.split(" ")[0]
+        ParentStudentAr = ParentStudentAr.split(" ")[0]
+    }
     const compLang = {
-        yourWork:  lang === 'en' ? "Your Work":"ملفاتك",
-        upload:    lang === 'en' ? "Upload Your Files":"ارفع ملفاتك",
-        uploading: lang === 'en' ? "Uploading":"جار الرفع",
-        noFiles:   lang === 'en' ? "No Files Yet":"لا ملفات حتي الان"
+        yourWork:      lang === 'en' ? "Your Work":"ملفاتك",
+        upload:        lang === 'en' ? "Upload Your Files":"ارفع ملفاتك",
+        uploading:     lang === 'en' ? "Uploading":"جار الرفع",
+        noFiles:       lang === 'en' ? "No Files Yet":"لا ملفات حتي الان",
+        textForParent: lang === 'en' ? `${ParentStudent}'s Work`:`ملفات ${ParentStudentAr}`
     }
 
     //Check if the Question in Normal Mode (Homework) or in Exam Mode So No Local Storage
@@ -271,14 +278,13 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
             
             <div className='attachemntFiles'>
                 {AttachmentErrorMessage}
-                <p className='YourWorkText'>{compLang['yourWork']}:</p>
+                <p className='YourWorkText'>{localStorage.getItem("role") === 'student' ? compLang['yourWork']: compLang['textForParent']} :</p>
                 <div className='preview'>
                     {noFilesYet}
                     {preview}
                 </div>
                 <p className='hide attachmentsValues'>{attachment.join(',')}</p>
-                {/* <p className='hide attachmentsValues'>1691459483631.png,1691459483632.png,1691459483630.png</p> */}
-                {answered?null:
+                {answered || localStorage.getItem("role") !== 'student' ?null:
                 <label class="custom-file-upload">
                     {attachLoading === null?<input type="file" onChange={uploadFile}/>:<input type="file" onChange={uploadFile} disabled/>}
                     {attachLoading===null?compLang['upload']:compLang['uploading']}

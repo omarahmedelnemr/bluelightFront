@@ -54,7 +54,8 @@
 /* Submitted */
 
 .mcq .options .option.disabled{
-    cursor: auto;
+    cursor:not-allowed ;
+
 }
 
 .mcq .options .option.disabled:hover{

@@ -1,4 +1,4 @@
-#StudentSidePages .attachemntFiles{
+.attachemntFiles{
     width: 100%;
     margin: 10px;
     display: flex;
@@ -6,17 +6,17 @@
     justify-content: center;
     align-items: flex-start;
 }
-#StudentSidePages .attachemntFiles .ErrorMessage{
+.attachemntFiles .ErrorMessage{
     margin: 0;
     color: red;
     text-align: center;
 }
-#StudentSidePages .attachment .attachemntFiles input[type="file"] {
+.attachment .attachemntFiles input[type="file"] {
     display: none;
     /* position: absolute;
     opacity: 0; */
 }
-#StudentSidePages .attachment .attachemntFiles .custom-file-upload{
+.attachment .attachemntFiles .custom-file-upload{
     /* border: 1px solid #ccc; */
     border-radius: 10px;
     display: inline-block;
@@ -29,7 +29,7 @@
     transition: 0.2s;
     overflow: hidden;
 }
-#StudentSidePages  .attachment .attachemntFiles .custom-file-upload .loadingContainer{
+ .attachment .attachemntFiles .custom-file-upload .loadingContainer{
     /* display: none; */
     position: absolute;
     top: 0;
@@ -38,7 +38,7 @@
     height: 100%;
     background-color: rgba(62, 62, 62, 0.52);
 }
-#StudentSidePages .attachment .attachemntFiles .custom-file-upload .loadingContainer .loading{ 
+.attachment .attachemntFiles .custom-file-upload .loadingContainer .loading{ 
     width: 20px;
     height: 20px;
     top: 0;
@@ -48,19 +48,19 @@
     border-style: solid;
     border-right: transparent;
 }
-#StudentSidePages .attachment .attachemntFiles .custom-file-upload:hover{
+.attachment .attachemntFiles .custom-file-upload:hover{
     background-color: #adbcff;
 
 }
-#StudentSidePages .attachment .attachemntFiles .custom-file-upload:active{
+.attachment .attachemntFiles .custom-file-upload:active{
     background-color:#c2cdff;
 }
-#StudentSidePages .attachment .attachemntFiles .YourWorkText{
+.attachment .attachemntFiles .YourWorkText{
     background: #90a4fd;
     padding: 10px;
     border-radius: 0px 10px 10px 0px;
 }
-#StudentSidePages .preview{
+.preview{
     /* display: flex;
     flex-direction: row; */
     overflow-x:auto;
@@ -71,17 +71,17 @@
 
 
 }
-#StudentSidePages .preview::-webkit-scrollbar{
+.preview::-webkit-scrollbar{
     background-color: rgba(38, 38, 38, 0.113);
     width: 8px;
     height: 8px;
     border-radius: 10px;
 }
-#StudentSidePages .preview::-webkit-scrollbar-thumb{
+.preview::-webkit-scrollbar-thumb{
     background-color: rgb(97, 97, 97);
     border-radius: 10px;
 }
-#StudentSidePages .attachmentPreview{
+.attachmentPreview{
     width: 150px;
     /* max-width: 230px; */
     height: 150px;
@@ -95,7 +95,7 @@
     justify-content: center;
     align-items: center; */
 }
-#StudentSidePages .attachmentPreview .CloseCross{
+.attachmentPreview .CloseCross{
     position: absolute;
     top: 5px;
     right: 5px;
@@ -112,20 +112,20 @@
     opacity: 0;
     transition: 0.2s;
 }
-#StudentSidePages .attachmentPreview:hover .CloseCross{
+.attachmentPreview:hover .CloseCross{
     opacity: 1;
 }
-#StudentSidePages .attachmentPreview img{
+.attachmentPreview img{
 
     width: 100%;
     height: 100%;
 }
-#StudentSidePages .attachmentPreview a{
+.attachmentPreview a{
     height: 100%;
     display: block;
     text-decoration: none;
 }
-#StudentSidePages .attachmentPreview p{
+.attachmentPreview p{
     margin: 0px;
     margin-top: -50px;
     background-color: white;
@@ -140,7 +140,7 @@
     align-items: center;
     box-shadow: 0px 3px 10px black;
 }
-#StudentSidePages .bigImage{
+.bigImage{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -152,7 +152,7 @@
     align-items: center;
     z-index: 99999;
 }
-#StudentSidePages .bigImage .grayBackground{
+.bigImage .grayBackground{
     width: 100%;
     height: 100%;
     top: 0;
@@ -160,26 +160,26 @@
     background-color: rgba(41, 41, 41, 0.302);
     position: absolute;
 }
-#StudentSidePages .bigImage img{
+.bigImage img{
     max-width: 70%;
     max-height: 80%;
     z-index: 100;
 }
-#StudentSidePages iframe{
+iframe{
     width: 160px;
 }
 
-#StudentSidePages iframe::-webkit-scrollbar{
+iframe::-webkit-scrollbar{
     /* display: none; */
     background-color: red;
 }
-#StudentSidePages iframe::-webkit-scrollbar-thumb{
+iframe::-webkit-scrollbar-thumb{
     /* display: none; */
     background-color: red;
 }
-#StudentSidePages .embedMiniPreview{
+.embedMiniPreview{
     pointer-events: none;
 }
-#StudentSidePages .embedBigPreview{
+.embedBigPreview{
 width: 110%;
 }
