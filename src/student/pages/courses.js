@@ -42,7 +42,7 @@ function CoursesPage() {
     axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+classroomID+"&studentID="+studentID).then((res)=>{
       const data = res.data
       const coursesPreList = []
-      var teacherName,currentImage,subjectNamex,link,favIcon;
+      var teacherName,currentImage,subjectNamex,link;
       for(var i =0;i < data.length;i++){
 
         //Take the First Two Names

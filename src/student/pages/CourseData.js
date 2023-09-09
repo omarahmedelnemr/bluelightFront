@@ -22,7 +22,7 @@ function CourseDataPage() {
       seeAll:        lang === 'en' ? "See All":"مشاهدة الكل",
       name:          lang === 'en' ? "Name":"الاسم",
       grade:         lang === 'en' ? "Total Grade":"الدرجة الكلية",
-      due:           lang === 'en' ? "Due Date":"اخر موعد تسليم",
+    //   due:           lang === 'en' ? "Due Date":"اخر موعد تسليم",
       publishDate:   lang === 'en' ? "Publish Date":"تاريخ النشر",
       yourGrade:     lang === "en" ? "Your Grade":"درجتك",
       status:        lang === 'en' ? "Status":"الحالة",
@@ -121,7 +121,7 @@ function CourseDataPage() {
             }
             values[workElement[i].querySelector('.workStatus span').innerHTML.toLowerCase()] +=1
             Localgrade = workElement[i].querySelector('.workStatus h3').innerHTML
-            if (Localgrade.includes("-") == false){
+            if (Localgrade.includes("-") === false){
                 grades += Number(Localgrade.split('/')[0])
                 totalGrades += Number(Localgrade.split('/')[1])
             }
@@ -144,12 +144,12 @@ function CourseDataPage() {
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/courseAssingments?studentID="+studentID+"&classroomID="+classroomID+"&courseName="+courseName).then((res)=>{
             const data = res.data
-            if (data == undefined){
+            if (data === undefined){
                     setEmptyMessage(<div className="emptyAssingmentsMessage" >
                                         {iconList[Math.round(Math.random()*(iconList.length-1))]}
                                         <p className=""> {pageLang['nothing']}</p>
                                     </div>)
-                }else if (data.length == 0){
+                }else if (data.length === 0){
                     setEmptyMessage(<div className="emptyAssingmentsMessage" >
                                             {iconList[Math.round(Math.random()*(iconList.length-1))]}
                                             <p className=""> {pageLang['nothing']}</p>
@@ -217,28 +217,28 @@ function CourseDataPage() {
     event.currentTarget.classList.add('activeSide')
 
     //Show the Selected Section
-    if (event.currentTarget.textContent == pageLang['assignments']){
+    if (event.currentTarget.textContent === pageLang['assignments']){
         document.getElementsByClassName('courseAssignment')[0].style.display = 'block'
         document.getElementsByClassName('courseExams')[0].style.display = 'none'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'none'
         setTitle(pageLang['assignments'])
 
-    }else if(event.currentTarget.textContent == pageLang['exams']){
+    }else if(event.currentTarget.textContent === pageLang['exams']){
         document.getElementsByClassName('courseAssignment')[0].style.display = 'none'
         document.getElementsByClassName('courseExams')[0].style.display = 'block'
         document.getElementsByClassName('courseAnnounce')[0].style.display = 'none'
         setTitle(pageLang['exams'])
 
         //Send The Request To Get The Data From The DB if it didn't Load Already
-        if (exmaStatus == false){
+        if (exmaStatus === false){
             axios.get(Global.BackendURL+"/student/courseExams?studentID="+studentID+"&classroomID="+classroomID+"&courseName="+courseName).then((res)=>{
                 const data = res.data
-                if (data == undefined){
+                if (data === undefined){
                 setEmptyExamsMessage(<div className="emptyExamsMessage" >
                                         {iconList[Math.round(Math.random()*(iconList.length-1))]}
                                         <p className=""> {pageLang['nothing']}</p>
                                     </div>)
-                }else if (data.length == 0){
+                }else if (data.length === 0){
                     setEmptyExamsMessage(<div className="emptyExamsMessage" >
                                             {iconList[Math.round(Math.random()*(iconList.length-1))]}
                                             <p className=""> {pageLang['nothing']}</p>
@@ -248,7 +248,7 @@ function CourseDataPage() {
                     var tableElements = []
                     for(var i=0;i<data.length;i++){
                         var examType;
-                        if(data[i]['exam']['due_date'] == null){
+                        if(data[i]['exam']['due_date'] === null){
                         examType = 'still'
                         }else{
                         examType = data[i]['submitted'] ? "completed": compareDates(data[i]['exam']['due_date'])

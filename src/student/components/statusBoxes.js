@@ -26,7 +26,6 @@ function StatusBoxes() {
     })
 
     // get Exams Numbers
-    const [totalExamsCount,setTotalExamsCount] = useState('-')
     const [examGrades,setExamsGrades] = useState('-')
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/examGrades?studentID="+localStorage.getItem('id')).then((res)=>{
@@ -48,7 +47,7 @@ function StatusBoxes() {
         axios.get(Global.BackendURL+"/student/AttendanceCount?studentID="+localStorage.getItem('id')).then((res)=>{
             const data = res.data
             var rate;
-            if ((data['attended']+data['absent']) != 0 ){
+            if ((data['attended']+data['absent']) !== 0 ){
                 rate = Math.round((data["attended"]/(data['attended']+data['absent']))*100)
             }else{
                 rate = 100
