@@ -13,6 +13,8 @@ import ChangeUsername from './general/pages/changeUsername';
 import ChangePassword from './general/pages/changePassword';
 import ReportPage from './general/pages/reportIssu';
 import ChangeAvatar from './general/pages/changeAvatar';
+import TimeTablePage from './general/pages/timetable';
+import EventsPage from './general/pages/events';
 
 import Homepage from './student/pages/home';
 import StudentSideNavigation from './student/components/StudentSideNavigation';
@@ -21,32 +23,25 @@ import StudentHomeworkPage from './student/pages/studentWork';
 import CourseDataPage from './student/pages/CourseData';
 import HomeworkPage from './student/pages/homework';
 import StudentExamPage from './student/pages/studentExamPage';
-// import StudentMessagesPage from './student/pages/Messages';
 import ExamPage from './student/pages/exam';
-import TimeTablePage from './general/pages/timetable';
 
 import TeacherSideNavigation from './teacher/components/teacherSideNav';
 import TeacherHomepage from './teacher/pages/teacherHomePage';
 import ClassroomsPage from './teacher/pages/classrooms';
 import ClassroomInfo from './teacher/pages/ClassroomStudentList';
 import Classwork from './teacher/pages/classwork';
-
+import TeacherMessagesPage from './teacher/pages/TeacherMessagesPage';
 
 import ParentSideNavigation from './parent/components/ParentSideNavigation';
 import ParentHomepage from './parent/pages/parentHomepage';
-import ParentCoursesPage from './parent/pages/Parentcourses';
-import ParentCourseDataPage from './parent/pages/ParentCourseData';
 import ParentHomeworkPage from './parent/pages/parentHomework';
 import ParentHomeworkListPage from './parent/pages/ParentHomeworkListPage';
 import ParentMessagesPage from './parent/pages/ParentMessagesPage';
 import ParentExamListPage from './parent/pages/parentExamListPage';
 import ParentExamPage from './parent/pages/ParentExamPage'
-import TeacherMessagesPage from './teacher/pages/TeacherMessagesPage';
-import EventsPage from './general/pages/events';
-
 
 Chart.register(ArcElement);
-// require('dotenv').config()
+
 function App() {
   const lang = localStorage.getItem('lang')
   
@@ -115,10 +110,9 @@ function App() {
               <div className='column mainContent fullWidth'>
                   <Routes>
                       <Route exact path='/' element={<ParentHomepage />} />
-                      {/* <Route path='/classwork' element={<ParentCla />} /> */}
 
-                        <Route path='/courses' element={<ParentCoursesPage />} />
-                        <Route path='/courses/:courseName' element={<ParentCourseDataPage />} />
+                        <Route path='/courses' element={<CoursesPage />} />
+                        <Route path='/courses/:courseName' element={<CourseDataPage />} />
                         <Route path='/courses/:courseName/assignments/:homeworkID' element={<ParentHomeworkPage />} />
                         <Route path='/courses/:courseName/exams/:examID' element={<ParentExamPage />} />
 
@@ -143,7 +137,6 @@ function App() {
       
           <Route path="/teacher/grading" element={<p>Test Done <a href='/'>Go Back</a></p>}/>
 
-          {/* <Route path='/*' element={<h2 style={{backgroundColor:"white"}}>Please Login First<br/><a href="/login">Login</a></h2>}/> */}
         </Routes>
         
       </Router>

@@ -36,8 +36,10 @@ function CoursesPage() {
   }
   const [coursesBoxs,setCoursesBoxs] = useState(null)
   const [loading,setLoading] = useState(<div className='loading'></div>)
+  const studentID = localStorage.getItem('role') === 'student' ? localStorage.getItem('id'): localStorage.getItem('currentStudentID')
+  const classroomID = localStorage.getItem('role') === 'student' ? localStorage.getItem('classroom'):localStorage.getItem('currentStudentClassroom')
   useEffect(()=>{
-    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+localStorage.getItem('classroom')+"&studentID="+localStorage.getItem("id")).then((res)=>{
+    axios.get(Global.BackendURL+"/student/CoursesList?classroomID="+classroomID+"&studentID="+studentID).then((res)=>{
       const data = res.data
       const coursesPreList = []
       var teacherName,currentImage,subjectNamex,link,favIcon;
@@ -68,12 +70,6 @@ function CoursesPage() {
     })    
   },[])
 
-
-  function switchAllFav(event){
-    const parent = event.currentTarget.parentElement
-    parent.querySelector('.activeSide').classList.remove('activeSide')
-    event.currentTarget.classList.add('activeSide')
-  }
   return (
     <div className="column CoursesPage">
       <TopBar title={pageLang["courses"]}/>

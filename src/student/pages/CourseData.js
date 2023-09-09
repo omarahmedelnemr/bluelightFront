@@ -65,8 +65,8 @@ function CourseDataPage() {
     ]
   
     const {courseName} = useParams()
-    const studentID = localStorage.getItem('id')
-    const classroomID = localStorage.getItem('classroom')
+    const studentID = localStorage.getItem('role') === 'student' ? localStorage.getItem('id'): localStorage.getItem('currentStudentID')
+    const classroomID = localStorage.getItem('role') === 'student' ? localStorage.getItem('classroom'):localStorage.getItem('currentStudentClassroom')
     const [assinmentList,setAssignmentList] = useState('')
     const [exmaStatus,setExamStatus] = useState(false)
     const [title,setTitle] = useState(pageLang['assignments'])
@@ -471,13 +471,6 @@ function CourseDataPage() {
             <div className='analysisAssignment column'>
                     <div className='Graph column'>
                         <PieChart chartData={chartData} title = {pageLang[activePart]}/>
-
-                        <div className='row labelsRow'>
-                            <p><span style={{backgroundColor:'#EFEE8F'}}></span><br/>{pageLang['still']}</p>
-                            <p><span style={{backgroundColor:'red'}}></span><br/>{pageLang['late']}</p>
-                            <p>< span  style={{backgroundColor:'lightgreen'}}></span><br/>{pageLang['completed']}</p>
-                            <p><span  style={{backgroundColor:'#ff00007a'}}></span><br/>{pageLang['doneLate']}</p>
-                        </div>
 
                     </div>
                     <div className='lineStatus column'> 
