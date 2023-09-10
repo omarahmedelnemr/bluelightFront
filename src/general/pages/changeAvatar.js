@@ -15,6 +15,7 @@ function ChangeAvatar() {
     const [mainImg,setMainImg] = useState(profileImage)
     const [disabled,setDisabled] = useState("disabled")
     const [allAvatarsElements,setAllAvatarsElement] = useState(null)
+    const gender = localStorage.getItem("gender")
     const pageText = {
         title: lang === "en" ? "Change Avatar" : "تغيير الصورة",
         save:  lang === 'en' ? "Save":"حفظ"      
@@ -25,8 +26,9 @@ function ChangeAvatar() {
         setMainImg(img)
 
     }
+
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/allavatars").then((res)=>{
+        axios.get(Global.BackendURL+"/allavatars?gender="+gender).then((res)=>{
             const data = res.data
             console.log(data)
             const preElement = []
