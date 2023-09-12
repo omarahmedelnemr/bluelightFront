@@ -63,6 +63,9 @@
 #homeworkPage .homeworkSection .wrongMessage{
     color: red;
 }
+.homeworkQuestions{
+    position: relative;
+}
 .homeworkQuestions .SubmitButton,.SubmitButton{
     background-color: #3d5ef0;
     color: white;

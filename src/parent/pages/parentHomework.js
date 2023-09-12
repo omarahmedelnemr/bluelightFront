@@ -37,7 +37,6 @@ function ParentHomeworkPage() {
       cantUnsubmit:    lang === "en" ? "You Can't unsubmit Graded Homework":"لا يمكنك الغاء تسليم واجب تم تصحيحه",
 
     }
-    const [title,setTitle] = useState(pageLang['Homework'])
     const [homeworkTitle,setHomeworkTitle] = useState('')
     const [publishDate,setPublishDate] = useState("-/-/-")
     const [dueDate,setDueDate] = useState("-/-/-")
@@ -47,10 +46,10 @@ function ParentHomeworkPage() {
     const [graded,setGraded] = useState(false)
     const [description,setDescription] = useState(null)
     const [questionElements,setQuestionElements] = useState(null)
-    const [incompleteMessage,setIncompleteMessage] = useState(null)
     const [DoneStatus,setDoneStatus] = useState(null)
     const [submissionDate,setSubmissionDate] = useState('')
-
+    const [latePenalty,setLatePenalty] = useState(null)
+    const [loading,setLoading] = useState(<div className='loading'></div>)
     const studentID = localStorage.getItem('currentStudentID')
     // Get Homework Headers
     useEffect(()=>{
@@ -65,10 +64,11 @@ function ParentHomeworkPage() {
                 setGraded(data['graded'])
                 // setSubmitted(data['submitted'])
                 setSubmissionDate(formatTime(data['submissionDate']))
+                var statusDates;
                 if (data['homework']['due_date'] === null){
                     setDoneStatus(pageLang['done'])
                 }else{
-                    const statusDates = compareDates(data['homework']['due_date'],data['submissionDate'])
+                    statusDates = compareDates(data['homework']['due_date'],data['submissionDate'])
                     if (statusDates ==='late'){
                         setDoneStatus(pageLang['doneLate'])
                     }else{
@@ -78,6 +78,10 @@ function ParentHomeworkPage() {
                 }
                 if (data['graded']){
                     setYourGrade(<p>{data['grade']} / {data['homework']['grade']}</p>)
+                    if (data['homework']['latePenalty'] > 0 && statusDates === 'late'){
+                        setLatePenalty(<span className='latePenalty'>-{data['homework']['latePenalty']} {pageLang['latePenalty']}<br/></span>)
+
+                    }
                 }else{
                     setYourGrade(<p>- / { data['homework']['grade']}</p>)
                 }
@@ -132,6 +136,7 @@ function ParentHomeworkPage() {
                     }
                 }
                 setQuestionElements(QuestionList)
+                setLoading(null)
             }).catch((err)=>{
                 console.log("error !!")
                 console.log(err)
@@ -142,7 +147,7 @@ function ParentHomeworkPage() {
         },[submitted])
   return (
     <div className="homework" id='homeworkPage'>
-        <TopBar title={title} />
+        <TopBar title={pageLang['Homework']} />
         <div className='PageContent'>
             <div className='courseBar row'>
                 <h1>{courseName.padStart()}</h1>
@@ -159,16 +164,15 @@ function ParentHomeworkPage() {
                         <hr />
                     </div>
                     <div className='status column'>
-                        <p>{yourGrade}<span>{DoneStatus}</span><br/><span className='submittedDate'> {submissionDate}</span></p>
+                        <p>{yourGrade}<span>{DoneStatus}</span><br/>{latePenalty}<span className='submittedDate'> {submissionDate}</span></p>
                     </div>
                 </div>
                 <div className='workDescription'>
                     <p>{description}</p>
                 </div>
                 <div>
-
                     <div className='homeworkQuestions'>
-                        {incompleteMessage}
+                        {loading}                        
                         {questionElements}
                     </div>
                 </div>

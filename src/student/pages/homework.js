@@ -57,6 +57,8 @@ function HomeworkPage() {
     const [submissionDate,setSubmissionDate] = useState('')
     const [warningStatus,setWarningStatus] = useState('hide')
     const [latePenalty,setLatePenalty] = useState(null)
+    const [loading,setLoading] = useState(<div className='loading'></div>)
+
     // Get Homework Headers
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+localStorage.getItem('id')).then((res)=>{
@@ -123,6 +125,7 @@ function HomeworkPage() {
                     }
                 }
                 setQuestionElements(QuestionList)
+                setLoading(null)
             }).catch((err)=>{
                 console.log("error !!")
                 console.log(err)
@@ -143,6 +146,8 @@ function HomeworkPage() {
                     }
                 }
                 setQuestionElements(QuestionList)
+                setLoading(null)
+
             }).catch((err)=>{
                 console.log("error !!")
                 console.log(err)
@@ -291,6 +296,7 @@ function HomeworkPage() {
                 <div>
 
                     <div className='homeworkQuestions'>
+                        {loading}
                         {incompleteMessage}
                         {questionElements}
                         {submitted===false?
