@@ -286,7 +286,7 @@ function Question_Attachment({questionInfo,answered,mode,graded = null}) {
                 <p className='hide attachmentsValues'>{attachment.join(',')}</p>
                 {answered || localStorage.getItem("role") !== 'student' ?null:
                 <label class="custom-file-upload">
-                    {attachLoading === null?<input type="file" onChange={uploadFile}/>:<input type="file" onChange={uploadFile} disabled/>}
+                    {attachLoading === null?<input type="file" onChange={uploadFile} accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"/>:<input type="file" onChange={uploadFile} disabled/>}
                     {attachLoading===null?compLang['upload']:compLang['uploading']}
                     {attachLoading}
                 </label>}
