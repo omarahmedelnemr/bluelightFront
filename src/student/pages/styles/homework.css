@@ -1,5 +1,45 @@
+#homeworkPage{
+    position: relative;
+
+}
 #homeworkPage .PageContent{
-    padding: 20px 5%
+    padding: 20px 5%;
+}
+#homeworkPage .PageContent .WarningText{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(114, 114, 114, 0.426);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#homeworkPage .PageContent .WarningText .warningContent{
+    width: 30%;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #373e48;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width:500px) {
+    #homeworkPage .PageContent .WarningText .warningContent{
+        width: 80%;
+    }
+}
+#homeworkPage .PageContent .WarningText .warningContent .Buttons{
+    width: 100%;
+}
+#homeworkPage .PageContent .WarningText .warningContent .Buttons .SubmitButton{
+    border: 0px;
+    flex-basis: 100%;
+    margin: 5px;
+    /* margin: 5%; */
+    /* width: 45%; */
 }
 #homeworkPage .courseBar{
     background-color: #3b7781;
@@ -36,6 +76,7 @@
     margin: 0px;
     color: rgb(77, 77, 77);
 }
+
 #homeworkPage .homeworkSection .homeworkInfo .submittedDate{
     color: rgba(0, 0, 0, 0.572);
     font-size: 18px;
@@ -55,7 +96,9 @@
     margin: 0px;
     text-align: right;
 }
-
+#homeworkPage .homeworkSection .homeworkInfo .status .latePenalty{
+    color: rgb(255, 88, 88);
+}
 #homeworkPage .homeworkSection  .workDescription{
     text-align: start;
 }

@@ -35,8 +35,10 @@ function HomeworkPage() {
       mcqMissing:      lang === "en" ? "There is a MCQ You Didn't answer Yet" : " يوجد سوال اختيار من متعدد لم يتم الاجابه عليه", 
       writtenMissing:  lang === "en" ? "There is a Written Question You Didn't answer Yet" : "يوجد سوال كتابي لم يتم الاجابة عليه", 
       attachMissing:   lang === "en" ? "There is an Attachment Question You Didn't answer Yet" : "يوجد سؤال لم يتم الاجابة عليه", 
-      cantUnsubmit:    lang === "en" ? "You Can't unsubmit Graded Homework":"لا يمكنك الغاء تسليم واجب تم تصحيحه",
-
+      cantUnsubmit:    lang === "en" ? "This Homework Cannnot Be un Submitted After Grading":"هذا الواجب لا يمكن الغاء تسليمه بعد ان يتم تصحيحه",
+      warningText:     lang === "en" ? "If You Un-Submit the Homework, Your Work and Grades Will Be Lost":"اذا قمت بالغاء التسليم, اجاباتك ودرجاتك سوف يتم مسحها",
+      warningReturn:   lang === "en" ? "Return":"العودة",
+      latePenalty:     lang === "en" ? "Late Penalty":"تسليم متاخر"
     }
     const [title,setTitle] = useState(pageLang['Homework'])
     const [homeworkTitle,setHomeworkTitle] = useState('')
@@ -46,13 +48,15 @@ function HomeworkPage() {
     const [yourGrade,setYourGrade] = useState('-')
     const [submitted,setSubmitted] = useState('-')
     const [graded,setGraded] = useState(false)
+    const [unsubmitAfterGrading,setUnsubmitGradedState] = useState(false)
     const [description,setDescription] = useState(null)
     const [questionElements,setQuestionElements] = useState(null)
     const [incompleteMessage,setIncompleteMessage] = useState(null)
     const [submittingStatus,setSubmittingStatus] = useState('')
     const [DoneStatus,setDoneStatus] = useState(null)
     const [submissionDate,setSubmissionDate] = useState('')
-
+    const [warningStatus,setWarningStatus] = useState('hide')
+    const [latePenalty,setLatePenalty] = useState(null)
     // Get Homework Headers
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/homeworkheader?homeworkID="+homeworkID+"&studentID="+localStorage.getItem('id')).then((res)=>{
@@ -62,14 +66,16 @@ function HomeworkPage() {
             setTotalGrade(data['homework']['grade'])
             setPublishDate(formatTime(data['homework']['publish_date']))
             setDueDate(formatTime(data['homework']['due_date']))
+            setUnsubmitGradedState(data['homework']['unsubmitAfterGrading'])
             if(data['submitted']){
                 setGraded(data['graded'])
                 // setSubmitted(data['submitted'])
                 setSubmissionDate(formatTime(data['submissionDate']))
+                var statusDates
                 if (data['homework']['due_date'] === null){
                     setDoneStatus(pageLang['done'])
                 }else{
-                    const statusDates = compareDates(data['homework']['due_date'],data['submissionDate'])
+                    statusDates = compareDates(data['homework']['due_date'],data['submissionDate'])
                     if (statusDates ==='late'){
                         setDoneStatus(pageLang['doneLate'])
                     }else{
@@ -79,6 +85,10 @@ function HomeworkPage() {
                 }
                 if (data['graded']){
                     setYourGrade(<p>{data['grade']} / {data['homework']['grade']}</p>)
+                    if (data['homework']['latePenalty'] > 0 && statusDates === 'late'){
+                        setLatePenalty(<span className='latePenalty'>-{data['homework']['latePenalty']} {pageLang['latePenalty']}<br/></span>)
+
+                    }
                 }else{
                     setYourGrade(<p>- / { data['homework']['grade']}</p>)
                 }
@@ -220,7 +230,12 @@ function HomeworkPage() {
         })
         console.log(submission)
     }
-
+    function confirmUnSubmit(){
+        setWarningStatus("")
+    }
+    function WarningReturn(){
+        setWarningStatus("hide")
+    }
     function unSubmitWork(even){
         const req = {
             "homeworkID":homeworkID,
@@ -242,6 +257,15 @@ function HomeworkPage() {
     <div className="homework" id='homeworkPage'>
         <TopBar title={title} />
         <div className='PageContent'>
+            <div className={`WarningText ${warningStatus}`}>
+                <div className='warningContent'>
+                    <h3>{pageLang['warningText']}</h3>
+                    <div className='row Buttons'>
+                        <button className='SubmitButton' onClick={WarningReturn}>{pageLang['warningReturn']}</button>
+                        <button className='SubmitButton' onClick={unSubmitWork}>{pageLang['unsubmit']}</button>
+                    </div>
+                </div>
+            </div>
             <div className='courseBar row'>
                 <h1>{courseName.padStart()}</h1>
                 <img src={subjectSideImage}/>
@@ -257,7 +281,8 @@ function HomeworkPage() {
                         <hr />
                     </div>
                     <div className='status column'>
-                        <p>{yourGrade}<span>{DoneStatus}</span><br/><span className='submittedDate'> {submissionDate}</span></p>
+                        <p>{yourGrade}<span>{DoneStatus}</span><br/>{latePenalty}<span className='submittedDate'> {submissionDate}</span></p>
+
                     </div>
                 </div>
                 <div className='workDescription'>
@@ -272,11 +297,17 @@ function HomeworkPage() {
                             <div className={'SubmitButton'+submittingStatus} onClick={submitWork}>
                                 <div className='loading'></div>
                                 {pageLang['submit']}</div>
-                        :graded===false?
-                        <div className={'SubmitButton'+submittingStatus} onClick={unSubmitWork}>
-                        <div className='loading'></div>
-                        {pageLang['unsubmit']}</div>:
-                        <span>{pageLang['cantUnsubmit']}</span>}
+                            :graded===false?
+                                <div className={'SubmitButton'+submittingStatus} onClick={confirmUnSubmit}>
+                                    <div className='loading'></div>
+                                    {pageLang['unsubmit']}
+                                </div>
+                                :unsubmitAfterGrading?
+                                    <div className={'SubmitButton'+submittingStatus} onClick={confirmUnSubmit}>
+                                        <div className='loading'></div>
+                                        {pageLang['unsubmit']}
+                                    </div>
+                                    :<span>{pageLang['cantUnsubmit']}</span>}
                     </div>
                 </div>
             </div>
