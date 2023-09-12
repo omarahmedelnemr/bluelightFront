@@ -45,12 +45,22 @@ function TimeTablePage() {
             const preTableRow = []
             for (var i=0;i<tableDays.length;i++){
                 preTableCell.push(<td className='dayCell'>{pageLang[tableDays[i]]}</td>)
+                
                 for (var x = 0;x<headers.length;x++){
                     const teacherName = (lang === 'en' ? data[tableDays[i]][headers[x]]['teacher'] : data[tableDays[i]][headers[x]]['arTeacher']).split(" ").slice(0,2).join(" ")
-                    preTableCell.push(
-                        <td><div>{data[tableDays[i]][headers[x]]['course']} <span>{ teacherName}</span></div></td>
+                    var cols = 1
+                    if (x+1!= headers.length){
+                        if (data[tableDays[i]][headers[x]]['course'] === data[tableDays[i]][headers[x+1]]['course']){
+                            cols +=1
 
+                        }
+                    }
+                    preTableCell.push(
+                        <td colSpan={cols}><div>{data[tableDays[i]][headers[x]]['course']} <span>{ teacherName}</span></div></td>
                     )
+                    if (cols>1){
+                        x+=cols-1
+                    }
                 }
                 preTableRow.push(
                     <tr>
