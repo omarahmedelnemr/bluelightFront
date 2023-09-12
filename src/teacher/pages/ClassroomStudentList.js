@@ -1,15 +1,12 @@
 import '../../general/pages/styles/general.css'
 import './styles/ClassroomStudentList.css'
-import checkAutherization from '../../publicFunctions/checkAuth';
 import TopBar from '../../general/components/topBar';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 import { useParams } from 'react-router-dom';
 function ClassroomStudentList() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
+
 
     var {classroomID} = useParams()
     classroomID = classroomID.replace('_','/')

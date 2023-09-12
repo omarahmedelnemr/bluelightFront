@@ -2,7 +2,7 @@ import TopBar from '../../general/components/topBar';
 import './styles/messages.css'
 import '../../general/pages/styles/general.css'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 import {  useParams } from 'react-router-dom';
 import formatTime from '../../publicFunctions/formatTime';

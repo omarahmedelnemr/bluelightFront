@@ -4,18 +4,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import TopBar from '../../general/components/topBar';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 import Question_MCQ from '../../general/components/question_mcq';
 import Question_Written from '../../general/components/question_written';
 import Question_Attachment from '../../general/components/question_attachment';
 import compareDates from '../../publicFunctions/compareDates';
 import formatTime from '../../publicFunctions/formatTime';
-import checkAutherization from '../../publicFunctions/checkAuth';
 function ParentExamPage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const {courseName,examID} = useParams() 
     const lang = localStorage.getItem("lang")
     const pageLang ={

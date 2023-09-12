@@ -1,7 +1,6 @@
 import './styles/Homepage.css'
 import '../../general/pages/styles/general.css'
 import TopBar from '../../general/components/topBar';
-import checkAutherization from '../../publicFunctions/checkAuth';
 import CourseBox from '../../student/components/courseBox';
 import ArabicImage from '../../content/arabic.jpg'
 import mathImage from '../../content/math.jpg'
@@ -12,12 +11,9 @@ import ChemistryImage from '../../content/chemistry.jpg'
 import DrawingImage from '../../content/drawing.jpg'
 import baseImage from '../../content/courseBase.jpeg'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar'
 function CoursesPage() {
-  if (checkAutherization() !== 'Auth'){
-    window.location.href ='/login'
-  }
   const lang = localStorage.getItem('lang')
   const pageLang = {
     courses: lang === 'en' ? "Courses" : "المقررات",

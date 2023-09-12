@@ -1,14 +1,11 @@
 import '../../general/pages/styles/general.css'
 import './styles/classrooms.css'
-import checkAutherization from '../../publicFunctions/checkAuth';
 import TopBar from '../../general/components/topBar';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 function ClassroomsPage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
+
     const lang = localStorage.getItem('lang') 
     const pageText = {
         SchoolName: lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",

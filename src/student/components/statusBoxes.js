@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './styles/statusBoxes.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 function StatusBoxes() {
     

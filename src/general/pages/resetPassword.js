@@ -1,18 +1,14 @@
 import './styles/reset.css'
 import Button from '../components/button';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
 import Watermark from '../components/watermark';
 import Global from '../../publicFunctions/globalVar'
-import checkAutherization from '../../publicFunctions/checkAuth';
 
 
 function ResetPassword() {
-  if (checkAutherization() === 'Auth'){
-    window.location.href ='/'+localStorage.getItem("role")
-  }
   function SubmitResetPassword(){
     const newPassword = document.getElementById("newPassword").value
     const newPassword2 = document.getElementById("newPassword2").value

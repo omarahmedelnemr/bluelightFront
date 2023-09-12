@@ -1,10 +1,6 @@
 import '../../general/pages/styles/general.css'
-import checkAutherization from '../../publicFunctions/checkAuth';
 import TopBar from '../../general/components/topBar';
 function TeacherHomepage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const lang = localStorage.getItem('lang') 
     const pageText = {
         SchoolName: lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",

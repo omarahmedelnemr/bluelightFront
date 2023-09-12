@@ -1,19 +1,15 @@
 import './styles/general.css'
 import './styles/changeUsername.css'
-import checkAutherization from '../../publicFunctions/checkAuth';
 import Global from '../../publicFunctions/globalVar';
 import TopBar from '../components/topBar';
 import Input from '../components/input';
 import Button from '../components/button';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import { useNavigate } from 'react-router-dom';
 
 
 function ChangePassword() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const lang = localStorage.getItem('lang') 
     const [errorMessage,setErrorMessage] = useState(null)
     const [correctMessage,setCurrectMessage] = useState(null)

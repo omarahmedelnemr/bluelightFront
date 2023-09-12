@@ -1,16 +1,12 @@
 import './styles/general.css'
 import './styles/reportPage.css'
-import checkAutherization from '../../publicFunctions/checkAuth';
 import TopBar from '../components/topBar';
 import Input from '../components/input';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import { useNavigate } from 'react-router-dom';
 import Global from '../../publicFunctions/globalVar';
 function ReportPage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const lang = localStorage.getItem('lang') 
     const [errorMessage,setErrorMessage] = useState(null)
     const [buttonStatus,setButtonStatus] = useState('')

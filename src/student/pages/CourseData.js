@@ -2,7 +2,7 @@ import '../../general/pages/styles/general.css'
 import './styles/courseData.css'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import compareDates from '../../publicFunctions/compareDates';
@@ -10,13 +10,9 @@ import TopBar from '../../general/components/topBar';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
 import formatTime from '../../publicFunctions/formatTime'
 import PieChart from '../../general/components/pieChart';
-import checkAutherization from '../../publicFunctions/checkAuth';
 import DropDownList from '../../student/components/dropDownList';
 
 function CourseDataPage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const lang = localStorage.getItem("lang")
     const pageLang ={
       seeAll:        lang === 'en' ? "See All":"مشاهدة الكل",

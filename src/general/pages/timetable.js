@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import TopBar from '../components/topBar';
 
 import './styles/timetable.css'
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 function TimeTablePage() {
   const lang = localStorage.getItem('lang')

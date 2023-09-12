@@ -4,15 +4,12 @@ import './styles/classwork.css'
 import checkAutherization from '../../publicFunctions/checkAuth';
 import TopBar from '../../general/components/topBar';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import routeTo from '../../publicFunctions/reroute';
 import compareDates from '../../publicFunctions/compareDates';
 function Classwork() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const lang = localStorage.getItem('lang') 
     const pageText = {
         SchoolName: lang === 'en' ? "Nile Egyption International Schools":"مدارس النيل الدولية",

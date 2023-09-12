@@ -3,7 +3,7 @@ import TopBar from '../../general/components/topBar';
 import './styles/examPage.css'
 import { useParams } from 'react-router-dom';
 import subjectSideImage from '../../content/subjectSideImage.jpeg'
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import Global from '../../publicFunctions/globalVar';
 import formatTime from '../../publicFunctions/formatTime';
 import cleanArr from '../../publicFunctions/cleanArr';

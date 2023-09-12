@@ -6,7 +6,7 @@ import Global from '../../publicFunctions/globalVar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import io from "socket.io-client";
 import chatDateFormat from '../../publicFunctions/chatDate';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 
 const socket = io(Global.BackendURL+"/chat"); // Connect to the Socket.IO server
 socket.emit('store-user',{userID:localStorage.getItem("id"),userRole:localStorage.getItem('role')})

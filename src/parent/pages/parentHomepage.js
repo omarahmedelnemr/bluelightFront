@@ -2,21 +2,17 @@ import './styles/Homepage.css'
 import '../../general/pages/styles/general.css'
 import TopBar from '../../general/components/topBar';
 import WorkExamsPanel from '../components/workExamPanel';
-import checkAutherization from '../../publicFunctions/checkAuth';
 import StatusBoxes from '../components/statusBoxes';
 import { useEffect, useState } from 'react';
 // import axios from 'axios';
 import Global from '../../publicFunctions/globalVar';
+import axios from '../../publicFunctions/axiosAuth';
 import PieChart from '../../general/components/pieChart';
-import axios from "../../publicFunctions/axiosAuth"
 import BarChart from '../../general/components/BarChart';
 // import { useHistory } from 'react-router-dom';
 
 // Inside your React component
 function ParentHomepage() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     // const history = useHistory();
 
     const lang = localStorage.getItem('lang') 

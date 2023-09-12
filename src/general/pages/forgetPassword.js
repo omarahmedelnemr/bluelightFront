@@ -1,18 +1,14 @@
 import './styles/forget.css'
 import Button from '../components/button';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
 import Watermark from '../components/watermark';
 import Global from '../../publicFunctions/globalVar'
-import checkAutherization from '../../publicFunctions/checkAuth';
 
 
 function ForgetPassword() {
-  if (checkAutherization() === 'Auth'){
-    window.location.href ='/'+localStorage.getItem("role")
-  }
   function SubmitForgetPassword(){
     const username = document.getElementById("forgetPasswordUsername").value
     const nationalID = document.getElementById("nationalID").value

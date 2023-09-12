@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 import './styles/attachment.css'
 import './styles/Written.css'
 import Global from '../../publicFunctions/globalVar';

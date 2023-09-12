@@ -1,5 +1,5 @@
 import "./styles/workExamPanel.css"
-import axios from "axios";
+import axios from '../../publicFunctions/axiosAuth';
 import Global from "../../publicFunctions/globalVar";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

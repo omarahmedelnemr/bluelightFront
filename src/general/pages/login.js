@@ -6,23 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/input';
 import Watermark from '../components/watermark';
 import Global from '../../publicFunctions/globalVar'
-import checkAutherization from '../../publicFunctions/checkAuth';
 
 
 function Login() {
-  if (checkAutherization() === 'Auth'){
-    window.location.href ='/'+localStorage.getItem("role")+"/"
-  }
-  function handleKeyPress(event) {
-    // Check if the key pressed is the Enter key (keyCode 13)
-    if (event.keyCode === 13) {
-        // Find the sibling button and programmatically click it
-        const button = event.currentTarget.parentElement.nextElementSibling;
-        if (button.tagName === 'BUTTON') {
-            button.click();
-        }
-    }
-}
+  // Check Auth Already
+  axios.get(Global.BackendURL+"/checkauth").then((res)=>{
+    console.log("Authorized")
+    window.location.href = `/${localStorage.getItem("role")}/`
+  }).catch((err)=>{
+    console.log("un Authorized Error!\n",err)
+  })
   function SubmitLogin(){
     const username = document.getElementById("loginUsername").value
     const password = document.getElementById("loginPassword").value

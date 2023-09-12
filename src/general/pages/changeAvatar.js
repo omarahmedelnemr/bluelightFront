@@ -1,15 +1,11 @@
 import './styles/account.css'
 import './styles/general.css'
 import './styles/avatars.css'
-import checkAutherization from '../../publicFunctions/checkAuth';
 import Global from '../../publicFunctions/globalVar';
 import TopBar from '../components/topBar';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../publicFunctions/axiosAuth';
 function ChangeAvatar() {
-    if (checkAutherization() !== 'Auth'){
-        window.location.href ='/login'
-    }
     const lang = localStorage.getItem('lang') 
     const profileImage = Global.BackendURL+"/avatar/"+localStorage.getItem("img_dir") 
     const [mainImg,setMainImg] = useState(profileImage)
