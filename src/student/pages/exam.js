@@ -11,6 +11,7 @@ import generateNumberList from '../../publicFunctions/randomList';
 import Question_MCQ from '../../general/components/question_mcq';
 import Question_Written from '../../general/components/question_written';
 import Question_Attachment  from '../../general/components/question_attachment';
+import compareDates from '../../publicFunctions/compareDates';
 
 
 
@@ -27,12 +28,15 @@ function ExamPage() {
         submit:          lang === 'en' ? "Submit":"تسليم",
         submitting:      lang === 'en' ? "Submitting ...":"... جار التسليم",
         timeremaining:   lang === 'en' ? "Time Remaining":"الوقت المتبقي",
-        yourSubmiitedIt: lang === 'en' ? "You Have Already Submitted this Quiz":"لقد سلمت هذا بالفعل الاختبار",
+        yourSubmitedIt:  lang === 'en' ? "You Have Already Submitted this Quiz":"لقد سلمت هذا بالفعل الاختبار",
         mcqMissing:      lang === "en" ? "There is a MCQ You Didn't answer Yet" : " يوجد سوال اختيار من متعدد لم يتم الاجابه عليه", 
         writtenMissing:  lang === "en" ? "There is a Written Question You Didn't answer Yet" : "يوجد سوال كتابي لم يتم الاجابة عليه", 
         attachMissing:   lang === "en" ? "There is an Attachment Question You Didn't answer Yet" : "يوجد سؤال لم يتم الاجابة عليه",
-        notSubmitted:    lang === 'en' ? "Not Submitted Yet":"لم يسلم بعد" 
-        
+        notSubmitted:    lang === 'en' ? "Not Submitted Yet":"لم يسلم بعد" ,
+        cannotShow:      lang === 'en' ? "You Cannot View Your Work For This Exam After Submission":"لا يمكنك رؤية اجاباتك لهذا الاختبار بعد التسليم",
+        done:            lang === 'en' ? 'Done':"تم",
+        doneLate:        lang === 'en' ? "Done Late":"تم متاخرا",
+        noLate:          lang === 'en' ? "You Cannot Submit This Exam After Due Date":"لا يمكنك تسليم هذا الاختبار بعد معاد تسليمه المحدد"
     }
 
     const {courseName,examID} = useParams() 
@@ -56,6 +60,7 @@ function ExamPage() {
     const [QestionsLength,setQuestionsLength] = useState(6)
     const [showWindow,setShowWindow] = useState("hide")
     const [questionElements,setQuestionElements] = useState(null)
+    const [submittedQuestionElements,setSubmittedQuestionElements] = useState(null)
     const [duration,setduration] = useState(0)
     const [submitted,setSubmitted] = useState(false)
     const [incompleteMessage,setIncompleteMessage] = useState(null)
@@ -63,7 +68,10 @@ function ExamPage() {
     const [randomizeQuestions,setRandomizeQuestion] = useState(false)
     const [timeLeft, setTimeLeft] = useState(null); // in seconds
     const [isRunning, setIsRunning] = useState(false);
-    
+    const [showAfterGrading,setShowAfterGrading] = useState(null)
+    const [graded,setGraded] = useState(false)
+    const [loading,setLoading] = useState(null)
+    const [canSubmitLate,setSubmitLate]  = useState(false)
     //Get the Exam Headers
     useEffect(()=>{
         axios.get(Global.BackendURL+"/student/examHeader?examID="+examID+"&studentID="+localStorage.getItem("id")).then((res)=>{
@@ -79,6 +87,15 @@ function ExamPage() {
             setduration(data['exam']['duration'])
             setSubmitted(data['submitted'])
             setRandomizeQuestion(data['exam']['randomQuestions'])
+            setShowAfterGrading(data['exam']['showQuestionsAfterGrading'])
+            setGraded(data['graded'])
+            setSubmitLate(data['exam']['acceptLate'])
+            const statusDates = compareDates(data['exam']['due_date'],new Date())
+            if (statusDates ==='late'){
+                setDoneStatus("late")
+            }else{
+                setDoneStatus("still")
+            }
         }).catch((err)=>{
             console.log("Error!!")
             console.log(err)
@@ -122,6 +139,34 @@ function ExamPage() {
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
 
+    // Get Submitted Questions
+    useEffect(()=>{
+        if (showAfterGrading === true && graded){
+            setLoading(<div className='loading'></div>)
+            axios.get(Global.BackendURL+"/student/submittedexamsquestions?examID="+examID+"&studentID="+localStorage.getItem("id")).then((res)=>{
+                const data = res.data
+                const QuestionList = []
+                for(var i=0;i<data.length;i++){
+                    if(data[i]['type'] ==='smcq' || data[i]['type'] ==='mmcq'){
+                        QuestionList.push(<Question_MCQ questionInfo={data[i]} answered = {true} graded={graded}/>)
+                    }else if(data[i]['type'] ==='written'){
+                        QuestionList.push(<Question_Written questionInfo={data[i]} answered = {true} graded={graded}/>)
+                    }else{
+                        QuestionList.push(<Question_Attachment questionInfo={data[i]} answered = {true} graded={graded}/>)
+
+                    }
+                }
+                setSubmittedQuestionElements(QuestionList)
+                setLoading(null)
+
+            }).catch((err)=>{
+                console.log("error !!")
+                console.log(err)
+            })
+        }else if(showAfterGrading === false ){
+            setSubmittedQuestionElements(<p>{pageLang['cannotShow']}</p>)
+        }
+    },[showAfterGrading])
 
     // Start The Quiz Functions
     function startQuiz(event){
@@ -281,9 +326,7 @@ function ExamPage() {
                 ans['answer'] = ''
                 ans['attachments']=cleanArr(questions[i].querySelector('.attachmentsValues').innerHTML.split(","),'')
                 ans["options"] = null
-                console.log(ans['attachments'])
                 if((ans['attachments']===null || ans['attachments'][0] === undefined || ans['attachments'][0] === '' || ans['attachments'] === undefined) && isRunning  && questions[i].querySelector(".isRequired").innerHTML=='&nbsp;*'){
-                    console.log('incise')
                     setIncompleteMessage(<p className='wrongMessage'>{pageLang['attachMissing']}</p>)
                     return;
                 }
@@ -294,11 +337,8 @@ function ExamPage() {
         setsubmitButtonStatus(" disabled")
         setStubmitText(pageLang['submitting'])
         setBackButtonStatus("disabled")
-        console.log(submission)
         axios.post(Global.BackendURL+"/student/examsubmission",submission).then((res)=>{
-            console.log("Done")
             const data = res.data
-            console.log(data)
             for (var i =0;i<questions.length;i++){
                 const Qid = questions[i].querySelector(".questionID").innerHTML
                 const QActualNumber = questions[i].querySelector(".questionNumber").innerHTML
@@ -319,13 +359,13 @@ function ExamPage() {
 
     useEffect(()=>{
         try{
-            if (isRunning && bacgkroundStatus =='notBlock' && localStorage.getItem("StartedExam") != null){
+            if (isRunning && bacgkroundStatus ==='notBlock' && localStorage.getItem("StartedExam") !== null){
                 document.getElementById("startAQuizButton").click()
             }
         }catch(err){
             console.log("Loading")
         }
-    },[isRunning])
+    })
 
 
 
@@ -381,15 +421,21 @@ function ExamPage() {
                             </div>
 
                         </div>
-
+                        <div className='SubittedQuestions'>
+                            {loading}
+                            {submittedQuestionElements}
+                        </div>
                     </div>
                 </div>
                 {submitted? 
-                <p>{pageLang['yourSubmiitedIt']}</p>:
-                <div id={"startAQuizButton"} className={'StartQuizButton'}  onClick={startQuiz}>
-                    <div className='loading'></div>
-                    {pageLang['startQuiz']}
-                </div>
+                    <p>{pageLang['yourSubmitedIt']}</p>
+                    :DoneStatus === 'still' || (canSubmitLate &&  DoneStatus === "late")?
+                        <div id={"startAQuizButton"} className={'StartQuizButton'}  onClick={startQuiz}>
+                            <div className='loading'></div>
+                            {pageLang['startQuiz']}
+                        </div>
+                        :<p>{pageLang['noLate']}</p>
+                     
                 }
             </div>
 

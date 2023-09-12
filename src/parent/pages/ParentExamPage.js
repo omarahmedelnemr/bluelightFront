@@ -47,14 +47,12 @@ function ParentExamPage() {
     const [graded,setGraded] = useState(false)
     const [description,setDescription] = useState(null)
     const [questionElements,setQuestionElements] = useState(null)
-    const [incompleteMessage,setIncompleteMessage] = useState(null)
-    const [submittingStatus,setSubmittingStatus] = useState('')
     const [DoneStatus,setDoneStatus] = useState(null)
     const [submissionDate,setSubmissionDate] = useState('')
-
+    const studentID =localStorage.getItem("currentStudentID")
     // Get Exam Headers
     useEffect(()=>{
-        axios.get(Global.BackendURL+"/student/examheader?examID="+examID+"&studentID="+localStorage.getItem('currentStudentID')).then((res)=>{
+        axios.get(Global.BackendURL+"/student/examheader?examID="+examID+"&studentID="+studentID).then((res)=>{
             const data = res.data
             setDescription(data['exam']['description'])
             setExamTitle(data['exam']['name'])
@@ -118,7 +116,7 @@ function ParentExamPage() {
             // })
             setQuestionElements(<p>{pageLang['notAllowed']}</p>)
         }else if(submitted ==true){
-            axios.get(Global.BackendURL+"/parent/submittedexamquestions?examID="+examID+"&studentID="+localStorage.getItem("id")).then((res)=>{
+            axios.get(Global.BackendURL+"/parent/submittedexamquestions?examID="+examID+"&studentID="+studentID).then((res)=>{
                 const data = res.data
                 const QuestionList = []
                 console.log("test Graded: ",graded)
@@ -169,7 +167,6 @@ function ParentExamPage() {
                 <div>
 
                     <div className='examQuestions'>
-                        {incompleteMessage}
                         {questionElements}
                     </div>
                 </div>
