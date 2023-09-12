@@ -31,13 +31,13 @@ function Login() {
       .then((res)=>{
         
         //Set Local Storage Variables
-        if (localStorage.getItem("name") ===null){
+        // if (localStorage.getItem("name") ===null){
           const dataList = Object.keys(res.data)
           for(var i = 0;i<dataList.length;i++){
             localStorage.setItem(dataList[i],res.data[dataList[i]])
           }
 
-        }
+        // }
         localStorage.setItem('username',username)
         if(localStorage.getItem("lang") ===undefined || localStorage.getItem("lang") ===null){
           localStorage.setItem("lang","en")
