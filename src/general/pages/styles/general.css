@@ -55,6 +55,10 @@ a.hiddenRoute{
   left: 49%;
 
 }
+.logoutFromAllMessage{
+  color: gray;
+  margin-top: 0;
+}
 @media (prefers-reduced-motion: no-preference) {
 .loading{
     animation: infinitRotate infinite 10s linear;

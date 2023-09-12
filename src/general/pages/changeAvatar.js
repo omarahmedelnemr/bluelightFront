@@ -13,8 +13,8 @@ function ChangeAvatar() {
     const [allAvatarsElements,setAllAvatarsElement] = useState(null)
     const gender = localStorage.getItem("gender")
     const pageText = {
-        title: lang === "en" ? "Change Avatar" : "تغيير الصورة",
-        save:  lang === 'en' ? "Save":"حفظ"      
+        title:         lang === "en" ? "Change Avatar" : "تغيير الصورة",
+        save:          lang === 'en' ? "Save":"حفظ",
     }
 
     function chooseAvatar(event){
@@ -58,6 +58,7 @@ function ChangeAvatar() {
         }
         axios.post(Global.BackendURL+"/changeAvatar",req).then((res)=>{
             localStorage.setItem("img_dir",imageName)
+            localStorage.setItem("jwt",res.data)
             window.location.reload(false);
 
         }).catch((err)=>{

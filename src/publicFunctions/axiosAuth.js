@@ -5,6 +5,9 @@ import axios from "axios";
 axios.interceptors.request.use(function (config) {
     const token = localStorage.getItem("jwt")
     config.headers.Authorization =  token;
+    config.headers.userRole =  localStorage.getItem('role');
+    config.headers.username =  localStorage.getItem('username');
+    config.headers.imgdir =  localStorage.getItem('img_dir');
      
     return config;
 });
