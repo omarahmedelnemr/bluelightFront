@@ -393,7 +393,9 @@ function TeacherMessagesPage() {
                     chatroomID: data['newChatroom'],
                     sender : localStorage.getItem("role"),
                     date   : new Date(),
-                    text   : messageText
+                    text   : messageText,
+                    tag1   : document.querySelector(".activeTag").innerHTML
+
                 }
                 socket.emit("sendMessage",newReq)
                 currentParent.querySelector(".sendInput").value = ''
@@ -407,7 +409,9 @@ function TeacherMessagesPage() {
                 chatroomID: localStorage.getItem("ActiveChat"),
                 sender : localStorage.getItem("role"),
                 date   : new Date(),
-                text   : messageText
+                text   : messageText,
+                tag1   : document.querySelector(".activeTag").innerHTML
+
             }
             setMessages([
                 <div className='messageBox sent'>
@@ -424,6 +428,7 @@ function TeacherMessagesPage() {
             
         }
 
+        document.querySelector(".closeIcon").click()
 
 
     }
@@ -545,6 +550,29 @@ function TeacherMessagesPage() {
         socket.emit("deleteMessage",{messageID:messageID})
     }
 
+    function openCloseTags(event){
+        const element = event.currentTarget.parentElement
+        if (element.querySelector(".TagsContainer").classList.contains("open")){
+            element.querySelector(".TagsContainer").classList.remove("open")
+            event.currentTarget.classList.remove("open")
+        }else{
+            element.querySelector(".TagsContainer").classList.add("open")
+            event.currentTarget.classList.add("open")
+        }
+    }
+    function activateTag(event){
+        document.querySelector(".sendMessage").querySelector('.activeTag').innerHTML = event.currentTarget.innerHTML
+        document.querySelector(".sendMessage").querySelector('.activeTag').style.padding = '0px 5px'
+        if (event.currentTarget.classList.contains("warning")){
+            document.querySelector(".sendMessage").querySelector('.activeTag').classList.add("warning")
+        }else{
+            document.querySelector(".sendMessage").querySelector('.activeTag').classList.remove("warning")
+        }
+    }
+    function removeActiveTag(event){
+        document.querySelector('.activeTag').innerHTML = ''
+        document.querySelector('.activeTag').style.padding = '0px'
+    }
     return (
     <div id='TeacherMessagesPage'>
         <TopBar title={pageLang['messages']}/>
@@ -589,9 +617,25 @@ function TeacherMessagesPage() {
                 <div className='chatMessages'>
                     {messages}
                 </div>
-                <div className='sendMessage row'>
-                    <input type='text' className='sendInput'  id={"chatSendInput"} placeholder={pageLang['sendAmessage']}/>
-                    <button className='sendMessagesButton' onClick={sendMessage}><FontAwesomeIcon icon="fa-solid fa-paper-plane" /></button>
+                <div className='row'>
+
+                    <div className='Tags'>
+                        <FontAwesomeIcon icon="fa-solid fa-circle-notch" onClick={openCloseTags}/>
+                        <div className='TagsContainer'>
+                                <span className='tag warning' onClick={activateTag}>Warning</span>
+                                <span className='tag' onClick={activateTag}>Important</span>
+                        </div>
+                    </div>
+                    <div className='sendMessage row'>
+                        <div className='activeTagContainer'>
+                            <span className='activeTag'></span>
+                            <div className='closeIcon' onClick={removeActiveTag}>
+                                <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                            </div>
+                        </div>
+                        <input type='text' className='sendInput'  id={"chatSendInput"} placeholder={pageLang['sendAmessage']}/>
+                        <button className='sendMessagesButton' onClick={sendMessage}><FontAwesomeIcon icon="fa-solid fa-paper-plane" /></button>
+                    </div>
                 </div>
             </div>
         </div>

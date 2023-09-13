@@ -225,7 +225,7 @@
     direction: ltr;
     color: gray;
 }
-#TeacherSidePages #TeacherMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .Tags{
+#TeacherSidePages #TeacherMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .chatroomTags{
     background-color: #3d5ef0c5;
     color: white;
     padding: 7px;
@@ -233,7 +233,7 @@
     border-radius: 10px;
 
 }
-#TeacherSidePages #TeacherMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .Tags.warning{
+#TeacherSidePages #TeacherMessagesPage .mailBox .chatroomBox .chatroomInfo .senderInfo .chatroomTags.warning{
     background-color: #f03d3dc5;
 }
 #TeacherSidePages #TeacherMessagesPage .mailBox .chatroomBox .newSeen{
@@ -376,12 +376,89 @@
     color: black;
 
 }
+#TeacherSidePages .ChatRoom .Tags{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: #3d5ef0;
+    margin: 10px;
+    position: relative;
+}
+#TeacherSidePages .ChatRoom .Tags svg{
+    transition: 0.5s;
+}
+#TeacherSidePages .ChatRoom .Tags svg.open{
+    transform: rotate(270deg);
+}
+#TeacherSidePages .ChatRoom .Tags .TagsContainer{
+    position: absolute;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    bottom: 40px;
+    transition: 0.5s;
+    height: 0px;
+    overflow: hidden;
+}
+#TeacherSidePages .ChatRoom .Tags .TagsContainer.open{
+    height: 100px;
+}
+#TeacherSidePages .ChatRoom .Tags .TagsContainer .tag{
+    background-color: #3d5ef0;
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+#TeacherSidePages .ChatRoom .Tags .TagsContainer .tag.warning{
+    background-color: rgb(255, 132, 132);
+    color: white;
+}
 #TeacherSidePages #TeacherMessagesPage .ChatRoom .sendMessage{
     border-radius: 10px;;
     border: 1px solid rgb(153, 153, 153);
     overflow: hidden;
     display: none;
+    width: 100%;
 
+
+}
+#TeacherSidePages .ChatRoom .sendMessage .activeTagContainer{
+    position: relative;
+}
+#TeacherSidePages .ChatRoom .sendMessage .activeTagContainer .activeTag{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: #3d5ef0;
+    color: white;
+    /* padding: 0px 5px; */
+    height: 100%;
+}
+#TeacherSidePages .ChatRoom .sendMessage .activeTagContainer .activeTag.warning{
+    background-color: #ff7f7f;
+
+}
+#TeacherSidePages .ChatRoom .sendMessage  .activeTagContainer .closeIcon{
+    position: absolute;
+    font-size: 20px;
+    background-color: rgba(128, 128, 128, 0.281);
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.2s;
+    cursor: pointer;
+}
+#TeacherSidePages .ChatRoom .sendMessage .activeTagContainer:hover .closeIcon{
+opacity: 1;
 }
 #TeacherSidePages #TeacherMessagesPage .ChatRoom .sendMessage input{
     border-radius: 10px;
