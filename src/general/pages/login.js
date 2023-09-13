@@ -45,7 +45,12 @@ function Login() {
 
         setMessege('')
         setLogingmessege("Logging")
-        navigate('/'+res.data['role']+"/")
+        // // Disable For Devoloping
+        // if (password === Global.defaultPassword){
+        //   navigate("/welcome/")
+        // }else{
+          navigate('/'+res.data['role']+"/")
+        // }
       }).catch((err)=>{
         try{
           setMessege(err.response.data)
