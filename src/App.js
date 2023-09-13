@@ -39,6 +39,7 @@ import ParentHomeworkListPage from './parent/pages/ParentHomeworkListPage';
 import ParentMessagesPage from './parent/pages/ParentMessagesPage';
 import ParentExamListPage from './parent/pages/parentExamListPage';
 import ParentExamPage from './parent/pages/ParentExamPage'
+import WelcomePage from './general/pages/Welcome';
 
 Chart.register(ArcElement);
 
@@ -50,6 +51,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/Login' element={<Login />} />
+          <Route path='/welcome' element={<WelcomePage />} />
           <Route path='/forgetPassword' element={<ForgetPassword />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/' element={<Login />} />

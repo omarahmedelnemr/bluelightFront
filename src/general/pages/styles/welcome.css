@@ -1,0 +1,55 @@
+#WelcomePage{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#WelcomePage .welcomeContent{
+    width: 500px;    
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-radius: 20px;
+}
+@media (max-width:500px) {
+    #WelcomePage .welcomeContent{
+        zoom: 0.58;
+    }
+}
+
+#WelcomePage .red{
+    color: rgb(255, 82, 82);
+}
+
+#WelcomePage .green{
+    color: rgb(91, 255, 82);
+
+}
+
+#WelcomePage .ChangeLangButtons{
+    background-color: white;
+    border-radius: 0px 0px 10px 10px ;
+    overflow: hidden;
+}
+
+#WelcomePage .ChangeLangButtons button{
+    border: none;
+    background-color: white;
+    padding: 10px;
+
+    transition: 0.3s;
+}
+
+#WelcomePage .ChangeLangButtons button:hover{
+    background-color: rgb(207, 207, 207);
+}
+
+#WelcomePage .ChangeLangButtons button.activeLang{
+    background-color: rgb(207, 207, 207);
+
+}
