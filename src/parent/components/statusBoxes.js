@@ -74,14 +74,14 @@ function StatusBoxes({studentName ='1'}) {
         attendance:          lang === "en" ? "Attendance" : "الحضور",
         messages:            lang === "en" ? "Messages" : "الرسائل",
         events:              lang === "en" ? "Events" : "المناسبات",
-        assignmentsMessage1: lang === "en" ? "Great, Just a Little More" : "رائع, تبقي القليل",
-        assignmentsMessage2: lang === 'en' ? "lot of work, But You Got it":"عمل كثير, ولكنك قادر علي انجازه",
-        examsMessage1:       lang === "en" ? "Take a Rest" : "خذ القليل من الراحة",
-        examsMessage2:       lang === "en" ? "Great, Just a Little More" : "رائع, تبقي القليل",
-        examsMessage3:       lang === "en" ? "Study Well" : "ادرس بجهد",
-        attendanceMessage1:  lang === "en" ? "Great, Keep Going" : "عمل رائع, واصل",
-        attendanceMessage2:  lang === "en" ? "You Should Take Care More of Your Classes" : "عليك ان تهتم بحصصك اكثر",
-        eventsMessage:       lang === "en" ? "un-seen Events" : "مناسبات لم تشاهدها"
+        // assignmentsMessage1: lang === "en" ? "Great, Just a Little More" : "رائع, تبقي القليل",
+        // assignmentsMessage2: lang === 'en' ? "lot of work, But You Got it":"عمل كثير, ولكنك قادر علي انجازه",
+        // examsMessage1:       lang === "en" ? "Take a Rest" : "خذ القليل من الراحة",
+        // examsMessage2:       lang === "en" ? "Great, Just a Little More" : "رائع, تبقي القليل",
+        // examsMessage3:       lang === "en" ? "Study Well" : "ادرس بجهد",
+        // attendanceMessage1:  lang === "en" ? "Great, Keep Going" : "عمل رائع, واصل",
+        // attendanceMessage2:  lang === "en" ? "You Should Take Care More of Your Classes" : "عليك ان تهتم بحصصك اكثر",
+        // eventsMessage:       lang === "en" ? "un-seen Events" : "مناسبات لم تشاهدها"
     }
     return (
         <div className="row statusBoxes">
@@ -145,7 +145,7 @@ function StatusBoxes({studentName ='1'}) {
                         <h2>{messagesCount}</h2>
                     </div>
                     <div className='boxComment'>
-                        <p>{messagesCount > 0?<span style={{color:"red"}}>{messagesCount}</span>:<span>{messagesCount}</span>} unseen Messages</p>
+                        {/* <p>{messagesCount > 0?<span style={{color:"red"}}>{messagesCount}</span>:<span>{messagesCount}</span>} unseen Messages</p> */}
 
                     </div>
                 </div>
