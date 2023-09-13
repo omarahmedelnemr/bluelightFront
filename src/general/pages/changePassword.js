@@ -39,7 +39,7 @@ function ChangePassword() {
                 const data = res.data
                 console.log(data)
                 setErrorMessage(null)
-                setCurrectMessage("Username Changed Successfully")
+                setCurrectMessage("Password Changed Successfully")
                 navigate('/'+localStorage.getItem("role")+"/settings")
             }).catch((err)=>{
                 
