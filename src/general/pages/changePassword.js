@@ -17,14 +17,19 @@ function ChangePassword() {
     const pageText = {
         changePassword:     lang === 'en' ? "Change Password":"تغيير كلمة السر",
         passwordShort:      lang === 'en' ? "Password you Entered is Short":"كلمة السر التي ادخلتها قصيره",
-        passwordDidntMatch: lang === 'en' ? "Passwords Doesn't Match":"كلمتان السر ليسو متطابقين"
+        passwordDidntMatch: lang === 'en' ? "Passwords Doesn't Match":"كلمتان السر ليسو متطابقين",
+        defaultPassword:    lang === 'en' ? "You Can't Change to The Default Password Again":"لا يمكنك التغيير لكلمة السر الأولي مره اخري",
+        yourNewPass:        lang === 'en' ? "Your New Password":"كلمة السر الجديدة",
+        confirmNew:         lang === 'en' ? "Confirm New Password":"تاكيد كلمة السر",
+        YourPass:           lang === 'en' ? "Your Current Password":"كلمة السر الحالية",
+        username:           lang === 'en' ? "Your Username":"اسم المستخدم"
     }
     function submitChange(event){
         const username = event.currentTarget.parentElement.parentElement.querySelector("#yourUsername").value
         const password = event.currentTarget.parentElement.parentElement.querySelector("#userCurrentPassword").value
         const newPassword = event.currentTarget.parentElement.parentElement.querySelector("#userNewPassword").value
         const confirmedPassword = event.currentTarget.parentElement.parentElement.querySelector("#confirmNewPassword").value
-        
+        console.log("currentUsername: "+username+" current Password: "+password+" NewPassword: "+newPassword+" Defult: "+Global.defaultPassword)
         if (username.length < 3){
             setErrorMessage("Please Fill All the Input Fields")
         }else if (password.length < 5 || newPassword.length < 5){
@@ -33,6 +38,8 @@ function ChangePassword() {
         }else if (newPassword !== confirmedPassword){
             setErrorMessage(pageText['passwordDidntMatch'])
 
+        // }else if (newPassword === Global.defaultPassword){
+        //     setErrorMessage(pageText['defaultPassword'])
         }else{
             axios.post(Global.BackendURL+"/editpassword",{username:username,password:password,newPassword:newPassword})
             .then((res)=>{
@@ -47,7 +54,6 @@ function ChangePassword() {
                 console.log("Error!!\n",err)
             })
         }
-        console.log("currentUsername: "+username+" current Password: "+password+" NewPassword: "+newPassword)
     }
     return (
         <div id ={"ChangePassword"} className="changePages column fullWidth">
@@ -56,10 +62,10 @@ function ChangePassword() {
                 <div className='form'>
                     <p className='red'>{errorMessage}</p>
                     <p className='green'>{correctMessage}</p>
-                    <Input type={'text'} ID={'yourUsername'} label={"Current Username"}/>
-                    <Input type={'password'} ID={'userCurrentPassword'} label={"Your Password"} showPassword={true}/>
-                    <Input type={'password'} ID={'userNewPassword'} label={"Your New Password"} showPassword={true}/>
-                    <Input type={'password'} ID={'confirmNewPassword'} label={"Confirm New Password"} showPassword={true}/>
+                    <Input type={'text'} ID={'yourUsername'} label={pageText['username']}/>
+                    <Input type={'password'} ID={'userCurrentPassword'} label={pageText['YourPass']} showPassword={true}/>
+                    <Input type={'password'} ID={'userNewPassword'} label={pageText['yourNewPass']} showPassword={true}/>
+                    <Input type={'password'} ID={'confirmNewPassword'} label={pageText['confirmNew']} showPassword={true}/>
                     <br/>
                     <Button text={"Submit"} onClickFunc={submitChange}/>
                 </div>
