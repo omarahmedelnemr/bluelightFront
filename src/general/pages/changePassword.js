@@ -22,7 +22,8 @@ function ChangePassword() {
         yourNewPass:        lang === 'en' ? "Your New Password":"كلمة السر الجديدة",
         confirmNew:         lang === 'en' ? "Confirm New Password":"تاكيد كلمة السر",
         YourPass:           lang === 'en' ? "Your Current Password":"كلمة السر الحالية",
-        username:           lang === 'en' ? "Your Username":"اسم المستخدم"
+        username:           lang === 'en' ? "Your Username":"اسم المستخدم",
+        submit:             lang === 'en' ? "Submit":"ارسال"
     }
     function submitChange(event){
         const username = event.currentTarget.parentElement.parentElement.querySelector("#yourUsername").value
@@ -67,7 +68,7 @@ function ChangePassword() {
                     <Input type={'password'} ID={'userNewPassword'} label={pageText['yourNewPass']} showPassword={true}/>
                     <Input type={'password'} ID={'confirmNewPassword'} label={pageText['confirmNew']} showPassword={true}/>
                     <br/>
-                    <Button text={"Submit"} onClickFunc={submitChange}/>
+                    <Button text={pageText['submit']} onClickFunc={submitChange}/>
                 </div>
 
             </div>
