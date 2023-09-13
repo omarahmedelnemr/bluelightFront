@@ -32,7 +32,6 @@ function ChangeUsername() {
                 const data = res.data
                 console.log(data)
                 localStorage.setItem("username",newUsername)
-                localStorage.setItem("jwt",data)
                 setErrorMessage(null)
                 setCurrectMessage("Username Changed Successfully")
 

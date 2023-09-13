@@ -58,7 +58,6 @@ function ChangeAvatar() {
         }
         axios.post(Global.BackendURL+"/changeAvatar",req).then((res)=>{
             localStorage.setItem("img_dir",imageName)
-            localStorage.setItem("jwt",res.data)
             window.location.reload(false);
 
         }).catch((err)=>{
