@@ -10,7 +10,6 @@ import axios from '../../publicFunctions/axiosAuth';
 
 const socket = io(Global.BackendURL+"/chat"); // Connect to the Socket.IO server
 socket.emit('store-user',{userID:localStorage.getItem("id"),userRole:localStorage.getItem('role')})
-
 const RedesignOnWidth = 920
 function ParentMessagesPage() {
     const lang = localStorage.getItem('lang')
