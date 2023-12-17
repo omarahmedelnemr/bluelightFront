@@ -36,7 +36,7 @@
     height: 60vh;
     background-image: url('../../../content/44.jpg');
     background-size: cover;
-    justify-content: end;
+    justify-content: flex-end;
     overflow: hidden;
     border-radius: 25px;
     box-shadow: -5px 5px 10px gray;

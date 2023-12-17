@@ -118,8 +118,8 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    align-items: start;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .sideNav .bottom .chooseLang{

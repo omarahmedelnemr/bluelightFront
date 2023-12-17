@@ -10,12 +10,12 @@ import Global from '../../publicFunctions/globalVar'
 
 function Login() {
   // Check Auth Already
-  axios.get(Global.BackendURL+"/checkauth").then((res)=>{
-    console.log("Authorized")
-    window.location.href = `/${localStorage.getItem("role")}/`
-  }).catch((err)=>{
-    console.log("un Authorized Error!\n",err)
-  })
+  // axios.get(Global.BackendURL+"/checkauth").then((res)=>{
+  //   console.log("Authorized")
+  //   window.location.href = `/${localStorage.getItem("role")}/`
+  // }).catch((err)=>{
+  //   console.log("un Authorized Error!\n",err)
+  // })
   function SubmitLogin(){
     const username = document.getElementById("loginUsername").value
     const password = document.getElementById("loginPassword").value
@@ -68,16 +68,16 @@ function Login() {
 
   useEffect(()=>{
     document.getElementById("loginUsername").addEventListener('keypress', function(event) {
-      if (event.key == 'Enter') {
+      if (event.key === 'Enter') {
           event.currentTarget.parentElement.parentElement.parentElement.querySelector("button").click()
       }
     });
     document.getElementById("loginPassword").addEventListener('keypress', function(event) {
-      if (event.key == 'Enter') {
+      if (event.key === 'Enter') {
           event.currentTarget.parentElement.parentElement.parentElement.querySelector("button").click()
       }
     });
-  },[1000])
+  },[])
 
   return (
     <div id = "loginContainer" className="login">
